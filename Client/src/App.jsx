@@ -10,8 +10,6 @@ import Student_Navbar from './component/Student_Navbar'
 import Student_Profile from './component/Student_Profile'
 import Student_Modules from './component/Student_Modules'
 
-import TokenTransfer from './component/TokenTransfer';
-
 import TeacherSignIn from './component/TeacherSignUp'
 import TeacherLogin from './component/TeacherLogin'
 import TeacherSignUp from './component/TeacherSignUp'
@@ -24,6 +22,7 @@ import Teacher_AccountManagement from './component/Teacher_AccountManagement'
 import Teacher_SharedLayout from './component/Teacher_SharedLayout'
 
 import AdminSignin from './component/AdminSignin'
+import Teacher_Add_Student from './component/Teacher_Add_Student';
 
 function App() {
 
@@ -36,15 +35,12 @@ function App() {
 
           {/* Student Routes */}
           <Route path='/Student_Login' element={<Student_Login />} />
-          <Route path='/Student_Homepage' element={<Student_SharedLayout />}>
+          <Route path='/Student' element={<Student_SharedLayout />}>
             <Route index element={<Student_Homepage />} />
-            <Route path='Student_Profile' element={<Student_Profile />} />
+            <Route path='Profile' element={<Student_Profile />} />
             <Route path='Student_Modules' element={<Student_Modules />} />
             <Route path='Student_Navbar' element={<Student_Navbar />} />
           </Route>
-
-          {/* TokenTransfer */}
-          <Route path='/setToken' element={<TokenTransfer />} />
 
           {/* Teacher Routes */}
           <Route path='/TeacherLogin' element={<TeacherLogin />} />
@@ -54,10 +50,13 @@ function App() {
           <Route path='/Teacher_Reset_Password' element={<Teacher_Reset_Password />} />
           <Route path='/Teacher_PasswordReset_Success' element={<Teacher_PasswordReset_Success />} />
 
-          <Route path='/Teacher_Homepage' element={<Teacher_SharedLayout />}>
+          <Route path="/Teacher_Homepage" element={<Teacher_SharedLayout />}>
             <Route index element={<TeacherHomepage />} />
-            <Route path='Teacher_AccountManagement' element={<Teacher_AccountManagement />} />
+            <Route path="Teacher_AccountManagement" element={<Teacher_AccountManagement />} />
+            <Route path="Add_Account" element={<Teacher_Add_Student />} />
+
           </Route>
+
           {/* Admin Route */}
           <Route path='/AdminSignin' element={<AdminSignin />} />
         </Routes>

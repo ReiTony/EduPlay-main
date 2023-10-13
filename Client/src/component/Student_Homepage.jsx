@@ -1,58 +1,72 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { HiX, HiBell } from 'react-icons/hi';
-import { GoDotFill } from 'react-icons/go'
+import { GoDotFill } from 'react-icons/go';
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import BGmodule from '../assets/Homepage_Image/modules_bg.png';
 import BGass from '../assets/Homepage_Image/assessment_bg.png';
 import BGlr from '../assets/Homepage_Image/learningGroup_bg.png';
-import { Link, Outlet } from 'react-router-dom';
-
+import { Link } from 'react-router-dom';
+import axios from 'axios';
 
 const Student_Dashboard = () => {
     const [isMenuOpen, setIsMenuOpen] = useState(false);
-
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
     };
 
     const [isVisible, setIsVisible] = useState(true);
-
     const handleCloseClick = () => {
         setIsVisible(false);
     };
+
+    const [notificationText, setNotificationText] = useState('');
+
+    useEffect(() => {
+        // Fetch user-specific notifications using Axios and send the token
+        const token = sessionStorage.getItem('studentToken'); // Assuming you store the token in sessionStorage
+
+        if (token) {
+            axios.get('YOUR_NOTIFICATION_API_ENDPOINT', {
+                headers: {
+                    Authorization: `Bearer ${token}`,
+                },
+            })
+                .then((response) => {
+                    // Assuming the API returns the notification text as 'notificationText'
+                    setNotificationText(response.data.notificationText);
+                })
+                .catch((error) => {
+                    console.error('Error fetching notifications:', error);
+                });
+        }
+    }, []);
+
     const handleScrollToTop = () => {
         // Scroll to the top of the page
         window.scrollTo({
             top: 0,
-            behavior: 'smooth', // Optional smooth scrolling
+            behavior: 'smooth',
         });
     };
-
 
     return (
         <>
             <div className='backgroundYellow'>
+                {/* NOTIFICATION SECTION */}
                 <div>
                     {isVisible && (
                         <div className='relative p-4 m-4 bg-[#fff5be] rounded-3xl'>
                             <div className="absolute top-0 right-0 p-2">
                                 <HiX className="text-5xl cursor-pointer" onClick={handleCloseClick} />
                             </div>
-
                             <div className='flex items-center'>
-                                <h1 className='p-4 mt-2 text-3xl font-bold lg:text-5xl font-sourceSans3'>NOTIFICATIONS </h1>
+                                <h1 className='p-4 mt-2 text-3xl font-bold lg:text-5xl font-sourceSans3'>NOTIFICATIONS</h1>
                                 <HiBell className="text-5xl " />
                             </div>
-
                             <div className='ml-8 lg:text-3xl font-expletus'>
                                 <div className='flex items-center pb-2'>
                                     <GoDotFill className="ml-2 text-3xl" />
-                                    <h2>Anchor tag ba to or Pure Notif Text lang UNLOCKED</h2>
-                                </div>
-
-                                <div className='flex items-center pb-2'>
-                                    <GoDotFill className="ml-2 text-3xl" />
-                                    <h2>Anchor tag ba to or Pure Notif Text lang UNLOCKED</h2>
+                                    <h2>{notificationText}</h2>
                                 </div>
                             </div>
                         </div>

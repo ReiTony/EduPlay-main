@@ -2,6 +2,9 @@ import React, { useState, useEffect } from 'react';
 import Teacher_Navbar from './Teacher_Navbar';
 import { useTable, useFilters } from 'react-table';
 import { BiEditAlt } from 'react-icons/bi';
+import { BsSearch } from "react-icons/bs";
+import { Link } from 'react-router-dom';
+import { BsFillArrowUpCircleFill } from "react-icons/bs";
 
 function Teacher_AccountManagement() {
     const [data, setData] = useState([]);
@@ -10,7 +13,7 @@ function Teacher_AccountManagement() {
 
     useEffect(() => {
         // Fetch the JSON data from the local file
-        fetch('/src/Student_Data/MOCKK_DATA.json') // Replace with the actual path
+        fetch('/src/Student_Data/MOCK_DATA.json') // Replace with the actual path
             .then((response) => response.json())
             .then((jsonData) => {
                 setData(jsonData);
@@ -110,6 +113,13 @@ function Teacher_AccountManagement() {
         setFilter('LASTNAME', filterInput);
     }, [filterInput]);
 
+    const handleScrollToTop = () => {
+        // Scroll to the top of the page
+        window.scrollTo({
+            top: 0,
+            behavior: 'smooth',
+        });
+    };
     return (
         <>
             <div className='backgroundYellow'>
@@ -119,32 +129,44 @@ function Teacher_AccountManagement() {
                 </header>
 
                 <main className='bg-[#a5d6a7]  mx-4 mt-2 rounded-lg p-5'>
-                    <div className='flex items-center justify-between m-2'>
-                        <div>
+                    <div className='flex items-center justify-between pb-4 m-2'>
+                        <div className='text-4xl font-bold '>
                             <h1>REGISTERED ACCOUNT</h1>
                         </div>
-                        <div className='flex'>
-                            <div className=''>
+
+                        <div className="flex">
+
+                            <div className='mx-4'>
+                                <Link to="/Teacher_Homepage/Add_Account" >
+                                    <button className="px-4 py-2 mt-[0.10rem] text-white bg-blue-500 rounded-md p-y hover:bg-blue-700">
+                                        Add Student
+                                    </button>
+                                </Link>
+                            </div>
+                            <div className="relative mx-4">
                                 <input
-                                    type='text'
+                                    type="text"
                                     value={filterInput}
                                     onChange={(e) => {
                                         setFilterInput(e.target.value);
                                     }}
-                                    placeholder='Search...'
-                                    className='p-2 rounded-md'
+                                    placeholder="Search by lastname..."
+                                    className="w-56 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 />
+                                <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
+                                    <BsSearch className='mr-2 cursor-pointer' />
+                                </span>
                             </div>
-                            <div className=''>
+                            <div className="mx-4">
                                 {/* Dropdown Select for Grade Level */}
                                 <select
                                     value={selectedGrade}
                                     onChange={(e) => {
                                         setSelectedGrade(e.target.value);
                                     }}
-                                    className='p-2 rounded-md'
+                                    className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
                                 >
-                                    <option value=''>All Grades</option>
+                                    <option value="">All Grades</option>
                                     {[1, 2, 3].map((grade) => (
                                         <option key={grade} value={grade}>
                                             Grade {grade}
@@ -153,6 +175,9 @@ function Teacher_AccountManagement() {
                                 </select>
                             </div>
                         </div>
+
+
+
                     </div>
                     <table {...getTableProps()} style={{ borderCollapse: 'collapse', width: '100%' }}>
                         <thead>
@@ -198,6 +223,12 @@ function Teacher_AccountManagement() {
                         </tbody>
                     </table>
                 </main>
+                <button
+                    className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none"
+                    onClick={handleScrollToTop}
+                >
+                    <BsFillArrowUpCircleFill className="text-3xl " />
+                </button>
             </div>
         </>
     );
