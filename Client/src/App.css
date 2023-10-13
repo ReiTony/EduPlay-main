@@ -1,0 +1,46 @@
+.background {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-image: url('/src/assets/bgSchool.jpg');
+}
+
+.backgroundYellow {
+    width: 100%;
+    min-height: 100vh;
+    background-color: #f7d538;
+    overflow-y: auto;
+}
+
+.homepageParent:hover .homepageChild {
+    opacity: 0.5;
+}
+
+.backgroundteacherHPT {
+    /* Background image for Account Management*/
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-image: url('/src/assets/Homepage_Image/teacherHPt.png');
+}
+
+.backgroundteacherHPB {
+    /* Background image for Learning Group*/
+
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+
+    background-image: url('/src/assets/Homepage_Image/teacherHPb.png');
+}
+
+.backgroundBlue {
+    background-image: url('/src/assets/Homepage_Image/blue.svg');
+
+
+}
+
+.backgroundRed {
+    background-image: url('/src/assets/Homepage_Image/red.svg');
+}
