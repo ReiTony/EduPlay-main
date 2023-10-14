@@ -8,7 +8,7 @@ function TokenTransfer() {
     const token = sessionStorage.getItem("studentToken");
     if (token) {
       // Pass the token to Student_Profile and navigate
-      navigate(`/Student_Homepage/Student_Profile?token=${token}`);
+      navigate(`/Student/Profile?token=${token}`);
     } else {
       console.error("No token found.");
     }

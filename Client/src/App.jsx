@@ -11,6 +11,8 @@ import Student_Navbar from './component/Student_Navbar'
 import Student_Profile from './component/Student_Profile'
 import Student_Modules from './component/Student_Modules'
 
+import TokenTransfer from './component/TokenTransfer';
+
 import TeacherSignIn from './component/TeacherSignUp'
 import TeacherLogin from './component/TeacherLogin'
 import TeacherSignUp from './component/TeacherSignUp'
@@ -35,6 +37,9 @@ function App() {
           <Routes>
             {/* Set LandingPage as the root route */}
             <Route path='/' element={<LandingPage />} />
+
+            {/* TokenTransfer */}
+            <Route path='/setToken' element={<TokenTransfer />} />
 
             {/* Student Routes */}
             <Route path='/Student_Login' element={<Student_Login />} />
