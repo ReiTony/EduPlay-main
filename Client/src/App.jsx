@@ -2,6 +2,7 @@ import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
 import React from 'react';
 import LandingPage from './component/LandingPage'
+import { QueryClient, QueryClientProvider } from "react-query";
 
 import Student_Login from './component/Student_Login'
 import Student_SharedLayout from './component/Student_SharedLayout'
@@ -24,45 +25,47 @@ import Teacher_SharedLayout from './component/Teacher_SharedLayout'
 import AdminSignin from './component/AdminSignin'
 import Teacher_Add_Student from './component/Teacher_Add_Student';
 
+const queryClient = new QueryClient();
+
 function App() {
-
   return (
-    <>
-      <BrowserRouter>
-        <Routes>
-          {/* Set LandingPage as the root route */}
-          <Route path='/' element={<LandingPage />} />
+    <QueryClientProvider client={queryClient}> {/* Wrap the entire application with QueryClientProvider */}
+      <>
+        <BrowserRouter>
+          <Routes>
+            {/* Set LandingPage as the root route */}
+            <Route path='/' element={<LandingPage />} />
 
-          {/* Student Routes */}
-          <Route path='/Student_Login' element={<Student_Login />} />
-          <Route path='/Student' element={<Student_SharedLayout />}>
-            <Route index element={<Student_Homepage />} />
-            <Route path='Profile' element={<Student_Profile />} />
-            <Route path='Student_Modules' element={<Student_Modules />} />
-            <Route path='Student_Navbar' element={<Student_Navbar />} />
-          </Route>
+            {/* Student Routes */}
+            <Route path='/Student_Login' element={<Student_Login />} />
+            <Route path='/Student' element={<Student_SharedLayout />}>
+              <Route index element={<Student_Homepage />} />
+              <Route path='Profile' element={<Student_Profile />} />
+              <Route path='Student_Modules' element={<Student_Modules />} />
+              <Route path='Student_Navbar' element={<Student_Navbar />} />
+            </Route>
 
-          {/* Teacher Routes */}
-          <Route path='/TeacherLogin' element={<TeacherLogin />} />
-          <Route path='/TeacherSignUp' element={<TeacherSignUp />} />
-          <Route path='/Teacher_Send_Email' element={<Teacher_Send_Email />} />
-          <Route path='/Teacher_Enter_Code' element={<Teacher_Enter_Code />} />
-          <Route path='/Teacher_Reset_Password' element={<Teacher_Reset_Password />} />
-          <Route path='/Teacher_PasswordReset_Success' element={<Teacher_PasswordReset_Success />} />
+            {/* Teacher Routes */}
+            <Route path='/TeacherLogin' element={<TeacherLogin />} />
+            <Route path='/TeacherSignUp' element={<TeacherSignUp />} />
+            <Route path='/Teacher_Send_Email' element={<Teacher_Send_Email />} />
+            <Route path='/Teacher_Enter_Code' element={<Teacher_Enter_Code />} />
+            <Route path='/Teacher_Reset_Password' element={<Teacher_Reset_Password />} />
+            <Route path='/Teacher_PasswordReset_Success' element={<Teacher_PasswordReset_Success />} />
 
-          <Route path="/Teacher_Homepage" element={<Teacher_SharedLayout />}>
-            <Route index element={<TeacherHomepage />} />
-            <Route path="Teacher_AccountManagement" element={<Teacher_AccountManagement />} />
-            <Route path="Add_Account" element={<Teacher_Add_Student />} />
+            <Route path="/Teacher_Homepage" element={<Teacher_SharedLayout />}>
+              <Route index element={<TeacherHomepage />} />
+              <Route path="Teacher_AccountManagement" element={<Teacher_AccountManagement />} />
+              <Route path="Add_Account" element={<Teacher_Add_Student />} />
+            </Route>
 
-          </Route>
-
-          {/* Admin Route */}
-          <Route path='/AdminSignin' element={<AdminSignin />} />
-        </Routes>
-      </BrowserRouter>
-    </>
-  )
+            {/* Admin Route */}
+            <Route path='/AdminSignin' element={<AdminSignin />} />
+          </Routes>
+        </BrowserRouter>
+      </>
+    </QueryClientProvider>
+  );
 }
 
-export default App
+export default App;
