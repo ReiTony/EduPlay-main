@@ -19,10 +19,10 @@ function Student_Navbar() {
                 </div>
                 <div className="justify-end hidden w-full space-x-4 text-2xl font-bold font-expletus xl:flex">
 
-                    <Link to='/Student_Homepage' className="p-5 hover:text-gray-500 ">HOME</Link>
+                    <Link to='/Student' className="p-5 hover:text-gray-500 ">HOME</Link>
 
 
-                    <Link to='/Student_Homepage/Student_Profile' className="p-5 hover:text-gray-500">PROFILE</Link>
+                    <Link to='/Student/Profile' className="p-5 hover:text-gray-500">PROFILE</Link>
 
 
 
@@ -38,7 +38,7 @@ function Student_Navbar() {
                 <div className="py-4 bg-gray-800 xl:hidden">
                     <div className="container flex flex-col items-center mx-auto space-y-4 font-expletus">
                         <Link to='/' className="text-white">HOME</Link>
-                        <Link to='/Student_Profile' className="text-white">PROFILE</Link>
+                        <Link to='/Student/Profile' className="text-white">PROFILE</Link>
                         <a href="#" className="text-white">LOGOUT</a>
                     </div>
                 </div>

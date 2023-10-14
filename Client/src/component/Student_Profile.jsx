@@ -59,15 +59,15 @@ function Student_Profile({ studentId }) {
   return (
     <div className="backgroundYellow">
       <div className="profile-container p-4 m-4 bg-[#fff5be] rounded-3xl">
-        <div className="profile-header flex items-center">
-          <div className="profile-picture w-40 h-40 mr-4 bg-gray-500 aspect-square rounded-SM">
+        <div className="flex items-center profile-header">
+          <div className="w-40 h-40 mr-4 bg-gray-500 profile-picture aspect-square rounded-SM">
             <img
               src={studentDP}
               alt="Profile"
               className="object-cover w-full h-full rounded-lg"
             />
           </div>
-          <div className="profile-info overflow-hidden font-bold">
+          <div className="overflow-hidden font-bold profile-info">
             <p className="text-3xl font-expletus">
               {userData ? userData.name : "Loading..."}
             </p>
@@ -86,11 +86,11 @@ function Student_Profile({ studentId }) {
             <div className="p-5 text-5xl font-bold text-center font-sourceSans3">
               <h1>BADGES</h1>
             </div>
-            <div className="badge-grid grid grid-cols-4 p-4 sm:px-20 sm:grid-cols-4 sm:gap-5 lg:grid-cols-5 xl:grid-cols-6">
+            <div className="grid grid-cols-4 p-4 badge-grid sm:px-20 sm:grid-cols-4 sm:gap-5 lg:grid-cols-5 xl:grid-cols-6">
               {badgeData.map((badge, index) => (
                 <div
                   key={index}
-                  className="badge-item h-auto m-2 mb-2 rounded-lg shadow-md hover:shadow-lg hover:shadow-green-400 bg-gradient-to-tl from-pink-600 via-teal-200 to-white aspect-square"
+                  className="h-auto m-2 mb-2 rounded-lg shadow-md badge-item hover:shadow-lg hover:shadow-green-400 bg-gradient-to-tl from-pink-600 via-teal-200 to-white aspect-square"
                 >
                   <img src={badge.imageUrl} alt={`Badge ${index + 1}`} />
                 </div>
@@ -103,7 +103,7 @@ function Student_Profile({ studentId }) {
               <h1>ACHIEVEMENTS</h1>
             </div>
 
-            <div className="achievements-list grid p-4 sm:gap-2">
+            <div className="grid p-4 achievements-list sm:gap-2">
               {achievementData.map((achievement, index) => (
                 <div key={index} className="achievement-item bg-[#fff5be]">
                   <div

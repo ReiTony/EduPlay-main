@@ -1,13 +1,32 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { FaLock } from "react-icons/fa";
-import Student_Navbar from './Student_Navbar';
-import Student_Homepage from './Student_Homepage';
 
 
 function Student_Modules() {
-    const [moduleStates, setModuleStates] = useState([false, false]); // Initialize states for each module
+    const [moduleStates, setModuleStates] = useState([]);
+    const [studentProgressData, setStudentProgressData] = useState([]);
+
+    useEffect(() => {
+        // Replace with your JWT token retrieval logic (e.g., from local storage)
+        const token = localStorage.getItem('token');
+
+        // Use Axios to fetch student progress data
+        axios.get('/student-progress', {
+            headers: { Authorization: token }, // Send the JWT token in the headers
+        })
+            .then(response => {
+                setStudentProgressData(response.data);
+                const initialStates = response.data.map(() => false);
+                setModuleStates(initialStates);
+            })
+            .catch(error => {
+                console.error('Error fetching data:', error);
+            });
+    }, []);
+
     const toggleModule = (index) => {
         const updatedStates = [...moduleStates];
         updatedStates[index] = !updatedStates[index];
@@ -15,10 +34,9 @@ function Student_Modules() {
     };
 
     const handleScrollToTop = () => {
-        // Scroll to the top of the page
         window.scrollTo({
             top: 0,
-            behavior: 'smooth', // Optional smooth scrolling
+            behavior: 'smooth',
         });
     };
 
@@ -35,148 +53,47 @@ function Student_Modules() {
                                 </div>
 
                                 <div className='px-5'>
-                                    {/* Module 1 */}
-                                    <div
-                                        className={`p-2 px-6 bg-[#ffbd59] rounded-full text-lg sm:text-2xl lg:text-4xl xl:text-4xl font-bold flex items-center justify-between mb-2 cursor-pointer ${moduleStates[0] ? 'cursor-pointer' : ''}`}
-                                        onClick={() => toggleModule(0)} // Pass the index of the module
-                                    >
-                                        <p>Module 1: Describing and Comparing Materials</p>
-                                        {moduleStates[0] ? (
-                                            <MdExpandLess
-                                                className="text-5xl "
-                                            />
-                                        ) : (
-                                            <MdExpandMore
-                                                className="text-5xl"
-                                            />
-                                        )}
-                                    </div>
-
-                                    {moduleStates[0] && (
-                                        <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
-                                            {/* Content to be expanded */}
-                                            <div className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
-                                                <h1>Operations Lecture File 1</h1>
-                                                <button className='p-2 px-4 text-white bg-black rounded-full'>OPEN</button>
+                                    {studentProgressData.map((module, index) => (
+                                        <div key={index}>
+                                            <div
+                                                className={`p-2 px-6 bg-[#ffbd59] rounded-full text-lg sm:text-2xl lg:text-4xl xl:text-4xl font-bold flex items-center justify-between mb-2 cursor-pointer ${moduleStates[index] ? 'cursor-pointer' : ''}`}
+                                                onClick={() => toggleModule(index)}
+                                            >
+                                                <p>{module.title}</p>
+                                                {moduleStates[index] ? (
+                                                    <MdExpandLess className="text-5xl" />
+                                                ) : (
+                                                    <MdExpandMore className="text-5xl" />
+                                                )}
                                             </div>
-
-                                            <div className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
-                                                <h1>Module 1: Gamified Assessment</h1>
-                                                <button className='p-2 px-4 text-black bg-white'><FaLock /></button>
-                                            </div>
+                                            {moduleStates[index] && (
+                                                <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
+                                                    {module.submodules.map((submodule, subIndex) => (
+                                                        <div key={subIndex} className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
+                                                            <h1>{submodule.title}</h1>
+                                                            <button className='p-2 px-4 text-white bg-black rounded-full'>
+                                                                {submodule.locked ? <FaLock /> : 'OPEN'}
+                                                            </button>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            )}
                                         </div>
-                                    )}
+                                    ))}
                                 </div>
-
-                                <div className='px-5'>
-                                    {/* Module 2 */}
-                                    <div
-                                        className={`p-2 px-6 bg-[#ffbd59] rounded-full text-lg sm:text-2xl lg:text-4xl xl:text-4xl font-bold flex items-center justify-between mb-2 cursor-pointer ${moduleStates[1] ? 'cursor-pointer' : ''}`}
-                                        onClick={() => toggleModule(1)} // Pass the index of the module
-                                    >
-                                        <p>Module 2: Parts of the Human Body</p>
-                                        {moduleStates[1] ? (
-                                            <MdExpandLess
-                                                className="text-5xl"
-                                            />
-                                        ) : (
-                                            <MdExpandMore
-                                                className="text-5xl"
-                                            />
-                                        )}
-                                    </div>
-
-                                    {moduleStates[1] && (
-                                        <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
-                                            {/* Content to be expanded */}
-                                            <div className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
-                                                <h1>Operations Lecture File 1</h1>
-                                                <button className='p-2 px-4 text-black bg-white'><FaLock /></button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-
-                                <div className='px-5'>
-                                    {/* Module 2 */}
-                                    <div
-                                        className={`p-2 px-6 bg-[#ffbd59] rounded-full text-lg sm:text-2xl lg:text-4xl xl:text-4xl font-bold flex items-center justify-between mb-2 cursor-pointer ${moduleStates[2] ? 'cursor-pointer' : ''}`}
-                                        onClick={() => toggleModule(2)} // Pass the index of the module
-                                    >
-                                        <p>Module 3: Needs and Care for Animals </p>
-                                        {moduleStates[2] ? (
-                                            <MdExpandLess
-                                                className="text-5xl"
-                                            />
-                                        ) : (
-                                            <MdExpandMore
-                                                className="text-5xl"
-                                            />
-                                        )}
-                                    </div>
-
-                                    {moduleStates[2] && (
-                                        <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
-                                            {/* Content to be expanded */}
-                                            <div className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
-                                                <h1>Operations Lecture File 1</h1>
-                                                <button className='p-2 px-4 text-black bg-white'><FaLock /></button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-                                <div className='px-5'>
-                                    {/* Module 2 */}
-                                    <div
-                                        className={`p-2 px-6 bg-[#ffbd59] rounded-full text-lg sm:text-2xl lg:text-4xl xl:text-4xl font-bold flex items-center justify-between mb-2 cursor-pointer ${moduleStates[3] ? 'cursor-pointer' : ''}`}
-                                        onClick={() => toggleModule(3)} // Pass the index of the module
-                                    >
-                                        <p>Module 4: Parts and Needs of Plants </p>
-                                        {moduleStates[3] ? (
-                                            <MdExpandLess
-                                                className="text-5xl"
-                                            />
-                                        ) : (
-                                            <MdExpandMore
-                                                className="text-5xl"
-                                            />
-                                        )}
-                                    </div>
-
-                                    {moduleStates[3] && (
-                                        <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
-                                            {/* Content to be expanded */}
-                                            <div className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
-                                                <h1>Operations Lecture File 1</h1>
-                                                <button className='p-2 px-4 text-black bg-white'><FaLock /></button>
-                                            </div>
-                                        </div>
-                                    )}
-                                </div>
-
-
-
-
-
-
                             </div>
                         </div>
-
                     </div>
                 </div>
                 <button
                     className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none"
                     onClick={handleScrollToTop}
                 >
-                    <BsFillArrowUpCircleFill className="text-3xl " />
+                    <BsFillArrowUpCircleFill className="text-3xl" />
                 </button>
-
-
             </div>
         </>
-    )
+    );
 }
 
-export default Student_Modules
+export default Student_Modules;

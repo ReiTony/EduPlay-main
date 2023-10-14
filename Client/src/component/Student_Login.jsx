@@ -35,7 +35,7 @@ function Student_Login() {
         setAuthHeader(tokenStudent);
 
         // Redirect to the student homepage
-        navigate("/Student_Homepage");
+        navigate("/Student");
       } else {
         // Display an error message to the user
         alert("Login failed. Invalid username or password.");
@@ -96,22 +96,21 @@ function Student_Login() {
               Sign In
             </h1>
             <form onSubmit={handleSubmit}>
-              <label htmlFor="username" className="block text-xl font-semibold mb-2">
+              <label htmlFor="username" className="block mb-2 text-xl font-semibold">
                 Username
               </label>
               <input
                 id="username"
                 name="username"
                 type="text"
-                className={`w-[100%] rounded-full flex p-4 px-10 mt-2 text-4xl bg-black text-white border-2 placeholder-white font-kumbh ${
-                  touched.username && errors.username ? "border-red-500 " : ""
-                }`}
+                className={`w-[100%] rounded-full flex p-4 px-10 mt-2 text-4xl bg-black text-white border-2 placeholder-white font-kumbh ${touched.username && errors.username ? "border-red-500 " : ""
+                  }`}
                 value={values.username}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
               />
-              <label htmlFor="password" className="block text-xl font-semibold mt-4 mb-2">
+              <label htmlFor="password" className="block mt-4 mb-2 text-xl font-semibold">
                 Password
               </label>
               <div className="relative">
@@ -119,16 +118,15 @@ function Student_Login() {
                   id="password"
                   name="password"
                   type={showPassword ? "text" : "password"}
-                  className={`w-[100%] justify-center flex items-center rounded-full px-10 border-2 p-4 text-4xl bg-black text-white placeholder-white font-kumbh ${
-                    touched.password && errors.password ? "border-red-500 " : ""
-                  }`}
+                  className={`w-[100%] justify-center flex items-center rounded-full px-10 border-2 p-4 text-4xl bg-black text-white placeholder-white font-kumbh ${touched.password && errors.password ? "border-red-500 " : ""
+                    }`}
                   value={values.password}
                   onChange={handleChange}
                   onBlur={handleBlur}
                   disabled={isSubmitting}
                 />
                 <span
-                  className="absolute top-2 right-2 cursor-pointer text-xl"
+                  className="absolute text-xl cursor-pointer top-2 right-2"
                   onClick={() => setShowPassword(!showPassword)}
                 >
                   {showPassword ? "Hide" : "Show"}
