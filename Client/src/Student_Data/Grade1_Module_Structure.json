@@ -1,0 +1,138 @@
+[
+    {
+        "title": "Module 1: Describing and Comparing Materials",
+        "submodules": [
+            {
+                "title": "Module Lecture: Describing and Comparing Materials",
+                "locked": false
+            },
+            {
+                "title": "Module Review: Describing and Comparing Materials",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Describing and Comparing Materials",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 2: Parts of the Human Body",
+        "submodules": [
+            {
+                "title": "Module Lecture: Parts of the Human Body",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Parts of the Human Body",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Parts of the Human Body",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 3: Simple Machines",
+        "submodules": [
+            {
+                "title": "Module Lecture: Types of Simple Machines",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Simple Machines in Everyday Life",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Building with Simple Machines",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 4: Plants and Growth",
+        "submodules": [
+            {
+                "title": "Module Lecture: Parts of a Plant",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Plant Growth and Photosynthesis",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Growing Your Garden",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 5: Space Exploration",
+        "submodules": [
+            {
+                "title": "Module Lecture: Solar System Overview",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Astronauts and Space Missions",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Space Race Challenge",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 6: Weather and Seasons",
+        "submodules": [
+            {
+                "title": "Module Lecture: Elements of Weather",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Seasons and Climate",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Weather Wizard Adventure",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 7: Animal Kingdom",
+        "submodules": [
+            {
+                "title": "Module Lecture: Types of Animals",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Animal Habitats",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Animal Safari Expedition",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 8: Art and Creativity",
+        "submodules": [
+            {
+                "title": "Module Lecture: Introduction to Art",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Famous Artists",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Artistic Creations",
+                "locked": true
+            }
+        ]
+    }
+]
