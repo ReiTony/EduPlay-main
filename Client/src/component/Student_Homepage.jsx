@@ -19,7 +19,7 @@ const Student_Dashboard = () => {
         setIsVisible(false);
     };
 
-    const [notificationText, setNotificationText] = useState('');
+    const [notificationMessages, setNotificationMessages] = useState([]);
 
     useEffect(() => {
         // Fetch user-specific notifications using Axios and send the token
@@ -32,8 +32,8 @@ const Student_Dashboard = () => {
                 },
             })
                 .then((response) => {
-                    // Assuming the API returns the notification text as 'notificationText'
-                    setNotificationText(response.data.notificationText);
+                    // Assuming the API returns an array of notification messages
+                    setNotificationMessages(response.data.notificationMessages);
                 })
                 .catch((error) => {
                     console.error('Error fetching notifications:', error);
@@ -64,15 +64,16 @@ const Student_Dashboard = () => {
                                 <HiBell className="text-5xl " />
                             </div>
                             <div className='ml-8 lg:text-3xl font-expletus'>
-                                <div className='flex items-center pb-2'>
-                                    <GoDotFill className="ml-2 text-3xl" />
-                                    <h2>{notificationText}</h2>
-                                </div>
+                                {notificationMessages.map((message, index) => (
+                                    <div key={index} className='flex items-center pb-2'>
+                                        <GoDotFill className="ml-2 text-3xl" />
+                                        <h2>{message}</h2>
+                                    </div>
+                                ))}
                             </div>
                         </div>
                     )}
                 </div>
-
                 <div className='m-4  lg:p-0 rounded-full grid lg:grid-cols-[32.5%_32.8%_32.6%] lg:gap-5 gap-5  '>
 
                     <div className='flex flex-col items-center bg-gradient-to-r from-green-300 via-teal-300 to-cyan-200 rounded-xl homepageParent '>
@@ -140,15 +141,8 @@ const Student_Dashboard = () => {
                     <BsFillArrowUpCircleFill className="text-3xl " />
                 </button>
 
-
-
-
             </div >
-
         </>
-
-
-
     );
 };
 

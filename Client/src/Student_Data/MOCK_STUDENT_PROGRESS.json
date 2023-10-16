@@ -1,0 +1,36 @@
+[
+    {
+        "title": "Module 1: Describing and Comparing Materials",
+        "submodules": [
+            {
+                "title": "Module Lecture: Describing and Comparing Materials",
+                "locked": false
+            },
+            {
+                "title": "Module Review: Describing and Comparing Materials",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Describing and Comparing Materials",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 2: Parts of the Human Body",
+        "submodules": [
+            {
+                "title": "Module Lecture: Parts of the Human Body",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Parts of the Human Body",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Parts of the Human Body",
+                "locked": true
+            }
+        ]
+    }
+]

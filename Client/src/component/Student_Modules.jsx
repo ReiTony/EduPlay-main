@@ -3,30 +3,24 @@ import axios from 'axios';
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { FaLock } from "react-icons/fa";
-
+import Grade1_Module_Structure from "../Student_Data/Grade1_Module_Structure.json"
+import Grade2_Module_Structure from "../Student_Data/Grade2_Module_Structure.json"
+import Grade3_Module_Structure from "../Student_Data/Grade3_Module_Structure.json"
+import { Link, useNavigate } from 'react-router-dom';
 
 function Student_Modules() {
     const [moduleStates, setModuleStates] = useState([]);
-    const [studentProgressData, setStudentProgressData] = useState([]);
+    const [studentProgressData, setStudentProgressData] = useState(Grade1_Module_Structure);
+    const navigate = useNavigate();
 
     useEffect(() => {
-        // Replace with your JWT token retrieval logic (e.g., from local storage)
-        const token = localStorage.getItem('token');
-
-        // Use Axios to fetch student progress data
-        axios.get('/student-progress', {
-            headers: { Authorization: token }, // Send the JWT token in the headers
-        })
-            .then(response => {
-                setStudentProgressData(response.data);
-                const initialStates = response.data.map(() => false);
-                setModuleStates(initialStates);
-            })
-            .catch(error => {
-                console.error('Error fetching data:', error);
-            });
+        // Replace with your JWT token retrieval logic 
+        const token = sessionStorage.getItem('token');
     }, []);
 
+
+
+    //
     const toggleModule = (index) => {
         const updatedStates = [...moduleStates];
         updatedStates[index] = !updatedStates[index];
@@ -39,6 +33,33 @@ function Student_Modules() {
             behavior: 'smooth',
         });
     };
+
+    const handleSubmoduleClick = (subIndex, isLocked, moduleIndex, moduleTitle, src) => {
+        if (isLocked) {
+            // Hindi mag navigate pag naka Lock
+            return;
+        }
+        const title = `M${moduleIndex}-${moduleTitle}`;
+        switch (subIndex) {
+            case 0:
+                navigate('/Student/Module/Lecture');
+                window.sessionStorage.setItem("MODULE", JSON.stringify(title));
+                window.sessionStorage.setItem("SRC", JSON.stringify(src));
+                break;
+            case 1:
+                navigate('/Student/Module/Review');
+                window.sessionStorage.setItem("MODULE", JSON.stringify(title));
+                window.sessionStorage.setItem("SRC", JSON.stringify(src));
+                break;
+            case 2:
+                navigate('/Student/Module/Game');
+                window.sessionStorage.setItem("MODULE", JSON.stringify(title));
+                window.sessionStorage.setItem("SRC", JSON.stringify(src));
+                break;
+            default:
+                break;
+        }
+    }
 
     return (
         <>
@@ -71,7 +92,10 @@ function Student_Modules() {
                                                     {module.submodules.map((submodule, subIndex) => (
                                                         <div key={subIndex} className='flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl'>
                                                             <h1>{submodule.title}</h1>
-                                                            <button className='p-2 px-4 text-white bg-black rounded-full'>
+                                                            <button
+                                                                className='p-2 px-4 text-white bg-black rounded-full'
+                                                                onClick={() => handleSubmoduleClick(subIndex, submodule.locked, index, module.title, submodule.src)}
+                                                            >
                                                                 {submodule.locked ? <FaLock /> : 'OPEN'}
                                                             </button>
                                                         </div>

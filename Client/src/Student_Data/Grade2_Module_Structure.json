@@ -1,0 +1,138 @@
+[
+    {
+        "title": "Module 1: Science",
+        "submodules": [
+            {
+                "title": "Module Lecture: The Solar System",
+                "locked": false
+            },
+            {
+                "title": "Module Review: Weather Patterns",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Plant Growth",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 2: Mathematics",
+        "submodules": [
+            {
+                "title": "Module Lecture: Addition and Subtraction",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Multiplication and Division",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Geometry Shapes",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 3: History",
+        "submodules": [
+            {
+                "title": "Module Lecture: Ancient Civilizations",
+                "locked": true
+            },
+            {
+                "title": "Module Review: World Explorers",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Time Travel Adventures",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 4: Language Arts",
+        "submodules": [
+            {
+                "title": "Module Lecture: Reading Comprehension",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Creative Writing",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Grammar Wizards",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 5: Environmental Studies",
+        "submodules": [
+            {
+                "title": "Module Lecture: Biodiversity",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Conservation",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Eco Warriors",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 6: Art and Culture",
+        "submodules": [
+            {
+                "title": "Module Lecture: Famous Artists",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Music and Dance",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Cultural Explorations",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 7: Technology and Innovation",
+        "submodules": [
+            {
+                "title": "Module Lecture: Inventions and Discoveries",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Coding and Robotics",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Future Innovators",
+                "locked": true
+            }
+        ]
+    },
+    {
+        "title": "Module 8: Physical Education",
+        "submodules": [
+            {
+                "title": "Module Lecture: Sports and Fitness",
+                "locked": true
+            },
+            {
+                "title": "Module Review: Healthy Living",
+                "locked": true
+            },
+            {
+                "title": "Module Game: Sports Challenges",
+                "locked": true
+            }
+        ]
+    }
+]

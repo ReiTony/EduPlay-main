@@ -10,6 +10,9 @@ import Student_Homepage from './component/Student_Homepage'
 import Student_Navbar from './component/Student_Navbar'
 import Student_Profile from './component/Student_Profile'
 import Student_Modules from './component/Student_Modules'
+import Student_Module_Lecture from './component/Student_Module_Lecture';
+import Student_Module_Review from './component/Student_Module_Review';
+import Student_Module_Game from './component/Student_Module_Game';
 
 import TokenTransfer from './component/TokenTransfer';
 
@@ -45,9 +48,13 @@ function App() {
             <Route path='/Student_Login' element={<Student_Login />} />
             <Route path='/Student' element={<Student_SharedLayout />}>
               <Route index element={<Student_Homepage />} />
+              <Route path='Student_Navbar' element={<Student_Navbar />} />
               <Route path='Profile' element={<Student_Profile />} />
               <Route path='Student_Modules' element={<Student_Modules />} />
-              <Route path='Student_Navbar' element={<Student_Navbar />} />
+              <Route path='Module/Lecture' element={<Student_Module_Lecture />} />
+              <Route path='Module/Review' element={<Student_Module_Review />} />
+              <Route path='Module/Game' element={<Student_Module_Game />} />
+
             </Route>
 
             {/* Teacher Routes */}
