@@ -31,7 +31,7 @@ function Student_Login() {
       if (response.status === 200) {
         // Store the JWT token securely in sessionStorage
         const tokenStudent = response.data.user.user;
-        sessionStorage.setItem("studentToken", tokenStudent);
+        window.sessionStorage.setItem("studentToken", JSON.stringify(tokenStudent));
         console.log("Token Student:", tokenStudent);
         setAuthHeader(tokenStudent);
 

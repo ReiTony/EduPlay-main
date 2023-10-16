@@ -12,6 +12,7 @@ import Student_Profile from './component/Student_Profile'
 import Student_Modules from './component/Student_Modules'
 import Student_Module_Lecture from './component/Student_Module_Lecture';
 import Student_Module_Review from './component/Student_Module_Review';
+import Student_Module_Game from './component/Student_Module_Game';
 
 import TokenTransfer from './component/TokenTransfer';
 
@@ -51,6 +52,8 @@ function App() {
               <Route path='Profile' element={<Student_Profile />} />
               <Route path='Student_Modules' element={<Student_Modules />} />
               <Route path='Module/Lecture' element={<Student_Module_Lecture />} />
+              <Route path='Module/Review' element={<Student_Module_Review />} />
+              <Route path='Module/Game' element={<Student_Module_Game />} />
 
             </Route>
 
