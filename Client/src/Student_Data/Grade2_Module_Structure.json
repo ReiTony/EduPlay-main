@@ -1,136 +1,36 @@
 [
     {
-        "title": "Module 1: Science",
+        "title": "Module 1: Characteristics and Groupings of Materials",
         "submodules": [
             {
-                "title": "Module Lecture: The Solar System",
-                "locked": false
+                "title": "Module Lecture: Characteristics and Groupings of Materials",
+                "locked": false,
+                "src": "https://drive.google.com/file/d/1z2L0g1PDWB5tvAzwOT9O2C4tIEPp9DL8/preview"
             },
             {
-                "title": "Module Review: Weather Patterns",
+                "title": "Module Review: Characteristics and Groupings of Materials",
                 "locked": true
             },
             {
-                "title": "Module Game: Plant Growth",
+                "title": "Module Game: Characteristics and Groupings of Materials",
                 "locked": true
             }
         ]
     },
     {
-        "title": "Module 2: Mathematics",
+        "title": "Module 2: Living and Nonliving Things",
         "submodules": [
             {
-                "title": "Module Lecture: Addition and Subtraction",
+                "title": "Module Lecture: Living and Nonliving Things",
+                "locked": false,
+                "src": "https://drive.google.com/file/d/13oIgGm7aRRTJITAC6SGjrgJW6MsWA0cZ/preview"
+            },
+            {
+                "title": "Module Review: Living and Nonliving Things",
                 "locked": true
             },
             {
-                "title": "Module Review: Multiplication and Division",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Geometry Shapes",
-                "locked": true
-            }
-        ]
-    },
-    {
-        "title": "Module 3: History",
-        "submodules": [
-            {
-                "title": "Module Lecture: Ancient Civilizations",
-                "locked": true
-            },
-            {
-                "title": "Module Review: World Explorers",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Time Travel Adventures",
-                "locked": true
-            }
-        ]
-    },
-    {
-        "title": "Module 4: Language Arts",
-        "submodules": [
-            {
-                "title": "Module Lecture: Reading Comprehension",
-                "locked": true
-            },
-            {
-                "title": "Module Review: Creative Writing",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Grammar Wizards",
-                "locked": true
-            }
-        ]
-    },
-    {
-        "title": "Module 5: Environmental Studies",
-        "submodules": [
-            {
-                "title": "Module Lecture: Biodiversity",
-                "locked": true
-            },
-            {
-                "title": "Module Review: Conservation",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Eco Warriors",
-                "locked": true
-            }
-        ]
-    },
-    {
-        "title": "Module 6: Art and Culture",
-        "submodules": [
-            {
-                "title": "Module Lecture: Famous Artists",
-                "locked": true
-            },
-            {
-                "title": "Module Review: Music and Dance",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Cultural Explorations",
-                "locked": true
-            }
-        ]
-    },
-    {
-        "title": "Module 7: Technology and Innovation",
-        "submodules": [
-            {
-                "title": "Module Lecture: Inventions and Discoveries",
-                "locked": true
-            },
-            {
-                "title": "Module Review: Coding and Robotics",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Future Innovators",
-                "locked": true
-            }
-        ]
-    },
-    {
-        "title": "Module 8: Physical Education",
-        "submodules": [
-            {
-                "title": "Module Lecture: Sports and Fitness",
-                "locked": true
-            },
-            {
-                "title": "Module Review: Healthy Living",
-                "locked": true
-            },
-            {
-                "title": "Module Game: Sports Challenges",
+                "title": "Module Game: Living and Nonliving Things",
                 "locked": true
             }
         ]
