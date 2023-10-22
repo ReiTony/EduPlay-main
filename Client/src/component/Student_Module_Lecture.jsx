@@ -2,19 +2,19 @@ import React, { useEffect, useState } from 'react';
 
 function Student_Module_Lecture() {
     const [moduleTitle, setModuleTitle] = useState("");
-    const [src, setSrc] = useState(""); // Add this line
+    const [src, setSrc] = useState("");
 
     useEffect(() => {
         const moduleKey = JSON.parse(window.sessionStorage.getItem("MODULE"));
-        const srcKey = JSON.parse(window.sessionStorage.getItem("SRC")); // Add this line
+        const srcKey = JSON.parse(window.sessionStorage.getItem("SRC"));
         if (moduleKey && moduleKey.startsWith("M")) {
             const titleParts = moduleKey.split('-');
             if (titleParts.length === 2) {
                 setModuleTitle(titleParts[1]);
             }
         }
-        if (srcKey) { // Add this line
-            setSrc(srcKey); // Add this line
+        if (srcKey) {
+            setSrc(srcKey);
         }
     }, []);
 

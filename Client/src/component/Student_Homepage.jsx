@@ -8,7 +8,27 @@ import BGlr from '../assets/Homepage_Image/learningGroup_bg.png';
 import { Link } from 'react-router-dom';
 import axios from 'axios';
 
+
+
 const Student_Dashboard = () => {
+
+    // ------ FOR ASSESSMENT SCORE AND PROGRESS ----- //
+
+    // To clear CURRENT_IMAGE_INDEX
+    localStorage.removeItem("CURRENT_IMAGE_INDEX");
+    // To clear CURRENT_MODULE
+    localStorage.removeItem("CURRENT_MODULE");
+    // To clear USER_POINTS from localStorage after (5 seconds)
+    setTimeout(() => {
+        localStorage.removeItem("USER_POINTS");
+    }, 5000);
+
+    // ------ FOR ASSESSMENT SCORE AND PROGRESS ----- //
+
+
+    const gradeLevel = 3;
+    window.localStorage.setItem('gradeLevel', JSON.stringify(gradeLevel));
+
     const [isMenuOpen, setIsMenuOpen] = useState(false);
     const toggleMenu = () => {
         setIsMenuOpen(!isMenuOpen);
@@ -23,7 +43,7 @@ const Student_Dashboard = () => {
 
     useEffect(() => {
         // Fetch user-specific notifications using Axios and send the token
-        const token = sessionStorage.getItem('studentToken'); // Assuming you store the token in sessionStorage
+        const token = localStorage.getItem('studentToken'); // Assuming you store the token in localStorage
 
         if (token) {
             axios.get('YOUR_NOTIFICATION_API_ENDPOINT', {
@@ -48,6 +68,7 @@ const Student_Dashboard = () => {
             behavior: 'smooth',
         });
     };
+
 
     return (
         <>
@@ -103,14 +124,14 @@ const Student_Dashboard = () => {
                             <img className='w-1/1 aspect-square homepageChild' src={BGass} alt="Logo" />
                         </div>
 
-                        <a href="#">
-                            <div className='bg-[#ff5757] text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3'>
 
-                                <a>
-                                    PLAY
-                                </a>
-                            </div>
-                        </a>
+                        <div className='bg-[#ff5757] text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3'>
+
+                            <Link to="Assessment">
+                                PLAY
+                            </Link>
+                        </div>
+
                     </div>
 
 

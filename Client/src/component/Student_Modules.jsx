@@ -10,13 +10,28 @@ import { Link, useNavigate } from 'react-router-dom';
 
 function Student_Modules() {
     const [moduleStates, setModuleStates] = useState([]);
-    const [studentProgressData, setStudentProgressData] = useState(Grade1_Module_Structure);
+    const [studentProgressData, setStudentProgressData] = useState(null);
     const navigate = useNavigate();
 
     useEffect(() => {
-        // Replace with your JWT token retrieval logic 
-        const token = sessionStorage.getItem('token');
+        // Retrieve gradeLevel from localStorage
+        const gradeLevel = JSON.parse(window.localStorage.getItem('gradeLevel'));
+
+        // Set the studentProgressData based on gradeLevel
+        if (gradeLevel == 1) {
+            setStudentProgressData(Grade1_Module_Structure);
+        } else if (gradeLevel == 2) {
+            setStudentProgressData(Grade2_Module_Structure);
+        } else if (gradeLevel == 3) {
+            setStudentProgressData(Grade3_Module_Structure);
+        } else {
+            // Handle the case when gradeLevel is not 1, 2, or 3
+            console.error('Invalid gradeLevel:', gradeLevel);
+        }
     }, []);
+    if (studentProgressData === null) {
+        return <div>Loading...</div>;
+    }
 
 
 
