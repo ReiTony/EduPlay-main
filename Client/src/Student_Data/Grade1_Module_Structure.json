@@ -18,19 +18,19 @@
         ]
     },
     {
-        "title": "Module 2: Parts of the Human Body",
+        "title": "Module 2: Living and Nonliving Things",
         "submodules": [
             {
-                "title": "Module Lecture: Parts of the Human Body",
+                "title": "Module Lecture: Living and Nonliving Things",
                 "locked": false,
                 "src": "https://drive.google.com/file/d/1wbf4KsnIXHQTAtOGKQ24VMPII73UgLlB/preview"
             },
             {
-                "title": "Module Review: Parts of the Human Body",
+                "title": "Module Review: Living and Nonliving Things",
                 "locked": true
             },
             {
-                "title": "Module Game: Parts of the Human Body",
+                "title": "Module Game: Living and Nonliving Things",
                 "locked": true
             }
         ]

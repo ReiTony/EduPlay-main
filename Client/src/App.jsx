@@ -10,9 +10,12 @@ import Student_Homepage from './component/Student_Homepage'
 import Student_Navbar from './component/Student_Navbar'
 import Student_Profile from './component/Student_Profile'
 import Student_Modules from './component/Student_Modules'
-import Student_Module_Lecture from './component/Student_Module_Lecture';
-import Student_Module_Review from './component/Student_Module_Review';
-import Student_Module_Game from './component/Student_Module_Game';
+import Student_Module_Lecture from './component/Student_Module_Lecture'
+import Student_Module_Review from './component/Student_Module_Review'
+import Student_Module_Quiz from './component/Student_Module_Quiz'
+import Student_Assesment from './component/Student_Assesment'
+import Student_Game_FourPicsOneWord from './component/Student_Game_FourPicsOneWord';
+import Student_Score_Assessment from './component/Student_Score_Assessment';
 
 import TokenTransfer from './component/TokenTransfer';
 
@@ -26,6 +29,7 @@ import Teacher_Reset_Password from './component/Teacher_Reset_Password'
 import Teacher_PasswordReset_Success from './component/Teacher_PasswordReset_Success'
 import Teacher_AccountManagement from './component/Teacher_AccountManagement'
 import Teacher_SharedLayout from './component/Teacher_SharedLayout'
+
 
 import AdminSignin from './component/AdminSignin'
 import Teacher_Add_Student from './component/Teacher_Add_Student';
@@ -53,7 +57,10 @@ function App() {
               <Route path='Student_Modules' element={<Student_Modules />} />
               <Route path='Module/Lecture' element={<Student_Module_Lecture />} />
               <Route path='Module/Review' element={<Student_Module_Review />} />
-              <Route path='Module/Game' element={<Student_Module_Game />} />
+              <Route path='Module/Quiz' element={<Student_Module_Quiz />} />
+              <Route path='Assessment' element={< Student_Assesment />} />
+              <Route path='Assessment/4-pics-1-word' element={< Student_Game_FourPicsOneWord />} />
+              <Route path='Assessment/4-pics-1-word/Score' element={< Student_Score_Assessment />} />
 
             </Route>
 
