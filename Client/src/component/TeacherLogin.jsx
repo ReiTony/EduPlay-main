@@ -1,64 +1,86 @@
-import React from "react";
+import React, { useState,useEffect } from "react";
+import Cookies from "js-cookie";
 import logo from "../assets/logo.png";
 import boygirl from "../assets/BoyAndGirl.png";
 import { useFormik } from "formik";
-import { TeacherSchema } from "../SchemaValidation";
+import { TeacherSchema } from "../SchemaValidation"; // Make sure to use consistent naming
 import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
+import { FaEye, FaEyeSlash } from 'react-icons/fa';
 
 function TeacherLogin() {
   const navigate = useNavigate();
+  const [showPassword, setShowPassword] = useState(false);
 
   const setAuthHeader = (token) => {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   };
 
-  const onSubmit = async (values) => {
+  const setTokenCookie = (token) => {
+    // Set an HTTPOnly cookie with the token
+    Cookies.set("teacherToken", JSON.stringify(token), { secure: true, sameSite: "strict" });
+  };
+
+  // Add a function to check if the token cookie exists
+  const hasTokenCookie = () => {
+    return !!Cookies.get("teacherToken");
+  };
+
+  const onSubmit = async (values, setSubmitting) => { // Add setSubmitting as a parameter
     try {
-      // Get the user agent string
       const userAgent = navigator.userAgent;
-
-      // Set the JWT token in Axios headers before making the request
-      setAuthHeader();
-
-      // Replace this URL with the actual API endpoint of your backend
       const apiUrl = "http://localhost:5000/api/v1/Teacher/login";
 
       const response = await axios.post(apiUrl, {
         email: values.TeacherEmail,
         password: values.TeacherPassword,
-        userAgent: userAgent, // Include the userAgent field
+        userAgent: userAgent,
       });
 
       if (response.status === 200) {
-        const tokenTeacher = response.data.user.accessToken; // Get the access token from the response
+        const tokenTeacher = response.data.user.accessToken;
+        setTokenCookie(tokenTeacher);
 
-        // Set the JWT token in Axios headers before making future requests
         setAuthHeader(tokenTeacher);
 
         console.log("Login successful");
-        console.log(tokenTeacher);
         navigate("/Teacher_Homepage");
       } else {
         alert("Login failed. Invalid email or password.");
       }
     } catch (error) {
       console.error("An error occurred:", error);
-
-      // Display the error message to the user or handle it as needed
       alert("An error occurred: " + error.message);
+    } finally {
+      setSubmitting(false);
     }
   };
 
-  const { values, errors, handleBlur, handleChange, handleSubmit, touched } =
-    useFormik({
-      initialValues: {
-        TeacherEmail: "",
-        TeacherPassword: "",
-      },
-      validationSchema: TeacherSchema,
-      onSubmit: (values) => onSubmit(values, navigate),
-    });
+
+  useEffect(() => {
+    if (hasTokenCookie()) {
+      const tokenStudent = Cookies.get("teacherToken");
+      setAuthHeader(tokenStudent);
+      navigate("/Teacher_Homepage");
+    }
+  }, []); // Empty dependency array ensures this effect runs once on component mount
+
+  const {
+    values,
+    errors,
+    handleBlur,
+    handleChange,
+    handleSubmit,
+    touched,
+    isSubmitting,
+  } = useFormik({
+    initialValues: {
+      TeacherEmail: "",
+      TeacherPassword: "",
+    },
+    validationSchema: TeacherSchema, // Make sure to use consistent validation schema
+    onSubmit: (values, { setSubmitting }) => onSubmit(values, setSubmitting), // Add setSubmitting
+  });
 
   return (
     <div className="flex items-center justify-center min-h-screen background">
@@ -66,7 +88,7 @@ function TeacherLogin() {
         <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] bg-opacity-95">
           <div className="flex items-center justify-center">
             <img
-              className="object-cover w-fit h-[90%] m-0 "
+              className="object-cover w-fit h-[90%] m-0"
               src={logo}
               alt="Logo"
             />
@@ -84,44 +106,52 @@ function TeacherLogin() {
             />
           </div>
         </div>
-        <section className="bg-[#f7d538] opacity-95 flex flex-row justify-center">
-          <div className="text-center">
-            <h2 className="font-extrabold mt-36 text-7xl font-expletus">
+        <section className="bg-[#f7d538] opacity-95 flex flex-row justify-center p-5">
+          <div>
+            <h2 className="mt-40 font-extrabold px-14 text-7xl font-expletus">
               Teacher
             </h2>
-            <h1 className="font-extrabold mb-14 text-8xl font-expletus">
-              SIGN IN
+            <h1 className="font-extrabold mb-14 px-14 text-8xl font-expletus">
+              Sign In
             </h1>
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
+                <label htmlFor="TeacherEmail" className={`block mb-2 text-xl font-semibold ${touched.TeacherEmail && errors.TeacherEmail ? "text-red-500" : ""}`}>
+                  Email
+                </label>
                 <input
-                  className={`w-[100%] rounded-full flex p-4 px-10 mt-8 text-4xl bg-black text-white border-2 placeholder-white font-kumbh ${
-                    touched.TeacherEmail && errors.TeacherEmail
-                      ? "border-red-500 shadow-lg shadow-red-500"
-                      : ""
-                  }`}
+                  id="TeacherEmail"
                   name="TeacherEmail"
                   type="text"
-                  placeholder="Email"
+                  className={`w-[100%] rounded-full flex p-4 px-10 mt-2 text-4xl bg-black text-white border-2 font-kumbh ${touched.TeacherEmail && errors.TeacherEmail ? "border-red-500" : ""}`}
                   value={values.TeacherEmail}
                   onChange={handleChange}
                   onBlur={handleBlur}
+                  disabled={isSubmitting}
                 />
               </div>
               <div className="mb-6">
-                <input
-                  className={`w-[100%] rounded-full flex p-4 px-10 mt-4 text-4xl bg-black text-white border-2 placeholder-white font-kumbh ${
-                    touched.TeacherPassword && errors.TeacherPassword
-                      ? "border-red-500 shadow-lg shadow-red-500"
-                      : ""
-                  }`}
-                  id="TeacherPassword"
-                  type="password"
-                  placeholder="Password"
-                  value={values.TeacherPassword}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
-                />
+                <label htmlFor="TeacherPassword" className={`block mt-4 mb-2 text-xl font-semibold ${touched.TeacherPassword && errors.TeacherPassword ? "text-red-500" : ""}`}>
+                  Password
+                </label>
+                <div className="relative">
+                  <input
+                    id="TeacherPassword"
+                    name="TeacherPassword"
+                    type={showPassword ? "text" : "password"}
+                    className={`w-[100%] justify-center flex items-center rounded-full px-10 border-2 p-4 text-4xl bg-black text-white font-kumbh ${touched.TeacherPassword && errors.TeacherPassword ? "border-red-500" : ""}`}
+                    value={values.TeacherPassword}
+                    onChange={handleChange}
+                    onBlur={handleBlur}
+                    disabled={isSubmitting}
+                  />
+                  <span
+                    className="absolute text-xl cursor-pointer top-7 right-5"
+                    onClick={() => setShowPassword(!showPassword)}
+                  >
+                    {showPassword ? <FaEye className="text-white" /> : <FaEyeSlash className="text-white" />}
+                  </span>
+                </div>
               </div>
               <div className="flex justify-between items-center mt-3">
                 <div>
@@ -142,8 +172,9 @@ function TeacherLogin() {
               <button
                 className="w-[80%] font-sourceSans3 text-center rounded-full p-4 mt-8 text-5xl bg-black shadow-lg hover:shadow-green-400 text-white placeholder-white font-bold"
                 type="submit"
+                disabled={isSubmitting}
               >
-                SIGN IN
+                {isSubmitting ? "Signing in..." : "Sign In"}
               </button>
             </form>
             <p className="pb-4 mt-2 text-2xl font-medium font-sourceSans3">
