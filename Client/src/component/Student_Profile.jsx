@@ -1,50 +1,144 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
+import Cookies from "js-cookie";
 import studentDP from "../assets/StudentProfilePicture/StudentDP.jpg";
 import { FcApproval } from "react-icons/fc";
-import { useQuery } from "react-query";
+import axios from "axios";
 
-const fetchStudentProfile = async (studentId) => {
-  const response = await fetch(`/api/v1/Student/${studentId}`);
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
+function Student_Profile() {
+  // Define a state to store the additional student information
+  const [studentInfo, setStudentInfo] = useState(null);
 
-const fetchBadges = async () => {
-  const response = await fetch("/api/badges");
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
+  // Define state variables for loading and error
+  const [isStudentLoading, setIsStudentLoading] = useState(true);
+  const [isBadgeLoading, setIsBadgeLoading] = useState(true);
+  const [isAchievementLoading, setIsAchievementLoading] = useState(true);
+  const [studentError, setStudentError] = useState(null); // Define studentError
 
-const fetchAchievements = async () => {
-  const response = await fetch("/api/achievements");
-  if (!response.ok) {
-    throw new Error("Network response was not ok");
-  }
-  return response.json();
-};
+  // Add a function to retrieve the token from cookies
+  const getTokenFromCookies = () => {
+    const token = Cookies.get("studentToken");
+    console.log("Token from cookies:", token);
 
-function Student_Profile({ studentId }) {
-  const {
-    data: studentData,
-    error: studentError,
-    isLoading: isStudentLoading,
-  } = useQuery(["student", studentId], () => fetchStudentProfile(studentId));
+    if (token) {
+      try {
+        const tokenObject = JSON.parse(token);
+        console.log("Parsed token object:", tokenObject);
+        if (tokenObject.accessToken && tokenObject.userId) {
+          return {
+            accessToken: tokenObject.accessToken,
+            userId: tokenObject.userId,
+          };
+        }
+      } catch (error) {
+        console.error("Error parsing token:", error);
+      }
+    }
 
-  const {
-    data: badgeData,
-    error: badgeError,
-    isLoading: isBadgeLoading,
-  } = useQuery("badges", fetchBadges);
+    return null;
+  };
 
-  const {
-    data: achievementData,
-    error: achievementError,
-    isLoading: isAchievementLoading,
-  } = useQuery("achievements", fetchAchievements);
+  useEffect(() => {
+    const token = Cookies.get("studentToken");
+    const tokenObject = JSON.parse(token);
+    console.log("Parsed token object:", tokenObject);
+    if (tokenObject.accessToken && tokenObject.userId) {
+          return {
+            accessToken: tokenObject.accessToken,
+            userId: tokenObject.userId,
+          };
+    }
+    // Use the user._id (studentId) to fetch additional student information
+    const fetchStudentInfo = async () => {
+      console.log("Token from cookies:", tokenObject);
+    
+      if (!tokenObject || !tokenObject.userId || !tokenObject.accessToken) {
+        console.error("Token is missing or invalid");
+        setStudentError("Token is missing or invalid");
+        setIsStudentLoading(false);
+        return;
+      }
+    
+      try {
+        setIsStudentLoading(true);
+    
+        const response = await axios.get(
+          `http://localhost:5000/api/v1/Student/${tokenObject.userId}`,
+          {
+            headers: {
+              Authorization: `Bearer ${tokenObject.accessToken}`,
+            },
+          }
+        );
+    
+        console.log("API response:", response);
+    
+        if (response.status === 200) {
+          const studentData = response.data;
+          setStudentInfo(studentData);
+        } else {
+          console.error("Error fetching student information");
+          setStudentError("Error fetching student information");
+        }
+      } catch (error) {
+        console.error("An error occurred while fetching student information:", error);
+        setStudentError("An error occurred while fetching student information");
+      } finally {
+        setIsStudentLoading(false);
+      }
+      {
+        console.error("Token is missing or invalid");
+        setStudentError("Token is missing or invalid"); // Set studentError
+        setIsStudentLoading(false); // Ensure loading is set to false
+      }
+    };
+
+    // Fetch badge data
+    const fetchBadgeData = async () => {
+      try {
+        setIsBadgeLoading(true);
+
+        // Fetch badge data here using Axios or your preferred method
+
+        // Example:
+        // const response = await axios.get("/api/badges");
+        // const badgeData = response.data;
+
+        // Set badge data and set loading to false
+        // setBadgeData(badgeData);
+      } catch (error) {
+        console.error("Error fetching badge data:", error);
+        setBadgeError(error);
+      } finally {
+        setIsBadgeLoading(false);
+      }
+    };
+
+    // Fetch achievement data
+    const fetchAchievementData = async () => {
+      try {
+        setIsAchievementLoading(true);
+
+        // Fetch achievement data here using Axios or your preferred method
+
+        // Example:
+        // const response = await axios.get("/api/achievements");
+        // const achievementData = response.data;
+
+        // Set achievement data and set loading to false
+        // setAchievementData(achievementData);
+      } catch (error) {
+        console.error("Error fetching achievement data:", error);
+        setAchievementError(error);
+      } finally {
+        setIsAchievementLoading(false);
+      }
+    };
+
+    // Call your data fetching functions
+    fetchStudentInfo();
+    fetchBadgeData();
+    fetchAchievementData();
+  }, []);
 
   if (isStudentLoading || isBadgeLoading || isAchievementLoading) {
     return <p>Loading...</p>;
@@ -54,7 +148,7 @@ function Student_Profile({ studentId }) {
     return <p>Error loading data.</p>;
   }
 
-  const userData = studentData;
+  const userData = studentInfo;
   // Existing rendering logic
   return (
     <div className="backgroundYellow">
@@ -69,10 +163,12 @@ function Student_Profile({ studentId }) {
           </div>
           <div className="overflow-hidden font-bold profile-info">
             <p className="text-3xl font-expletus">
-              {userData ? userData.name : "Loading..."}
+              {userData
+                ? `${userData.firstName} ${userData.lastName}`
+                : "Loading..."}
             </p>
             <p className="text-3xl font-expletus">
-              Grade Level: {userData ? userData.grade : "Loading..."}
+              Grade Level: {userData ? userData.gradeLevel : "Loading..."}
             </p>
             <p className="text-3xl font-expletus">
               Student ID:{" "}
@@ -107,7 +203,7 @@ function Student_Profile({ studentId }) {
               {achievementData.map((achievement, index) => (
                 <div key={index} className="achievement-item bg-[#fff5be]">
                   <div
-                    className="w-full flex items-center mb-4 shadow-gray-500 hover:shadow-green-400 shadow-md px-4 py-2 text-xl font-bold text-black bg-[#a5d6a7] rounded-full font-rfont  focus:outline-none focus:shadow-outline"
+                    className="w-full flex items-center mb-4 shadow-gray-500 hover:shadow-green-400 shadow-md px-4 py-2 text-xl font-bold text-black bg-[#a5d6a7] rounded-full font-sourceSans3 focus:outline-none focus:shadow-outline"
                     type="button"
                   >
                     <FcApproval className="text-3xl cursor-pointer" />

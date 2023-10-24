@@ -1,4 +1,5 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
+import Cookies from "js-cookie"; // Import the js-cookie library
 import logo from "../assets/logo.png";
 import boygirl from "../assets/BoyAndGirl.png";
 import { useFormik } from "formik";
@@ -15,6 +16,17 @@ function Student_Login() {
     axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
   };
 
+  // Add a function to set a cookie with a JWT token
+  const setTokenCookie = (token) => {
+    // Set an HTTPOnly cookie with the token
+    Cookies.set("studentToken", JSON.stringify(token), { secure: true, sameSite: "strict" });
+  };
+
+  // Add a function to check if the token cookie exists
+  const hasTokenCookie = () => {
+    return !!Cookies.get("studentToken");
+  };
+
   const onSubmit = async (values, setSubmitting) => {
     try {
       const userAgent = navigator.userAgent;
@@ -29,10 +41,11 @@ function Student_Login() {
       console.log("Response Data:", response.data.user.user);
 
       if (response.status === 200) {
-        // Store the JWT token securely in sessionStorage
+        // Store the JWT token as a cookie
         const tokenStudent = response.data.user.user;
-        window.sessionStorage.setItem("studentToken", JSON.stringify(tokenStudent));
-        console.log("Token Student:", tokenStudent);
+        setTokenCookie(tokenStudent);
+
+        // Set the Authorization header for Axios
         setAuthHeader(tokenStudent);
 
         // Redirect to the student homepage
@@ -48,6 +61,16 @@ function Student_Login() {
       setSubmitting(false); // Reset the form submission state
     }
   };
+
+  // Check if a token cookie exists when the component mounts
+  useEffect(() => {
+    if (hasTokenCookie()) {
+      const tokenStudent = Cookies.get("studentToken");
+      setAuthHeader(tokenStudent);
+      navigate("/Student");
+    }
+  }, []); // Empty dependency array ensures this effect runs once on component mount
+
 
   const {
     values,
