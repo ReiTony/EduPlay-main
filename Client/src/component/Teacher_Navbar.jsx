@@ -22,7 +22,7 @@ function Teacher_Navbar() {
 
                     <Link to="/Teacher_Homepage" className="p-5 hover:text-gray-500 ">HOME</Link>
 
-                    <a href="#" className="p-5 hover:text-gray-500">LOGOUT</a>
+                    <Link to='/Teacher_Homepage/Logout' className="p-5 hover:text-gray-500">LOGOUT</Link> 
 
                 </div>
 
@@ -33,10 +33,9 @@ function Teacher_Navbar() {
             {isMenuOpen && (
                 <div className="py-4 bg-gray-800 xl:hidden">
                     <div className="container flex flex-col items-center mx-auto space-y-4 font-expletus">
-                        <a href="#" className="text-white">HOME</a>
+                        <Link to="/" className="text-white">HOME</Link>
                         <a href="#" className="text-white">PROFILE</a>
-
-                        <a href="#" className="text-white">LOGOUT</a>
+                        <Link to='/Teacher_Homepage/Logout' className="text-white">LOGOUT</Link>
                     </div>
                 </div>
             )}

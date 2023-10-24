@@ -26,7 +26,7 @@ function Student_Navbar() {
 
 
 
-                    <a href="#" className="p-5 hover:text-gray-500">LOGOUT</a>
+                    <Link to='/Student/Logout' className="p-5 hover:text-gray-500">LOGOUT</Link> 
 
                 </div>
 
@@ -39,7 +39,7 @@ function Student_Navbar() {
                     <div className="container flex flex-col items-center mx-auto space-y-4 font-expletus">
                         <Link to='/' className="text-white">HOME</Link>
                         <Link to='/Student/Profile' className="text-white">PROFILE</Link>
-                        <a href="#" className="text-white">LOGOUT</a>
+                        <Link to='/Student/Logout' className="text-white">LOGOUT</Link>
                     </div>
                 </div>
             )}

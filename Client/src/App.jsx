@@ -1,8 +1,9 @@
 import './App.css'
-import { BrowserRouter, Route, Routes } from 'react-router-dom'
+import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom'
 import React from 'react';
 import LandingPage from './component/LandingPage'
 import { QueryClient, QueryClientProvider } from "react-query";
+import Logout from './component/Logout'
 
 import Student_Login from './component/Student_Login'
 import Student_SharedLayout from './component/Student_SharedLayout'
@@ -19,6 +20,7 @@ import Student_Score_Assessment from './component/Student_Score_Assessment';
 
 import TokenTransfer from './component/TokenTransfer';
 
+import Teacher_Navbar from './component/Teacher_Navbar';
 import TeacherSignIn from './component/TeacherSignUp'
 import TeacherLogin from './component/TeacherLogin'
 import TeacherSignUp from './component/TeacherSignUp'
@@ -61,7 +63,7 @@ function App() {
               <Route path='Assessment' element={< Student_Assesment />} />
               <Route path='Assessment/4-pics-1-word' element={< Student_Game_FourPicsOneWord />} />
               <Route path='Assessment/4-pics-1-word/Score' element={< Student_Score_Assessment />} />
-
+              <Route path='Logout' element={<Logout />} />
             </Route>
 
             {/* Teacher Routes */}
@@ -74,8 +76,10 @@ function App() {
 
             <Route path="/Teacher_Homepage" element={<Teacher_SharedLayout />}>
               <Route index element={<TeacherHomepage />} />
+              <Route path='Teacher_Navbar' element={<Teacher_Navbar />} />
               <Route path="Teacher_AccountManagement" element={<Teacher_AccountManagement />} />
               <Route path="Add_Account" element={<Teacher_Add_Student />} />
+              <Route path='Logout' element={<Logout />} />
             </Route>
 
             {/* Admin Route */}
