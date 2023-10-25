@@ -39,7 +39,7 @@ function Student_Game_WordHunt() {
   };
 
   useEffect(() => {
-    if (solved >= 10) alert("Congratulations! You have finished the word hunt.");
+    if (solved >= data?.clues.length) alert("Congratulations! You have finished the word hunt.");
   }, [solved]);
 
   const generateUpDownPattern = (current, origin) => {

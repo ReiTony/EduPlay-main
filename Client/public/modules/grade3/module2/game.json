@@ -1,56 +1,26 @@
 {
-  "title": "Word Hunt: Describing and Comparing Materials",
+  "title": "Word Hunt: States of Matter",
   "type": "Word Hunt",
   "puzzle": [
-    ["A", "R", "O", "U", "N", "D", "W", "H", "M"],
-    ["L", "T", "E", "X", "T", "U", "R", "E", "A"],
-    ["I", "B", "F", "C", "K", "O", "A", "C", "S"],
-    ["H", "C", "G", "O", "J", "E", "Z", "I", "S"],
-    ["H", "Y", "E", "L", "L", "O", "W", "B", "A"],
-    ["T", "D", "E", "O", "V", "J", "E", "R", "I"],
-    ["O", "D", "G", "R", "J", "T", "A", "L", "L"],
-    ["O", "S", "I", "Z", "A", "O", "O", "C", "C"],
-    ["M", "A", "E", "R", "U", "S", "A", "E", "M"],
-    ["S", "Q", "U", "A", "R", "E", "G", "S", "Y"]
+    ["A", "S", "U", "N", "L", "F", "L", "O", "W"],
+    ["F", "U", "P", "K", "G", "P", "I", "X", "B"],
+    ["G", "R", "O", "I", "E", "A", "Q", "A", "V"],
+    ["O", "F", "M", "S", "J", "T", "U", "H", "O"],
+    ["G", "A", "S", "S", "G", "P", "I", "V", "L"],
+    ["I", "C", "G", "B", "X", "V", "D", "C", "U"],
+    ["E", "E", "B", "V", "W", "O", "D", "P", "M"],
+    ["C", "S", "T", "E", "X", "T", "U", "R", "E"],
+    ["Z", "I", "A", "B", "I", "C", "S", "E", "O"],
+    ["T", "E", "T", "O", "D", "I", "L", "O", "S"]
   ],
-  "answers": ["0,6 0,1", "1,8 1,2", "3,9 0,9", "4,1 9,1", "9,6 9,1", "8,3 8,9", "4,7 4,2", "6,4 2,4", "6,9 6,6", "3,6 3,9", "0,6 0,2"],
+  "answers": ["0,9 0,6", "5,7 0,7", "7,9 2,9", "7,9 7,3", "9,5 9,9", "4,3 4,1", "6,2 0,2"],
   "clues": [
-    "Texture - Texture describes how the surface of an object feels.",
-    "Mass - Mass describes how light or heavy an object is.",
-    "Size - Materials have different sizes, some are big and some are small.",
-    "Color - Color is what you see when you look at something, like red or blue.",
-    "Yellow - Yellow is a bright color seen in bananas or the sun.",
-    "Round - Round is when an object is shaped like a circle, like a ball or coconut.",
-    "Smooth - Smooth is a texture observed in objects with an even surface, like mirrors and shirts.",
-    "Square - Square is a shape that has 4 equal sides, like a box or dice.",
-    "Tall - Tall is a measure when an object's height is higher than others.",
-    "Measure - Measure is finding out how long, tall, or heavy something is using tools like a ruler or a scale."
-  ],
-  "rounds": [
-    {
-      "imagePath": "https://drive.google.com/uc?id=1G01vFj20El9HH2B7hAkd7DUUA8wyYivw",
-      "clue": "Ewan ko",
-      "answer": "Human"
-    },
-    {
-      "imagePath": "https://drive.google.com/uc?id=1TICWllJKtA4ZWMWiwTOQtHAEwCA9Q9Bz",
-      "clue": "Hayop hahahahahahha",
-      "answer": "Animal"
-    },
-    {
-      "imagePath": "https://drive.google.com/uc?id=1G-L-c3Giqllme5dNYxH1wbzpUH6kCUUC",
-      "clue": "Sasakyan lods",
-      "answer": "Car"
-    },
-    {
-      "imagePath": "https://drive.google.com/uc?id=13Jwlyfpm0E6kjSEHxJd8l0XG5yDvMaen",
-      "clue": "Ginagamit pangsulat",
-      "answer": "Pencil"
-    },
-    {
-      "imagePath": "https://drive.google.com/uc?id=1XV5iphfZeydwHlP-Zth6MqAiE6LaXz8B",
-      "clue": "Kalaban ng mga zombies",
-      "answer": "Plant"
-    }
+    "Solid - a state of matter that has a definite shape, size, and volume.",
+    "Liquid - a state of matter that does not have definite shape and size but has definite volume.",
+    "Gas - a state of matter that does not have definite volume and shape.",
+    "Flow - this is an ability that a liquid has.",
+    "Volume - amount of space that an object occupies.",
+    "Texture - the feel or appearance of the surface of an object. Different solids may have smooth or rough textures.",
+    "Surface - The outer part or appearance of an object."
   ]
 }
