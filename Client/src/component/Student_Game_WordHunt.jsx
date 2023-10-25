@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Student_Game_WordHunt() {
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const { moduleNumber } = useParams();
   const [origin, setOrigin] = useState([-1, -1]);
   const [current, setCurrent] = useState([-2, -2]);
@@ -12,7 +13,7 @@ function Student_Game_WordHunt() {
 
   useEffect(() => {
     const init = async () => {
-      const res = await fetch(`/modules/${moduleNumber}/game.json`);
+      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`);
       setData(await res.json());
     };
     init();
