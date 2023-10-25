@@ -19,7 +19,7 @@ function Student_Login() {
   // Add a function to set a cookie with a JWT token
   const setTokenCookie = (token) => {
     // Set an HTTPOnly cookie with the token
-    Cookies.set("studentToken", JSON.stringify(token), { secure: true, sameSite: "none" });
+    Cookies.set("studentToken", JSON.stringify(token), { secure: true, sameSite: "strict" });
   };
 
   // Add a function to check if the token cookie exists
