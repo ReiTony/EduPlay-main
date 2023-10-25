@@ -16,27 +16,32 @@ function Teacher_Add_Student() {
   const validationSchema = Yup.object().shape({
     firstName: Yup.string().required("* First Name is required"),
     lastName: Yup.string().required("* Last Name is required"),
-    birthDay: Yup.date().required("* Birth Day is required"),
+    birthDay: Yup.number().typeError("* Birth Day must be a number").required("* Birth Day is required"),
+    birthMonth: Yup.number().typeError("* Birth Month must be a number").required("* Birth Month is required"),
     gradeLevel: Yup.string().required("* Grade Level is required"),
   });
 
   const checkStudentExistence = (values) => {
-    const { firstName, lastName, gradeLevel } = values;
-
-    return axios.get(
-      `http://localhost:5000/api/v1/Student?firstName=${firstName}&lastName=${lastName}`
-    );
+    const { firstName, lastName, birthDay, birthMonth, gradeLevel } = values;
+    const userName = `${firstName}${lastName}`;
+    return axios
+      .get(`http://localhost:5000/api/v1/Teacher/showStudent/${userName}`)
+      .then((response) => {
+        // If the student is not found, resolve with an empty response
+        if (!response.data) {
+          return Promise.resolve();
+        }
+        return response;
+      })
+      .catch((error) => {
+        console.error("Error checking student existence:", error);
+      });
   };
-
+  
   const onSubmit = (values) => {
     checkStudentExistence(values)
       .then((response) => {
-        if (response.data) {
-          // Student with the same attributes already exists.
-          console.error(
-            "Student with the same attributes already exists in the database."
-          );
-        } else {
+        if (!response) {
           // No student found, proceed to create the student account.
           axios
             .post("http://localhost:5000/api/v1/Teacher/addStudent", values, {
@@ -45,20 +50,21 @@ function Teacher_Add_Student() {
               },
             })
             .then((postResponse) => {
-              console.log(
-                "POST request successful. Response:",
-                postResponse.data
-              );
+              console.log("POST request successful. Response:", postResponse.data);
             })
             .catch((postError) => {
               console.error("POST request error:", postError);
             });
+        } else {
+          // Student with the same attributes already exists.
+          console.error("Student with the same attributes already exists in the database.");
         }
       })
       .catch((error) => {
         console.error("Error checking data:", error);
       });
   };
+
   return (
     <>
       <header className="grid bg-red-500 grid-row-[50%_50%] mx-4 rounded-3xl gap-3 p-4 text-4xl font-reemkufifont font-bold">
@@ -77,12 +83,12 @@ function Teacher_Add_Student() {
               Fill in the information:
             </h1>
           </div>
-          {/* Main fill in information Section */}
           <Formik
             initialValues={{
               firstName: "",
               lastName: "",
               birthDay: "",
+              birthMonth: "",
               gradeLevel: "1",
             }}
             validationSchema={validationSchema}
@@ -126,7 +132,7 @@ function Teacher_Add_Student() {
                         id="lastName"
                         name="lastName"
                         placeholder="Enter Last Name"
-                        className="px-4 py-2 lg:w-[400px]  border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
+                        className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
                       />
                     </div>
                     <div className="ml-20">
@@ -146,15 +152,38 @@ function Teacher_Add_Student() {
                         Birth Day:
                       </label>
                       <Field
-                        type="date"
+                        type="number" // Changed to number
                         id="birthDay"
                         name="birthDay"
-                        className="px-4 py-2 lg:w-[400px]  border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
+                        className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
                       />
                     </div>
                     <div className="ml-20">
                       <ErrorMessage
                         name="birthDay"
+                        component="div"
+                        className="flex justify-center text-xl text-center text-red-500 "
+                      />
+                    </div>
+                  </div>
+                  <div className="flex-col">
+                    <div className="flex items-center justify-center">
+                      <label
+                        htmlFor="birthMonth"
+                        className="pr-2 ml-5 text-right"
+                      >
+                        Birth Month:
+                      </label>
+                      <Field
+                        type="number" // Changed to number
+                        id="birthMonth"
+                        name="birthMonth"
+                        className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
+                      />
+                    </div>
+                    <div className="ml-20">
+                      <ErrorMessage
+                        name="birthMonth"
                         component="div"
                         className="flex justify-center text-xl text-center text-red-500 "
                       />
@@ -168,7 +197,7 @@ function Teacher_Add_Student() {
                       as="select"
                       id="gradeLevel"
                       name="gradeLevel"
-                      className="px-4 py-2 lg:w-[400px]  border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
+                      className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
                     >
                       <option value="1">1</option>
                       <option value="2">2</option>
