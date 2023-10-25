@@ -1,6 +1,7 @@
 [
     {
         "title": "Module 1:  States of Matter",
+        "moduleNumber": 1,
         "submodules": [
             {
                 "title": "Module Lecture:  States of Matter",
@@ -19,6 +20,7 @@
     },
     {
         "title": "Module 2: Changes in Matter",
+        "moduleNumber": 2,
         "submodules": [
             {
                 "title": "Module Lecture: Changes in Matter",
