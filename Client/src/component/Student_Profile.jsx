@@ -6,132 +6,82 @@ import axios from "axios";
 
 function Student_Profile() {
   // Define a state to store the additional student information
-  const [studentInfo, setStudentInfo] = useState(null);
-
+  const [studentData, setStudentInfo] = useState(null);
+  console.log("HERE", studentData)
   // Define state variables for loading and error
   const [isStudentLoading, setIsStudentLoading] = useState(true);
   const [isBadgeLoading, setIsBadgeLoading] = useState(true);
   const [isAchievementLoading, setIsAchievementLoading] = useState(true);
-  const [studentError, setStudentError] = useState(null); // Define studentError
+  const [studentError, setStudentError] = useState(null);
+  const [badgeError, setBadgeError] = useState(null); // Define badgeError
+  const [achievementError, setAchievementError] = useState(null); // Define achievementError
 
-  // Add a function to retrieve the token from cookies
-  const getTokenFromCookies = () => {
-    const token = Cookies.get("studentToken");
-    console.log("Token from cookies:", token);
-
-    if (token) {
-      try {
-        const tokenObject = JSON.parse(token);
-        console.log("Parsed token object:", tokenObject);
-        if (tokenObject.accessToken && tokenObject.userId) {
-          return {
-            accessToken: tokenObject.accessToken,
-            userId: tokenObject.userId,
-          };
-        }
-      } catch (error) {
-        console.error("Error parsing token:", error);
-      }
-    }
-
-    return null;
-  };
 
   useEffect(() => {
+    // Retrieve the token from cookies
     const token = Cookies.get("studentToken");
     const tokenObject = JSON.parse(token);
-    console.log("Parsed token object:", tokenObject);
-    if (tokenObject.accessToken && tokenObject.userId) {
-          return {
-            accessToken: tokenObject.accessToken,
-            userId: tokenObject.userId,
-          };
-    }
+    const userId = tokenObject.userId;
     // Use the user._id (studentId) to fetch additional student information
     const fetchStudentInfo = async () => {
-      console.log("Token from cookies:", tokenObject);
-    
-      if (!tokenObject || !tokenObject.userId || !tokenObject.accessToken) {
+      if (!tokenObject) {
         console.error("Token is missing or invalid");
         setStudentError("Token is missing or invalid");
         setIsStudentLoading(false);
         return;
       }
-    
+
       try {
         setIsStudentLoading(true);
-    
+
         const response = await axios.get(
-          `http://localhost:5000/api/v1/Student/${tokenObject.userId}`,
+          `http://localhost:5000/api/v1/Student/${userId}`,
           {
             headers: {
               Authorization: `Bearer ${tokenObject.accessToken}`,
             },
           }
         );
-    
+
         console.log("API response:", response);
-    
+
         if (response.status === 200) {
-          const studentData = response.data;
+          const studentData = response.data.student;
+          console.log("Student data:", studentData);
           setStudentInfo(studentData);
         } else {
           console.error("Error fetching student information");
           setStudentError("Error fetching student information");
         }
       } catch (error) {
-        console.error("An error occurred while fetching student information:", error);
+        console.error(
+          "An error occurred while fetching student information:",
+          error
+        );
         setStudentError("An error occurred while fetching student information");
       } finally {
         setIsStudentLoading(false);
-      }
-      {
-        console.error("Token is missing or invalid");
-        setStudentError("Token is missing or invalid"); // Set studentError
-        setIsStudentLoading(false); // Ensure loading is set to false
       }
     };
 
     // Fetch badge data
     const fetchBadgeData = async () => {
-      try {
-        setIsBadgeLoading(true);
-
-        // Fetch badge data here using Axios or your preferred method
-
-        // Example:
-        // const response = await axios.get("/api/badges");
-        // const badgeData = response.data;
-
-        // Set badge data and set loading to false
-        // setBadgeData(badgeData);
-      } catch (error) {
-        console.error("Error fetching badge data:", error);
-        setBadgeError(error);
-      } finally {
-        setIsBadgeLoading(false);
-      }
+      // Fetch badge data here using Axios or your preferred method
+      // Example:
+      // const response = await axios.get("/api/badges");
+      // const badgeData = response.data;
+      // Set badge data and set loading to false
+      // setBadgeData(badgeData);
     };
 
     // Fetch achievement data
     const fetchAchievementData = async () => {
-      try {
-        setIsAchievementLoading(true);
-
-        // Fetch achievement data here using Axios or your preferred method
-
-        // Example:
-        // const response = await axios.get("/api/achievements");
-        // const achievementData = response.data;
-
-        // Set achievement data and set loading to false
-        // setAchievementData(achievementData);
-      } catch (error) {
-        console.error("Error fetching achievement data:", error);
-        setAchievementError(error);
-      } finally {
-        setIsAchievementLoading(false);
-      }
+      // Fetch achievement data here using Axios or your preferred method
+      // Example:
+      // const response = await axios.get("/api/achievements");
+      // const achievementData = response.data;
+      // Set achievement data and set loading to false
+      // setAchievementData(achievementData);
     };
 
     // Call your data fetching functions
@@ -140,15 +90,24 @@ function Student_Profile() {
     fetchAchievementData();
   }, []);
 
+  // Rest of your component code remains the same
+  // ...
+
+  // Handle loading and error cases
   if (isStudentLoading || isBadgeLoading || isAchievementLoading) {
     return <p>Loading...</p>;
   }
 
   if (studentError || badgeError || achievementError) {
     return <p>Error loading data.</p>;
+    
   }
 
-  const userData = studentInfo;
+  if (!studentData) {
+    return <p>Loading...</p>;
+    
+  }
+  
   // Existing rendering logic
   return (
     <div className="backgroundYellow">
@@ -163,16 +122,16 @@ function Student_Profile() {
           </div>
           <div className="overflow-hidden font-bold profile-info">
             <p className="text-3xl font-expletus">
-              {userData
-                ? `${userData.firstName} ${userData.lastName}`
+              {studentData
+                ? `${studentData.firstName} ${studentData.lastName}`
                 : "Loading..."}
             </p>
             <p className="text-3xl font-expletus">
-              Grade Level: {userData ? userData.gradeLevel : "Loading..."}
+              Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}
             </p>
             <p className="text-3xl font-expletus">
               Student ID:{" "}
-              <span>{userData ? userData.studentId : "Loading..."}</span>
+              <span>{studentData ? studentData.studentId : "Loading..."}</span>
             </p>
           </div>
         </div>
