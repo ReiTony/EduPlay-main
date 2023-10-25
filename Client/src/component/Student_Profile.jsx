@@ -22,7 +22,7 @@ function Student_Profile() {
     const token = Cookies.get("studentToken");
     const tokenObject = JSON.parse(token);
     const userId = tokenObject.userId;
-    // Use the user._id (studentId) to fetch additional student information
+    // Use the userId (studentId) to fetch additional student information
     const fetchStudentInfo = async () => {
       if (!tokenObject) {
         console.error("Token is missing or invalid");
