@@ -89,6 +89,7 @@ function Student_Modules() {
                 <div className="px-5">
                   {studentProgressData.map((module, index) => (
                     <div key={index}>
+                      {console.log(module)}
                       <div
                         className={`p-2 px-6 bg-[#ffbd59] rounded-full text-lg sm:text-2xl lg:text-4xl xl:text-4xl font-bold flex items-center justify-between mb-2 cursor-pointer ${
                           moduleStates[index] ? "cursor-pointer" : ""
