@@ -1,0 +1,55 @@
+{
+  "title": "Assessment: Parts and Care for Plants",
+  "questions": [
+    {
+      "question": "What are plants?",
+      "choices": ["Animal that grows in the sky", "Living things that come in various shapes and sizes", "Animals that live in the soil", "Rocks and minerals"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is the main function of roots in a plant?",
+      "choices": ["To capture sunlight", "To transport water and nutrients", "To anchor the plant in the soil", "To make food for the plant"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What do leaves use sunlight for?",
+      "choices": ["To make food for the plant", "To anchor the plant in the soil", "To hold the plant upright", "To attract animals"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is the role of flowers in plants?",
+      "choices": ["They capture sunlight", "They make food for the plant", "They attract animals and produce seeds", "They anchor the plant in the soil"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What do plants need to grow?",
+      "choices": ["Water, sunlight, soil", "Only water and soil", "Only sunlight and love", "Only water and sunlight"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "How should you water plants?",
+      "choices": ["Flood them with water", "Water the soil around the roots", "Never water them", "Water only the leaves"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Where should you place your plant to ensure it gets enough sunlight?",
+      "choices": ["In a dark closet", "In a bright, sunny window", "In a bag", "In the bathroom"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "How can you show care to your plants?",
+      "choices": ["Put them in a cabinet", "Water them only once a month", "Keep them clean", "Never touch them"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the main role of stems in plants?",
+      "choices": ["To anchor the plant in the soil", "To transport water and nutrients", "To capture sunlight", "To make food for the plant"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "What is NOT a plant part?",
+      "choices": ["Roots", "Stems", "Leaves", "Feathers"],
+      "correctAnswer": 3
+    }
+  ]
+}

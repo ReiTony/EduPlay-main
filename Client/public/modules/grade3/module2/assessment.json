@@ -1,0 +1,55 @@
+{
+  "title": "Assessment: Sense Organs of the Human Body",
+  "questions": [
+    {
+      "question": "What are the five main sense organs in the human body?",
+      "choices": ["Eyes, ears, nose, tongue, and skin", "Eyes, ears, heart, stomach, and brain", "Eyes, feet, nose, tongue, and hair", "Eyes, tongue, teeth, and toes"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which sense organ helps us see things?",
+      "choices": ["Ears", "Nose", "Eyes", "Skin"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Which sense organ helps us hear sounds?",
+      "choices": ["Eyes", "Nose", "Ears", "Tongue"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Which sense organ helps us taste and enjoy food?",
+      "choices": ["Eyes", "Ears", "Tongue", "Skin"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Which sense organ helps us smell things?",
+      "choices": ["Eyes", "Ears", "Nose", "Feet"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Which sense organ helps us feel things like hot or cold?",
+      "choices": ["Skin", "Eyes", "Tongue", "Nose"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What sense organ helps us to detect light?",
+      "choices": ["Skin", "Feet", "Tongue", "Eyes"],
+      "correctAnswer": 3
+    },
+    {
+      "question": "Which sense organ helps us differentiate saltiness and sweetness?",
+      "choices": ["Nose", "Ears", "Eyes", "Tongue"],
+      "correctAnswer": 3
+    },
+    {
+      "question": "Which sense organ helps us to feel things by touching them?",
+      "choices": ["Nose", "Eyes", "Skin", "Ears"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What is the function of the sense organs?",
+      "choices": ["To help us play games", "To help us play games", "To help us sleep", "To help us fly like birds  "],
+      "correctAnswer": 1
+    }
+  ]
+}

@@ -1,0 +1,55 @@
+{
+  "title": "Assessment: Living and Non-living Things",
+  "questions": [
+    {
+      "question": "Everything we see in our surroundings is divided into two categories. What are they?",
+      "choices": ["Boys and Girls", "Small and Big", "Living and Non-living Things", "Solid and Liquids"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "Which one is a living thing?",
+      "choices": ["Rock", "Plant", "Book", "Pencil"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which one is a non-living thing?",
+      "choices": ["Dog", "Tree", "Cloud", "Bird"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What do living things need to survive?",
+      "choices": ["Food, Water, and Air", "Cellphone", "Money", "Book and Pencil"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What is a characteristic that all living things have?",
+      "choices": ["They can stand", "They can run", "They can grow and reproduce", "They can swim"],
+      "correctAnswer": 2
+    },
+    {
+      "question": "What happens when you give plants water and sunlight?",
+      "choices": ["It becomes bigger and healthier", "It returns to the soil", "It starts moving around", "It becomes weaker"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which is NOT a characteristic of a non-living thing?",
+      "choices": ["It has color", "It has weight", "It does not need food", "It can breathe"],
+      "correctAnswer": 3
+    },
+    {
+      "question": "What do plants need to make their own food?",
+      "choices": ["Toys", "Sunlight, Water, and Air", "Humans and Animals", "Cats and Dogs"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Which of these can change and grow over time?",
+      "choices": ["Trees", "Trees", "Paper", "Paper"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which one is a non-living thing?",
+      "choices": ["Apple", "Fish", "Cow", "Dog"],
+      "correctAnswer": 0
+    }
+  ]
+}

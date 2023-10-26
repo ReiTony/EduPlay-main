@@ -7,7 +7,7 @@ import axios from "axios";
 function Student_Profile() {
   // Define a state to store the additional student information
   const [studentData, setStudentInfo] = useState(null);
-  console.log("HERE", studentData)
+  console.log("HERE", studentData);
   // Define state variables for loading and error
   const [isStudentLoading, setIsStudentLoading] = useState(true);
   const [isBadgeLoading, setIsBadgeLoading] = useState(true);
@@ -16,6 +16,7 @@ function Student_Profile() {
   const [badgeError, setBadgeError] = useState(null); // Define badgeError
   const [achievementError, setAchievementError] = useState(null); // Define achievementError
 
+  useEffect(() => console.log("studentData:", studentData), [studentData]);
 
   useEffect(() => {
     // Retrieve the token from cookies
@@ -34,16 +35,11 @@ function Student_Profile() {
       try {
         setIsStudentLoading(true);
 
-        const response = await axios.get(
-          `http://localhost:5000/api/v1/Student/${userId}`,
-          {
-            headers: {
-              Authorization: `Bearer ${tokenObject.accessToken}`,
-            },
-          }
-        );
-
-        console.log("API response:", response);
+        const response = await axios.get(`http://localhost:5000/api/v1/Student/${userId}`, {
+          headers: {
+            Authorization: `Bearer ${tokenObject.accessToken}`,
+          },
+        });
 
         if (response.status === 200) {
           const studentData = response.data.student;
@@ -54,10 +50,7 @@ function Student_Profile() {
           setStudentError("Error fetching student information");
         }
       } catch (error) {
-        console.error(
-          "An error occurred while fetching student information:",
-          error
-        );
+        console.error("An error occurred while fetching student information:", error);
         setStudentError("An error occurred while fetching student information");
       } finally {
         setIsStudentLoading(false);
@@ -94,44 +87,33 @@ function Student_Profile() {
   // ...
 
   // Handle loading and error cases
-  if (isStudentLoading || isBadgeLoading || isAchievementLoading) {
-    return <p>Loading...</p>;
-  }
+  // if (isStudentLoading || isBadgeLoading || isAchievementLoading) {
+  //   return <p>Loading...</p>;
+  // }
 
-  if (studentError || badgeError || achievementError) {
-    return <p>Error loading data.</p>;
-    
-  }
+  // if (studentError || badgeError || achievementError) {
+  //   return <p>Error loading data.</p>;
+  // }
 
-  if (!studentData) {
-    return <p>Loading...</p>;
-    
-  }
-  
+  // if (!studentData) {
+  //   return <p>Loading...</p>;
+  // }
+
+  if (!studentData) return <p>Loading...</p>;
+
   // Existing rendering logic
   return (
     <div className="backgroundYellow">
       <div className="profile-container p-4 m-4 bg-[#fff5be] rounded-3xl">
         <div className="flex items-center profile-header">
           <div className="w-40 h-40 mr-4 bg-gray-500 profile-picture aspect-square rounded-SM">
-            <img
-              src={studentDP}
-              alt="Profile"
-              className="object-cover w-full h-full rounded-lg"
-            />
+            <img src={studentDP} alt="Profile" className="object-cover w-full h-full rounded-lg" />
           </div>
           <div className="overflow-hidden font-bold profile-info">
+            <p className="text-3xl font-expletus">{studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
+            <p className="text-3xl font-expletus">Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}</p>
             <p className="text-3xl font-expletus">
-              {studentData
-                ? `${studentData.firstName} ${studentData.lastName}`
-                : "Loading..."}
-            </p>
-            <p className="text-3xl font-expletus">
-              Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}
-            </p>
-            <p className="text-3xl font-expletus">
-              Student ID:{" "}
-              <span>{studentData ? studentData.studentId : "Loading..."}</span>
+              Student ID: <span>{studentData ? studentData.studentId : "Loading..."}</span>
             </p>
           </div>
         </div>
@@ -142,14 +124,11 @@ function Student_Profile() {
               <h1>BADGES</h1>
             </div>
             <div className="grid grid-cols-4 p-4 badge-grid sm:px-20 sm:grid-cols-4 sm:gap-5 lg:grid-cols-5 xl:grid-cols-6">
-              {badgeData.map((badge, index) => (
-                <div
-                  key={index}
-                  className="h-auto m-2 mb-2 rounded-lg shadow-md badge-item hover:shadow-lg hover:shadow-green-400 bg-gradient-to-tl from-pink-600 via-teal-200 to-white aspect-square"
-                >
+              {/* {badgeData.map((badge, index) => (
+                <div key={index} className="h-auto m-2 mb-2 rounded-lg shadow-md badge-item hover:shadow-lg hover:shadow-green-400 bg-gradient-to-tl from-pink-600 via-teal-200 to-white aspect-square">
                   <img src={badge.imageUrl} alt={`Badge ${index + 1}`} />
                 </div>
-              ))}
+              ))} */}
             </div>
           </div>
 
@@ -159,17 +138,16 @@ function Student_Profile() {
             </div>
 
             <div className="grid p-4 achievements-list sm:gap-2">
-              {achievementData.map((achievement, index) => (
+              {/* {achievementData.map((achievement, index) => (
                 <div key={index} className="achievement-item bg-[#fff5be]">
                   <div
                     className="w-full flex items-center mb-4 shadow-gray-500 hover:shadow-green-400 shadow-md px-4 py-2 text-xl font-bold text-black bg-[#a5d6a7] rounded-full font-sourceSans3 focus:outline-none focus:shadow-outline"
-                    type="button"
-                  >
+                    type="button">
                     <FcApproval className="text-3xl cursor-pointer" />
                     <p>{achievement.name}</p>
                   </div>
                 </div>
-              ))}
+              ))} */}
             </div>
           </aside>
         </div>
