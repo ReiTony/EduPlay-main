@@ -14,7 +14,6 @@ import Student_Modules from "./component/Student_Modules";
 import Student_Module_Lecture from "./component/Student_Module_Lecture";
 import Student_Module_Review from "./component/Student_Module_Review";
 import Student_Module_Quiz from "./component/Student_Module_Quiz";
-import Student_Assesment from "./component/Student_Assesment";
 import Student_Game_FourPicsOneWord from "./component/Student_Game_FourPicsOneWord";
 import Student_Score_Assessment from "./component/Student_Score_Assessment";
 import Student_Game from "./component/Student_Game";
@@ -36,6 +35,9 @@ import Teacher_SharedLayout from "./component/Teacher_SharedLayout";
 import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
 import Student_Game_WordHunt from "./component/Student_Game_WordHunt";
+import Student_AssessmentMenu from "./component/Student_AssesmentMenu";
+import Student_Assessment from "./component/Student_Assessment";
+import Student_AssessmentSubmitted from "./component/Student_AssessmentSubmitted";
 
 const queryClient = new QueryClient();
 
@@ -63,8 +65,10 @@ function App() {
               <Route path="Module/:moduleNumber/Lecture" element={<Student_Module_Lecture />} />
               <Route path="Module/:moduleNumber/Review" element={<Student_Module_Review />} />
               <Route path="Module/:moduleNumber/Game" element={<Student_Game />} />
+              <Route path="Module/:moduleNumber/Assessment" element={<Student_Assessment />} />
+              <Route path="Module/:moduleNumber/AssessmentSubmmitted" element={<Student_AssessmentSubmitted />} />
               <Route path="Module/Quiz" element={<Student_Module_Quiz />} />
-              <Route path="Assessment" element={<Student_Assesment />} />
+              <Route path="Assessment" element={<Student_AssessmentMenu />} />
               <Route path="Assessment/4-pics-1-word" element={<Student_Game_FourPicsOneWord />} />
               <Route path="Assessment/4-pics-1-word/Score" element={<Student_Score_Assessment />} />
               <Route path="Logout" element={<Logout />} />

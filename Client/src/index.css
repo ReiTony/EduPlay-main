@@ -10,8 +10,8 @@
 }
 
 .ele {
-    height: calc(80vw / 10);
-    width: calc(80vw / 10);
+    height: calc(40vw / 10);
+    width: calc(40vw / 10);
     max-height: 50px;
     max-width: 50px;
     user-select: none;

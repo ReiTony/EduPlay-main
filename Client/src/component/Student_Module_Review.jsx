@@ -5,25 +5,15 @@ function Student_Module_Review() {
   const navigate = useNavigate();
   const { moduleNumber } = useParams();
   const [data, setData] = useState(null);
-  //   const [moduleTitle, setModuleTitle] = useState("");
 
   useEffect(() => {
     const init = async () => {
-      const res = await fetch(`/modules/${moduleNumber}/review.json`);
+      const gradeLevel = localStorage.getItem("gradeLevel");
+      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/review.json`);
       setData(await res.json());
     };
     init();
-  });
-
-  //   useEffect(() => {
-  //     const moduleKey = JSON.parse(window.sessionStorage.getItem("MODULE"));
-  //     if (moduleKey && moduleKey.startsWith("M")) {
-  //       const titleParts = moduleKey.split("-");
-  //       if (titleParts.length === 2) {
-  //         setModuleTitle(titleParts[1]);
-  //       }
-  //     }
-  //   }, []);
+  }, []);
 
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">

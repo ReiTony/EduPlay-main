@@ -2,16 +2,18 @@ import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
 
 function Student_Game_WordHunt() {
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const { moduleNumber } = useParams();
   const [origin, setOrigin] = useState([-1, -1]);
   const [current, setCurrent] = useState([-2, -2]);
   const [shaded, setShaded] = useState([]);
   const [answers, setAnswers] = useState([]);
   const [data, setData] = useState(null);
+  const [solved, setSolved] = useState(0);
 
   useEffect(() => {
     const init = async () => {
-      const res = await fetch(`/modules/${moduleNumber}/game.json`);
+      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`);
       setData(await res.json());
     };
     init();
@@ -31,9 +33,14 @@ function Student_Game_WordHunt() {
       const temp = answers;
       shaded.forEach((i) => temp.push(i));
       setAnswers(temp);
+      setSolved((i) => i + 1);
     }
     setOrigin([-1, -1]);
   };
+
+  useEffect(() => {
+    if (solved >= data?.clues.length) alert("Congratulations! You have finished the word hunt.");
+  }, [solved]);
 
   const generateUpDownPattern = (current, origin) => {
     const temp = [];
@@ -48,33 +55,36 @@ function Student_Game_WordHunt() {
 
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
-      <h3 className="text-3xl font-semibold my-2 font-sourceSans3">{data?.title || ""}</h3>
+      <h3 className="text-5xl font-semibold my-2 font-sourceSans3">{data?.title || ""}</h3>
 
       <hr className="bg-black h-1 w-full" />
 
-      <div className="mygrid m-10 p-4 bg-slate-100 rounded-2xl shadow-lg">
-        {data?.puzzle.map((row, rowNum) =>
-          row.map((i, colNum) => (
-            <div
-              className={`ele flex justify-center items-center font-semibold text-lg ${
-                shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
-              }`}
-              key={rowNum + "-" + colNum}
-              onMouseDown={() => setOrigin([rowNum, colNum + 1])}
-              onMouseUp={handleMouseUp}
-              onMouseEnter={() => setCurrent([rowNum, colNum + 1])}>
-              {i}
-            </div>
-          ))
-        )}
-      </div>
+      <div className="flex items-center">
+        <div className="mygrid m-10 p-4 bg-slate-100 rounded-2xl shadow-lg flex-grow">
+          {data?.puzzle.map((row, rowNum) =>
+            row.map((i, colNum) => (
+              <div
+                className={`ele flex justify-center items-center font-semibold text-2xl ${
+                  shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
+                }`}
+                key={rowNum + "-" + colNum}
+                onMouseDown={() => setOrigin([rowNum, colNum + 1])}
+                onMouseUp={handleMouseUp}
+                onMouseEnter={() => setCurrent([rowNum, colNum + 1])}>
+                {i}
+              </div>
+            ))
+          )}
+        </div>
 
-      <div className="" style={{ maxWidth: "1024px" }}>
-        {data?.clues.map((clue, index) => (
-          <p className="text-lg font-semibold" key={index}>
-            {index + 1 + ".  " + clue}
-          </p>
-        ))}
+        <div className="flex-grow mx-2 my-16">
+          <h4 className="text-4xl font-semibold mb-8">Words to Find</h4>
+          {data?.clues.map((clue, index) => (
+            <p className="text-2xl font-semibold" key={index}>
+              {index + 1 + ".  " + clue}
+            </p>
+          ))}
+        </div>
       </div>
     </div>
   );

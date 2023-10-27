@@ -11,7 +11,8 @@ function Student_Game_FourPicsOneWord() {
 
   useEffect(() => {
     const init = async () => {
-      const res = await fetch(`/modules/${moduleNumber}/game.json`);
+      const gradeLevel = localStorage.getItem("gradeLevel");
+      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`);
       setData(await res.json());
     };
     init();
