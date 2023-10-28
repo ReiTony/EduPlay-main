@@ -30,15 +30,15 @@ function TeacherLogin() {
     try {
       const userAgent = navigator.userAgent;
       const apiUrl = "http://localhost:5000/api/v1/Teacher/login";
-
       const response = await axios.post(apiUrl, {
         email: values.TeacherEmail,
         password: values.TeacherPassword,
         userAgent: userAgent,
       });
-
+      //Print Token to Console
+      console.log("Response Data:", response.data.user.user);
       if (response.status === 200) {
-        const tokenTeacher = response.data.user.accessToken;
+        const tokenTeacher = response.data.user.user;
         setTokenCookie(tokenTeacher);
 
         setAuthHeader(tokenTeacher);

@@ -1,4 +1,5 @@
 import React from "react";
+import Cookies from "js-cookie";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 import axios from "axios";
@@ -8,9 +9,10 @@ function Teacher_Add_Student() {
   const [teacherToken, setTeacherToken] = useState(null);
 
   useEffect(() => {
-    // Retrieve the teacherToken from your JWT or other client-side storage
-    const token = localStorage.getItem("teacherToken"); // Example: Retrieve from local storage
-    setTeacherToken(token);
+    const token = Cookies.get("teacherToken"); 
+    const tokenObject = JSON.parse(token);
+    console.log
+    setTeacherToken(tokenObject);
   }, []);
 
   const validationSchema = Yup.object().shape({
@@ -46,7 +48,7 @@ function Teacher_Add_Student() {
           axios
             .post("http://localhost:5000/api/v1/Teacher/addStudent", values, {
               headers: {
-                Authorization: `Bearer ${teacherToken}`,
+                Authorization: `Bearer ${tokenObject}`,
               },
             })
             .then((postResponse) => {
