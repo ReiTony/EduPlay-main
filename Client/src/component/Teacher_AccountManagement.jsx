@@ -12,14 +12,13 @@ function Teacher_AccountManagement() {
     const [selectedGrade, setSelectedGrade] = useState('');
 
     useEffect(() => {
-        // Fetch the JSON data from the local file
-        fetch('/src/Student_Data/MOCK_DATA.json') // Replace with the actual path
+        fetch('http://localhost:5000/api/v1/Teacher/Class') 
             .then((response) => response.json())
             .then((jsonData) => {
-                setData(jsonData);
+                setData(jsonData.students);
             })
             .catch((error) => {
-                console.error('Error fetching JSON data:', error);
+                console.error('Error fetching student data:', error);
             });
     }, []);
 
@@ -28,25 +27,27 @@ function Teacher_AccountManagement() {
         () => [
             {
                 Header: 'ID',
-                accessor: 'ID',
+                accessor: 'studentId',
             },
             {
-                Header: 'GRADE LEVEL',
-                accessor: 'GRADELEVEL',
-                Filter: GradeLevelFilter, // Custom filter component
+                Header: 'GRADELEVEL',
+                accessor: 'gradeLevel',
+                id: 'GRADELEVEL',
+                Filter: GradeLevelFilter, 
                 filter: 'equals',
             },
             {
                 Header: 'LASTNAME',
-                accessor: 'LASTNAME',
+                accessor: 'lastName',
+                id: 'LASTNAME',
             },
             {
                 Header: 'FIRSTNAME',
-                accessor: 'FIRSTNAME',
+                accessor: 'firstName',
             },
             {
-                Header: 'EMAIL',
-                accessor: 'EMAIL',
+                Header: 'BIRTHDAY',
+                accessor: d => `${d.birthMonth}/${d.birthDay}`,
             },
             {
                 Header: 'EDIT',
@@ -78,7 +79,7 @@ function Teacher_AccountManagement() {
             },
         ],
         []
-    );
+      );
 
     const {
         getTableProps,

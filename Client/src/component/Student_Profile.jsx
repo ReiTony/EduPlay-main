@@ -23,7 +23,7 @@ function Student_Profile() {
     const token = Cookies.get("studentToken");
     const tokenObject = JSON.parse(token);
     const userId = tokenObject.userId;
-    // Use the user._id (studentId) to fetch additional student information
+    // Use the userId (studentId) to fetch additional student information
     const fetchStudentInfo = async () => {
       if (!tokenObject) {
         console.error("Token is missing or invalid");
@@ -110,7 +110,7 @@ function Student_Profile() {
             <img src={studentDP} alt="Profile" className="object-cover w-full h-full rounded-lg" />
           </div>
           <div className="overflow-hidden font-bold profile-info">
-            <p className="text-3xl font-expletus">{studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
+            <p className="text-3xl font-expletus">Name: {studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
             <p className="text-3xl font-expletus">Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}</p>
             <p className="text-3xl font-expletus">
               Student ID: <span>{studentData ? studentData.studentId : "Loading..."}</span>
