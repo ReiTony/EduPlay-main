@@ -16,15 +16,15 @@ function Student_Navbar() {
           <h1 className="pl-2 text-4xl font-bold xl:pr-40 font-reemkufifont">EDUPLAY</h1>
         </div>
         <div className="justify-end hidden w-full space-x-4 text-2xl font-bold font-expletus xl:flex">
-          <Link to="/Student" className="p-5 hover:text-gray-500 ">
+          <Link to="/student" className="p-5 hover:text-gray-500 ">
             HOME
           </Link>
 
-          <Link to="/Student/Profile" className="p-5 hover:text-gray-500">
+          <Link to="/student/profile" className="p-5 hover:text-gray-500">
             PROFILE
           </Link>
 
-          <Link to="/Student/Logout" className="p-5 hover:text-gray-500">
+          <Link to="/student/logout" className="p-5 hover:text-gray-500">
             LOGOUT
           </Link>
         </div>
@@ -39,10 +39,10 @@ function Student_Navbar() {
             <Link to="/" className="text-white">
               HOME
             </Link>
-            <Link to="/Student/Profile" className="text-white">
+            <Link to="/student/profile" className="text-white">
               PROFILE
             </Link>
-            <Link to="/Student/Logout" className="text-white">
+            <Link to="/student/logout" className="text-white">
               LOGOUT
             </Link>
           </div>

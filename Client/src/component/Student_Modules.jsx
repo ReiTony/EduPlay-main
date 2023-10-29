@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { FaLock } from "react-icons/fa";
 import Grade1_Module_Structure from "../Student_Data/Grade1_Module_Structure.json";
 import Grade2_Module_Structure from "../Student_Data/Grade2_Module_Structure.json";
 import Grade3_Module_Structure from "../Student_Data/Grade3_Module_Structure.json";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 function Student_Modules() {
   const [moduleStates, setModuleStates] = useState([]);
@@ -47,32 +46,32 @@ function Student_Modules() {
     });
   };
 
-  const handleSubmoduleClick = (subIndex, isLocked, moduleIndex, moduleTitle, src) => {
-    if (isLocked) {
-      // Hindi mag navigate pag naka Lock
-      return;
-    }
-    const title = `M${moduleIndex}-${moduleTitle}`;
-    switch (subIndex) {
-      case 0:
-        navigate("/Student/Module/Lecture");
-        window.sessionStorage.setItem("MODULE", JSON.stringify(title));
-        window.sessionStorage.setItem("SRC", JSON.stringify(src));
-        break;
-      case 1:
-        navigate("/Student/Module/Review");
-        window.sessionStorage.setItem("MODULE", JSON.stringify(title));
-        window.sessionStorage.setItem("SRC", JSON.stringify(src));
-        break;
-      case 2:
-        navigate("/Student/Module/Game");
-        window.sessionStorage.setItem("MODULE", JSON.stringify(title));
-        window.sessionStorage.setItem("SRC", JSON.stringify(src));
-        break;
-      default:
-        break;
-    }
-  };
+  // const handleSubmoduleClick = (subIndex, isLocked, moduleIndex, moduleTitle, src) => {
+  //   if (isLocked) {
+  //     // Hindi mag navigate pag naka Lock
+  //     return;
+  //   }
+  //   const title = `M${moduleIndex}-${moduleTitle}`;
+  //   switch (subIndex) {
+  //     case 0:
+  //       navigate("/Student/Module/Lecture");
+  //       window.sessionStorage.setItem("MODULE", JSON.stringify(title));
+  //       window.sessionStorage.setItem("SRC", JSON.stringify(src));
+  //       break;
+  //     case 1:
+  //       navigate("/Student/Module/Review");
+  //       window.sessionStorage.setItem("MODULE", JSON.stringify(title));
+  //       window.sessionStorage.setItem("SRC", JSON.stringify(src));
+  //       break;
+  //     case 2:
+  //       navigate("/Student/Module/Game");
+  //       window.sessionStorage.setItem("MODULE", JSON.stringify(title));
+  //       window.sessionStorage.setItem("SRC", JSON.stringify(src));
+  //       break;
+  //     default:
+  //       break;
+  //   }
+  // };
 
   return (
     <>
@@ -104,8 +103,7 @@ function Student_Modules() {
                             <div key={subIndex} className="flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl">
                               <h1>{submodule.title}</h1>
                               {console.log(submodule)}
-                              {/* <button className="p-2 px-4 text-white bg-black rounded-full" onClick={() => handleSubmoduleClick(subIndex, submodule.locked, index, module.title, submodule.src)}> */}
-                              <button className="p-2 px-4 text-white bg-black rounded-full" onClick={() => navigate(`/Student/Module/${module.moduleNumber}/Lecture`)}>
+                              <button className="p-2 px-4 text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${module.moduleNumber}/lecture`)}>
                                 {submodule.locked ? <FaLock /> : "OPEN"}
                               </button>
                             </div>

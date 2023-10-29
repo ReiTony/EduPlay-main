@@ -17,7 +17,7 @@ function LandingPage() {
           </h1>
           <p className="font-normal font-pt-serif mb-7">Embark on an educational adventure like no other as this website combines learning with exciting games, turning knowledge into a thrilling quest.</p>
           <div className="font-montserrat">
-            <Link to="/Student_Login">
+            <Link to="/student/login">
               <button className="px-6 py-4 mb-2 mr-2 text-white border-2 border-black border-solid rounded-lg bg-zinc-800 font-expletus">Student Login</button>
             </Link>
             <Link to="/TeacherLogin">
