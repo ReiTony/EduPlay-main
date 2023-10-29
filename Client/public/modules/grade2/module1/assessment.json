@@ -1,54 +1,54 @@
 {
-  "title": "Assessment: Parts and Habitats of Animals",
+  "title": "Assessment: Characteristics & Grouping of Materials",
   "questions": [
     {
-      "question": "What is an animal's home called?",
-      "choices": ["Food", "School", "Habitat", "Playground"],
+      "question": "Which one has a different shape?",
+      "choices": ["Basketball", "Globe", "Marble", "Box"],
+      "correctAnswer": 3
+    },
+    {
+      "question": "Which object is heavier than a book?",
+      "choices": ["Feather", "Balloon", "Chair", "Pencil"],
       "correctAnswer": 2
     },
     {
-      "question": "Which of these animals lives in the forest?",
-      "choices": ["Bear", "Dog", "Turtle", "Fish"],
-      "correctAnswer": 0
-    },
-    {
-      "question": "What do we call an animal's outer covering, like feathers or scales?",
-      "choices": ["Skin", "Hair", "Fur", "Mouth"],
-      "correctAnswer": 0
-    },
-    {
-      "question": "Which part of a bird helps it to fly?",
-      "choices": ["Beak", "Tail", "Wings", "Legs"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Where does a bird usually live?",
-      "choices": ["In a nest", "In the ocean", "In a cave", "In a hole"],
-      "correctAnswer": 0
-    },
-    {
-      "question": "What do you call a place where a bear lives in the wild?",
-      "choices": ["House", "Nest", "Den", "Hole"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which animal has a long neck and lives in the jungle?",
-      "choices": ["Lion", "Giraffe", "Elephant", "Kangaroo"],
+      "question": "Which occupies the most space?",
+      "choices": ["Apple", "Watermelon", "Banana", "Banana"],
       "correctAnswer": 1
     },
     {
-      "question": "What animal lives as a pet in a house?",
-      "choices": ["Shark", "Cat", "Elephant", "Giraffe"],
+      "question": "Which one has a different color?",
+      "choices": ["Grass", "Corn", "Cheese", "Sun"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which object has no definite shape?",
+      "choices": ["Sand", "Water", "Clothes", "Bread"],
       "correctAnswer": 1
     },
     {
-      "question": "Which animal has a hard shell and lives in the water?",
-      "choices": ["Frog", "Turtle", "Kangaroo", "Zebra"],
-      "correctAnswer": 1
+      "question": "It is the ability of an object to move in a continuous way.",
+      "choices": ["Flow", "Wind", "Smooth", "Air"],
+      "correctAnswer": 0
     },
     {
-      "question": "What is the part of a dog's body that wags when it's happy?",
-      "choices": ["Ears", "Tail", "Nose", "Paw"],
+      "question": "Oil takes the shape of its container.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "A weighing scale can measure an object's mass.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Volume is the amount of space an object occupies.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Grass, frogs, and bananas all have the same color.",
+      "choices": ["True", "False"],
       "correctAnswer": 1
     }
   ]

@@ -8,14 +8,12 @@ import Logout from "./component/Logout";
 import Student_Login from "./component/Student_Login";
 import Student_SharedLayout from "./component/Student_SharedLayout";
 import Student_Homepage from "./component/Student_Homepage";
-import Student_Navbar from "./component/Student_Navbar";
 import Student_Profile from "./component/Student_Profile";
 import Student_Modules from "./component/Student_Modules";
 import Student_Module_Lecture from "./component/Student_Module_Lecture";
 import Student_Module_Review from "./component/Student_Module_Review";
 import Student_Assessment from "./component/Student_Assessment";
 import Student_AssessmentMenu from "./component/Student_AssesmentMenu";
-import Student_AssessmentSubmitted from "./component/Student_AssessmentSubmitted";
 import Student_Game from "./component/Student_Game";
 
 import TokenTransfer from "./component/TokenTransfer";
@@ -51,19 +49,17 @@ function App() {
             <Route path="/setToken" element={<TokenTransfer />} />
 
             {/* Student Routes */}
-            <Route path="/Student_Login" element={<Student_Login />} />
-            <Route path="/Student" element={<Student_SharedLayout />}>
+            <Route path="/student/login" element={<Student_Login />} />
+            <Route path="/student" element={<Student_SharedLayout />}>
               <Route index element={<Student_Homepage />} />
-              <Route path="Student_Navbar" element={<Student_Navbar />} />
-              <Route path="Profile" element={<Student_Profile />} />
-              <Route path="Student_Modules" element={<Student_Modules />} />
-              <Route path="Module/:moduleNumber/Lecture" element={<Student_Module_Lecture />} />
-              <Route path="Module/:moduleNumber/Review" element={<Student_Module_Review />} />
-              <Route path="Module/:moduleNumber/Game" element={<Student_Game />} />
-              <Route path="Module/:moduleNumber/Assessment" element={<Student_Assessment />} />
-              <Route path="Module/:moduleNumber/AssessmentSubmmitted" element={<Student_AssessmentSubmitted />} />
-              <Route path="Assessment" element={<Student_AssessmentMenu />} />
-              <Route path="Logout" element={<Logout />} />
+              <Route path="profile" element={<Student_Profile />} />
+              <Route path="modules" element={<Student_Modules />} />
+              <Route path="module/:moduleNumber/lecture" element={<Student_Module_Lecture />} />
+              <Route path="module/:moduleNumber/review" element={<Student_Module_Review />} />
+              <Route path="module/:moduleNumber/game" element={<Student_Game />} />
+              <Route path="module/:moduleNumber/assessment" element={<Student_Assessment />} />
+              <Route path="assessments" element={<Student_AssessmentMenu />} />
+              <Route path="logout" element={<Logout />} />
             </Route>
 
             {/* Teacher Routes */}

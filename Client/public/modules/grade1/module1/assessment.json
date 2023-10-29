@@ -1,55 +1,55 @@
 {
-  "title": "Assessment: Needs and Care for Animals",
+  "title": "Assessment: Describing & Comparing of Materials",
   "questions": [
     {
-      "question": "What do animals need to drink to stay healthy?",
-      "choices": ["Chocolate Milk", "Water", "Juice", "Soda"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What do animals need to eat for their meals?",
-      "choices": ["Candy", "Fruits, vegetables, and meat", "Ice cream", "Toys"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Where do household pets like to sleep at night?",
-      "choices": ["On the playground", "In a cozy bed", "In the bathtub", "On a tree branch"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What should you do if you see a lost pet?",
-      "choices": ["Keep it for yourself", "Ignore it", "Find the owner", "Scare it away"],
+      "question": "What is the color of an apple? ",
+      "choices": ["Blue", "Yellow", "Red", "Black"],
       "correctAnswer": 2
     },
     {
-      "question": "How should you treat animals to show you care for them?",
-      "choices": ["Yell at them", "Feed them unhealthy snacks", "Be gentle and kind", "Chase them around"],
+      "question": "What is the shape of a wheel",
+      "choices": ["Circle", "Square", "Rectangle", "Triangle"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which one is the biggest?",
+      "choices": ["Worm", "Dog", "Car", "Plate"],
       "correctAnswer": 2
     },
     {
-      "question": "Which of these is a pet you can keep at home?",
-      "choices": ["Elephant", "Goldfish", "Lion", "Giraffe"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "What should you do if a dog you don't know comes up to you?",
-      "choices": ["Yell at it", "Hug it tightly", "Ask an adult for help", "Start playing with it"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Why is it important to clean a pet's water bowl regularly?",
-      "choices": ["Because it's fun", "Because pets don't need water", "To keep the water fresh for the pet", "To make the pet thirsty"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What is a shelter for animals that don't have a home called?",
-      "choices": ["Playground", "School", "Animal hospital", "Animal shelter"],
+      "question": "Which object has a rough texture?",
+      "choices": ["Glass", "Apple", "Paper", "Pineapple"],
       "correctAnswer": 3
     },
     {
-      "question": "Which of these is NOT a way to take care of a pet?",
-      "choices": ["Give them food and water", "Take them for a walk", "Play with them", "Leave them alone all the time"],
-      "correctAnswer": 3
+      "question": "Which object is the heaviest?",
+      "choices": ["Table", "Pencil", "Eraser", "Phone"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Which object is the smallest?",
+      "choices": ["Tree", "Cat", "House", "Person"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "A train is longer than a car.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "A house is bigger than a flower.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "A giraffe is taller than a cat.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "A basketball is lighter than a pencil.",
+      "choices": ["True", "False"],
+      "correctAnswer": 1
     }
   ]
 }

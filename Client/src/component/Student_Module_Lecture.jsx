@@ -25,7 +25,7 @@ function Student_Module_Lecture() {
 
       <iframe className="my-6" src={data?.videoLink || ""} width="864" height="486" allow="autoplay" />
 
-      <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={() => navigate(`/Student/Module/${moduleNumber}/Review`)}>
+      <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${moduleNumber}/review`)}>
         NEXT
       </button>
     </div>
