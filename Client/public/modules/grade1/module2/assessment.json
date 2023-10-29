@@ -1,55 +1,55 @@
 {
-  "title": "Assessment: Parts and Needs of Plants",
+  "title": "Assessment: Living and Nonliving Things",
   "questions": [
     {
-      "question": "What part of a plant helps it get sunlight?",
-      "choices": ["Roots", "Stem", "Leaves", "Flowers"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What do plants need to take in from the soil to help them grow?",
-      "choices": ["Sunlight", "Water", "Air", "Rocks"],
-      "correctAnswer": 1
-    },
-    {
-      "question": "Which part of a plant helps support the leaf and flower by transporting nutrients?",
-      "choices": ["Flowers", "Leaves", "Roots", "Stem"],
+      "question": "What does a living thing not need to live?",
+      "choices": ["Air", "Water", "Sunlight", "Toys"],
       "correctAnswer": 3
     },
     {
-      "question": "What do plants release into the air that we need to breathe?",
-      "choices": ["Water", "Sunshine", "Oxygen", "Sugar"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What part of a plant helps it make seeds?",
-      "choices": ["Roots", "Stem", "Leaves", "Flowers"],
-      "correctAnswer": 3
-    },
-    {
-      "question": "What is the green part of a plant where photosynthesis happens?",
-      "choices": ["Roots", "Stem", "Leaves", "Flowers"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "What do plants use to drink from the soil?",
-      "choices": ["Straws", "Roots", "Leaves", "Flowers"],
+      "question": "Which animal is capable of flying?",
+      "choices": ["Fish", "Bird", "Dog", "Penguin"],
       "correctAnswer": 1
     },
     {
-      "question": "Why is it important to water plants?",
-      "choices": ["Because it's fun", "Because plants don't need water", "To keep them healthy and help them grow", "To make the soil muddy"],
-      "correctAnswer": 2
-    },
-    {
-      "question": "Which of these is needed for plants to grow?",
-      "choices": ["Sunlight", "Dogs", "Humans", "Pots"],
+      "question": "An animal that is caught and eaten by another animal.",
+      "choices": ["Prey", "Plant", "Food", "Snack"],
       "correctAnswer": 0
     },
     {
-      "question": "What is a tiny new plant that can grow from a seed called?",
-      "choices": ["Root", "Stem", "Seedling", "Flower"],
-      "correctAnswer": 2
+      "question": "Which is not an example of a living thing?",
+      "choices": ["Humans", "Animals", "Plants", "Train"],
+      "correctAnswer": 3
+    },
+    {
+      "question": "Which is a non-living thing found in nature?",
+      "choices": ["Air", "House", "Eraser", "Table"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "What do you call things that are not alive?",
+      "choices": ["Living Things", "Non-living Things", "Dolls", "Toys"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "A plant is a living thing.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Living things cannot grow.",
+      "choices": ["True", "False"],
+      "correctAnswer": 1
+    },
+    {
+      "question": "Water is a non-living thing.",
+      "choices": ["True", "False"],
+      "correctAnswer": 0
+    },
+    {
+      "question": "Non-living things can breathe.",
+      "choices": ["True", "False"],
+      "correctAnswer": 1
     }
   ]
 }

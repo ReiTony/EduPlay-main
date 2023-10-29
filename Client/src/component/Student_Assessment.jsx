@@ -71,7 +71,7 @@ function StudentAssessment() {
 
   const goToQuestion = (i) => {
     setCurrentQuestion(i);
-    setCurrentAnswer(JSON.parse(userAnswersFromLocalStorage)[i]);
+    setCurrentAnswer(JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))[i]);
   };
 
   const isAnswerCorrect = (ind) => data?.questions[currentQuestion].correctAnswer === currentAnswer && ind === currentAnswer;
@@ -97,9 +97,10 @@ function StudentAssessment() {
                   <div
                     className={`flex flex-row items-center gap-4 px-6 py-3 rounded-full shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
                       hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
-                    }`}
+                    } ${hasAnswered ? "" : "cursor-pointer"}`}
+                    onClick={() => !hasAnswered && setCurrentAnswer(ind)}
                     key={ind}>
-                    <input type="radio" id={ind} checked={ind === currentAnswer} onChange={() => !hasAnswered && setCurrentAnswer(ind)} />
+                    <input type="radio" id={ind} checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
                     <label className={`text-2xl font-bold flex-grow ${hasAnswered ? "" : "cursor-pointer"}`} htmlFor={ind}>
                       {choice}
                     </label>
