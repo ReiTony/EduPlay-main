@@ -20,7 +20,7 @@ function LandingPage() {
             <Link to="/student/login">
               <button className="px-6 py-4 mb-2 mr-2 text-white border-2 border-black border-solid rounded-lg bg-zinc-800 font-expletus">Student Login</button>
             </Link>
-            <Link to="/TeacherLogin">
+            <Link to="/teacher/login">
               <button className="px-6 py-4 text-white border-2 border-solid rounded-lg bg-rose-500 border-rose-500 font-expletus">Teacher Login</button>
             </Link>
           </div>
