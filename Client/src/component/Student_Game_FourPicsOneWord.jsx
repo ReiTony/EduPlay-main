@@ -40,7 +40,7 @@ function Student_Game_FourPicsOneWord() {
 
   const handleTTSClick = () => {
     if (speechSynthesis.speaking) return;
-    let utterance = new SpeechSynthesisUtterance(data?.rounds[roundNumber].clue);
+    let utterance = new SpeechSynthesisUtterance(`Clue: It is a ${data?.rounds[roundNumber].answer.length} letter word.`);
     speechSynthesis.speak(utterance);
   };
 
