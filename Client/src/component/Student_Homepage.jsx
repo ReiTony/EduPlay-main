@@ -112,7 +112,7 @@ const Student_Dashboard = () => {
             </div>
 
             <div className="bg-[#ff5757] text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3">
-              <Link to="Student_Modules">LEARN</Link>
+              <Link to="/student/modules">LEARN</Link>
             </div>
           </div>
 
@@ -126,7 +126,7 @@ const Student_Dashboard = () => {
             </div>
 
             <div className="bg-[#ff5757] text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3">
-              <Link to="Assessment">PLAY</Link>
+              <Link to="assessments">PLAY</Link>
             </div>
           </div>
 

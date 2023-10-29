@@ -50,7 +50,7 @@ function Student_Login() {
         setAuthHeader(tokenStudent);
 
         // Redirect to the student homepage
-        navigate("/Student");
+        navigate("/student");
       } else {
         // Display an error message to the user
         alert("Login failed. Invalid username or password.");
@@ -68,7 +68,7 @@ function Student_Login() {
     if (hasTokenCookie()) {
       const tokenStudent = Cookies.get("studentToken");
       setAuthHeader(tokenStudent);
-      navigate("/Student");
+      navigate("/student");
     }
   }, []); // Empty dependency array ensures this effect runs once on component mount
 

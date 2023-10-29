@@ -21,7 +21,7 @@ function Student_AssessmentMenu() {
 
       <div className="flex flex-col gap-4 h-full justify-center my-6">
         {modules?.map((module, index) => (
-          <button className="text-2xl px-6 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700" onClick={() => navigate(`/Student/Module/${module.number}/Assessment`)} key={index}>
+          <button className="text-2xl px-6 py-2 font-bold text-white bg-blue-500 rounded-lg hover:bg-blue-700" onClick={() => navigate(`/student/module/${module.number}/assessment`)} key={index}>
             {`Module ${module.number}: ${module.title}`}
           </button>
         ))}

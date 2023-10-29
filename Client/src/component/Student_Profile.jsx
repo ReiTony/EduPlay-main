@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import Cookies from "js-cookie";
 import studentDP from "../assets/StudentProfilePicture/StudentDP.jpg";
 import { FcApproval } from "react-icons/fc";

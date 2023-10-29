@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import  { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Student_Module_Review() {
@@ -23,7 +23,7 @@ function Student_Module_Review() {
 
       <iframe className="my-6" src={data?.link || ""} width="864" height="486" allow="autoplay"></iframe>
 
-      <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={() => navigate(`/Student/Module/${moduleNumber}/Game`)}>
+      <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${moduleNumber}/game`)}>
         NEXT
       </button>
     </div>
