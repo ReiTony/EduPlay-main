@@ -1,13 +1,12 @@
 {
-    "modules": [
-      {
-        "title": "Characteristics & Grouping of Materials",
-        "number": 1
-      },
-      {
-        "title": "Living and Nonliving Things",
-        "number": 2
-      }
-    ]
-  }
-  
+  "modules": [
+    {
+      "title": "Characteristics & Grouping of Materials",
+      "number": 1
+    },
+    {
+      "title": "Living and Nonliving Things",
+      "number": 2
+    }
+  ]
+}
