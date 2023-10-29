@@ -1,5 +1,5 @@
 {
-  "title": "Word Hunt: States of Matter",
+  "title": "Word Hunt: Changes in Matter",
   "type": "Word Hunt",
   "puzzle": [
     ["A", "S", "U", "N", "L", "F", "L", "O", "W"],
@@ -22,5 +22,6 @@
     "Volume - amount of space that an object occupies.",
     "Texture - the feel or appearance of the surface of an object. Different solids may have smooth or rough textures.",
     "Surface - The outer part or appearance of an object."
-  ]
+  ],
+  "tts": "Welcome to the exciting Word Hunt game! Let's get started! In this word hunt, your mission is to find hidden words like solid, liquid, gas, flow, volume, texture, and surface."
 }

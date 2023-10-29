@@ -46,7 +46,7 @@ function TeacherLogin() {
         setAuthHeader(tokenTeacher);
 
         console.log("Login successful");
-        navigate("/Teacher_Homepage");
+        navigate("/teacher");
       } else {
         alert("Login failed. Invalid email or password.");
       }
@@ -62,7 +62,7 @@ function TeacherLogin() {
     if (hasTokenCookie()) {
       const tokenStudent = Cookies.get("teacherToken");
       setAuthHeader(tokenStudent);
-      navigate("/Teacher_Homepage");
+      navigate("/teacher");
     }
   }, []); // Empty dependency array ensures this effect runs once on component mount
 
