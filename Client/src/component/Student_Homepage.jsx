@@ -27,6 +27,7 @@ const Student_Dashboard = () => {
 
 
     const gradeLevel = 3;
+
     window.localStorage.setItem('gradeLevel', JSON.stringify(gradeLevel));
 
     const [isMenuOpen, setIsMenuOpen] = useState(false);

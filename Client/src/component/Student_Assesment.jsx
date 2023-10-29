@@ -10,7 +10,7 @@ function StudentAssessment() {
     const handleButtonClick = (module, index) => {
 
 
-        // Your switch statement logic here
+
         switch (index) {
             case 0:
                 navigate("/Student/Assessment/4-pics-1-word");
