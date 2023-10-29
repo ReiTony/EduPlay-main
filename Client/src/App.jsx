@@ -32,6 +32,7 @@ import Teacher_SharedLayout from "./component/Teacher_SharedLayout";
 
 import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
+import NotFound from "./component/NotFound";
 
 const queryClient = new QueryClient();
 
@@ -80,6 +81,7 @@ function App() {
 
             {/* Admin Route */}
             <Route path="/AdminSignin" element={<AdminSignin />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
       </>
