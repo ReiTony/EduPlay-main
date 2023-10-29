@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import textToSpeechIcon from "../assets/texttospeech.svg";
 
 function Student_Game_WordHunt() {
   const gradeLevel = localStorage.getItem("gradeLevel");
@@ -27,6 +28,12 @@ function Student_Game_WordHunt() {
     else if (origin[1] < current[1] && origin[0] === current[0]) setShaded(generateLeftRightPattern(origin, current)); // right
     else setShaded([]);
   }, [current, origin]);
+
+  const handleTTSClick = () => {
+    if (speechSynthesis.speaking) return;
+    let utterance = new SpeechSynthesisUtterance(data?.tts);
+    speechSynthesis.speak(utterance);
+  };
 
   const handleMouseUp = () => {
     if (data?.answers.includes(current + " " + origin)) {
@@ -78,7 +85,11 @@ function Student_Game_WordHunt() {
         </div>
 
         <div className="flex-grow mx-2 my-16">
-          <h4 className="text-4xl font-semibold mb-8">Words to Find</h4>
+          <div className="flex flex-row gap-6 items-center mb-8">
+            <h4 className="text-4xl font-semibold">Words to Find</h4>
+            <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
+          </div>
+
           {data?.clues.map((clue, index) => (
             <p className="text-2xl font-semibold" key={index}>
               {index + 1 + ".  " + clue}

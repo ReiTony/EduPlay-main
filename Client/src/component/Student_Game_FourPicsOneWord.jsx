@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import textToSpeechIcon from "../assets/texttospeech.svg";
 
 function Student_Game_FourPicsOneWord() {
   const { moduleNumber } = useParams();
@@ -27,6 +28,12 @@ function Student_Game_FourPicsOneWord() {
     setAnswer("");
   };
 
+  const handleTTSClick = () => {
+    if (speechSynthesis.speaking) return;
+    let utterance = new SpeechSynthesisUtterance(data?.rounds[roundNumber].clue);
+    speechSynthesis.speak(utterance);
+  };
+
   return (
     <div className="bg-[#fff5be] flex flex-col m-4 mb-6 p-8 rounded-2xl h-full">
       <div className="flex justify-between px-10">
@@ -45,6 +52,7 @@ function Student_Game_FourPicsOneWord() {
           <button type="submit" className="bg-[#252525] rounded-lg shadow-md font-semibold px-6 py-1 text-white font-sourceSans3" style={{ lineHeight: "0", margin: "0" }} onClick={handleSubmitAnswer}>
             Submit
           </button>
+          <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
         </form>
       </div>
     </div>

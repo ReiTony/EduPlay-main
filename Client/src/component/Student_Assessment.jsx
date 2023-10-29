@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
+import textToSpeechIcon from "../assets/texttospeech.svg";
 
 function StudentAssessment() {
   const { moduleNumber } = useParams();
@@ -36,6 +37,16 @@ function StudentAssessment() {
     };
     init();
   }, []);
+
+  const handleTTSClick = () => {
+    if (speechSynthesis.speaking) return;
+    let test = data?.questions[currentQuestion].question + "\n";
+    for (let i = 0; i < data?.questions[currentQuestion].choices.length - 1; i++) test += data?.questions[currentQuestion].choices[i] + "?, ";
+    test += "or " + data?.questions[currentQuestion].choices[data?.questions[currentQuestion].choices.length - 1];
+    console.log(test);
+    let utterance = new SpeechSynthesisUtterance(test);
+    speechSynthesis.speak(utterance);
+  };
 
   const handleSubmit = () => {
     if (currentAnswer === -1) return alert("Select your answer before submitting.");
@@ -90,7 +101,10 @@ function StudentAssessment() {
         <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl p-10 my-auto gap-4" style={{ maxWidth: "1024px" }}>
           {!isLoading && (
             <>
-              <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
+              <div className="flex flex-row justify-between">
+                <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
+                <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
+              </div>
               <h3 className="text-4xl font-semibold font-sourceSans3">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
               <div className="flex flex-col gap-3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
