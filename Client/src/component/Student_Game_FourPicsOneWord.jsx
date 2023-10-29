@@ -62,7 +62,7 @@ function Student_Game_FourPicsOneWord() {
           )}
           <img className={isImageLoaded ? "" : "loading"} src={data?.rounds[roundNumber].imagePath} style={{ height: "450px" }} onLoad={() => setIsImageLoaded(true)} />
           {!isImageLoaded && <div className="text-2xl font-bold font-sourceSans3">Loading...</div>}
-          <div className="text-xl my-2 font-semibold">{data?.rounds[roundNumber].clue}</div>
+          <div className="text-2xl my-2 font-semibold">{`Clue: ${"_ ".repeat(data?.rounds[roundNumber].answer.length)}`}</div>
           <form className="flex flex-row justify-center gap-4 align-center my-4">
             <input type="text" className="px-5 py-2 rounded-lg shadow-md font-sourceSans3" placeholder="Type your answer here" style={{ width: "300px" }} value={answer} onChange={(e) => setAnswer(e.target.value)} />
             <button type="submit" className="bg-[#252525] rounded-lg shadow-md font-semibold px-6 py-1 text-white font-sourceSans3" style={{ lineHeight: "0", margin: "0" }} onClick={handleSubmitAnswer}>
