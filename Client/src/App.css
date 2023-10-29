@@ -9,7 +9,7 @@
 
 .backgroundYellow {
     width: 100%;
-    min-height: 100vh;
+    height: 100vh;
     background-color: #f7d538;
     overflow-y: auto;
 }
@@ -43,4 +43,8 @@
 
 .backgroundRed {
     background-image: url('/src/assets/Homepage_Image/red.svg');
+}
+
+.backgroundGreen {
+    background-image: url('/src/assets/Homepage_Image/green.svg');
 }

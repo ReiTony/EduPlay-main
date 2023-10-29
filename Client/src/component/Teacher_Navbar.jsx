@@ -22,7 +22,7 @@ function Teacher_Navbar() {
 
                     <Link to="/Teacher_Homepage" className="p-5 hover:text-gray-500 ">HOME</Link>
 
-                    <Link to='/Teacher_Homepage/Logout' className="p-5 hover:text-gray-500">LOGOUT</Link> 
+                    <Link to='/Teacher_Homepage/Logout' className="p-5 hover:text-gray-500">LOGOUT</Link>
 
                 </div>
 
