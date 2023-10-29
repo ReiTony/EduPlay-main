@@ -10,7 +10,7 @@ function Teacher_Navbar() {
     setIsMenuOpen(!isMenuOpen);
   };
   return (
-    <nav className="m-4 text-white bg-[#252525] rounded-3xl sticky top-0 z-50">
+    <nav className="m-4 text-white bg-[#252525] rounded-3xl sticky top-0">
       <div className="flex items-center justify-between w-full p-2 ">
         <div className="flex items-center">
           <img className="w-24 m-0 " src={logo} alt="Logo" />
