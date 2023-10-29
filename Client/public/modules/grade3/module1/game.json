@@ -4,28 +4,23 @@
   "rounds": [
     {
       "imagePath": "https://drive.google.com/uc?id=1JBW0pEaDav7EOxcVnpKATiy5jB1IPvWC",
-      "answer": "Melting",
-      "clue": "Natutunaw"
+      "answer": "Melting"
     },
     {
       "imagePath": "https://drive.google.com/uc?id=1NGqzbsxgI53Vp-ntS4ccpo8IQpCSlXRn",
-      "answer": "Freezing",
-      "clue": "Nilalamig"
+      "answer": "Freezing"
     },
     {
       "imagePath": "https://drive.google.com/uc?id=1FtnnXy7PLG87gyiYZbKqYw6NSCtljP2-",
-      "answer": "Thermometer",
-      "clue": "May lagnat ka?"
+      "answer": "Thermometer"
     },
     {
       "imagePath": "https://drive.google.com/uc?id=13ezSnt5CHIERyrvKvI1PH-TbEp06Jk-C",
-      "answer": "Evaporation",
-      "clue": "Evap"
+      "answer": "Evaporation"
     },
     {
       "imagePath": "https://drive.google.com/uc?id=1gtE_MOlcB_MzciOOBTU6-zDnoMX5_tb6",
-      "answer": "Sublimation",
-      "clue": "Solid to gas"
+      "answer": "Sublimation"
     }
   ]
 }
