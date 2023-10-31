@@ -9,7 +9,58 @@ function ManageAssessments({ onSave }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showSaveAssessmentModal, setShowSaveAssessmentModal] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(-1);
-  const [questions, setQuestions] = useState([]);
+  const [questions, setQuestions] = useState([
+    {
+      question: "What is the color of an apple? ",
+      choices: ["Blue", "Yellow", "Red", "Black"],
+      correctAnswer: 2,
+    },
+    {
+      question: "What is the shape of a wheel",
+      choices: ["Circle", "Square", "Rectangle", "Triangle"],
+      correctAnswer: 0,
+    },
+    {
+      question: "Which one is the biggest?",
+      choices: ["Worm", "Dog", "Car", "Plate"],
+      correctAnswer: 2,
+    },
+    {
+      question: "Which object has a rough texture?",
+      choices: ["Glass", "Apple", "Paper", "Pineapple"],
+      correctAnswer: 3,
+    },
+    {
+      question: "Which object is the heaviest?",
+      choices: ["Table", "Pencil", "Eraser", "Phone"],
+      correctAnswer: 0,
+    },
+    {
+      question: "Which object is the smallest?",
+      choices: ["Tree", "Cat", "House", "Person"],
+      correctAnswer: 1,
+    },
+    {
+      question: "A train is longer than a car.",
+      choices: ["True", "False"],
+      correctAnswer: 0,
+    },
+    {
+      question: "A house is bigger than a flower.",
+      choices: ["True", "False"],
+      correctAnswer: 0,
+    },
+    {
+      question: "A giraffe is taller than a cat.",
+      choices: ["True", "False"],
+      correctAnswer: 0,
+    },
+    {
+      question: "A basketball is lighter than a pencil.",
+      choices: ["True", "False"],
+      correctAnswer: 1,
+    },
+  ]);
 
   const handleSaveAssessment = () => {
     setShowSaveAssessmentModal(false);
@@ -65,7 +116,7 @@ function ManageAssessments({ onSave }) {
         {questions.map((i, ind) => (
           <Accordion key={ind}>
             <Accordion.Title>
-              <div className="flex flex-row justify-between items-center px-6">
+              <div className="flex flex-row flex-grow justify-between items-center px-6">
                 <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
                 <div className="flex flex-row gap-2 text-white font-bold">
                   <button className="bg-[#08a454] rounded-full shadow-md px-8 py-2" onClick={showEditQuestion(ind)}>
