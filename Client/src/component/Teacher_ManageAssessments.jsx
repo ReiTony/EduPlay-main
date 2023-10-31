@@ -52,48 +52,43 @@ function ManageAssessments({ onSave }) {
 
   return (
     <>
-      <div className="flex flex-col flex-grow gap-4 p-4">
-        <div className="bg-[#08a454] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">CUSTOM ASSESSMENTS</div>
-        <div className="flex flex-col bg-[#a8d4a4] flex-grow gap-4 rounded-3xl p-5">
-          <div className="flex flex-row justify-end gap-2">
-            <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowAddModal(true)}>
-              ADD QUESTION
-            </button>
-            <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowSaveAssessmentModal(true)}>
-              SAVE ASSESSMENT
-            </button>
-          </div>
+      <div className="flex flex-row justify-end gap-2">
+        <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowAddModal(true)}>
+          ADD QUESTION
+        </button>
+        <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowSaveAssessmentModal(true)}>
+          SAVE ASSESSMENT
+        </button>
+      </div>
 
-          <div className="flex flex-col gap-4 m-4">
-            {questions.map((i, ind) => (
-              <Accordion key={ind}>
-                <Accordion.Title>
-                  <div className="flex flex-row justify-between items-center px-6">
-                    <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
-                    <div className="flex flex-row gap-2 text-white font-bold">
-                      <button className="bg-[#08a454] rounded-full shadow-md px-8 py-2" onClick={showEditQuestion(ind)}>
-                        EDIT
-                      </button>
-                      <button className="bg-[#d00c24] rounded-full shadow-md px-8 py-2" onClick={showDelete(ind)}>
-                        DELETE
-                      </button>
-                    </div>
-                  </div>
-                </Accordion.Title>
-                <Accordion.Content>
-                  <div className="flex flex-col gap-4 font-sourceSans3 ">
-                    <div className="text-3xl ms-8 font-bold">{i.question}</div>
-                    <div className="flex flex-col text-2xl ms-16">
-                      {i.choices.map((c, indc) => (
-                        <div className={indc === i.correctAnswer ? "font-bold" : ""} key={indc}>{`${String.fromCharCode(97 + indc)}. ${c}`}</div>
-                      ))}
-                    </div>
-                  </div>
-                </Accordion.Content>
-              </Accordion>
-            ))}
-          </div>
-        </div>
+      <div className="flex flex-col gap-4 m-4">
+        {questions.map((i, ind) => (
+          <Accordion key={ind}>
+            <Accordion.Title>
+              <div className="flex flex-row justify-between items-center px-6">
+                <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
+                <div className="flex flex-row gap-2 text-white font-bold">
+                  <button className="bg-[#08a454] rounded-full shadow-md px-8 py-2" onClick={showEditQuestion(ind)}>
+                    EDIT
+                  </button>
+                  <button className="bg-[#d00c24] rounded-full shadow-md px-8 py-2" onClick={showDelete(ind)}>
+                    DELETE
+                  </button>
+                </div>
+              </div>
+            </Accordion.Title>
+            <Accordion.Content>
+              <div className="flex flex-col gap-4 font-sourceSans3 ">
+                <div className="text-3xl ms-8 font-bold">{i.question}</div>
+                <div className="flex flex-col text-2xl ms-16">
+                  {i.choices.map((c, indc) => (
+                    <div className={indc === i.correctAnswer ? "font-bold" : "font-normal"} key={indc}>{`${String.fromCharCode(97 + indc)}. ${c}`}</div>
+                  ))}
+                </div>
+              </div>
+            </Accordion.Content>
+          </Accordion>
+        ))}
       </div>
       <AddModal show={showAddModal} onHide={() => setShowAddModal(false)} onSave={handleAddQuestion} />
       <EditModal show={showEditModal} onHide={() => setShowEditModal(false)} onSave={handleSave} question={questions[currentQuestion]} />
@@ -145,7 +140,9 @@ function AddModal({ show, onHide, onSave }) {
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
-            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12">+ Add a choice</button>
+            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12" onClick={() => setChoices([...choices, ""])}>
+              + Add a choice
+            </button>
           </div>
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
