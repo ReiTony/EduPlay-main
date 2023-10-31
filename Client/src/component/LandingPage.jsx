@@ -76,15 +76,15 @@ function LandingPage() {
             <img src={heart} alt="" className="mr-4 h-7" />
             <div>
               <h3 className="text-2xl font-semibold">Assessments</h3>
-              <p>Challenge and test the knowledge of the students through instructor created assessment that tests how much the student understood the lessons.</p>
+              <p>Challenge and test the knowledge of the students through basic assessments that tests how much the student understood the lessons.</p>
             </div>
           </div>
 
           <div className="flex items-start my-6 mr-10 font-montserrat">
             <img src={heart} alt="" className="mr-4 h-7" />
             <div>
-              <h3 className="text-2xl font-semibold">Gamified Assessments</h3>
-              <p>Provide an opportunity to the student to learn through an interavtive way with games that test their knowledge and critical thinking abilities.</p>
+              <h3 className="text-2xl font-semibold">Game</h3>
+              <p>Enjoy various games that can help students remember and understand what they have learned while also having fun.</p>
             </div>
           </div>
 
@@ -92,7 +92,7 @@ function LandingPage() {
             <img src={heart} alt="" className="mr-4 h-7" />
             <div>
               <h3 className="text-2xl font-semibold">Learning Group</h3>
-              <p>Develop friendships and lasting meaningful exchanges with classNamemates and share information.</p>
+              <p>Allow teachers to interact with their students by providing them custom instructor-made assessments and monitor their progress.</p>
             </div>
           </div>
         </div>
