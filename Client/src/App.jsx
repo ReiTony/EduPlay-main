@@ -34,6 +34,8 @@ import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
 import NotFound from "./component/NotFound";
 import Teacher_CreateAssessment from "./component/Teacher_CreateAssessment";
+import TeacherAssessments from "./component/Teacher_Assessments";
+import Teacher_EditAssessment from "./component/Teacher_EditAssessment";
 
 const queryClient = new QueryClient();
 
@@ -78,7 +80,9 @@ function App() {
               <Route path="manage-account" element={<Teacher_AccountManagement />} />
               <Route path="add-account" element={<Teacher_Add_Student />} />
               <Route path="logout" element={<Logout />} />
-              <Route path="create-assessment" element={<Teacher_CreateAssessment />} />
+              <Route path="assessments" element={<TeacherAssessments />} />
+              <Route path="assessments/create" element={<Teacher_CreateAssessment />} />
+              <Route path="assessments/:assessmentId" element={<Teacher_EditAssessment />} />
             </Route>
 
             {/* Admin Route */}
