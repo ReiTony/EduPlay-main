@@ -33,7 +33,7 @@ import Teacher_SharedLayout from "./component/Teacher_SharedLayout";
 import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
 import NotFound from "./component/NotFound";
-import ManageAssessments from "./component/Teacher_ManageAssessments";
+import Teacher_CreateAssessment from "./component/Teacher_CreateAssessment";
 
 const queryClient = new QueryClient();
 
@@ -78,7 +78,7 @@ function App() {
               <Route path="manage-account" element={<Teacher_AccountManagement />} />
               <Route path="add-account" element={<Teacher_Add_Student />} />
               <Route path="logout" element={<Logout />} />
-              <Route path="assessments" element={<ManageAssessments />} />
+              <Route path="create-assessment" element={<Teacher_CreateAssessment />} />
             </Route>
 
             {/* Admin Route */}

@@ -3,23 +3,17 @@ import Accordion from "./Accordion";
 import ReactModal from "react-modal";
 import "../styles/Teacher_ManageAssessments.css";
 
-function ManageAssessments() {
+function ManageAssessments({ onSave }) {
   const [showAddModal, setShowAddModal] = useState(false);
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showSaveAssessmentModal, setShowSaveAssessmentModal] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(-1);
-  // TODO: get questions
-  const [questions, setQuestions] = useState([
-    { question: "What is the color of an apple? ", choices: ["Blue", "Yellow", "Red", "Black"], correctAnswer: 2 },
-    { question: "What is the shape of a wheel", choices: ["Circle", "Square", "Rectangle", "Triangle"], correctAnswer: 0 },
-    { question: "A train is longer than a car.", choices: ["True", "False"], correctAnswer: 0 },
-    { question: "A basketball is lighter than a pencil.", choices: ["True", "False"], correctAnswer: 1 },
-  ]);
+  const [questions, setQuestions] = useState([]);
 
-  const handleSaveAssessment = async () => {
-    // TODO: send the assessment to the backend
-    console.log(questions);
+  const handleSaveAssessment = () => {
+    setShowSaveAssessmentModal(false);
+    onSave(questions);
   };
 
   const showEditQuestion = (ind) => (e) => {
@@ -72,7 +66,7 @@ function ManageAssessments() {
 
           <div className="flex flex-col gap-4 m-4">
             {questions.map((i, ind) => (
-              <Accordion className="" key={ind}>
+              <Accordion key={ind}>
                 <Accordion.Title>
                   <div className="flex flex-row justify-between items-center px-6">
                     <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
