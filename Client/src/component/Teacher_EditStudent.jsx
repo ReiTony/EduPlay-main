@@ -7,7 +7,7 @@ function Teacher_EditStudent() {
   const { accountId } = useParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [grade, setGrade] = useState("");
+  const [gradeLevel, setGrade] = useState("");
   const [birthDay, setBirthDay] = useState("");
   const [birthMonth, setBirthMonth] = useState("");
 
@@ -27,7 +27,7 @@ function Teacher_EditStudent() {
 
   const handleSave = async () => {
     axios
-      .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, { firstName, lastName, grade, birthDay, birthMonth })
+      .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, { firstName, lastName, gradeLevel, birthDay, birthMonth })
       .then((res) => navigate(-1))
       .catch((err) => alert(err.message));
   };
@@ -50,7 +50,7 @@ function Teacher_EditStudent() {
 
         <div className="flex flex-row items-center gap-4">
           <label htmlFor="gradelevel">Grade:</label>
-          <input type="number" className="rounded-full border-2 border-black px-4 py-1" value={grade} onChange={(e) => setGrade(e.target.value)} placeholder="Grade" id="gradelevel" min="1" max="3" />
+          <input type="number" className="rounded-full border-2 border-black px-4 py-1" value={gradeLevel} onChange={(e) => setGrade(e.target.value)} placeholder="Grade" id="gradelevel" min="1" max="3" />
         </div>
 
         <div className="flex flex-row items-center gap-4">
