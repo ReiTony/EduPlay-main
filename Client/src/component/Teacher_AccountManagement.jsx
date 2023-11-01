@@ -3,13 +3,18 @@ import Teacher_Navbar from "./Teacher_Navbar";
 import { useTable, useFilters } from "react-table";
 import { BiEditAlt } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import ReactModal from "react-modal";
+import axios from "axios";
 
 function Teacher_AccountManagement() {
+  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [filterInput, setFilterInput] = useState("");
   const [selectedGrade, setSelectedGrade] = useState("");
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+  const [toBeDisabledStudent, setToBeDisabledStudent] = useState("");
 
   useEffect(() => {
     fetch("http://localhost:5000/api/v1/Teacher/Class")
@@ -21,6 +26,28 @@ function Teacher_AccountManagement() {
         console.error("Error fetching student data:", error);
       });
   }, []);
+
+  const refresh = async () => {
+    axios
+      .get(`${import.meta.env.VITE_API}teacher/class`)
+      .then((res) => setData(res.data.students))
+      .catch((err) => alert(err.message));
+  };
+
+  const handleDisableStudent = async () => {
+    axios
+      .delete(`${import.meta.env.VITE_API}teacher/deleteStudent/${toBeDisabledStudent}`)
+      .then((res) => {
+        refresh();
+        setShowDeleteModal(false);
+      })
+      .catch((err) => alert(err.message));
+  };
+
+  const showDelete = (username) => {
+    setShowDeleteModal(true);
+    setToBeDisabledStudent(username);
+  };
 
   // Define your columns and data here
   const columns = React.useMemo(
@@ -52,11 +79,11 @@ function Teacher_AccountManagement() {
       {
         Header: "EDIT",
         accessor: "EDIT_STATUS",
-        Cell: () => (
-          <button className="flex items-center justify-center px-8 m-auto text-white bg-green-500 rounded-full">
+        Cell: ({ row }) => (
+          <button className="flex items-center justify-center m-auto shadow-md text-white bg-green-500 rounded-full font-bold px-5 py-1 hover:brightness-90" onClick={() => navigate(row.original.username)}>
             <span className="flex items-center">
               <BiEditAlt className="mr-2 cursor-pointer" />
-              Edit
+              EDIT
             </span>
           </button>
         ),
@@ -64,7 +91,11 @@ function Teacher_AccountManagement() {
       {
         Header: "STATUS",
         accessor: "STATUS",
-        Cell: ({ value }) => <span className={` m-auto px-2 py-1 rounded ${value === "ACTIVE" ? "bg-green-500 rounded-full px-9" : value === "DISABLE" ? "bg-red-500 px-7" : "bg-white"} text-white`}>{value}</span>,
+        Cell: ({ row }) => (
+          <button className="bg-[#d00c24] rounded-full shadow-md text-white font-bold px-5 py-1 hover:brightness-90" onClick={() => showDelete(row.original.username)}>
+            DISABLE
+          </button>
+        ),
       },
     ],
     []
@@ -77,8 +108,6 @@ function Teacher_AccountManagement() {
     },
     useFilters // Use the filter hook
   );
-
-  const { filters } = state;
 
   useEffect(() => {
     // When selectedGrade changes, update the filter
@@ -117,9 +146,9 @@ function Teacher_AccountManagement() {
 
             <div className="flex">
               <div className="mx-4">
-                <Link to="/teacher/add-account">
-                  <button className="px-4 py-2 mt-[0.10rem] text-white bg-blue-500 rounded-md p-y hover:bg-blue-700">Add Student</button>
-                </Link>
+                <button className="bg-blue-500 rounded-full text-white text-2xl font-bold px-5 py-1 shadow-md hover:bg-blue-700" onClick={() => navigate("create")}>
+                  ADD STUDENT
+                </button>
               </div>
               <div className="relative mx-4">
                 <input
@@ -193,6 +222,7 @@ function Teacher_AccountManagement() {
           <BsFillArrowUpCircleFill className="text-3xl " />
         </button>
       </div>
+      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} />
     </>
   );
 }
@@ -213,3 +243,31 @@ function GradeLevelFilter({ column }) {
 }
 
 export default Teacher_AccountManagement;
+
+function DeleteModal({ show, onHide, onSave }) {
+  if (!show) return;
+  return (
+    <ReactModal
+      appElement={document.getElementById("root")}
+      isOpen={show}
+      shouldCloseOnEsc={true}
+      style={{ content: { backgroundColor: "#FF5454", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
+      {/* style={{ content: { backgroundColor: "#FF5454", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}> */}
+      <div className="flex flex-col justify-center gap-8 font-sourceSans3 font-semibold p-6">
+        <h2 className="text-4xl text-center">DISABLE STUDENT</h2>
+        <div className="text-2xl">
+          Reminder: <br />
+          Upon clicking disable, all information associated under this student will be deleted.
+        </div>
+        <div className="flex flex-row justify-end gap-2 text-white">
+          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+            CANCEL
+          </button>
+          <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
+            DISABLE
+          </button>
+        </div>
+      </div>
+    </ReactModal>
+  );
+}

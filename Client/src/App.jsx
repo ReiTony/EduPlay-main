@@ -29,6 +29,7 @@ import Teacher_Reset_Password from "./component/Teacher_Reset_Password";
 import Teacher_PasswordReset_Success from "./component/Teacher_PasswordReset_Success";
 import Teacher_AccountManagement from "./component/Teacher_AccountManagement";
 import Teacher_SharedLayout from "./component/Teacher_SharedLayout";
+import Teacher_EditStudent from "./component/Teacher_EditStudent";
 
 import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
@@ -77,8 +78,9 @@ function App() {
             <Route path="/teacher" element={<Teacher_SharedLayout />}>
               <Route index element={<TeacherHomepage />} />
               <Route path="navbar" element={<Teacher_Navbar />} />
-              <Route path="manage-account" element={<Teacher_AccountManagement />} />
-              <Route path="add-account" element={<Teacher_Add_Student />} />
+              <Route path="accounts" element={<Teacher_AccountManagement />} />
+              <Route path="accounts/create" element={<Teacher_Add_Student />} />
+              <Route path="accounts/:accountId" element={<Teacher_EditStudent />} />
               <Route path="logout" element={<Logout />} />
               <Route path="assessments" element={<TeacherAssessments />} />
               <Route path="assessments/create" element={<Teacher_CreateAssessment />} />
