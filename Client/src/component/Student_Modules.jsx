@@ -108,7 +108,7 @@ function Student_Modules() {
                     {module.submodules.map((submodule, subIndex) => (
                       <div key={subIndex} className="flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl">
                         <h1>{submodule.title}</h1>
-                        <button className="p-2 px-4 text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${module.moduleNumber}/lecture`)}>
+                        <button className="p-2 px-4 text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${module.number}/lecture`)}>
                           {submodule.locked ? <FaLock /> : "OPEN"}
                         </button>
                       </div>
