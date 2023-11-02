@@ -22,7 +22,7 @@ function Student_Profile() {
       axios
         .get(`${import.meta.env.VITE_API}student/${userId}`, { withCredentials: true })
         .then((res) => setStudentData(res.data.student))
-        .catch((err) => alert(err.msesage));
+        .catch((err) => alert(err.message));
     };
     init();
 
@@ -103,9 +103,9 @@ function Student_Profile() {
           <div className="overflow-hidden font-bold profile-info">
             <p className="text-3xl font-expletus">Name: {studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
             <p className="text-3xl font-expletus">Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}</p>
-            {/* <p className="text-3xl font-expletus">
-              Student ID: <span>{studentData ? studentData.studentId : "Loading..."}</span>
-            </p> */}
+            <p className="text-3xl font-expletus">
+              Birthday: <span>{`${months[studentData.birthMonth - 1]} ${studentData.birthDay}`}</span>
+            </p>
           </div>
         </div>
 
@@ -146,5 +146,7 @@ function Student_Profile() {
     </div>
   );
 }
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default Student_Profile;

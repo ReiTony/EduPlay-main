@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { MdExpandMore, MdExpandLess } from "react-icons/md";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import { FaLock } from "react-icons/fa";
+import axios from "axios";
 
 function Student_Modules() {
   const navigate = useNavigate();
@@ -11,7 +12,12 @@ function Student_Modules() {
 
   useEffect(() => {
     const init = async () => {
-      const gradeLevel = JSON.parse(localStorage.getItem("gradeLevel"));
+      let gradeLevel = JSON.parse(localStorage.getItem("gradeLevel"));
+      if (!gradeLevel) {
+        let temp = await axios.get(`${import.meta.env.VITE_API}student/${localStorage.getItem("userId")}`, { withCredentials: true });
+        gradeLevel = temp.data.student.gradeLevel;
+        localStorage.setItem("gradeLevel", gradeLevel);
+      }
       const res = await fetch(`/modules/grade${gradeLevel}/summary.json`);
       setStudentProgressData(await res.json());
     };
