@@ -3,9 +3,10 @@ import { BrowserRouter, Route, Routes, Navigate } from "react-router-dom";
 import React from "react";
 import LandingPage from "./component/LandingPage";
 import { QueryClient, QueryClientProvider } from "react-query";
-import Logout from "./component/Logout";
+
 
 import Student_Login from "./component/Student_Login";
+import Student_Logout from "./component/Student_Logout";
 import Student_SharedLayout from "./component/Student_SharedLayout";
 import Student_Homepage from "./component/Student_Homepage";
 import Student_Profile from "./component/Student_Profile";
@@ -19,8 +20,8 @@ import Student_Game from "./component/Student_Game";
 import TokenTransfer from "./component/TokenTransfer";
 
 import Teacher_Navbar from "./component/Teacher_Navbar";
-import TeacherSignIn from "./component/TeacherSignUp";
 import TeacherLogin from "./component/TeacherLogin";
+import Teacher_Logout from "./component/Teacher_Logout";
 import TeacherSignUp from "./component/TeacherSignUp";
 import TeacherHomepage from "./component/TeacherHomepage";
 import Teacher_Send_Email from "./component/Teacher_Send_Email";
@@ -64,7 +65,7 @@ function App() {
               <Route path="module/:moduleNumber/game" element={<Student_Game />} />
               <Route path="module/:moduleNumber/assessment" element={<Student_Assessment />} />
               <Route path="assessments" element={<Student_AssessmentMenu />} />
-              <Route path="logout" element={<Logout />} />
+              <Route path="logout" element={<Student_Logout/>} />
             </Route>
 
             {/* Teacher Routes */}
@@ -81,7 +82,7 @@ function App() {
               <Route path="accounts" element={<Teacher_AccountManagement />} />
               <Route path="accounts/create" element={<Teacher_Add_Student />} />
               <Route path="accounts/:accountId" element={<Teacher_EditStudent />} />
-              <Route path="logout" element={<Logout />} />
+              <Route path="logout" element={<Teacher_Logout />} />
               <Route path="assessments" element={<TeacherAssessments />} />
               <Route path="assessments/create" element={<Teacher_CreateAssessment />} />
               <Route path="assessments/:assessmentId" element={<Teacher_EditAssessment />} />
