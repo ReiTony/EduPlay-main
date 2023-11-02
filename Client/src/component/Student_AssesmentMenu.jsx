@@ -9,7 +9,7 @@ function Student_AssessmentMenu() {
     const init = async () => {
       const gradeLevel = localStorage.getItem("gradeLevel");
       const res = await fetch(`/modules/grade${gradeLevel}/summary.json`);
-      setModules((await res.json()).modules);
+      setModules(await res.json());
     };
     init();
   }, []);
