@@ -13,13 +13,13 @@ const Student_Dashboard = () => {
   // ------ FOR ASSESSMENT SCORE AND PROGRESS ----- //
 
   // To clear CURRENT_IMAGE_INDEX
-  localStorage.removeItem("CURRENT_IMAGE_INDEX");
-  // To clear CURRENT_MODULE
-  localStorage.removeItem("CURRENT_MODULE");
-  // To clear USER_POINTS from localStorage after (5 seconds)
-  setTimeout(() => {
-    localStorage.removeItem("USER_POINTS");
-  }, 5000);
+  // localStorage.removeItem("CURRENT_IMAGE_INDEX");
+  // // To clear CURRENT_MODULE
+  // localStorage.removeItem("CURRENT_MODULE");
+  // // To clear USER_POINTS from localStorage after (5 seconds)
+  // setTimeout(() => {
+  //   localStorage.removeItem("USER_POINTS");
+  // }, 5000);
 
   // ------ FOR ASSESSMENT SCORE AND PROGRESS ----- //
 
@@ -27,13 +27,12 @@ const Student_Dashboard = () => {
   // window.localStorage.setItem('gradeLevel', JSON.stringify(gradeLevel));
 
   useEffect(() => {
-    const getGradeLevel = async () => {
-      const { userId } = JSON.parse(Cookies.get("studentToken"));
-      const res = await fetch(`${import.meta.env.VITE_API}Student/${userId}`);
-      const data = await res.json();
-      localStorage.setItem("gradeLevel", data.student.gradeLevel);
-    };
-    getGradeLevel();
+    // const getGradeLevel = async () => {
+    //   const res = await fetch(`${import.meta.env.VITE_API}Student/${localStorage.getItem("userId")}`);
+    //   const data = await res.json();
+    //   localStorage.setItem("gradeLevel", data.student.gradeLevel);
+    // };
+    // getGradeLevel();
   }, []);
 
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -48,26 +47,26 @@ const Student_Dashboard = () => {
 
   const [notificationMessages, setNotificationMessages] = useState([]);
 
-  useEffect(() => {
-    // Fetch user-specific notifications using Axios and send the token
-    const token = localStorage.getItem("studentToken"); // Assuming you store the token in localStorage
+  // useEffect(() => {
+  //   // Fetch user-specific notifications using Axios and send the token
+  //   const token = localStorage.getItem("studentToken"); // Assuming you store the token in localStorage
 
-    if (token) {
-      axios
-        .get("YOUR_NOTIFICATION_API_ENDPOINT", {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        })
-        .then((response) => {
-          // Assuming the API returns an array of notification messages
-          setNotificationMessages(response.data.notificationMessages);
-        })
-        .catch((error) => {
-          console.error("Error fetching notifications:", error);
-        });
-    }
-  }, []);
+  //   if (token) {
+  //     axios
+  //       .get("YOUR_NOTIFICATION_API_ENDPOINT", {
+  //         headers: {
+  //           Authorization: `Bearer ${token}`,
+  //         },
+  //       })
+  //       .then((response) => {
+  //         // Assuming the API returns an array of notification messages
+  //         setNotificationMessages(response.data.notificationMessages);
+  //       })
+  //       .catch((error) => {
+  //         console.error("Error fetching notifications:", error);
+  //       });
+  //   }
+  // }, []);
 
   const handleScrollToTop = () => {
     // Scroll to the top of the page
@@ -139,9 +138,7 @@ const Student_Dashboard = () => {
             </div>
 
             <a href="#">
-              <div className="bg-[#5271ff] mt-14 text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3">
-                <a>JOIN</a>
-              </div>
+              <div className="bg-[#5271ff] mt-14 text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3">JOIN</div>
             </a>
           </div>
         </div>

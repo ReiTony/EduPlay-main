@@ -27,7 +27,7 @@ function Teacher_EditStudent() {
 
   const handleSave = async () => {
     axios
-      .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, { firstName, lastName, gradeLevel, birthDay, birthMonth })
+      .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, { firstName, lastName, gradeLevel, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0") })
       .then((res) => navigate(-1))
       .catch((err) => alert(err.message));
   };

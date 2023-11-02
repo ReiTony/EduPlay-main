@@ -1,9 +1,8 @@
-import React, { useState, useEffect } from "react";
-import Teacher_Navbar from "./Teacher_Navbar";
+import { useState, useEffect, useMemo } from "react";
 import { useTable, useFilters } from "react-table";
 import { BiEditAlt } from "react-icons/bi";
 import { BsSearch } from "react-icons/bs";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import ReactModal from "react-modal";
 import axios from "axios";
@@ -17,14 +16,7 @@ function Teacher_AccountManagement() {
   const [toBeDisabledStudent, setToBeDisabledStudent] = useState("");
 
   useEffect(() => {
-    fetch("http://localhost:5000/api/v1/Teacher/Class")
-      .then((response) => response.json())
-      .then((jsonData) => {
-        setData(jsonData.students);
-      })
-      .catch((error) => {
-        console.error("Error fetching student data:", error);
-      });
+    refresh();
   }, []);
 
   const refresh = async () => {
@@ -50,12 +42,8 @@ function Teacher_AccountManagement() {
   };
 
   // Define your columns and data here
-  const columns = React.useMemo(
+  const columns = useMemo(
     () => [
-      {
-        Header: "ID",
-        accessor: "studentId",
-      },
       {
         Header: "GRADELEVEL",
         accessor: "gradeLevel",

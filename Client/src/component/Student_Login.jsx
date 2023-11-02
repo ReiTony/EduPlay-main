@@ -13,85 +13,85 @@ function Student_Login() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const setAuthHeader = (token) => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  };
+  // const setAuthHeader = (token) => {
+  //   axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
+  // };
 
-  // Add a function to set a cookie with a JWT token
-  const setTokenCookie = (token) => {
-    // Set an HTTPOnly cookie with the token
-    Cookies.set("studentToken", JSON.stringify(token), {
-      secure: true,
-      sameSite: "strict",
-    });
-  };
+  // // Add a function to set a cookie with a JWT token
+  // const setTokenCookie = (token) => {
+  //   // Set an HTTPOnly cookie with the token
+  //   Cookies.set("studentToken", JSON.stringify(token), { secure: true, sameSite: "strict" });
+  // };
 
   // Add a function to check if the token cookie exists
-  const hasTokenCookie = () => {
-    return !!Cookies.get("studentToken");
-  };
+  // const hasTokenCookie = () => {
+  //   return !!Cookies.get("studentToken");
+  // };
+
+  useEffect(() => {
+    // TODO: check if already logged in
+    if (localStorage.getItem("userId")) navigate("/student");
+  }, []);
 
   const onSubmit = async (values, setSubmitting) => {
     try {
-      const userAgent = navigator.userAgent;
-      const apiUrl = "http://localhost:5000/api/v1/Student/login";
-
-      const response = await axios.post(
-        apiUrl,
-        {
-          username: values.username,
-          password: values.password,
-          userAgent: userAgent,
-        },
-        { withCredentials: true }
-      );
-
-      console.log("Response Data:", response.data.user.user);
-
-      if (response.status === 200) {
-        // Store the JWT token as a cookie
-        const tokenStudent = response.data.user.user;
-        setTokenCookie(tokenStudent);
-
-        // Set the Authorization header for Axios
-        setAuthHeader(tokenStudent);
-
-        // Redirect to the student homepage
-        navigate("/student");
-      } else {
-        // Display an error message to the user
-        alert("Login failed. Invalid username or password.");
-      }
+      const body = { username: values.username, password: values.password };
+      let temp = await axios.post(`${import.meta.env.VITE_API}student/login`, body, { withCredentials: true });
+      localStorage.setItem("userId", temp.data.user.user.userId);
+      temp = await axios.get(`${import.meta.env.VITE_API}student/${temp.data.user.user.userId}`, { withCredentials: true });
+      localStorage.setItem("gradeLevel", temp.data.student.gradeLevel);
+      navigate("/student");
     } catch (error) {
-      console.error("An error occurred:", error);
-      alert("An error occurred: " + error.message);
-    } finally {
-      setSubmitting(false); // Reset the form submission state
+      alert(error.message);
     }
   };
 
-  // Check if a token cookie exists when the component mounts
-  useEffect(() => {
-    if (hasTokenCookie()) {
-      const tokenStudent = Cookies.get("studentToken");
-      setAuthHeader(tokenStudent);
-      navigate("/student");
-    }
-  }, []); // Empty dependency array ensures this effect runs once on component mount
+  // const onSubmits = async (values, setSubmitting) => {
+  //   try {
+  //     const userAgent = navigator.userAgent;
+  //     const apiUrl = "http://localhost:5000/api/v1/Student/login";
 
-  const {
-    values,
-    errors,
-    handleBlur,
-    handleChange,
-    handleSubmit,
-    touched,
-    isSubmitting,
-  } = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
+  //     const response = await axios.post(apiUrl, {
+  //       username: values.username,
+  //       password: values.password,
+  //       userAgent: userAgent,
+  //     });
+
+  //     console.log("Response Data:", response.data.user.user);
+
+  //     if (response.status === 200) {
+  //       // Store the JWT token as a cookie
+  //       const tokenStudent = response.data.user.user;
+  //       setTokenCookie(tokenStudent);
+
+  //       // Set the Authorization header for Axios
+  //       setAuthHeader(tokenStudent);
+
+  //       // Redirect to the student homepage
+  //       navigate("/student");
+  //     } else {
+  //       // Display an error message to the user
+  //       alert("Login failed. Invalid username or password.");
+  //     }
+  //   } catch (error) {
+  //     console.error("An error occurred:", error);
+  //     alert("An error occurred: " + error.message);
+  //   } finally {
+  //     setSubmitting(false); // Reset the form submission state
+  //   }
+  // };
+
+  // Check if a token cookie exists when the component mounts
+  // useEffect(() => {
+  //   if (hasTokenCookie()) {
+  //     const tokenStudent = Cookies.get("studentToken");
+  //     setAuthHeader(tokenStudent);
+  //     navigate("/student");
+  //   }
+  // }, []); // Empty dependency array ensures this effect runs once on component mount
+
+  const { values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting } = useFormik({
+    initialValues: { username: "", password: "" },
     validationSchema: studentSchema,
     onSubmit: (values, { setSubmitting }) => onSubmit(values, setSubmitting),
   });

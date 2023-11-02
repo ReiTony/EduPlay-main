@@ -6,8 +6,7 @@ import axios from "axios";
 
 function Student_Profile() {
   // Define a state to store the additional student information
-  const [studentData, setStudentInfo] = useState(null);
-  console.log("HERE", studentData);
+  const [studentData, setStudentData] = useState(null);
   // Define state variables for loading and error
   const [isStudentLoading, setIsStudentLoading] = useState(true);
   const [isBadgeLoading, setIsBadgeLoading] = useState(true);
@@ -16,46 +15,54 @@ function Student_Profile() {
   const [badgeError, setBadgeError] = useState(null); // Define badgeError
   const [achievementError, setAchievementError] = useState(null); // Define achievementError
 
-  useEffect(() => console.log("studentData:", studentData), [studentData]);
-
   useEffect(() => {
-    // Retrieve the token from cookies
-    const token = Cookies.get("studentToken");
-    const tokenObject = JSON.parse(token);
-    const userId = tokenObject.userId;
-    // Use the userId (studentId) to fetch additional student information
-    const fetchStudentInfo = async () => {
-      if (!tokenObject) {
-        console.error("Token is missing or invalid");
-        setStudentError("Token is missing or invalid");
-        setIsStudentLoading(false);
-        return;
-      }
-
-      try {
-        setIsStudentLoading(true);
-
-        const response = await axios.get(`http://localhost:5000/api/v1/Student/${userId}`, {
-          headers: {
-            Authorization: `Bearer ${tokenObject.accessToken}`,
-          },
-        });
-
-        if (response.status === 200) {
-          const studentData = response.data.student;
-          console.log("Student data:", studentData);
-          setStudentInfo(studentData);
-        } else {
-          console.error("Error fetching student information");
-          setStudentError("Error fetching student information");
-        }
-      } catch (error) {
-        console.error("An error occurred while fetching student information:", error);
-        setStudentError("An error occurred while fetching student information");
-      } finally {
-        setIsStudentLoading(false);
-      }
+    const init = async () => {
+      const userId = localStorage.getItem("userId");
+      if (!userId) return alert("UserId cannot be found");
+      axios
+        .get(`${import.meta.env.VITE_API}student/${userId}`, { withCredentials: true })
+        .then((res) => setStudentData(res.data.student))
+        .catch((err) => alert(err.message));
     };
+    init();
+
+    // Retrieve the token from cookies
+    // const token = Cookies.get("studentToken");
+    // const tokenObject = JSON.parse(token);
+    // const userId = tokenObject.userId;
+    // // Use the userId (studentId) to fetch additional student information
+    // const fetchStudentInfo = async () => {
+    //   if (!tokenObject) {
+    //     console.error("Token is missing or invalid");
+    //     setStudentError("Token is missing or invalid");
+    //     setIsStudentLoading(false);
+    //     return;
+    //   }
+
+    //   try {
+    //     setIsStudentLoading(true);
+
+    //     const response = await axios.get(`http://localhost:5000/api/v1/Student/${userId}`, {
+    //       headers: {
+    //         Authorization: `Bearer ${tokenObject.accessToken}`,
+    //       },
+    //     });
+
+    //     if (response.status === 200) {
+    //       const studentData = response.data.student;
+    //       console.log("Student data:", studentData);
+    //       setStudentData(studentData);
+    //     } else {
+    //       console.error("Error fetching student information");
+    //       setStudentError("Error fetching student information");
+    //     }
+    //   } catch (error) {
+    //     console.error("An error occurred while fetching student information:", error);
+    //     setStudentError("An error occurred while fetching student information");
+    //   } finally {
+    //     setIsStudentLoading(false);
+    //   }
+    // };
 
     // Fetch badge data
     const fetchBadgeData = async () => {
@@ -78,28 +85,12 @@ function Student_Profile() {
     };
 
     // Call your data fetching functions
-    fetchStudentInfo();
-    fetchBadgeData();
-    fetchAchievementData();
+    // fetchStudentInfo();
+    // fetchBadgeData();
+    // fetchAchievementData();
   }, []);
 
-  // Rest of your component code remains the same
-  // ...
-
-  // Handle loading and error cases
-  // if (isStudentLoading || isBadgeLoading || isAchievementLoading) {
-  //   return <p>Loading...</p>;
-  // }
-
-  // if (studentError || badgeError || achievementError) {
-  //   return <p>Error loading data.</p>;
-  // }
-
-  // if (!studentData) {
-  //   return <p>Loading...</p>;
-  // }
-
-  if (!studentData) return <p>Loading...</p>;
+  if (!studentData) return <div className="text-2xl font-bold m-auto">Loading...</div>;
 
   // Existing rendering logic
   return (
@@ -113,7 +104,7 @@ function Student_Profile() {
             <p className="text-3xl font-expletus">Name: {studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
             <p className="text-3xl font-expletus">Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}</p>
             <p className="text-3xl font-expletus">
-              Student ID: <span>{studentData ? studentData.studentId : "Loading..."}</span>
+              Birthday: <span>{`${months[studentData.birthMonth - 1]} ${studentData.birthDay}`}</span>
             </p>
           </div>
         </div>
@@ -155,5 +146,7 @@ function Student_Profile() {
     </div>
   );
 }
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
 
 export default Student_Profile;
