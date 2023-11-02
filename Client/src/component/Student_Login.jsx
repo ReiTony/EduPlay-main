@@ -30,6 +30,7 @@ function Student_Login() {
 
   useEffect(() => {
     // TODO: check if already logged in
+    if (localStorage.getItem("userId")) navigate("/student");
   }, []);
 
   const onSubmit = async (values, setSubmitting) => {
@@ -90,10 +91,7 @@ function Student_Login() {
   // }, []); // Empty dependency array ensures this effect runs once on component mount
 
   const { values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting } = useFormik({
-    initialValues: {
-      username: "",
-      password: "",
-    },
+    initialValues: { username: "", password: "" },
     validationSchema: studentSchema,
     onSubmit: (values, { setSubmitting }) => onSubmit(values, setSubmitting),
   });

@@ -11,6 +11,7 @@ function Logout() {
     // Clear tokens and cookies
     Cookies.remove("studentToken");
     Cookies.remove("teacherToken");
+    localStorage.clear();
 
     // Navigate to the root route
     navigate("/");
