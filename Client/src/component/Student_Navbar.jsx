@@ -36,7 +36,7 @@ function Student_Navbar() {
       {isMenuOpen && (
         <div className="py-4 bg-gray-800 xl:hidden">
           <div className="container flex flex-col items-center mx-auto space-y-4 font-expletus">
-            <Link to="/" className="text-white">
+            <Link to="/student" className="text-white">
               HOME
             </Link>
             <Link to="/student/profile" className="text-white">
