@@ -9,7 +9,7 @@ function Student_LearningGroup() {
 
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API}student/assessment?gradeLevel=${gradeLevel}`)
+      .get(`${import.meta.env.VITE_API}student/getAssessmentByGrade/${gradeLevel}`)
       .then((res) => setAssessments(res.data))
       .catch((err) => alert(err.message));
   }, []);
