@@ -16,7 +16,7 @@ function TeacherAssessments() {
   const refresh = async () => {
     await axios
       .get(`${import.meta.env.VITE_API}teacher/assessments`)
-      .then((res) => setAssessments(res.data.assessments))
+      .then((res) => setAssessments(res.data))
       .catch((err) => alert(err.message));
   };
 
