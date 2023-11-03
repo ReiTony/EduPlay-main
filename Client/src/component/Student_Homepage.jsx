@@ -5,11 +5,12 @@ import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import BGmodule from "../assets/Homepage_Image/modules_bg.png";
 import BGass from "../assets/Homepage_Image/assessment_bg.png";
 import BGlr from "../assets/Homepage_Image/learningGroup_bg.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import Cookies from "js-cookie";
 
 const Student_Dashboard = () => {
+  const navigate = useNavigate();
   // ------ FOR ASSESSMENT SCORE AND PROGRESS ----- //
 
   // To clear CURRENT_IMAGE_INDEX
@@ -137,9 +138,9 @@ const Student_Dashboard = () => {
               <img className="lg:w-[100%]  aspect-square homepageChild" src={BGlr} alt="Logo" />
             </div>
 
-            <a href="#">
-              <div className="bg-[#5271ff] mt-14 text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3">JOIN</div>
-            </a>
+            <button className="bg-[#5271ff] mt-14 text-3xl font-bold p-2 text-white rounded-xl px-5 mb-5 font-sourceSans3" onClick={() => navigate("learning-group")}>
+              JOIN
+            </button>
           </div>
         </div>
 
