@@ -39,6 +39,7 @@ import Teacher_CreateAssessment from "./component/Teacher_CreateAssessment";
 import TeacherAssessments from "./component/Teacher_Assessments";
 import Teacher_EditAssessment from "./component/Teacher_EditAssessment";
 import Student_LearningGroupAssessment from "./component/Student_LearningGroupAssessment";
+import Teacher_CustomAssessmentAnalysis from "./component/Teacher_CustomAssessmentAnalysis";
 
 const queryClient = new QueryClient();
 
@@ -88,6 +89,7 @@ function App() {
               <Route path="logout" element={<Teacher_Logout />} />
               <Route path="assessments" element={<TeacherAssessments />} />
               <Route path="assessments/create" element={<Teacher_CreateAssessment />} />
+              <Route path="assessments/analysis" element={<Teacher_CustomAssessmentAnalysis />} />
               <Route path="assessments/:assessmentId" element={<Teacher_EditAssessment />} />
             </Route>
 
