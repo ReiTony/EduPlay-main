@@ -24,7 +24,7 @@ function Student_LearningGroupAssessment() {
         const res = await axios.get(`${import.meta.env.VITE_API}student/assessment?id=${assessmentId}`);
         setData(res.data);
         setIsLoading(false);
-        console.log(res.data)
+        console.log(res.data);
         console.log(res.data.questions);
         const userAnswersFromLocalStorage = localStorage.getItem(`${assessmentId}-answers`);
         if (!userAnswersFromLocalStorage) localStorage.setItem(`${assessmentId}-answers`, JSON.stringify(new Array(res.data.questions.length).fill(-1)));
@@ -76,7 +76,7 @@ function Student_LearningGroupAssessment() {
 
   const handleSubmitQuiz = async () => {
     const answers = JSON.parse(localStorage.getItem(`${assessmentId}-answers`));
-    // TODO: send the answers to the backend
+    axios.post(`${import.meta.env.VITE_API}student/custom-assessment-record`, { assessment: assessmentId, student: userId, answers }).catch((err) => alert(err.message));
     setIsViewingScore(true);
     setCurrentQuestion(0);
     setCurrentAnswer(JSON.parse(localStorage.getItem(`${assessmentId}-answers`))[0]);
