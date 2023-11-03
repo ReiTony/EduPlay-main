@@ -1,0 +1,30 @@
+{
+  "title": "Word Hunt: Characteristics & Grouping of Materials",
+  "type": "Word Hunt",
+  "puzzle": [
+    ["A", "V", "O", "L", "U", "M", "E", "A", "T"],
+    ["D", "H", "B", "L", "B", "K", "C", "F", "R"],
+    ["E", "E", "S", "D", "C", "F", "A", "R", "I"],
+    ["F", "H", "E", "A", "V", "Y", "P", "K", "A"],
+    ["I", "P", "R", "C", "B", "D", "S", "E", "N"],
+    ["N", "B", "V", "R", "O", "U", "N", "D", "G"],
+    ["I", "J", "E", "R", "I", "O", "O", "E", "L"],
+    ["T", "A", "B", "F", "S", "C", "A", "L", "E"],
+    ["E", "I", "G", "R", "E", "A", "T", "E", "R"],
+    ["E", "B", "L", "Z", "P", "U", "O", "R", "G"]
+  ],
+  "answers": ["8,1 1,1", "8,9 8,3", "9,5 9,9", "3,6 3,2", "6,3 0,3", "5,8 5,4", "7,9 7,5", "0,7 4,7", "7,9 0,9", "0,7 0,2"],
+  "clues": [
+    "Definite - The property of an object having an exact shape even in different containers.",
+    "Greater -  An object having a higher number when measured with another object.",
+    "Group - Putting together objects that have similar characteristics.",
+    "Heavy - An object having greater mass or weight.",
+    "Observe - To see and notice an object carefully.",
+    "Round - An object shaped like a ball or a circle.",
+    "Scale - A device used to weigh objects or people.",
+    "Space - The area any object takes up.",
+    "Triangle - A shape with three sides and three angles.",
+    "Volume - The amount of space an object takes up."
+  ],
+  "tts": "Welcome to the exciting Word Hunt game! Let's get started! In this word hunt, your mission is to find hidden words like definite, group, heavy, observe, round, scale, space, triangle, and volumne."
+}
