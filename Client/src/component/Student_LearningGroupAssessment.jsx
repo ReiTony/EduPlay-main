@@ -2,12 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import textToSpeechIcon from "../assets/texttospeech.svg";
-import axios from "axios"
+import axios from "axios";
 
-function StudentAssessment() {
-  const { moduleNumber } = useParams();
-  const userId = localStorage.getItem("userId")
-  const gradeLevel = localStorage.getItem("gradeLevel");
+function Student_LearningGroupAssessment() {
+  const { assessmentId } = useParams();
+  const userId = localStorage.getItem("userId");
   const [data, setData] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [currentAnswer, setCurrentAnswer] = useState(-1);
@@ -17,24 +16,31 @@ function StudentAssessment() {
   const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState(0);
 
+  useEffect(() => console.log("data", data), [data]);
+
   useEffect(() => {
     const init = async () => {
-      const userAnswersFromLocalStorage = localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`);
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`);
-      const data = await res.json();
-      setData(data);
-      setIsLoading(false);
-      if (!userAnswersFromLocalStorage) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(new Array(data.questions.length).fill(-1)));
-      else {
-        const temp = JSON.parse(userAnswersFromLocalStorage);
-        if (!temp.includes(-1)) {
-          setIsViewingScore(true);
-          setHasAnswered(true);
-          setCurrentAnswer(temp[0]);
-          console.log(data);
-          const correctAns = data?.questions.map((i) => i.correctAnswer);
-          setScore(computeScore(temp, correctAns));
-        } else setCurrentQuestion(temp.indexOf(-1));
+      try {
+        const res = await axios.get(`${import.meta.env.VITE_API}student/assessment?id=${assessmentId}`);
+        setData(res.data);
+        setIsLoading(false);
+        console.log(res.data)
+        console.log(res.data.questions);
+        const userAnswersFromLocalStorage = localStorage.getItem(`${assessmentId}-answers`);
+        if (!userAnswersFromLocalStorage) localStorage.setItem(`${assessmentId}-answers`, JSON.stringify(new Array(res.data.questions.length).fill(-1)));
+        else {
+          const temp = JSON.parse(userAnswersFromLocalStorage);
+          if (!temp.includes(-1)) {
+            setIsViewingScore(true);
+            setHasAnswered(true);
+            setCurrentAnswer(temp[0]);
+            const correctAns = res.data.questions.map((i) => i.correctAnswer);
+            setScore(computeScore(temp, correctAns));
+          } else setCurrentQuestion(temp.indexOf(-1));
+        }
+      } catch (error) {
+        console.log(error.message);
+        alert(error.message);
       }
     };
     init();
@@ -52,9 +58,9 @@ function StudentAssessment() {
 
   const handleSubmit = () => {
     if (currentAnswer === -1) return alert("Select your answer before submitting.");
-    const temp = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`));
+    const temp = JSON.parse(localStorage.getItem(`${assessmentId}-answers`));
     temp[temp.indexOf(-1)] = currentAnswer;
-    localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(temp));
+    localStorage.setItem(`${assessmentId}-answers`, JSON.stringify(temp));
     setHasAnswered(true);
     const correctAns = data?.questions.map((i) => i.correctAnswer);
     setScore(computeScore(temp, correctAns));
@@ -69,11 +75,11 @@ function StudentAssessment() {
   };
 
   const handleSubmitQuiz = async () => {
-    const answers = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))
-    axios.post(`${import.meta.env.VITE_API}student/assessment-record`, {moduleNumber, userId, answers})
+    const answers = JSON.parse(localStorage.getItem(`${assessmentId}-answers`));
+    // TODO: send the answers to the backend
     setIsViewingScore(true);
     setCurrentQuestion(0);
-    setCurrentAnswer(JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))[0]);
+    setCurrentAnswer(JSON.parse(localStorage.getItem(`${assessmentId}-answers`))[0]);
     setIsSubmitModalOpen(false);
   };
 
@@ -85,7 +91,7 @@ function StudentAssessment() {
 
   const goToQuestion = (i) => {
     setCurrentQuestion(i);
-    setCurrentAnswer(JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))[i]);
+    setCurrentAnswer(JSON.parse(localStorage.getItem(`${assessmentId}-answers`))[i]);
   };
 
   const isAnswerCorrect = (ind) => data?.questions[currentQuestion].correctAnswer === currentAnswer && ind === currentAnswer;
@@ -181,4 +187,4 @@ function StudentAssessment() {
   );
 }
 
-export default StudentAssessment;
+export default Student_LearningGroupAssessment;

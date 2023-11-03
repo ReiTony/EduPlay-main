@@ -15,7 +15,7 @@ function Teacher_CreateAssessment() {
   const handleSave = async (questions) => {
     const answers = questions.map((i) => ({ answer: i.choices[i.correctAnswer] }));
     axios
-      .post(`${import.meta.env.VITE_API}teacher/createassessment`, { title, gradeLevel, answers, questions })
+      .post(`${import.meta.env.VITE_API}teacher/createassessment`, { title, gradeLevel, answers, questions, moduleNumber })
       .then((res) => navigate("/teacher/assessments"))
       .catch((err) => alert(err.message));
   };

@@ -21,7 +21,7 @@ function Student_Profile() {
       if (!userId) return alert("UserId cannot be found");
       axios
         .get(`${import.meta.env.VITE_API}student/${userId}`, { withCredentials: true })
-        .then((res) => setStudentData(res.data.student))
+        .then((res) => setStudentData(res.data))
         .catch((err) => alert(err.message));
     };
     init();
@@ -90,9 +90,23 @@ function Student_Profile() {
     // fetchAchievementData();
   }, []);
 
+  const getBadgeColor = (score, total) => {
+    const percentage = score / total;
+    if (score === total) return "bg-yellow-400";
+    else if (percentage >= 0.7) return "bg-slate-400";
+    else if (percentage >= 0.4) return "bg-orange-400";
+    else return "bg-white";
+  };
+
+  const getBadge = (score, total, gradeLevel, moduleNumber) => {
+    const percentage = score / total;
+    if (score === total) return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} Gold.png`;
+    else if (percentage >= 0.7) return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} Silver.png`;
+    else if (percentage >= 0.4) return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} Bronze.png`;
+  };
+
   if (!studentData) return <div className="text-2xl font-bold m-auto">Loading...</div>;
 
-  // Existing rendering logic
   return (
     <div className="backgroundYellow">
       <div className="profile-container p-4 m-4 bg-[#fff5be] rounded-3xl">
@@ -109,27 +123,31 @@ function Student_Profile() {
           </div>
         </div>
 
-        <div className="profile-content m-4 grid lg:grid-cols-[70%_30%] grid-cols-1 gap-5">
-          <div className="badges-container rounded-xl bg-[#fff5be]">
-            <div className="p-5 text-5xl font-bold text-center font-sourceSans3">
-              <h1>BADGES</h1>
-            </div>
-            <div className="grid grid-cols-4 p-4 badge-grid sm:px-20 sm:grid-cols-4 sm:gap-5 lg:grid-cols-5 xl:grid-cols-6">
-              {/* {badgeData.map((badge, index) => (
-                <div key={index} className="h-auto m-2 mb-2 rounded-lg shadow-md badge-item hover:shadow-lg hover:shadow-green-400 bg-gradient-to-tl from-pink-600 via-teal-200 to-white aspect-square">
-                  <img src={badge.imageUrl} alt={`Badge ${index + 1}`} />
-                </div>
-              ))} */}
+        <div className="flex flex-row justify-between gap-8 my-8">
+
+          {/* BADGES */}
+          <div className="flex flex-col w-full font-sourceSans3">
+            <h1 className="text-center text-3xl font-bold">BADGES</h1>
+            <div className="flex flex-wrap justify-center">
+              {studentData.assessmentRecords.map((assessment, i) => (
+                <img src={getBadge(assessment.score, assessment.total, assessment.gradeLevel, assessment.moduleNumber)} style={{maxWidth: "150px", width:"100%"}} key={i} />
+              ))}
             </div>
           </div>
 
-          <aside className="achievements-container bg-[#fff5be]  rounded-xl">
+          {/* ACHIEVEMENTS */}
+          <div className="flex flex-col gap-4 w-full font-sourceSans3">
+            <h1 className="text-center text-3xl font-bold">ACHIEVEMENTS</h1>
+            <div className="flex flex-wrap"></div>
+          </div>
+
+          {/* <aside className="achievements-container bg-[#fff5be]  rounded-xl">
             <div className="text-5xl font-bold text-center font-sourceSans3">
               <h1>ACHIEVEMENTS</h1>
             </div>
 
-            <div className="grid p-4 achievements-list sm:gap-2">
-              {/* {achievementData.map((achievement, index) => (
+            <div className="grid p-4 achievements-list sm:gap-2">  */}
+          {/* {achievementData.map((achievement, index) => (
                 <div key={index} className="achievement-item bg-[#fff5be]">
                   <div
                     className="w-full flex items-center mb-4 shadow-gray-500 hover:shadow-green-400 shadow-md px-4 py-2 text-xl font-bold text-black bg-[#a5d6a7] rounded-full font-sourceSans3 focus:outline-none focus:shadow-outline"
@@ -139,8 +157,8 @@ function Student_Profile() {
                   </div>
                 </div>
               ))} */}
-            </div>
-          </aside>
+          {/* </div>
+          </aside> */}
         </div>
       </div>
     </div>

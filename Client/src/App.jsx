@@ -4,7 +4,6 @@ import React from "react";
 import LandingPage from "./component/LandingPage";
 import { QueryClient, QueryClientProvider } from "react-query";
 
-
 import Student_Login from "./component/Student_Login";
 import Student_Logout from "./component/Student_Logout";
 import Student_SharedLayout from "./component/Student_SharedLayout";
@@ -15,6 +14,7 @@ import Student_Module_Lecture from "./component/Student_Module_Lecture";
 import Student_Module_Review from "./component/Student_Module_Review";
 import Student_Assessment from "./component/Student_Assessment";
 import Student_AssessmentMenu from "./component/Student_AssesmentMenu";
+import Student_LearningGroup from "./component/Student_LearningGroup";
 import Student_Game from "./component/Student_Game";
 
 import TokenTransfer from "./component/TokenTransfer";
@@ -38,6 +38,7 @@ import NotFound from "./component/NotFound";
 import Teacher_CreateAssessment from "./component/Teacher_CreateAssessment";
 import TeacherAssessments from "./component/Teacher_Assessments";
 import Teacher_EditAssessment from "./component/Teacher_EditAssessment";
+import Student_LearningGroupAssessment from "./component/Student_LearningGroupAssessment";
 
 const queryClient = new QueryClient();
 
@@ -65,7 +66,9 @@ function App() {
               <Route path="module/:moduleNumber/game" element={<Student_Game />} />
               <Route path="module/:moduleNumber/assessment" element={<Student_Assessment />} />
               <Route path="assessments" element={<Student_AssessmentMenu />} />
-              <Route path="logout" element={<Student_Logout/>} />
+              <Route path="learning-group" element={<Student_LearningGroup />} />
+              <Route path="learning-group/:assessmentId" element={<Student_LearningGroupAssessment />} />
+              <Route path="logout" element={<Student_Logout />} />
             </Route>
 
             {/* Teacher Routes */}

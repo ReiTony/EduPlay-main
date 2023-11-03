@@ -9,7 +9,7 @@
 
 .backgroundYellow {
     width: 100%;
-    min-height: 100vh;
+    flex-grow: 1;
     background-color: #f7d538;
     overflow-y: auto;
 }
