@@ -2,9 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import textToSpeechIcon from "../assets/texttospeech.svg";
+import axios from "axios"
 
 function StudentAssessment() {
   const { moduleNumber } = useParams();
+  const userId = localStorage.getItem("userId")
   const gradeLevel = localStorage.getItem("gradeLevel");
   const [data, setData] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -67,7 +69,8 @@ function StudentAssessment() {
   };
 
   const handleSubmitQuiz = async () => {
-    // TODO: send the score to the server
+    const answers = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))
+    axios.post(`${import.meta.env.VITE_API}student/assessment-record`, {moduleNumber, userId, answers})
     setIsViewingScore(true);
     setCurrentQuestion(0);
     setCurrentAnswer(JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))[0]);
