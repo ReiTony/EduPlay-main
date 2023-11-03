@@ -98,6 +98,13 @@ function Student_Profile() {
     else return "bg-white";
   };
 
+  const getBadge = (score, total, gradeLevel, moduleNumber) => {
+    const percentage = score / total;
+    if (score === total) return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} Gold.png`;
+    else if (percentage >= 0.7) return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} Silver.png`;
+    else if (percentage >= 0.4) return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} Bronze.png`;
+  };
+
   if (!studentData) return <div className="text-2xl font-bold m-auto">Loading...</div>;
 
   return (
@@ -117,43 +124,29 @@ function Student_Profile() {
         </div>
 
         <div className="flex flex-row justify-between gap-8 my-8">
-          <div className="flex flex-col gap-4 w-full font-sourceSans3">
+
+          {/* BADGES */}
+          <div className="flex flex-col w-full font-sourceSans3">
             <h1 className="text-center text-3xl font-bold">BADGES</h1>
-            <div className="flex flex-wrap gap-4 text-xl justify-center">
-              {studentData.badges.map((badge, i) => (
-                <div className={`${getBadgeColor(badge.score, badge.total)} text-center rounded-lg shadow-md p-5 px-8`} key={i}>
-                  {badge.category} <br />
-                  {Math.round((badge.score / badge.total) * 100)}%
-                </div>
+            <div className="flex flex-wrap justify-center">
+              {studentData.assessmentRecords.map((assessment, i) => (
+                <img src={getBadge(assessment.score, assessment.total, assessment.gradeLevel, assessment.moduleNumber)} style={{maxWidth: "150px", width:"100%"}} key={i} />
               ))}
             </div>
           </div>
+
+          {/* ACHIEVEMENTS */}
           <div className="flex flex-col gap-4 w-full font-sourceSans3">
             <h1 className="text-center text-3xl font-bold">ACHIEVEMENTS</h1>
             <div className="flex flex-wrap"></div>
           </div>
-          {/* <div className="badges-container rounded-xl bg-[#fff5be]">
-            <div className="p-5 text-5xl font-bold text-center font-sourceSans3">
-              <h1>BADGES</h1>
-            </div>
-            <div className="grid grid-cols-4 p-4 badge-grid sm:px-20 sm:grid-cols-4 sm:gap-5 lg:grid-cols-5 xl:grid-cols-6">
-              {studentData.badges.map((badge, i) => (
-                <div>{badge.category}</div>
-              ))} */}
-          {/* {badgeData.map((badge, index) => (
-                <div key={index} className="h-auto m-2 mb-2 rounded-lg shadow-md badge-item hover:shadow-lg hover:shadow-green-400 bg-gradient-to-tl from-pink-600 via-teal-200 to-white aspect-square">
-                  <img src={badge.imageUrl} alt={`Badge ${index + 1}`} />
-                </div>
-              ))} */}
-          {/* </div>
-          </div>
 
-          <aside className="achievements-container bg-[#fff5be]  rounded-xl">
+          {/* <aside className="achievements-container bg-[#fff5be]  rounded-xl">
             <div className="text-5xl font-bold text-center font-sourceSans3">
               <h1>ACHIEVEMENTS</h1>
             </div>
 
-            <div className="grid p-4 achievements-list sm:gap-2"> */}
+            <div className="grid p-4 achievements-list sm:gap-2">  */}
           {/* {achievementData.map((achievement, index) => (
                 <div key={index} className="achievement-item bg-[#fff5be]">
                   <div
