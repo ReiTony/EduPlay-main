@@ -123,7 +123,7 @@ function Student_Profile() {
               {studentData.badges.map((badge, i) => (
                 <div className={`${getBadgeColor(badge.score, badge.total)} text-center rounded-lg shadow-md p-5 px-8`} key={i}>
                   {badge.category} <br />
-                  {(badge.score / badge.total) * 100}%
+                  {Math.round((badge.score / badge.total) * 100)}%
                 </div>
               ))}
             </div>
