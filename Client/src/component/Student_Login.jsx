@@ -39,7 +39,7 @@ function Student_Login() {
       let temp = await axios.post(`${import.meta.env.VITE_API}student/login`, body, { withCredentials: true });
       localStorage.setItem("userId", temp.data.user.user.userId);
       temp = await axios.get(`${import.meta.env.VITE_API}student/${temp.data.user.user.userId}`, { withCredentials: true });
-      localStorage.setItem("gradeLevel", temp.data.student.gradeLevel);
+      localStorage.setItem("gradeLevel", temp.data.gradeLevel);
       navigate("/student");
     } catch (error) {
       alert(error.message);

@@ -11,7 +11,8 @@ function Logout() {
   useEffect(() => {
     const logoutStudent = async () => {
       try {
-        const response = await axios.delete("http://localhost:5000/api/v1/Student/logout");
+        localStorage.clear();
+        const response = await axios.delete("http://localhost:5000/api/v1/student/logout", {withCredentials: true});
         
         // Check if the logout was successful
         if (response.status === 200) {
