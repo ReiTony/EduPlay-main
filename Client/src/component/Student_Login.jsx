@@ -29,8 +29,7 @@ function Student_Login() {
   // };
 
   useEffect(() => {
-    // TODO: check if already logged in
-    if (localStorage.getItem("userId")) navigate("/student");
+    if (localStorage.getItem("userId") && localStorage.getItem("userType") === "student") navigate("/student");
   }, []);
 
   const onSubmit = async (values, setSubmitting) => {
@@ -40,6 +39,7 @@ function Student_Login() {
       localStorage.setItem("userId", temp.data.user.user.userId);
       temp = await axios.get(`${import.meta.env.VITE_API}student/${temp.data.user.user.userId}`, { withCredentials: true });
       localStorage.setItem("gradeLevel", temp.data.gradeLevel);
+      localStorage.setItem("userType", "student");
       navigate("/student");
     } catch (error) {
       alert(error.message);
