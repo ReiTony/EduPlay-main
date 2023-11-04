@@ -29,7 +29,7 @@ function StudentProfile() {
       .get(`${import.meta.env.VITE_API}student/achievement/${userId}`)
       .then((res) => {
         console.log("Achievements Response:", res.data);
-  
+
         if (Array.isArray(res.data)) {
           setAchievements(res.data);
         } else {
@@ -38,7 +38,7 @@ function StudentProfile() {
       })
       .catch((err) => alert(err.message));
   };
-  
+
   const getBadge = (score, total, gradeLevel, moduleNumber) => {
     const percentage = score / total;
     if (score === total)
@@ -108,11 +108,20 @@ function StudentProfile() {
           <div className="flex flex-col gap-4 w-full font-sourceSans3">
             <h1 className="text-center text-3xl font-bold">ACHIEVEMENTS</h1>
             <div className="flex flex-wrap gap-4 font-semibold justify-center">
-              {achievements.map((achievement, i) => (
-                <div className="p-8 bg-white rounded-2xl text-lg shadow-md" key={i}>
-                  <p>{achievement.moduleOrAssessmentTitle}</p>
-                </div>
-               ))}
+              {achievements.length === 0 ? (
+                <p>No achievements to display.</p>
+              ) : (
+                achievements.map((achievement, i) => (
+                  <div className="p-8 bg-white rounded-2xl text-lg shadow-md" key={i}>
+                    {achievement.completed && (
+                      <>
+                        <p>{achievement.moduleOrAssessmentTitle}</p>
+                        <p>{achievement.completed}</p>
+                      </>
+                    )}
+                  </div>
+                ))
+              )}
             </div>
           </div>
         </div>
