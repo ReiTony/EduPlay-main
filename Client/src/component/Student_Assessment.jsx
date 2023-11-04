@@ -2,11 +2,11 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import textToSpeechIcon from "../assets/texttospeech.svg";
-import axios from "axios"
+import axios from "axios";
 
 function StudentAssessment() {
   const { moduleNumber } = useParams();
-  const userId = localStorage.getItem("userId")
+  const userId = localStorage.getItem("userId");
   const gradeLevel = localStorage.getItem("gradeLevel");
   const [data, setData] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -14,6 +14,8 @@ function StudentAssessment() {
   const [hasAnswered, setHasAnswered] = useState(false);
   const [isViewingScore, setIsViewingScore] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
+  const [isCompleteModalOpen, setIsCompleteModalOpen] = useState(false);
+  const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState(0);
 
@@ -31,7 +33,6 @@ function StudentAssessment() {
           setIsViewingScore(true);
           setHasAnswered(true);
           setCurrentAnswer(temp[0]);
-          console.log(data);
           const correctAns = data?.questions.map((i) => i.correctAnswer);
           setScore(computeScore(temp, correctAns));
         } else setCurrentQuestion(temp.indexOf(-1));
@@ -45,7 +46,6 @@ function StudentAssessment() {
     let test = data?.questions[currentQuestion].question + "\n";
     for (let i = 0; i < data?.questions[currentQuestion].choices.length - 1; i++) test += data?.questions[currentQuestion].choices[i] + "?, ";
     test += "or " + data?.questions[currentQuestion].choices[data?.questions[currentQuestion].choices.length - 1];
-    console.log(test);
     let utterance = new SpeechSynthesisUtterance(test);
     speechSynthesis.speak(utterance);
   };
@@ -69,8 +69,10 @@ function StudentAssessment() {
   };
 
   const handleSubmitQuiz = async () => {
-    const answers = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))
-    axios.post(`${import.meta.env.VITE_API}student/assessment-record`, {moduleNumber, userId, answers})
+    const answers = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`));
+    const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers });
+    setResult(res.data);
+    setIsCompleteModalOpen(true);
     setIsViewingScore(true);
     setCurrentQuestion(0);
     setCurrentAnswer(JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))[0]);
@@ -91,6 +93,15 @@ function StudentAssessment() {
   const isAnswerCorrect = (ind) => data?.questions[currentQuestion].correctAnswer === currentAnswer && ind === currentAnswer;
   const isAnswerWrong = (ind) => ind === currentAnswer;
   const isTheCorrectAnswer = (ind) => ind === data?.questions[currentQuestion].correctAnswer;
+
+  const getBadge = () => {
+    const percentage = result?.score / result?.total;
+    let badge = "";
+    if (percentage === 1) badge = "Gold";
+    else if (percentage >= 0.7) badge = "Silver";
+    else if (percentage >= 0.4) badge = "Bronze";
+    return `/public/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} ${badge}.png`;
+  };
 
   return (
     <>
@@ -173,6 +184,32 @@ function StudentAssessment() {
             </button>
             <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={handleSubmitQuiz}>
               SUBMIT
+            </button>
+          </div>
+        </div>
+      </ReactModal>
+
+      <ReactModal
+        appElement={document.getElementById("root")}
+        isOpen={isCompleteModalOpen}
+        shouldCloseOnEsc={true}
+        style={{ content: { backgroundColor: "#d8ec8c", border: "0", borderRadius: "2rem", maxWidth: "620px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
+        <div className="flex flex-col justify-center items-center gap-2 font-sourceSans3 text-2xl font-semibold p-8">
+          <div className="text-center text-4xl">{`Assessment ${moduleNumber}`}</div>
+          {result?.score / result?.total >= 0.4 && (
+            <>
+              <div className="text-center">
+                {`Congratulations!`}
+                <br />
+                {`You received a  badge on ${data?.title}`}
+              </div>
+              <img src={getBadge()} style={{ height: "200px" }} />
+            </>
+          )}
+          <div className="text-center my-2">{result?.recommendation}</div>
+          <div className="flex flex-row justify-center gap-4">
+            <button className="bg-green-500 text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => setIsCompleteModalOpen(false)}>
+              OK
             </button>
           </div>
         </div>

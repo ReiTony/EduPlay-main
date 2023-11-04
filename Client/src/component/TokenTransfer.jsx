@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 
 function TokenTransfer() {
@@ -6,15 +6,11 @@ function TokenTransfer() {
 
   useEffect(() => {
     const token = sessionStorage.getItem("studentToken");
-    if (token) {
-      // Pass the token to Student_Profile and navigate
-      navigate(`/student/profile?token=${token}`);
-    } else {
-      console.error("No token found.");
-    }
+    if (token) navigate(`/student/profile?token=${token}`);
+    else console.error("No token found.");
   }, [navigate]);
 
-  return null; // This component doesn't render anything
+  return null;
 }
 
 export default TokenTransfer;

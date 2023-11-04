@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios"; 
+import axios from "axios";
 
 function Logout() {
   const navigate = useNavigate();
@@ -12,8 +12,8 @@ function Logout() {
     const logoutStudent = async () => {
       try {
         localStorage.clear();
-        const response = await axios.delete("http://localhost:5000/api/v1/student/logout", {withCredentials: true});
-        
+        const response = await axios.delete(`${import.meta.env.VITE_API}student/logout`, { withCredentials: true });
+
         // Check if the logout was successful
         if (response.status === 200) {
           Cookies.remove("studentToken");
@@ -44,11 +44,10 @@ function Logout() {
           draggable: true,
           progress: undefined,
         });
-
       }
     };
 
-    logoutStudent(); 
+    logoutStudent();
   }, [navigate]);
 
   return null;

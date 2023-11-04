@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import boygirl from "../assets/BoyAndGirl.png";
 import { useFormik } from "formik";
 import { TeacherSchema } from "../SchemaValidation"; // Make sure to use consistent naming
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import NavBar from "./NavBar";
@@ -13,68 +12,25 @@ function TeacherLogin() {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
-  const setAuthHeader = (token) => {
-    axios.defaults.headers.common["Authorization"] = `Bearer ${token}`;
-  };
-
-  const setTokenCookie = (token) => {
-    // Set an HTTPOnly cookie with the token
-    Cookies.set("teacherToken", JSON.stringify(token), { secure: true, sameSite: "strict" });
-  };
-
-  // Add a function to check if the token cookie exists
-  const hasTokenCookie = () => {
-    return !!Cookies.get("teacherToken");
-  };
+  useEffect(() => {
+    if (localStorage.getItem("userId") && localStorage.getItem("userType") === "teacher") navigate("/teacher");
+  }, []);
 
   const onSubmit = async (values, setSubmitting) => {
-    // Add setSubmitting as a parameter
     try {
-      const userAgent = navigator.userAgent;
-      const apiUrl = "http://localhost:5000/api/v1/Teacher/login";
-      const response = await axios.post(
-        apiUrl,
-        {
-          email: values.TeacherEmail,
-          password: values.TeacherPassword,
-          userAgent: userAgent,
-        },
-        { withCredentials: true }
-      );
-      //Print Token to Console
-      console.log("Response Data:", response.data.user.user);
-      if (response.status === 200) {
-        const tokenTeacher = response.data.user.user;
-        setTokenCookie(tokenTeacher);
-
-        setAuthHeader(tokenTeacher);
-
-        console.log("Login successful");
-        navigate("/teacher");
-      } else {
-        alert("Login failed. Invalid email or password.");
-      }
+      const res = await axios.post(`${import.meta.env.VITE_API}teacher/login`, { email: values.TeacherEmail, password: values.TeacherPassword }, { withCredentials: true });
+      localStorage.setItem("userId", res.data.user.user.userId)
+      localStorage.setItem("userType", "teacher")
+      navigate("/teacher")
     } catch (error) {
-      console.error("An error occurred:", error);
-      alert("An error occurred: " + error.message);
+      alert(error.message);
     } finally {
       setSubmitting(false);
     }
   };
 
-  useEffect(() => {
-    if (hasTokenCookie()) {
-      const tokenStudent = Cookies.get("teacherToken");
-      setAuthHeader(tokenStudent);
-      navigate("/teacher");
-    }
-  }, []); // Empty dependency array ensures this effect runs once on component mount
-
   const { values, errors, handleBlur, handleChange, handleSubmit, touched, isSubmitting } = useFormik({
-    initialValues: {
-      TeacherEmail: "",
-      TeacherPassword: "",
-    },
+    initialValues: { TeacherEmail: "", TeacherPassword: "" },
     validationSchema: TeacherSchema, // Make sure to use consistent validation schema
     onSubmit: (values, { setSubmitting }) => onSubmit(values, setSubmitting), // Add setSubmitting
   });

@@ -43,10 +43,8 @@ function Student_AssessmentSubmitted() {
 
                     {indexc === answers[indexq] ? (
                       question.correctAnswer === answers[indexq] ? (
-                        //   CORRECT ANSWER
                         <div className="px-5 bg-green-600 rounded-md text-white">Your Answer (Correct)</div>
                       ) : (
-                        // WRONG ANSWER
                         <div className="px-5 bg-red-600 rounded-md text-white">Your Answer (Wrong)</div>
                       )
                     ) : (

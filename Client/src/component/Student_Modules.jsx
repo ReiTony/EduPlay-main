@@ -24,27 +24,6 @@ function Student_Modules() {
     init();
   }, []);
 
-  // useEffect(() => {
-  //   // Retrieve gradeLevel from localStorage
-  //   const gradeLevel = JSON.parse(window.localStorage.getItem("gradeLevel"));
-
-  //   // Set the studentProgressData based on gradeLevel
-  //   if (gradeLevel == 1) {
-  //     setStudentProgressData(Grade1_Module_Structure);
-  //   } else if (gradeLevel == 2) {
-  //     setStudentProgressData(Grade2_Module_Structure);
-  //   } else if (gradeLevel == 3) {
-  //     setStudentProgressData(Grade3_Module_Structure);
-  //   } else {
-  //     // Handle the case when gradeLevel is not 1, 2, or 3
-  //     console.error("Invalid gradeLevel:", gradeLevel);
-  //   }
-  // }, []);
-  // if (studentProgressData === null) {
-  //   return <div>Loading...</div>;
-  // }
-
-  //
   const toggleModule = (index) => {
     const updatedStates = [...moduleStates];
     updatedStates[index] = !updatedStates[index];
@@ -52,38 +31,8 @@ function Student_Modules() {
   };
 
   const handleScrollToTop = () => {
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
-
-  // const handleSubmoduleClick = (subIndex, isLocked, moduleIndex, moduleTitle, src) => {
-  //   if (isLocked) {
-  //     // Hindi mag navigate pag naka Lock
-  //     return;
-  //   }
-  //   const title = `M${moduleIndex}-${moduleTitle}`;
-  //   switch (subIndex) {
-  //     case 0:
-  //       navigate("/Student/Module/Lecture");
-  //       window.sessionStorage.setItem("MODULE", JSON.stringify(title));
-  //       window.sessionStorage.setItem("SRC", JSON.stringify(src));
-  //       break;
-  //     case 1:
-  //       navigate("/Student/Module/Review");
-  //       window.sessionStorage.setItem("MODULE", JSON.stringify(title));
-  //       window.sessionStorage.setItem("SRC", JSON.stringify(src));
-  //       break;
-  //     case 2:
-  //       navigate("/Student/Module/Game");
-  //       window.sessionStorage.setItem("MODULE", JSON.stringify(title));
-  //       window.sessionStorage.setItem("SRC", JSON.stringify(src));
-  //       break;
-  //     default:
-  //       break;
-  //   }
-  // };
 
   return (
     <div className="backgroundYellow">

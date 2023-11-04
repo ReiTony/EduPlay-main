@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import ReactModal from "react-modal";
 
 function TeacherAssessments() {
@@ -33,7 +33,7 @@ function TeacherAssessments() {
         refresh();
         setShowDeleteModal(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   return (
@@ -42,6 +42,9 @@ function TeacherAssessments() {
         <div className="bg-[#08a454] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">CUSTOM ASSESSMENTS</div>
         <div className="flex flex-col bg-[#a8d4a4] flex-grow gap-4 rounded-3xl p-5 font-bold">
           <div className="flex flex-row justify-end gap-2">
+            <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => navigate("analysis")}>
+              ITEM ANALYSIS
+            </button>
             <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => navigate("create")}>
               CREATE AN ASSESSMENT
             </button>
