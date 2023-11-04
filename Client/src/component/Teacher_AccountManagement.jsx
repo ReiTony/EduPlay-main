@@ -88,95 +88,93 @@ function Teacher_AccountManagement() {
   };
   return (
     <>
-      <div className="backgroundYellow">
-        <header className="grid bg-red-500  grid-row-[50%_50%]  mx-4 rounded-3xl gap-3 p-4 text-4xl font-reemkufifont font-bold ">
-          <h1>ACCOUNT MANAGEMENT</h1>
-        </header>
+      <header className="grid bg-red-500  grid-row-[50%_50%]  mx-4 rounded-3xl gap-3 p-4 text-4xl font-reemkufifont font-bold ">
+        <h1>ACCOUNT MANAGEMENT</h1>
+      </header>
 
-        <main className="bg-[#a5d6a7]  mx-4 mt-2 rounded-lg p-5">
-          <div className="flex items-center justify-between pb-4 m-2">
-            <div className="text-4xl font-bold ">
-              <h1>REGISTERED ACCOUNT</h1>
+      <main className="bg-[#ff9c9c]  mx-4 mt-2 rounded-lg p-5">
+        <div className="flex items-center justify-between pb-4 m-2">
+          <div className="text-4xl font-bold ">
+            <h1>REGISTERED ACCOUNT</h1>
+          </div>
+
+          <div className="flex">
+            <div className="mx-4">
+              <button className="bg-neutral-50 rounded-full  text-2xl font-bold px-5 py-1 shadow-md hover:bg-neutral-200" onClick={() => navigate("create")}>
+                ADD STUDENT
+              </button>
             </div>
-
-            <div className="flex">
-              <div className="mx-4">
-                <button className="bg-blue-500 rounded-full text-white text-2xl font-bold px-5 py-1 shadow-md hover:bg-blue-700" onClick={() => navigate("create")}>
-                  ADD STUDENT
-                </button>
-              </div>
-              <div className="relative mx-4">
-                <input
-                  type="text"
-                  value={filterInput}
-                  onChange={(e) => {
-                    setFilterInput(e.target.value);
-                  }}
-                  placeholder="Search by lastname..."
-                  className="w-56 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
-                />
-                <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
-                  <BsSearch className="mr-2 cursor-pointer" />
-                </span>
-              </div>
-              <div className="mx-4">
-                {/* Dropdown Select for Grade Level */}
-                <select
-                  value={selectedGrade}
-                  onChange={(e) => {
-                    setSelectedGrade(e.target.value);
-                  }}
-                  className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
-                  <option value="">All Grades</option>
-                  {[1, 2, 3].map((grade) => (
-                    <option key={grade} value={grade}>
-                      Grade {grade}
-                    </option>
-                  ))}
-                </select>
-              </div>
+            <div className="relative mx-4">
+              <input
+                type="text"
+                value={filterInput}
+                onChange={(e) => {
+                  setFilterInput(e.target.value);
+                }}
+                placeholder="Search by lastname..."
+                className="w-56 p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500"
+              />
+              <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
+                <BsSearch className="mr-2 cursor-pointer" />
+              </span>
+            </div>
+            <div className="mx-4">
+              {/* Dropdown Select for Grade Level */}
+              <select
+                value={selectedGrade}
+                onChange={(e) => {
+                  setSelectedGrade(e.target.value);
+                }}
+                className="p-2 border border-gray-300 rounded-md focus:outline-none focus:border-blue-500">
+                <option value="">All Grades</option>
+                {[1, 2, 3].map((grade) => (
+                  <option key={grade} value={grade}>
+                    Grade {grade}
+                  </option>
+                ))}
+              </select>
             </div>
           </div>
-          <table {...getTableProps()} style={{ borderCollapse: "collapse", width: "100%" }}>
-            <thead>
-              {headerGroups.map((headerGroup) => (
-                <tr {...headerGroup.getHeaderGroupProps()}>
-                  {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()} style={{}} className="p-2 py-4 text-3xl text-center text-white bg-black">
-                      {column.render("Header")}
-                    </th>
-                  ))}
-                </tr>
-              ))}
-            </thead>
-            <tbody {...getTableBodyProps()}>
-              {rows.map((row, index) => {
-                prepareRow(row);
+        </div>
+        <table {...getTableProps()} style={{ borderCollapse: "collapse", width: "100%" }}>
+          <thead>
+            {headerGroups.map((headerGroup) => (
+              <tr {...headerGroup.getHeaderGroupProps()}>
+                {headerGroup.headers.map((column) => (
+                  <th {...column.getHeaderProps()} style={{}} className="p-2 py-4 text-3xl text-center text-white bg-black">
+                    {column.render("Header")}
+                  </th>
+                ))}
+              </tr>
+            ))}
+          </thead>
+          <tbody {...getTableBodyProps()}>
+            {rows.map((row, index) => {
+              prepareRow(row);
 
-                return (
-                  <tr
-                    {...row.getRowProps()}
-                    className="gap-5 font-semibold border-8 border-[#a5d6a7]"
-                    style={{
-                      background: index % 2 === 0 ? "#b6b6b6" : "white", // Apply gray background for even rows
-                    }}>
-                    {row.cells.map((cell) => {
-                      return (
-                        <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
-                          {cell.render("Cell")}
-                        </td>
-                      );
-                    })}
-                  </tr>
-                );
-              })}
-            </tbody>
-          </table>
-        </main>
-        <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
-          <BsFillArrowUpCircleFill className="text-3xl " />
-        </button>
-      </div>
+              return (
+                <tr
+                  {...row.getRowProps()}
+                  className="gap-5 font-semibold border-8 border-[#ff9c9c]"
+                  style={{
+                    background: index % 2 === 0 ? "#b6b6b6" : "white", // Apply gray background for even rows
+                  }}>
+                  {row.cells.map((cell) => {
+                    return (
+                      <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
+                        {cell.render("Cell")}
+                      </td>
+                    );
+                  })}
+                </tr>
+              );
+            })}
+          </tbody>
+        </table>
+      </main>
+      <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
+        <BsFillArrowUpCircleFill className="text-3xl " />
+      </button>
       <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} />
     </>
   );

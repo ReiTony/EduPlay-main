@@ -49,7 +49,7 @@ function Teacher_LearningGroupStudent() {
           {userData !== null && (
             <>
               <img src={studentDP} alt="Profile" style={{ height: "200px" }} />
-              <h2 className="text-3xl ">{`${userData?.firstName} ${userData?.lastName}`}</h2>
+              <h2 className="text-3xl ">{`${userData?.firstName || ""} ${userData?.lastName || ""}`}</h2>
             </>
           )}
         </div>
