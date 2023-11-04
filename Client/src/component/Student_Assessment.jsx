@@ -21,14 +21,17 @@ function StudentAssessment() {
 
   useEffect(() => {
     const init = async () => {
+      let res = await axios.get(`${import.meta.env.VITE_API}student/assessment-record?studentId=${userId}&moduleNumber=${moduleNumber}&gradeLevel=${gradeLevel}`);
+      if (res.data.request.length >= 1) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(res.data.request[0].answers))
       const userAnswersFromLocalStorage = localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`);
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`);
+      res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`);
       const data = await res.json();
       setData(data);
       setIsLoading(false);
       if (!userAnswersFromLocalStorage) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(new Array(data.questions.length).fill(-1)));
       else {
         const temp = JSON.parse(userAnswersFromLocalStorage);
+        console.log(temp)
         if (!temp.includes(-1)) {
           setIsViewingScore(true);
           setHasAnswered(true);
