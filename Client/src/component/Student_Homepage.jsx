@@ -1,16 +1,25 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiX, HiBell } from "react-icons/hi";
-import { GoDotFill } from "react-icons/go";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import axios from "axios";
 import BGmodule from "../assets/Homepage_Image/modules_bg.png";
 import BGass from "../assets/Homepage_Image/assessment_bg.png";
 import BGlr from "../assets/Homepage_Image/learningGroup_bg.png";
 
 const Student_Dashboard = () => {
+  const userId = localStorage.getItem("userId");
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const navigate = useNavigate();
   const [isVisible, setIsVisible] = useState(true);
   const [notificationMessages, setNotificationMessages] = useState([]);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API}student/notifications?recipient=${userId}&gradeLevel=${gradeLevel}`)
+      .then((res) => setNotificationMessages(res.data.request))
+      .catch((err) => alert(err.message));
+  }, []);
 
   const handleCloseClick = () => {
     setIsVisible(false);
@@ -33,12 +42,9 @@ const Student_Dashboard = () => {
               <h1 className="p-4 mt-2 text-3xl font-bold lg:text-5xl font-sourceSans3">NOTIFICATIONS</h1>
               <HiBell className="text-5xl " />
             </div>
-            <div className="ml-8 lg:text-3xl font-expletus">
-              {notificationMessages.map((message, index) => (
-                <div key={index} className="flex items-center pb-2">
-                  <GoDotFill className="ml-2 text-3xl" />
-                  <h2>{message}</h2>
-                </div>
+            <div className="flex flex-col mx-4">
+              {notificationMessages.map((notif, index) => (
+                <h2 className="text-2xl font-semibold" key={index}>{`• ${notif.message}`}</h2>
               ))}
             </div>
           </div>

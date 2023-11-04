@@ -31,7 +31,6 @@ function StudentAssessment() {
       if (!userAnswersFromLocalStorage) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(new Array(data.questions.length).fill(-1)));
       else {
         const temp = JSON.parse(userAnswersFromLocalStorage);
-        console.log(temp)
         if (!temp.includes(-1)) {
           setIsViewingScore(true);
           setHasAnswered(true);
@@ -103,7 +102,7 @@ function StudentAssessment() {
     if (percentage === 1) badge = "Gold";
     else if (percentage >= 0.7) badge = "Silver";
     else if (percentage >= 0.4) badge = "Bronze";
-    return `/public/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} ${badge}.png`;
+    return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} ${badge}.png`;
   };
 
   return (
