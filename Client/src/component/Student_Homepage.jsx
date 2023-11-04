@@ -6,13 +6,11 @@ import axios from "axios";
 import BGmodule from "../assets/Homepage_Image/modules_bg.png";
 import BGass from "../assets/Homepage_Image/assessment_bg.png";
 import BGlr from "../assets/Homepage_Image/learningGroup_bg.png";
-import axios from "axios";
 
 
 //const Student_Dashboard = () => {
-//  const userId = localStorage.getItem("userId");
-//  const gradeLevel = localStorage.getItem("gradeLevel");
 function Student_Dashboard() {
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [isVisible, setIsVisible] = useState(true);
@@ -59,10 +57,8 @@ function Student_Dashboard() {
               <HiBell className="text-5xl " />
             </div>
             <div className="flex flex-col mx-4">
-             //{notificationMessages.map((notif, index) => (
               {notifications.map((notification, index) => (
                  <h2 className="text-2xl font-semibold" key={index}>{`• ${notification.message}`}</h2>
-                </div>
               ))}
             </div>
           </div>
