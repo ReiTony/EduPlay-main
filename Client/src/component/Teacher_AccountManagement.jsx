@@ -41,29 +41,12 @@ function Teacher_AccountManagement() {
     setToBeDisabledStudent(username);
   };
 
-  // Define your columns and data here
   const columns = useMemo(
     () => [
-      {
-        Header: "GRADELEVEL",
-        accessor: "gradeLevel",
-        id: "GRADELEVEL",
-        Filter: GradeLevelFilter,
-        filter: "equals",
-      },
-      {
-        Header: "LASTNAME",
-        accessor: "lastName",
-        id: "LASTNAME",
-      },
-      {
-        Header: "FIRSTNAME",
-        accessor: "firstName",
-      },
-      {
-        Header: "BIRTHDAY",
-        accessor: (d) => `${d.birthMonth}/${d.birthDay}`,
-      },
+      { Header: "GRADELEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
+      { Header: "LASTNAME", accessor: "lastName", id: "LASTNAME" },
+      { Header: "FIRSTNAME", accessor: "firstName" },
+      { Header: "BIRTHDAY", accessor: (d) => `${d.birthMonth}/${d.birthDay}` },
       {
         Header: "EDIT",
         accessor: "EDIT_STATUS",
@@ -89,35 +72,19 @@ function Teacher_AccountManagement() {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable(
-    {
-      columns,
-      data,
-    },
-    useFilters // Use the filter hook
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   useEffect(() => {
-    // When selectedGrade changes, update the filter
-    if (selectedGrade === "") {
-      // If "All Grades" is selected, remove the grade level filter
-      setFilter("GRADELEVEL", undefined);
-    } else {
-      setFilter("GRADELEVEL", selectedGrade);
-    }
+    if (selectedGrade === "") setFilter("GRADELEVEL", undefined);
+    else setFilter("GRADELEVEL", selectedGrade);
   }, [selectedGrade]);
 
   useEffect(() => {
-    // When filterInput changes, update the text filter
     setFilter("LASTNAME", filterInput);
   }, [filterInput]);
 
   const handleScrollToTop = () => {
-    // Scroll to the top of the page
-    window.scrollTo({
-      top: 0,
-      behavior: "smooth",
-    });
+    window.scrollTo({ top: 0, behavior: "smooth" });
   };
   return (
     <>
@@ -215,7 +182,6 @@ function Teacher_AccountManagement() {
   );
 }
 
-// Custom filter component for Grade Level
 function GradeLevelFilter({ column }) {
   const { filterValue, setFilter } = column;
   return (

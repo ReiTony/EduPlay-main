@@ -1,10 +1,9 @@
 import { useState, useEffect } from "react";
-import Cookies from "js-cookie";
+import { Link, useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import boygirl from "../assets/BoyAndGirl.png";
 import { useFormik } from "formik";
 import { TeacherSchema } from "../SchemaValidation"; // Make sure to use consistent naming
-import { Link, useNavigate } from "react-router-dom";
 import axios from "axios";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import NavBar from "./NavBar";

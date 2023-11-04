@@ -25,57 +25,12 @@ function Teacher_Add_Student() {
     gradeLevel: Yup.string().required("* Grade Level is required"),
   });
 
-  // const checkStudentExistence = (values) => {
-  //   const { firstName, lastName, birthDay, birthMonth, gradeLevel } = values;
-  //   const userName = `${firstName}${lastName}`;
-  //   return axios
-  //     .get(`http://localhost:5000/api/v1/Teacher/showStudent/${userName}`)
-  //     .then((response) => {
-  //       // If the student is not found, resolve with an empty response
-  //       if (!response.data) {
-  //         return Promise.resolve();
-  //       }
-  //       return response;
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error checking student existence:", error);
-  //     });
-  // };
-
   const onSubmit = (values) => {
     axios
       .post(`${import.meta.env.VITE_API}teacher/addStudent`, { ...values, birthDay: values.birthDay.toString().padStart(2, "0"), birthMonth: values.birthMonth.toString().padStart(2, "0") })
       .then((res) => navigate(-1))
       .catch((err) => alert(err.message));
   };
-
-  // const onSubmit = (values) => {
-  //   console.log(values);
-  //   checkStudentExistence(values)
-  //     .then((response) => {
-  //       if (!response) {
-  //         // No student found, proceed to create the student account.
-  //         axios
-  //           .post("http://localhost:5000/api/v1/Teacher/addStudent", values, {
-  //             headers: {
-  //               Authorization: `Bearer ${tokenObject}`,
-  //             },
-  //           })
-  //           .then((postResponse) => {
-  //             console.log("POST request successful. Response:", postResponse.data);
-  //           })
-  //           .catch((postError) => {
-  //             console.error("POST request error:", postError);
-  //           });
-  //       } else {
-  //         // Student with the same attributes already exists.
-  //         console.error("Student with the same attributes already exists in the database.");
-  //       }
-  //     })
-  //     .catch((error) => {
-  //       console.error("Error checking data:", error);
-  //     });
-  // };
 
   return (
     <>
@@ -91,16 +46,7 @@ function Teacher_Add_Student() {
           <div>
             <h1 className="p-10 font-bold lg:text-4xl">Fill in the information:</h1>
           </div>
-          <Formik
-            initialValues={{
-              firstName: "",
-              lastName: "",
-              birthDay: "",
-              birthMonth: "",
-              gradeLevel: "1",
-            }}
-            validationSchema={validationSchema}
-            onSubmit={onSubmit}>
+          <Formik initialValues={{ firstName: "", lastName: "", birthDay: "", birthMonth: "", gradeLevel: "1" }} validationSchema={validationSchema} onSubmit={onSubmit}>
             {() => (
               <Form>
                 <div className="grid gap-10 font-semibold lg:text-3xl lg:grid-cols-2">
@@ -131,12 +77,7 @@ function Teacher_Add_Student() {
                       <label htmlFor="birthDay" className="pr-2 ml-5 text-right">
                         Birth Day:
                       </label>
-                      <Field
-                        type="number" // Changed to number
-                        id="birthDay"
-                        name="birthDay"
-                        className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                      />
+                      <Field type="number" id="birthDay" name="birthDay" className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4" />
                     </div>
                     <div className="ml-20">
                       <ErrorMessage name="birthDay" component="div" className="flex justify-center text-xl text-center text-red-500 " />
@@ -147,12 +88,7 @@ function Teacher_Add_Student() {
                       <label htmlFor="birthMonth" className="pr-2 ml-5 text-right">
                         Birth Month:
                       </label>
-                      <Field
-                        type="number" // Changed to number
-                        id="birthMonth"
-                        name="birthMonth"
-                        className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                      />
+                      <Field type="number" id="birthMonth" name="birthMonth" className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4" />
                     </div>
                     <div className="ml-20">
                       <ErrorMessage name="birthMonth" component="div" className="flex justify-center text-xl text-center text-red-500 " />

@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 function Student_Module_Lecture() {
@@ -14,8 +14,6 @@ function Student_Module_Lecture() {
     };
     init();
   }, []);
-
-  useEffect(() => console.log("data", data), [data]);
 
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">

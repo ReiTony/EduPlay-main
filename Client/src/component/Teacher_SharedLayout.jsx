@@ -4,6 +4,7 @@ import Teacher_Navbar from "./Teacher_Navbar";
 
 function Teacher_SharedLayout() {
   const navigate = useNavigate();
+  
   useEffect(() => {
     if (!localStorage.getItem("userId") || localStorage.getItem("userType") !== "teacher") navigate("/");
   }, []);

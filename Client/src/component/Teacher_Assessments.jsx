@@ -1,6 +1,6 @@
-import axios from "axios";
 import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 import ReactModal from "react-modal";
 
 function TeacherAssessments() {
@@ -33,7 +33,7 @@ function TeacherAssessments() {
         refresh();
         setShowDeleteModal(false);
       })
-      .catch((err) => console.log(err));
+      .catch((err) => alert(err.message));
   };
 
   return (

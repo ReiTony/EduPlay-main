@@ -33,7 +33,6 @@ function StudentAssessment() {
           setIsViewingScore(true);
           setHasAnswered(true);
           setCurrentAnswer(temp[0]);
-          console.log(data);
           const correctAns = data?.questions.map((i) => i.correctAnswer);
           setScore(computeScore(temp, correctAns));
         } else setCurrentQuestion(temp.indexOf(-1));
@@ -47,7 +46,6 @@ function StudentAssessment() {
     let test = data?.questions[currentQuestion].question + "\n";
     for (let i = 0; i < data?.questions[currentQuestion].choices.length - 1; i++) test += data?.questions[currentQuestion].choices[i] + "?, ";
     test += "or " + data?.questions[currentQuestion].choices[data?.questions[currentQuestion].choices.length - 1];
-    console.log(test);
     let utterance = new SpeechSynthesisUtterance(test);
     speechSynthesis.speak(utterance);
   };

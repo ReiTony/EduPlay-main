@@ -24,10 +24,7 @@ function Teacher_EditAssessment() {
 
   const handleSaveAssessment = () => {
     setShowSaveAssessmentModal(false);
-    axios
-      .patch(`${import.meta.env.VITE_API}teacher/updateAssessment/${assessmentId}`, assessment)
-      .then((res) => console.log(res.data))
-      .catch((err) => console.log(err));
+    axios.patch(`${import.meta.env.VITE_API}teacher/updateAssessment/${assessmentId}`, assessment).catch((err) => alert(err.message));
     navigate("/teacher/assessments");
   };
 

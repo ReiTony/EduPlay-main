@@ -16,16 +16,12 @@ function Student_LearningGroupAssessment() {
   const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState(0);
 
-  useEffect(() => console.log("data", data), [data]);
-
   useEffect(() => {
     const init = async () => {
       try {
         const res = await axios.get(`${import.meta.env.VITE_API}student/assessment?id=${assessmentId}`);
         setData(res.data);
         setIsLoading(false);
-        console.log(res.data);
-        console.log(res.data.questions);
         const userAnswersFromLocalStorage = localStorage.getItem(`${assessmentId}-answers`);
         if (!userAnswersFromLocalStorage) localStorage.setItem(`${assessmentId}-answers`, JSON.stringify(new Array(res.data.questions.length).fill(-1)));
         else {
@@ -51,7 +47,6 @@ function Student_LearningGroupAssessment() {
     let test = data?.questions[currentQuestion].question + "\n";
     for (let i = 0; i < data?.questions[currentQuestion].choices.length - 1; i++) test += data?.questions[currentQuestion].choices[i] + "?, ";
     test += "or " + data?.questions[currentQuestion].choices[data?.questions[currentQuestion].choices.length - 1];
-    console.log(test);
     let utterance = new SpeechSynthesisUtterance(test);
     speechSynthesis.speak(utterance);
   };
