@@ -1,22 +1,29 @@
 import axios from "axios";
 import { useState, useEffect, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useTable } from "react-table";
-
 
 function Teacher_LearningGroup() {
   const navigate = useNavigate();
-  const {username} = useParams()
   const [data, setData] = useState([]);
 
   useEffect(() => {
-    axios.get(`${import.meta.env.VITE_API}teacher/progress-reports`).then(res=>setData(res.data.progressReports));
+    axios.get(`${import.meta.env.VITE_API}teacher/progress-reports`).then(async (res) => {
+      let temp = [];
+      const promises = res.data.progressReports.map(async (stud) => {
+        const res = await axios.get(`${import.meta.env.VITE_API}teacher/showStudent/${stud.username}`);
+        temp.push(res.data.student);
+      });
+      await Promise.all(promises);
+      setData(temp);
+    });
   }, []);
 
   const columns = useMemo(
     () => [
-      { Header: "USERNAME", accessor: "username", id: "username" },
-      { Header: "TOTAL GAME SCORE", accessor: "totalGameScore", id: "totalGameScore" },
+      { Header: "FIRST NAME", accessor: "firstName", id: "firstName" },
+      { Header: "LAST NAME", accessor: "lastName", id: "lastName" },
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "gradeLevel" },
       {
         Header: "PROGRESS",
         Cell: ({ row }) => (
@@ -33,8 +40,8 @@ function Teacher_LearningGroup() {
 
   return (
     <div className="flex flex-col flex-grow gap-4 p-4">
-      <div className="bg-[#08a454] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">LEARNING GROUP</div>
-      <div className="flex flex-col bg-[#a8d4a4] flex-grow gap-4 rounded-3xl p-5 font-bold">
+      <div className="bg-[#5874fc] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">LEARNING GROUP</div>
+      <div className="flex flex-col bg-[#98ccfc] flex-grow gap-4 rounded-3xl p-5 font-bold">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -51,7 +58,7 @@ function Teacher_LearningGroup() {
             {rows.map((row, index) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#a5d6a7]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
+                <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
                   {row.cells.map((cell) => (
                     <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
                       {cell.render("Cell")}

@@ -10,7 +10,7 @@ function Teacher_SharedLayout() {
   }, []);
 
   return (
-    <div className="backgroundYellow flex flex-col min-h-screen">
+    <div className="bg-[#08a4e4] flex flex-col min-h-screen flex-grow overflow-y-auto">
       <Teacher_Navbar />
       <Outlet />
     </div>
