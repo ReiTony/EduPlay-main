@@ -40,6 +40,8 @@ import TeacherAssessments from "./component/Teacher_Assessments";
 import Teacher_EditAssessment from "./component/Teacher_EditAssessment";
 import Student_LearningGroupAssessment from "./component/Student_LearningGroupAssessment";
 import Teacher_CustomAssessmentAnalysis from "./component/Teacher_CustomAssessmentAnalysis";
+import Teacher_LearningGroup from "./component/Teacher_LearningGroup";
+import Teacher_LearningGroupStudent from "./component/Teacher_LearningGroupStudent";
 
 const queryClient = new QueryClient();
 
@@ -91,6 +93,8 @@ function App() {
               <Route path="assessments/create" element={<Teacher_CreateAssessment />} />
               <Route path="assessments/analysis" element={<Teacher_CustomAssessmentAnalysis />} />
               <Route path="assessments/:assessmentId" element={<Teacher_EditAssessment />} />
+              <Route path="learning-group" element={<Teacher_LearningGroup />} />
+              <Route path="learning-group/:username" element={<Teacher_LearningGroupStudent />} />
             </Route>
 
             {/* Admin Route */}

@@ -2,10 +2,12 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import textToSpeechIcon from "../assets/texttospeech.svg";
 import ReactModal from "react-modal";
+import axios from "axios";
 
 function Student_Game_WordHunt() {
   const navigate = useNavigate();
   const gradeLevel = localStorage.getItem("gradeLevel");
+  const username = localStorage.getItem("username");
   const { moduleNumber } = useParams();
   const [origin, setOrigin] = useState([-1, -1]);
   const [current, setCurrent] = useState([-2, -2]);
@@ -49,7 +51,10 @@ function Student_Game_WordHunt() {
   };
 
   useEffect(() => {
-    if (solved >= data?.clues.length) setIsModalCompleteOpen(true);
+    if (solved >= data?.clues.length) {
+      axios.post(`${import.meta.env.VITE_API}student/game-score`, { username, gameType: "4Pics", score: solved });
+      setIsModalCompleteOpen(true);
+    }
   }, [solved]);
 
   const generateUpDownPattern = (current, origin) => {

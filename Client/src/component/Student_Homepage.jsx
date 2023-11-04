@@ -1,14 +1,16 @@
 import { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { HiX, HiBell } from "react-icons/hi";
-import { GoDotFill } from "react-icons/go";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import axios from "axios";
 import BGmodule from "../assets/Homepage_Image/modules_bg.png";
 import BGass from "../assets/Homepage_Image/assessment_bg.png";
 import BGlr from "../assets/Homepage_Image/learningGroup_bg.png";
-import axios from "axios";
 
+
+//const Student_Dashboard = () => {
 function Student_Dashboard() {
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [isVisible, setIsVisible] = useState(true);
@@ -19,6 +21,13 @@ function Student_Dashboard() {
         .get(`${import.meta.env.VITE_API}student/${userId}`)
         .then((res) => setNotificationMessages(res.data.notifications))
         .catch((err) => alert(err.message));
+  }, []);
+
+  useEffect(() => {
+    axios
+      .get(`${import.meta.env.VITE_API}student/notifications?recipient=${userId}&gradeLevel=${gradeLevel}`)
+      .then((res) => setNotificationMessages(res.data.request))
+      .catch((err) => alert(err.message));
   }, []);
 
   const handleCloseClick = () => {
@@ -47,12 +56,9 @@ function Student_Dashboard() {
               </h1>
               <HiBell className="text-5xl " />
             </div>
-            <div className="ml-8 lg:text-3xl font-expletus">
+            <div className="flex flex-col mx-4">
               {notifications.map((notification, index) => (
-                <div key={index} className="flex items-center pb-2">
-                  <GoDotFill className="ml-2 text-3xl" />
-                  <h2>{notification.message}</h2>
-                </div>
+                 <h2 className="text-2xl font-semibold" key={index}>{`• ${notification.message}`}</h2>
               ))}
             </div>
           </div>

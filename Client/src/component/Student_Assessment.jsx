@@ -7,6 +7,7 @@ import axios from "axios";
 function StudentAssessment() {
   const { moduleNumber } = useParams();
   const userId = localStorage.getItem("userId");
+  const username = localStorage.getItem("username");
   const gradeLevel = localStorage.getItem("gradeLevel");
   const [data, setData] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
@@ -22,7 +23,7 @@ function StudentAssessment() {
   useEffect(() => {
     const init = async () => {
       let res = await axios.get(`${import.meta.env.VITE_API}student/assessment-record?studentId=${userId}&moduleNumber=${moduleNumber}&gradeLevel=${gradeLevel}`);
-      if (res.data.request.length >= 1) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(res.data.request[0].answers))
+      if (res.data.request.length >= 1) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(res.data.request[0].answers));
       const userAnswersFromLocalStorage = localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`);
       res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`);
       const data = await res.json();
@@ -31,7 +32,6 @@ function StudentAssessment() {
       if (!userAnswersFromLocalStorage) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(new Array(data.questions.length).fill(-1)));
       else {
         const temp = JSON.parse(userAnswersFromLocalStorage);
-        console.log(temp)
         if (!temp.includes(-1)) {
           setIsViewingScore(true);
           setHasAnswered(true);
@@ -74,6 +74,7 @@ function StudentAssessment() {
   const handleSubmitQuiz = async () => {
     const answers = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`));
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers });
+    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/65448a2f4f5a1617bbe90ca0`, { username, score }).catch((err) => alert(err.message));
     setResult(res.data);
     setIsCompleteModalOpen(true);
     setIsViewingScore(true);
@@ -103,7 +104,7 @@ function StudentAssessment() {
     if (percentage === 1) badge = "Gold";
     else if (percentage >= 0.7) badge = "Silver";
     else if (percentage >= 0.4) badge = "Bronze";
-    return `/public/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} ${badge}.png`;
+    return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} ${badge}.png`;
   };
 
   return (

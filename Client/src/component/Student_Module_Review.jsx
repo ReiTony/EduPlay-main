@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
+import axios from "axios";
 
 function Student_Module_Review() {
   const navigate = useNavigate();
   const { moduleNumber } = useParams();
+  const username = localStorage.getItem("username");
   const [data, setData] = useState(null);
 
   useEffect(() => {
@@ -15,6 +17,13 @@ function Student_Module_Review() {
     init();
   }, []);
 
+  const handleNext = async () => {
+    axios
+      .post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId: "6545f625bd8d8a13a93dab08", moduleProgress: "100" })
+      .then((res) => navigate(`/student/module/${moduleNumber}/game`))
+      .catch((err) => alert(err.message));
+  };
+
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
       <h1 className="text-3xl font-semibold font-sourceSans3">{data?.title || ""}</h1>
@@ -23,7 +32,7 @@ function Student_Module_Review() {
 
       <iframe className="my-6" src={data?.link || ""} width="864" height="486" allow="autoplay"></iframe>
 
-      <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${moduleNumber}/game`)}>
+      <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={handleNext}>
         NEXT
       </button>
     </div>

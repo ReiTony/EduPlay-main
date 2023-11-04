@@ -2,9 +2,11 @@ import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import textToSpeechIcon from "../assets/texttospeech.svg";
 import ReactModal from "react-modal";
+import axios from "axios";
 
 function Student_Game_FourPicsOneWord() {
   const navigate = useNavigate();
+  const username = localStorage.getItem("username");
   const { moduleNumber } = useParams();
   const [data, setData] = useState(null);
   const [roundNumber, setRoundNumber] = useState(0);
@@ -25,6 +27,7 @@ function Student_Game_FourPicsOneWord() {
 
   useEffect(() => {
     if (isGameFinished) {
+      axios.post(`${import.meta.env.VITE_API}student/game-score`, { username, gameType: "4Pics", score });
       setIsModalCompleteOpen(true);
     }
   }, [isGameFinished]);

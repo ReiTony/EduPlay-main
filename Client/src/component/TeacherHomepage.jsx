@@ -32,7 +32,7 @@ function TeacherHomepage() {
             <h1 className="ml-40">Knowledge</h1>
           </div>
           <div className="absolute bottom-0 right-0 p-4">
-            <a href="">
+            <a href="/teacher/learning-group">
               <button className="bg-[#5271ff] hover:bg-[#2047f1] shadow-lg shadow-black flex items-center lg:text-5xl text-white  font-bold py-2 px-4 rounded-full">
                 <div>LEARNING GROUP</div>
                 <IoChevronForwardCircleSharp className="lg:text-6xl " />
