@@ -5,6 +5,7 @@ import axios from "axios";
 function Student_Module_Review() {
   const navigate = useNavigate();
   const { moduleNumber } = useParams();
+  const userId = localStorage.getItem("userId");
   const username = localStorage.getItem("username");
   const [data, setData] = useState(null);
 
@@ -19,7 +20,7 @@ function Student_Module_Review() {
 
   const handleNext = async () => {
     axios
-      .post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId: "6545f625bd8d8a13a93dab08", moduleProgress: "100" })
+      .post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId: "6545f625bd8d8a13a93dab08", moduleProgress: "100", title: data.title.split(":")[1].trim(), student: userId })
       .then((res) => navigate(`/student/module/${moduleNumber}/game`))
       .catch((err) => alert(err.message));
   };
