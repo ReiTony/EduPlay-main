@@ -7,19 +7,17 @@ import axios from "axios";
 
 function Student_Modules() {
   const navigate = useNavigate();
+  const gradeLevel = JSON.parse(localStorage.getItem("gradeLevel"));
   const [moduleStates, setModuleStates] = useState([]);
   const [studentProgressData, setStudentProgressData] = useState(null);
 
   useEffect(() => {
     const init = async () => {
-      let gradeLevel = JSON.parse(localStorage.getItem("gradeLevel"));
-      if (!gradeLevel) {
-        let temp = await axios.get(`${import.meta.env.VITE_API}student/${localStorage.getItem("userId")}`, { withCredentials: true });
-        gradeLevel = temp.data.student.gradeLevel;
-        localStorage.setItem("gradeLevel", gradeLevel);
+      if (localStorage.getItem("modules") === null) {
+        const res = await fetch(`/modules/grade${gradeLevel}/summary.json`);
+        localStorage.setItem("modules", JSON.stringify(await res.json()));
       }
-      const res = await fetch(`/modules/grade${gradeLevel}/summary.json`);
-      setStudentProgressData(await res.json());
+      setStudentProgressData(JSON.parse(localStorage.getItem("modules")));
     };
     init();
   }, []);
@@ -52,18 +50,18 @@ function Student_Modules() {
                   <p>{`Module ${module.number}: ${module.title}`}</p>
                   {moduleStates[index] ? <MdExpandLess className="text-5xl" /> : <MdExpandMore className="text-5xl" />}
                 </div>
-                {moduleStates[index] && (
-                  <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
-                    {module.submodules.map((submodule, subIndex) => (
-                      <div key={subIndex} className="flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl">
-                        <h1>{submodule.title}</h1>
-                        <button className="p-2 px-4 text-white bg-black rounded-full" onClick={() => navigate(`/student/module/${module.number}/lecture`)}>
-                          {submodule.locked ? <FaLock /> : "OPEN"}
-                        </button>
-                      </div>
-                    ))}
-                  </div>
-                )}
+                <div className="p-4 bg-[#ffcc80] rounded-xl mb-4">
+                  {module.submodules.map((submodule, subIndex) => (
+                    <div key={subIndex} className="flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl">
+                      <h1>{submodule.title}</h1>
+                      <button
+                        className="p-2 px-4 text-white bg-black rounded-full"
+                        onClick={() => !submodule.locked && navigate(`/student/module/${module.number}/${subIndex === 0 ? "lecture" : subIndex === 1 ? "review" : "game"}`)}>
+                        {submodule.locked ? <FaLock /> : "OPEN"}
+                      </button>
+                    </div>
+                  ))}
+                </div>
               </div>
             ))}
           </div>
