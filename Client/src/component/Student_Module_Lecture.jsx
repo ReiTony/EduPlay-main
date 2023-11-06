@@ -9,8 +9,12 @@ function Student_Module_Lecture() {
 
   useEffect(() => {
     const init = async () => {
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/lecture.json`);
+      let res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/lecture.json`);
       setData(await res.json());
+
+      res = JSON.parse(localStorage.getItem("modules"));
+      res[moduleNumber - 1].submodules[1].locked = false;
+      localStorage.setItem("modules", JSON.stringify(res));
     };
     init();
   }, []);

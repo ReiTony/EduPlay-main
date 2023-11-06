@@ -12,8 +12,12 @@ function Student_Module_Review() {
   useEffect(() => {
     const init = async () => {
       const gradeLevel = localStorage.getItem("gradeLevel");
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/review.json`);
+      let res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/review.json`);
       setData(await res.json());
+
+      res = JSON.parse(localStorage.getItem("modules"))
+      res[moduleNumber-1].submodules[2].locked = false;
+      localStorage.setItem("modules", JSON.stringify(res))
     };
     init();
   }, []);
@@ -28,7 +32,6 @@ function Student_Module_Review() {
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
       <h1 className="text-3xl font-semibold font-sourceSans3">{data?.title || ""}</h1>
-
       <hr className="bg-black h-1 w-full my-2" />
 
       <iframe className="my-6" src={data?.link || ""} width="864" height="486" allow="autoplay"></iframe>
