@@ -70,14 +70,17 @@ function StudentProfile() {
               {studentData.assessmentRecords.length === 0 ? (
                 <h5 className="text-xl font-normal">No badges to display.</h5>
               ) : (
-                studentData.assessmentRecords.map((assessment, i) => (
-                  <img
-                    src={getBadge(assessment.score, assessment.total, assessment.gradeLevel, assessment.moduleNumber)}
-                    style={{ maxWidth: "150px", width: "100%" }}
-                    key={i}
-                    alt={`Badge for Module ${assessment.moduleNumber}`}
-                  />
-                ))
+                studentData.assessmentRecords.map(
+                  (assessment, i) =>
+                    assessment.score / assessment.total >= 0.4 && (
+                      <img
+                        src={getBadge(assessment.score, assessment.total, assessment.gradeLevel, assessment.moduleNumber)}
+                        style={{ maxWidth: "150px", width: "100%" }}
+                        key={i}
+                        alt={`Badge for Module ${assessment.moduleNumber}`}
+                      />
+                    )
+                )
               )}
             </div>
           </div>
