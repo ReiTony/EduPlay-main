@@ -48,7 +48,7 @@ function StudentProfile() {
 
   return (
     <div className="backgroundYellow">
-      <div className="profile-container p-4 m-4 bg-[#fff5be] rounded-3xl">
+      <div className="bg-[#fff5be] rounded-3xl p-8 m-4">
         <div className="flex items-center profile-header">
           <div className="w-40 h-40 mr-4 bg-gray-500 profile-picture aspect-square rounded-SM">
             <img src={studentDP} alt="Profile" className="object-cover w-full h-full rounded-lg" />
@@ -61,46 +61,46 @@ function StudentProfile() {
             </p>
           </div>
         </div>
+      </div>
 
-        <div className="flex flex-row justify-between gap-8 my-8">
-          {/* BADGES */}
-          <div className="flex flex-col gap-4 w-full font-sourceSans3">
-            <h1 className="text-center text-3xl font-bold">BADGES</h1>
-            <div className="flex flex-wrap justify-center">
-              {studentData.assessmentRecords.length === 0 ? (
-                <h5 className="text-xl font-normal">No badges to display.</h5>
-              ) : (
-                studentData.assessmentRecords.map(
-                  (assessment, i) =>
-                    assessment.score / assessment.total >= 0.4 && (
-                      <img
-                        src={getBadge(assessment.score, assessment.total, assessment.gradeLevel, assessment.moduleNumber)}
-                        style={{ maxWidth: "150px", width: "100%" }}
-                        key={i}
-                        alt={`Badge for Module ${assessment.moduleNumber}`}
-                      />
-                    )
-                )
-              )}
-            </div>
+      <div className="flex flex-row w-full">
+        {/* BADGES */}
+        <div className="flex flex-col flex-grow gap-4 bg-[#fff5be] rounded-3xl p-6 m-4">
+          <h1 className="text-center text-4xl font-bold">BADGES</h1>
+          <div className="flex flex-wrap justify-center">
+            {studentData.assessmentRecords.length === 0 ? (
+              <h5 className="text-xl font-normal">No badges to display.</h5>
+            ) : (
+              studentData.assessmentRecords.map(
+                (assessment, i) =>
+                  assessment.score / assessment.total >= 0.4 && (
+                    <img
+                      src={getBadge(assessment.score, assessment.total, assessment.gradeLevel, assessment.moduleNumber)}
+                      style={{ maxWidth: "250px", width: "100%" }}
+                      key={i}
+                      alt={`Badge for Module ${assessment.moduleNumber}`}
+                    />
+                  )
+              )
+            )}
           </div>
+        </div>
 
-          {/* ACHIEVEMENTS */}
-          <div className="flex flex-col gap-4 w-full font-sourceSans3">
-            <h1 className="text-center text-3xl font-bold">ACHIEVEMENTS</h1>
-            <div className="flex flex-wrap gap-4 font-semibold justify-center">
-              {achievements === null ? (
-                <h5 className="text-xl">Loading...</h5>
-              ) : achievements.length === 0 ? (
-                <h5 className="text-xl font-normal">No achievements to display.</h5>
-              ) : (
-                achievements.map((achievement, i) => (
-                  <div className="p-6 bg-white rounded-2xl text-lg shadow-md" key={i}>
-                    {achievement.moduleOrAssessmentTitle}
-                  </div>
-                ))
-              )}
-            </div>
+        {/* ACHIEVEMENTS */}
+        <div className="flex flex-col flex-grow gap-4 bg-[#fff5be] rounded-3xl p-6 m-4">
+          <h1 className="text-center text-4xl font-bold">ACHIEVEMENTS</h1>
+          <div className="flex flex-wrap gap-4 font-semibold justify-center">
+            {achievements === null ? (
+              <h5 className="text-xl">Loading...</h5>
+            ) : achievements.length === 0 ? (
+              <h5 className="text-xl font-normal">No achievements to display.</h5>
+            ) : (
+              achievements.map((achievement, i) => (
+                <div className="p-6 bg-white rounded-2xl text-lg shadow-md" key={i}>
+                  {achievement.moduleOrAssessmentTitle}
+                </div>
+              ))
+            )}
           </div>
         </div>
       </div>
