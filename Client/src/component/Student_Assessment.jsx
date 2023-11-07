@@ -107,6 +107,12 @@ function StudentAssessment() {
     return `/badges/Grade ${gradeLevel}/G${gradeLevel}M${moduleNumber} ${badge}.png`;
   };
 
+  const handleChoiceClick = (ind) => (e) => {
+    if (isViewingScore) return;
+    new Audio("/sound/button.wav").play();
+    !hasAnswered && setCurrentAnswer(ind);
+  };
+
   return (
     <>
       <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 gap-6 rounded-2xl flex-grow">
@@ -130,12 +136,10 @@ function StudentAssessment() {
                     className={`flex flex-row items-center gap-4 px-6 py-3 rounded-full shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
                       hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
-                    onClick={() => !hasAnswered && setCurrentAnswer(ind)}
+                    onClick={handleChoiceClick(ind)}
                     key={ind}>
-                    <input type="radio" id={ind} checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
-                    <label className={`text-2xl font-bold flex-grow ${hasAnswered ? "" : "cursor-pointer"}`} htmlFor={ind}>
-                      {choice}
-                    </label>
+                    <input type="radio" checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
+                    <div className={`text-2xl font-bold flex-grow ${hasAnswered ? "" : "cursor-pointer"}`}>{choice}</div>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
                         <div className="font-sourceSans3 font-semibold text-lg">Your Answer (Correct)</div>
