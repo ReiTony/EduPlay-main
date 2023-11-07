@@ -9,18 +9,21 @@ function Student_Game_WordHunt() {
   const gradeLevel = localStorage.getItem("gradeLevel");
   const username = localStorage.getItem("username");
   const { moduleNumber } = useParams();
+  const [data, setData] = useState(null);
   const [origin, setOrigin] = useState([-1, -1]);
   const [current, setCurrent] = useState([-2, -2]);
   const [shaded, setShaded] = useState([]);
   const [answers, setAnswers] = useState([]);
-  const [data, setData] = useState(null);
   const [solved, setSolved] = useState(0);
   const [isModalCompleteOpen, setIsModalCompleteOpen] = useState(false);
+  const [isModalFoundOpen, setIsModalFoundOpen] = useState(false);
+  const [lastFoundWord, setLastFoundWord] = useState();
 
   useEffect(() => {
     const init = async () => {
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`);
-      setData(await res.json());
+      const res = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`)).json();
+      res.words = res.words.map((word) => ({ ...word, found: false }));
+      setData(res);
     };
     init();
   }, []);
@@ -34,6 +37,13 @@ function Student_Game_WordHunt() {
     else setShaded([]);
   }, [current, origin]);
 
+  useEffect(() => {
+    if (solved >= data?.words.length) {
+      axios.post(`${import.meta.env.VITE_API}student/game-score`, { username, gameType: "4Pics", score: solved });
+      setIsModalCompleteOpen(true);
+    }
+  }, [solved]);
+
   const handleTTSClick = () => {
     if (speechSynthesis.speaking) return;
     let utterance = new SpeechSynthesisUtterance(data?.tts);
@@ -42,20 +52,25 @@ function Student_Game_WordHunt() {
 
   const handleMouseUp = () => {
     if (data?.answers.includes(current + " " + origin)) {
-      const temp = answers;
-      shaded.forEach((i) => temp.push(i));
-      setAnswers(temp);
+      found(data?.answers.indexOf(current + " " + origin));
+      shade();
       setSolved((i) => i + 1);
     }
     setOrigin([-1, -1]);
   };
 
-  useEffect(() => {
-    if (solved >= data?.clues.length) {
-      axios.post(`${import.meta.env.VITE_API}student/game-score`, { username, gameType: "4Pics", score: solved });
-      setIsModalCompleteOpen(true);
-    }
-  }, [solved]);
+  const found = (ind) => {
+    const temp = { ...data };
+    temp.words[ind].found = true;
+    setData(temp);
+    setLastFoundWord(data.words[ind]);
+    setIsModalFoundOpen(true);
+  };
+  const shade = () => {
+    const temp = answers;
+    shaded.forEach((i) => temp.push(i));
+    setAnswers(temp);
+  };
 
   const generateUpDownPattern = (current, origin) => {
     const temp = [];
@@ -75,50 +90,39 @@ function Student_Game_WordHunt() {
 
         <hr className="bg-black h-1 w-full" />
 
-        <div className="flex items-center">
-          <div className="flex flex-col m-10 gap-4 items-center justify-center">
-            {solved >= data?.clues.length && (
-              <button className="bg-[#282424] text-white font-sourceSans3 rounded-full px-12 py-2 text-lg font-semibold shadow-md" onClick={() => navigate("/student")}>
-                Go To Homepage
-              </button>
+        <div className="flex items-start gap-10">
+          <div className="mygrid bg-slate-100 rounded-2xl shadow-lg flex-grow p-4 my-16">
+            {data?.puzzle.map((row, rowNum) =>
+              row.map((i, colNum) => (
+                <div
+                  className={`ele flex justify-center items-center font-semibold text-2xl ${
+                    shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
+                  }`}
+                  key={rowNum + "-" + colNum}
+                  onMouseDown={() => setOrigin([rowNum, colNum + 1])}
+                  onMouseUp={handleMouseUp}
+                  onMouseEnter={() => setCurrent([rowNum, colNum + 1])}>
+                  {i}
+                </div>
+              ))
             )}
-            <div className="mygrid p-4 bg-slate-100 rounded-2xl shadow-lg flex-grow">
-              {data?.puzzle.map((row, rowNum) =>
-                row.map((i, colNum) => (
-                  <div
-                    className={`ele flex justify-center items-center font-semibold text-2xl ${
-                      shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
-                    }`}
-                    key={rowNum + "-" + colNum}
-                    onMouseDown={() => setOrigin([rowNum, colNum + 1])}
-                    onMouseUp={handleMouseUp}
-                    onMouseEnter={() => setCurrent([rowNum, colNum + 1])}>
-                    {i}
-                  </div>
-                ))
-              )}
-            </div>
           </div>
 
-          <div className="flex-grow mx-2 my-16">
+          <div className="flex flex-col gap-2 flex-grow mx-2 my-16 font-sourceSans3 text-2xl" style={{ maxWidth: "720px" }}>
             <div className="flex flex-row gap-6 items-center mb-8">
               <h4 className="text-4xl font-semibold">Words to Find</h4>
               <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
             </div>
-
-            {data?.clues.map((clue, index) => (
-              <p className="text-2xl font-semibold" key={index}>
-                {index + 1 + ".  " + clue}
-              </p>
+            {data?.words.map((word, index) => (
+              <div className="flex flex-row gap-2 font-semibold" key={index}>
+                <div className="font-mono">{word.found ? "☑" : "☐"}</div>
+                <div>{`${word.word}${word.found ? " - " + word.meaning : ""}`}</div>
+              </div>
             ))}
           </div>
         </div>
       </div>
-      <ReactModal
-        appElement={document.getElementById("root")}
-        isOpen={isModalCompleteOpen}
-        shouldCloseOnEsc={true}
-        style={{ content: { backgroundColor: "#d8ec8c", border: "0", borderRadius: "2rem", maxWidth: "540px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
+      <ReactModal appElement={document.getElementById("root")} isOpen={isModalCompleteOpen} shouldCloseOnEsc={true} style={modalStyle}>
         <div className="flex flex-col justify-center items-center gap-8 font-sourceSans3 text-3xl font-semibold p-8">
           <div className="flex flex-col gap-2">
             <div className="text-center">Congratulations! You have finished the word hunt.</div>
@@ -134,8 +138,19 @@ function Student_Game_WordHunt() {
           </div>
         </div>
       </ReactModal>
+      <ReactModal appElement={document.getElementById("root")} isOpen={isModalFoundOpen} shouldCloseOnEsc={true} style={modalStyle}>
+        <div className="flex flex-col justify-center items-center gap-8 font-sourceSans3 p-8">
+          <h2 className="text-3xl text-center font-semibold">{lastFoundWord?.word}</h2>
+          <h4 className="text-2xl text-center">{lastFoundWord?.meaning}</h4>
+          <button className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => setIsModalFoundOpen(false)}>
+            CONTINUE
+          </button>
+        </div>
+      </ReactModal>
     </>
   );
 }
+
+const modalStyle = { content: { backgroundColor: "#d8ec8c", border: "0", borderRadius: "2rem", maxWidth: "540px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } };
 
 export default Student_Game_WordHunt;
