@@ -16,7 +16,7 @@ function Student_AssessmentMenu() {
 
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
-      <h3 className="text-5xl font-semibold my-2 font-sourceSans3">Assessments</h3>
+      <h3 className="text-5xl font-semibold my-2 me-auto font-sourceSans3">Assessments</h3>
       <hr className="bg-black h-1 w-full" />
 
       <div className="flex flex-col gap-4 h-full justify-center my-6">
