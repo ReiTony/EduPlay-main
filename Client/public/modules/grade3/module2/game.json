@@ -13,18 +13,18 @@
     ["E", "B", "D", "P", "M", "I", "A", "O", "T"],
     ["R", "E", "T", "A", "W", "O", "K", "W", "H"]
   ],
-  "answers": ["5,6 5,2", "3,6 3,1", "2,5 0,5", "9,8 6,8", "7,7 2,7", "7,7 7,1", "6,9 0,9", "9,1 9,5", "0,7 0,2", "9,1 4,1"] ,
-  "clues": [
-    "Solid - a state of matter that has a definite shape, size, and volume.",
-    "Liquid - a state of matter that does not have definite shape and size but has definite volume.",
-    "Gas - a state of matter that does not have definite volume and shape.",
-    "Flow - this is an ability that a liquid has.",
-    "Volume - amount of space that an object occupies.",
-    "Texture - the feel or appearance of the surface of an object. Different solids may have smooth or rough textures.",
-    "Surface - The outer part or appearance of an object.",
-    "Water - The most common liquid and does not have color, smell, or taste.",
-    "Oxygen - A colorless gas that is necessary for living things to be able to breathe.",
-    "Matter - It is anything that has weight and takes up space."
+  "answers": ["5,6 5,2", "3,6 3,1", "2,5 0,5", "9,8 6,8", "7,7 2,7", "7,7 7,1", "6,9 0,9", "9,1 9,5", "0,7 0,2", "9,1 4,1"],
+  "words": [
+    { "word": "Solid", "meaning": "A state of matter that has a definite shape, size, and volume." },
+    { "word": "Liquid", "meaning": "A state of matter that does not have definite shape and size but has definite volume." },
+    { "word": "Gas", "meaning": "A state of matter that does not have definite volume and shape." },
+    { "word": "Flow", "meaning": "This is an ability that a liquid has." },
+    { "word": "Volume", "meaning": "Amount of space that an object occupies." },
+    { "word": "Texture", "meaning": "The feel or appearance of the surface of an object. Different solids may have smooth or rough textures." },
+    { "word": "Surface", "meaning": "The outer part or appearance of an object." },
+    { "word": "Water", "meaning": "The most common liquid and does not have color, smell, or taste." },
+    { "word": "Oxygen", "meaning": "A colorless gas that is necessary for living things to be able to breathe." },
+    { "word": "Matter", "meaning": "It is anything that has weight and takes up space." }
   ],
   "tts": "Welcome to the exciting Word Hunt game! Let's get started! In this word hunt, your mission is to find hidden words like solid, liquid, gas, flow, volume, texture, surface, water, oxygen, and matter."
 }

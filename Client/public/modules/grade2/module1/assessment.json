@@ -16,7 +16,7 @@
     },
     {
       "question": "Which occupies the most space?",
-      "choices": ["Apple", "Watermelon", "Banana", "Banana"],
+      "choices": ["Apple", "Watermelon", "Banana", "Orange"],
       "correctAnswer": 1,
       "category": 2
     },
