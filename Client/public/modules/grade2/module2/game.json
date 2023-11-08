@@ -4,23 +4,28 @@
   "rounds": [
     {
       "imagePath": "https://drive.google.com/uc?id=1nHu5a4Ki_PypfkhClKN4YGohTdtsY-lu",
-      "answer": "Baby"
+      "answer": "Baby",
+      "meaning": "A baby is a newly-born human child or animal. As time goes by, they are able to change and grow into adults."
     },
     {
       "imagePath": "https://drive.google.com/uc?id=1iF-nFipfRLF-Av_p9L02z2NeWLtsCM5U",
-      "answer": "Cloud"
+      "answer": "Cloud",
+      "meaning": "A cloud is a collection of tiny droplets of water that can float in the air. Eventually, the water from clouds form rain."
     },
     {
       "imagePath": "https://drive.google.com/uc?id=1DCkXs8rNKA_dRbI6WN9WecKreWBljOUF",
-      "answer": "Drink"
+      "answer": "Drink",
+      "meaning": "Drinking water or other beverages helps regulate body temperature. It also provides nutrients and keeps humans and animals hydrated."
     },
     {
       "imagePath": "https://drive.google.com/uc?id=17XYQfxXT8xtH8dL_Ga7qSPCBb2hT6c7p",
-      "answer": "Swim"
+      "answer": "Swim",
+      "meaning": "Swimming is a movement done by humans and animals that helps them move across water."
     },
     {
       "imagePath": "https://drive.google.com/uc?id=1ZlpyKQjvPKtSLMIh8g8G20eAtbUzpkxI",
-      "answer": "Wood"
+      "answer": "Wood",
+      "meaning": "Wood is a material collected from trees that can be used for many different furnitures."
     }
   ]
 }

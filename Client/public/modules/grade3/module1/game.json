@@ -3,24 +3,29 @@
   "type": "4pics1word",
   "rounds": [
     {
-      "imagePath": "https://drive.google.com/uc?id=1JBW0pEaDav7EOxcVnpKATiy5jB1IPvWC",
-      "answer": "Melting"
+      "imagePath": "https://drive.google.com/uc?id=1J1cKhzSHo5rYIESAUCV5E9Vt11vMwaYU",
+      "answer": "Freeze",
+      "meaning": "Freezing converts liquids to solids. A common example of this is freezing water into ice."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1NGqzbsxgI53Vp-ntS4ccpo8IQpCSlXRn",
-      "answer": "Freezing"
+      "imagePath": "https://drive.google.com/uc?id=1U-EozwIueOWWmjXQG8mEY4PFGxKeNvO4",
+      "answer": "Hot",
+      "meaning": "Heat is responsible for many different phase changes."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1FtnnXy7PLG87gyiYZbKqYw6NSCtljP2-",
-      "answer": "Thermometer"
+      "imagePath": "https://drive.google.com/uc?id=1UHxpWqG24HLxY-XKaKVBZmng24VZP0Ik",
+      "answer": "Melt",
+      "meaning": "Melting converts solids into liquids. An ice cream can melt into a liquid if left outside the fridge for too long."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=13ezSnt5CHIERyrvKvI1PH-TbEp06Jk-C",
-      "answer": "Evaporation"
+      "imagePath": "https://drive.google.com/uc?id=1cM7x1ORLuhMt9ciZve6v7oMuoWblfg9L",
+      "answer": "Steam",
+      "meaning": "Steam is the vapor produced by boiling liquids. They form a white smoke of water droplets in the air."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1gtE_MOlcB_MzciOOBTU6-zDnoMX5_tb6",
-      "answer": "Sublimation"
+      "imagePath": "https://drive.google.com/uc?id=1iMFsGSrZAewWOqk6TtKgZHaA_4atqfVD",
+      "answer": "Thermometer",
+      "meaning": "A thermometer is a special device used to measure how hot or cold something is."
     }
   ]
 }
