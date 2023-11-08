@@ -4,10 +4,16 @@
   "questions": [
     {
       "question": "What is the color of an apple? ",
-      "choices": ["Blue", "Yellow", "Red", "Black"],
+      "choices": [
+        { "name": "Blue", "image": "https://artstudiolife.com/wp-content/uploads/2020/07/how-to-make-blue-colour.jpg" },
+        { "name": "Yellow", "image": "https://img.freepik.com/free-vector/abstract-orange-watercolor-brush-stroke_1035-19511.jpg" },
+        { "name": "Red", "image": "https://www.color-meanings.com/wp-content/uploads/red-shade-brush-strokes-1024x1024.jpeg" },
+        { "name": "Black", "image": "https://media.architecturaldigest.com/photos/61b79351fb88c15abed8d5e9/master/w_1600%2Cc_limit/glidden-onyx-black.jpeg" }
+      ],
       "correctAnswer": 2,
       "category": 0
     },
+
     {
       "question": "What is the shape of a wheel",
       "choices": ["Circle", "Square", "Rectangle", "Triangle"],
