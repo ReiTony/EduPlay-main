@@ -63,13 +63,13 @@ function Student_Game_FourPicsOneWord() {
         <div className="flex flex-col justify-center items-center gap-4 py-4 h-full">
           <img src={data?.rounds[roundNumber].imagePath} style={{ height: "450px" }} />
           <div className="text-2xl my-2 font-semibold">{`Clue: ${"_ ".repeat(data?.rounds[roundNumber].answer.length)}`}</div>
-          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-start font-sourceSans3 my-4">
+          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-center font-sourceSans3 my-4">
             <div className="flex flex-col items-center gap-1">
               <input type="text" className="px-5 py-2 rounded-full shadow-md" placeholder="Type your answer here" style={{ width: "300px" }} value={answer} onChange={(e) => setAnswer(e.target.value)} />
-              <span className="text-red-500">{errorText}</span>
+              {errorText !== "" && <span className="text-red-500">{errorText}</span> }
             </div>
-            <button type="submit" className="bg-[#252525] rounded-full shadow-md font-semibold px-6 py-2 text-white" disabled={isGameFinished}>
-              Submit
+            <button type="submit" className="bg-[#252525] rounded-full shadow-md font-semibold px-6 py-2 text-white text-lg" disabled={isGameFinished}>
+              SUBMIT
             </button>
             <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
           </form>

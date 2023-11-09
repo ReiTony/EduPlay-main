@@ -3,27 +3,27 @@
   "type": "4pics1word",
   "rounds": [
     {
-      "imagePath": "https://drive.google.com/uc?id=1J1cKhzSHo5rYIESAUCV5E9Vt11vMwaYU",
+      "imagePath": "/4pics1word/Freeze.png",
       "answer": "Freeze",
       "meaning": "Freezing converts liquids to solids. A common example of this is freezing water into ice."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1U-EozwIueOWWmjXQG8mEY4PFGxKeNvO4",
+      "imagePath": "/4pics1word/Hot.png",
       "answer": "Hot",
       "meaning": "Heat is responsible for many different phase changes."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1UHxpWqG24HLxY-XKaKVBZmng24VZP0Ik",
+      "imagePath": "/4pics1word/Melt.png",
       "answer": "Melt",
       "meaning": "Melting converts solids into liquids. An ice cream can melt into a liquid if left outside the fridge for too long."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1cM7x1ORLuhMt9ciZve6v7oMuoWblfg9L",
+      "imagePath": "/4pics1word/Steam.png",
       "answer": "Steam",
       "meaning": "Steam is the vapor produced by boiling liquids. They form a white smoke of water droplets in the air."
     },
     {
-      "imagePath": "https://drive.google.com/uc?id=1iMFsGSrZAewWOqk6TtKgZHaA_4atqfVD",
+      "imagePath": "/4pics1word/Thermometer.png",
       "answer": "Thermometer",
       "meaning": "A thermometer is a special device used to measure how hot or cold something is."
     }
