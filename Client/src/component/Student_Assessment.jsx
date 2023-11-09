@@ -109,7 +109,7 @@ function StudentAssessment() {
 
   const handleChoiceClick = (ind) => (e) => {
     if (isViewingScore) return;
-    new Audio("/sound/button.wav").play();
+    new Audio("/sound/press.mp3").play();
     !hasAnswered && setCurrentAnswer(ind);
   };
 
