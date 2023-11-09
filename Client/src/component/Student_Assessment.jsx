@@ -11,7 +11,6 @@ function StudentAssessment() {
   const gradeLevel = localStorage.getItem("gradeLevel");
   const [data, setData] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
-  const [currentAnswer, setCurrentAnswer] = useState(-1);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [isViewingScore, setIsViewingScore] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
@@ -19,27 +18,16 @@ function StudentAssessment() {
   const [result, setResult] = useState();
   const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState(0);
+  const [userAnswers, setUserAnswers] = useState();
 
   useEffect(() => {
     const init = async () => {
-      let res = await axios.get(`${import.meta.env.VITE_API}student/assessment-record?studentId=${userId}&moduleNumber=${moduleNumber}&gradeLevel=${gradeLevel}`);
-      if (res.data.request.length >= 1) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(res.data.request[0].answers));
-      const userAnswersFromLocalStorage = localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`);
-      res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`);
-      const data = await res.json();
-      setData(data);
+      const temp = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`)).json();
+      console.log(temp)
+      temp.questions = temp.questions.sort(() => Math.random() - 0.5).slice(0,5);      
+      setData(temp);
       setIsLoading(false);
-      if (!userAnswersFromLocalStorage) localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(new Array(data.questions.length).fill(-1)));
-      else {
-        const temp = JSON.parse(userAnswersFromLocalStorage);
-        if (!temp.includes(-1)) {
-          setIsViewingScore(true);
-          setHasAnswered(true);
-          setCurrentAnswer(temp[0]);
-          const correctAns = data?.questions.map((i) => i.correctAnswer);
-          setScore(computeScore(temp, correctAns));
-        } else setCurrentQuestion(temp.indexOf(-1));
-      }
+      setUserAnswers(new Array(temp.questions.length).fill(-1));
     };
     init();
   }, []);
@@ -54,26 +42,21 @@ function StudentAssessment() {
   };
 
   const handleSubmit = () => {
-    if (currentAnswer === -1) return alert("Select your answer before submitting.");
-    const temp = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`));
-    temp[temp.indexOf(-1)] = currentAnswer;
-    localStorage.setItem(`g${gradeLevel}-m${moduleNumber}-answers`, JSON.stringify(temp));
+    if (userAnswers[currentQuestion] === -1) return alert("Select your answer before submitting.");
     setHasAnswered(true);
     const correctAns = data?.questions.map((i) => i.correctAnswer);
-    setScore(computeScore(temp, correctAns));
+    setScore(computeScore(userAnswers, correctAns));
   };
 
   const handleNext = async () => {
     if (currentQuestion + 1 < data?.questions.length) {
       setCurrentQuestion((i) => i + 1);
-      setCurrentAnswer(-1);
       setHasAnswered(false);
     } else setIsSubmitModalOpen(true);
   };
 
   const handleSubmitQuiz = async () => {
-    const answers = JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`));
-    const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers });
+    const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers });
     await axios.post(`${import.meta.env.VITE_API}student/assessment-score/65448a2f4f5a1617bbe90ca0`, { username, score }).catch((err) => alert(err.message));
     setResult(res.data);
     setIsCompleteModalOpen(true);
@@ -94,8 +77,8 @@ function StudentAssessment() {
     setCurrentAnswer(JSON.parse(localStorage.getItem(`g${gradeLevel}-m${moduleNumber}-answers`))[i]);
   };
 
-  const isAnswerCorrect = (ind) => data?.questions[currentQuestion].correctAnswer === currentAnswer && ind === currentAnswer;
-  const isAnswerWrong = (ind) => ind === currentAnswer;
+  const isAnswerCorrect = (ind) => data?.questions[currentQuestion].correctAnswer === userAnswers[currentQuestion] && ind === userAnswers[currentQuestion];
+  const isAnswerWrong = (ind) => ind === userAnswers[currentQuestion];
   const isTheCorrectAnswer = (ind) => ind === data?.questions[currentQuestion].correctAnswer;
 
   const getBadge = () => {
@@ -110,7 +93,11 @@ function StudentAssessment() {
   const handleChoiceClick = (ind) => (e) => {
     if (isViewingScore) return;
     new Audio("/sound/button.wav").play();
-    !hasAnswered && setCurrentAnswer(ind);
+    !hasAnswered && setUserAnswers((i) => {
+      const temp = [...i]
+      temp[currentQuestion] = ind
+      return temp;
+    });
   };
 
   return (
@@ -130,11 +117,11 @@ function StudentAssessment() {
                 <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
               </div>
               <h3 className="text-4xl font-semibold font-sourceSans3">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
-              <div class="flex flex-col md:grid md:grid-cols-2 gap-3 font-semibold font-sourceSans3">
+              <div className="flex flex-col md:grid md:grid-cols-2 gap-3 font-semibold font-sourceSans3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
                     className={`flex flex-col items-center shadow-md rounded-2xl p-4 ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
-                      hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
+                      hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === userAnswers[currentQuestion] ? "bg-neutral-200" : "bg-white"
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={handleChoiceClick(ind)}
                     key={ind}>
