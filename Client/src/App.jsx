@@ -91,7 +91,7 @@ function App() {
               <Route path="logout" element={<Teacher_Logout />} />
               <Route path="assessments" element={<TeacherAssessments />} />
               <Route path="assessments/create" element={<Teacher_CreateAssessment />} />
-              <Route path="assessments/analysis" element={<Teacher_CustomAssessmentAnalysis />} />
+              <Route path="assessments/:assessmendId/analysis" element={<Teacher_CustomAssessmentAnalysis />} />
               <Route path="assessments/:assessmentId" element={<Teacher_EditAssessment />} />
               <Route path="learning-group" element={<Teacher_LearningGroup />} />
               <Route path="learning-group/:username" element={<Teacher_LearningGroupStudent />} />

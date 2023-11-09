@@ -3,12 +3,14 @@ import axios from "axios";
 import Accordion from "./Accordion";
 import { CircularProgressbar } from "react-circular-progressbar";
 import "react-circular-progressbar/dist/styles.css";
+import { useParams } from "react-router-dom";
 
 function Teacher_CustomAssessmentAnalysis() {
+  const { assessmendId } = useParams();
   const [data, setData] = useState(null);
   useEffect(() => {
     axios
-      .get(`${import.meta.env.VITE_API}teacher/custom-assessment`, { withCredentials: true })
+      .get(`${import.meta.env.VITE_API}teacher/custom-assessment?id=${assessmendId}`, { withCredentials: true })
       .then((res) => setData(res.data.request))
       .catch((err) => alert(err.message));
   }, []);
@@ -24,26 +26,20 @@ function Teacher_CustomAssessmentAnalysis() {
               <div className="flex justify-center items-center flex-grow text-3xl font-sourceSans3">LOADING...</div>
             ) : (
               <>
-                {data?.map((asssessment, i) => (
-                  <Accordion key={i}>
-                    <Accordion.Title>{asssessment.title}</Accordion.Title>
-                    <Accordion.Content>
-                      <div className="flex flex-col gap-4">
-                        {asssessment.questions.map((question, j) => (
-                          <div className="flex flex-row justify-center items-center gap-6" key={j}>
-                            <div style={{ width: 100, height: 100 }}>
-                              <CircularProgressbar value={question.analysis} text={`${question.analysis}%`} />
-                            </div>
-                            <div className="flex flex-col text-2xl">
-                              <div>{`Question: ${question.question}`}</div>
-                              <div>{`${question.analysis}% of students got this question correct.`}</div>
-                            </div>
-                          </div>
-                        ))}
+                <h2 className="text-3xl text-center mt-4">{data.title}</h2>
+                <div className="flex flex-col gap-4">
+                  {data.questions.map((question, j) => (
+                    <div className="flex flex-row justify-center items-center gap-6" key={j}>
+                      <div style={{ width: 100, height: 100 }}>
+                        <CircularProgressbar value={question.analysis} text={`${question.analysis}%`} />
                       </div>
-                    </Accordion.Content>
-                  </Accordion>
-                ))}
+                      <div className="flex flex-col text-2xl">
+                        <div>{`Question: ${question.question}`}</div>
+                        <div>{`${question.analysis}% of students got this question correct.`}</div>
+                      </div>
+                    </div>
+                  ))}
+                </div>
               </>
             )}
           </div>

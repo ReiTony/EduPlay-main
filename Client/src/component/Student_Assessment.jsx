@@ -47,8 +47,8 @@ function StudentAssessment() {
   const handleTTSClick = () => {
     if (speechSynthesis.speaking) return;
     let test = data?.questions[currentQuestion].question + "\n";
-    for (let i = 0; i < data?.questions[currentQuestion].choices.length - 1; i++) test += data?.questions[currentQuestion].choices[i] + "?, ";
-    test += "or " + data?.questions[currentQuestion].choices[data?.questions[currentQuestion].choices.length - 1];
+    for (let i = 0; i < data?.questions[currentQuestion].choices.length - 1; i++) test += data?.questions[currentQuestion].choices[i].name + "?, ";
+    test += "or " + data?.questions[currentQuestion].choices[data?.questions[currentQuestion].choices.length - 1].name;
     let utterance = new SpeechSynthesisUtterance(test);
     speechSynthesis.speak(utterance);
   };
@@ -130,16 +130,18 @@ function StudentAssessment() {
                 <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
               </div>
               <h3 className="text-4xl font-semibold font-sourceSans3">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
-              <div className="flex flex-col gap-3">
+              <div class="flex flex-col md:grid md:grid-cols-2 gap-3 font-semibold font-sourceSans3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
-                    className={`flex flex-row items-center gap-4 px-6 py-3 rounded-full shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
+                    className={`flex flex-col items-center shadow-md rounded-2xl p-4 ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
                       hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={handleChoiceClick(ind)}
                     key={ind}>
-                    <input type="radio" checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
-                    <div className={`text-2xl font-bold flex-grow ${hasAnswered ? "" : "cursor-pointer"}`}>{choice}</div>
+                    <div className="h-40 w-40">
+                      <img src={choice.image} className="object-cover object-center w-full h-full" />
+                    </div>
+                    <div className="text-2xl">{choice.name}</div>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
                         <div className="font-sourceSans3 font-semibold text-lg">Your Answer (Correct)</div>
