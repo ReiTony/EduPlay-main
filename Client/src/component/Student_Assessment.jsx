@@ -23,8 +23,7 @@ function StudentAssessment() {
   useEffect(() => {
     const init = async () => {
       const temp = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`)).json();
-      console.log(temp)
-      temp.questions = temp.questions.sort(() => Math.random() - 0.5).slice(0,5);      
+      temp.questions = temp.questions.sort(() => Math.random() - 0.5).slice(0, 10);
       setData(temp);
       setIsLoading(false);
       setUserAnswers(new Array(temp.questions.length).fill(-1));
@@ -92,11 +91,11 @@ function StudentAssessment() {
   const handleChoiceClick = (ind) => (e) => {
     if (isViewingScore) return;
     new Audio("/sound/press.mp3").play();
-    !hasAnswered && setUserAnswers((i) => {
-      const temp = [...i]
-      temp[currentQuestion] = ind
-      return temp;
-    });
+    if (!hasAnswered) {
+      const temp = [...userAnswers];
+      temp[currentQuestion] = ind;
+      setUserAnswers(temp);
+    }
   };
 
   return (
@@ -124,9 +123,11 @@ function StudentAssessment() {
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={handleChoiceClick(ind)}
                     key={ind}>
-                    <div className="h-40 w-40">
-                      <img src={choice.image} className="object-cover object-center w-full h-full" />
-                    </div>
+                    {choice.image !== undefined && (
+                      <div className="h-40 w-40">
+                        <img src={choice.image} className="object-cover object-center w-full h-full" alt={choice.name} />
+                      </div>
+                    )}
                     <div className="text-2xl">{choice.name}</div>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
