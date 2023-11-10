@@ -4,62 +4,182 @@
   "questions": [
     {
       "question": "What does a living thing not need to live?",
-      "choices": ["Air", "Water", "Sunlight", "Toys"],
+      "choices": [
+        { "name": "Air", "image": "" },
+        { "name": "Water", "image": "" },
+        { "name": "Sunlight", "image": "" },
+        { "name": "Toys", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 0
     },
     {
       "question": "Which animal is capable of flying?",
-      "choices": ["Fish", "Bird", "Dog", "Penguin"],
+      "choices": [
+        { "name": "Fish", "image": "" },
+        { "name": "Bird", "image": "" },
+        { "name": "Dog", "image": "" },
+        { "name": "Penguin", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "An animal that is caught and eaten by another animal.",
-      "choices": ["Prey", "Plant", "Food", "Snack"],
+      "choices": [
+        { "name": "Prey", "image": "" },
+        { "name": "Plant", "image": "" },
+        { "name": "Food", "image": "" },
+        { "name": "", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Which is not an example of a living thing?",
-      "choices": ["Humans", "Animals", "Plants", "Train"],
+      "choices": [
+        { "name": "Humans", "image": "" },
+        { "name": "Animals", "image": "" },
+        { "name": "Plants", "image": "" },
+        { "name": "Train", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 1
     },
     {
       "question": "Which is a non-living thing found in nature?",
-      "choices": ["Air", "House", "Eraser", "Table"],
+      "choices": [
+        { "name": "Air", "image": "" },
+        { "name": "House", "image": "" },
+        { "name": "Eraser", "image": "" },
+        { "name": "Table", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "What do you call things that are not alive?",
-      "choices": ["Living Things", "Non-living Things", "Dolls", "Toys"],
+      "choices": [
+        { "name": "Living Things", "image": "" },
+        { "name": "Non-Living Things", "image": "" },
+        { "name": "Dolls", "image": "" },
+        { "name": "Toys", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "A plant is a living thing.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Living things cannot grow.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Water is a non-living thing.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Non-living things can breathe.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "It means to increase in size.",
+      "choices": [
+        { "name": "Shrink", "image": "" },
+        { "name": "Grow", "image": "" },
+        { "name": "Walk", "image": "" },
+        { "name": "Sleep", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 0
+    },
+    {
+      "question": "Which animal can climb trees?",
+      "choices": [
+        { "name": "Dog", "image": "" },
+        { "name": "Monkey", "image": "" },
+        { "name": "Rabbit", "image": "" },
+        { "name": "Horse", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 0
+    },
+    {
+      "question": "Which cannot be done by humans?",
+      "choices": [
+        { "name": "Walk", "image": "" },
+        { "name": "Swim", "image": "" },
+        { "name": "Think", "image": "" },
+        { "name": "Lay Eggs", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 0
+    },
+    {
+      "question": "Which is a non-living thing made by a person?",
+      "choices": [
+        { "name": "Leaf", "image": "" },
+        { "name": "Water", "image": "" },
+        { "name": "House", "image": "" },
+        { "name": "Rocks", "image": "" }
+      ],
+      "correctAnswer": 2,
+      "category": 1
+    },
+    {
+      "question": "It is the surroundings composed of living and non-living things.",
+      "choices": [
+        { "name": "Air", "image": "" },
+        { "name": "Land", "image": "" },
+        { "name": "Water", "image": "" },
+        { "name": "Nature", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 1
+    },
+    {
+      "question": "Which is an example of a non-living thing?",
+      "choices": [
+        { "name": "Dog", "image": "" },
+        { "name": "Bread", "image": "" },
+        { "name": "Grass", "image": "" },
+        { "name": "Duck", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "Animals and Plants can also grow.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 0
+    },
+    {
+      "question": "Fishes can move by walking.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 0
+    },
+    {
+      "question": "Water is a non-living thing.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 1
+    },
+    {
+      "question": "Chairs are made by people.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
       "category": 1
     }
   ]

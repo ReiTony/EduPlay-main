@@ -4,63 +4,183 @@
   "questions": [
     {
       "question": "What state of matter has a definite shape, size, and volume?",
-      "choices": ["Solid", "Liquid", "Gas", "Air"],
+      "choices": [
+        { "name": "Solid", "image": "" },
+        { "name": "Liquid", "image": "" },
+        { "name": "Gas", "image": "" },
+        { "name": "Air", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "What solid will break into pieces when dropped?",
-      "choices": ["Paper", "Glass", "Steel", "Eraser"],
+      "choices": [
+        { "name": "Paper", "image": "" },
+        { "name": "Glass", "image": "" },
+        { "name": "Steel", "image": "" },
+        { "name": "Eraser", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "What state of matter has a definite volume and can flow?",
-      "choices": ["Solid", "Liquid", "Gas", "Air"],
+      "choices": [
+        { "name": "Solid", "image": "" },
+        { "name": "Liquid", "image": "" },
+        { "name": "Gas", "image": "" },
+        { "name": "Air", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "What is the most common liquid?",
-      "choices": ["Medicine", "Shampoo", "Juice", "Water"],
+      "choices": [
+        { "name": "Medicine", "image": "" },
+        { "name": "Shampoo", "image": "" },
+        { "name": "Juice", "image": "" },
+        { "name": "Water", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 1
     },
     {
       "question": "What state of matter can expand and flow?",
-      "choices": ["Solid", "Liquid", "Gas", "Air"],
+      "choices": [
+        { "name": "Solid", "image": "" },
+        { "name": "Liquid", "image": "" },
+        { "name": "Gas", "image": "" },
+        { "name": "Air", "image": "" }
+      ],
       "correctAnswer": 2,
       "category": 2
     },
     {
       "question": "What is the gas that people and animals breathe out?",
-      "choices": ["Carbon Dioxide", "Oxygen", "Helium", "LPG"],
+      "choices": [
+        { "name": "Carbon Dioxide", "image": "" },
+        { "name": "Oxygen", "image": "" },
+        { "name": "Helium", "image": "" },
+        { "name": "LPG", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Steel is used for making many sharp objects.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Drink liquids without carefully checking if it's safe.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "Tell an adult if you smell gas near an LPG tank.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Never take any medicine without the supervision of an adult.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
+    },
+    {
+      "question": "The feel and appearance of the surface of an object.",
+      "choices": [
+        { "name": "Texture", "image": "" },
+        { "name": "Volume", "image": "" },
+        { "name": "Size", "image": "" },
+        { "name": "Shape", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 0
+    },
+    {
+      "question": "What do you call the shape of an object that has many different shapes?",
+      "choices": [
+        { "name": "Different", "image": "" },
+        { "name": "Changing", "image": "" },
+        { "name": "Irregular", "image": "" },
+        { "name": "Regular", "image": "" }
+      ],
+      "correctAnswer": 2,
+      "category": 0
+    },
+    {
+      "question": "Vinegar has a ____ taste.",
+      "choices": [
+        { "name": "Sweet", "image": "" },
+        { "name": "Salty", "image": "" },
+        { "name": "Bitter", "image": "" },
+        { "name": "Sour", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 1
+    },
+    {
+      "question": "Shampoo is an example of what?",
+      "choices": [
+        { "name": "Solid", "image": "" },
+        { "name": "Liquid", "image": "" },
+        { "name": "Gas", "image": "" },
+        { "name": "Water", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "What is the gas that makes balloons float?",
+      "choices": [
+        { "name": "Carbon Dioxide", "image": "" },
+        { "name": "Oxygen", "image": "" },
+        { "name": "Helium", "image": "" },
+        { "name": "LPG", "image": "" }
+      ],
+      "correctAnswer": 2,
+      "category": 2
+    },
+    {
+      "question": "It is protective gear that protects you during science experiments.",
+      "choices": [
+        { "name": "Goggles", "image": "" },
+        { "name": "Socks", "image": "" },
+        { "name": "Ring", "image": "" },
+        { "name": "Bracelet", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 2
+    },
+    {
+      "question": "Paper cannot cause fires.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 0
+    },
+    {
+      "question": "Soy sauce and fish sauce are solids.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "Some products contain gases that can kill harmful insects.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 2
+    },
+    {
+      "question": "Wood is a compact and a tightly packed solid.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 0
     }
   ]
 }

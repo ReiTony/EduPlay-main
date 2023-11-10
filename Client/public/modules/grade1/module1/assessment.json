@@ -13,60 +13,174 @@
       "correctAnswer": 2,
       "category": 0
     },
-
     {
       "question": "What is the shape of a wheel",
-      "choices": ["Circle", "Square", "Rectangle", "Triangle"],
+      "choices": [
+        { "name": "Circle", "image": "" },
+        { "name": "Square", "image": "" },
+        { "name": "Rectangle", "image": "" },
+        { "name": "Triangle", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Which one is the biggest?",
-      "choices": ["Worm", "Dog", "Car", "Plate"],
+      "choices": [
+        { "name": "Worm", "image": "" },
+        { "name": "Dog", "image": "" },
+        { "name": "Car", "image": "" },
+        { "name": "Plate", "image": "" }
+      ],
       "correctAnswer": 2,
       "category": 2
     },
     {
       "question": "Which object has a rough texture?",
-      "choices": ["Glass", "Apple", "Paper", "Pineapple"],
+      "choices": [
+        { "name": "Glass", "image": "" },
+        { "name": "Apple", "image": "" },
+        { "name": "Paper", "image": "" },
+        { "name": "Pineapple", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 3
     },
     {
       "question": "Which object is the heaviest?",
-      "choices": ["Table", "Pencil", "Eraser", "Phone"],
+      "choices": [
+        { "name": "Table", "image": "" },
+        { "name": "Pencil", "image": "" },
+        { "name": "Eraser", "image": "" },
+        { "name": "Phone", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 4
     },
     {
       "question": "Which object is the smallest?",
-      "choices": ["Tree", "Cat", "House", "Person"],
+      "choices": [
+        { "name": "Tree", "image": "" },
+        { "name": "Cat", "image": "" },
+        { "name": "House", "image": "" },
+        { "name": "Person", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 5
     },
     {
       "question": "A train is longer than a car.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 6
     },
     {
       "question": "A house is bigger than a flower.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "A giraffe is taller than a cat.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 5
     },
     {
       "question": "A basketball is lighter than a pencil.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 4
+    },
+    {
+      "question": "Which object the color green?",
+      "choices": [
+        { "name": "Watermelon", "image": "" },
+        { "name": "Mango", "image": "" },
+        { "name": "Strawberry", "image": "" },
+        { "name": "Banana", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 0
+    },
+    {
+      "question": "Which object has a square shape?",
+      "choices": [
+        { "name": "Ball", "image": "" },
+        { "name": "Box", "image": "" },
+        { "name": "Pencil", "image": "" },
+        { "name": "Tent", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "What texture does an egg have?",
+      "choices": [
+        { "name": "Smooth", "image": "" },
+        { "name": "Rough", "image": "" },
+        { "name": "White", "image": "" },
+        { "name": "Round", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 3
+    },
+    {
+      "question": "Which object is the longest?",
+      "choices": [
+        { "name": "Spoon", "image": "" },
+        { "name": "Fork", "image": "" },
+        { "name": "Umbrella", "image": "" },
+        { "name": "Pencil", "image": "" }
+      ],
+      "correctAnswer": 2,
+      "category": 6
+    },
+    {
+      "question": "What is the color of the sun?",
+      "choices": [
+        { "name": "Orange", "image": "" },
+        { "name": "Blue", "image": "" },
+        { "name": "White", "image": "" },
+        { "name": "Yellow", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 0
+    },
+    {
+      "question": "Which does not have the same shape?",
+      "choices": [
+        { "name": "Button", "image": "" },
+        { "name": "Plate", "image": "" },
+        { "name": "Clock", "image": "" },
+        { "name": "Table", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 1
+    },
+    {
+      "question": "A sponge has a rough texture.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 3
+    },
+    {
+      "question": "A book is lighter than paper.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 4
+    },
+    {
+      "question": "A tree is taller than a plant.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 5
+    },
+    {
+      "question": "A truck is smaller than a bicycle.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 2
     }
   ]
 }
