@@ -4,6 +4,7 @@
   "questions": [
     {
       "question": "Which one has a different shape?",
+      "image": "/assessment_images/grade2/module1/1.jpg",
       "choices": [
         { "name": "Basketball", "image": "" },
         { "name": "Globe", "image": "" },
@@ -15,6 +16,7 @@
     },
     {
       "question": "Which object is heavier than a book?",
+      "image": "/assessment_images/grade2/module1/2.jpg",
       "choices": [
         { "name": "Feather", "image": "" },
         { "name": "Balloon", "image": "" },
@@ -26,6 +28,7 @@
     },
     {
       "question": "Which occupies the most space?",
+      "image": "/assessment_images/grade2/module1/3.jpg",
       "choices": [
         { "name": "Apple", "image": "" },
         { "name": "Watermelon", "image": "" },
@@ -37,6 +40,7 @@
     },
     {
       "question": "Which one has a different color?",
+      "image": "/assessment_images/grade2/module1/4.jpg",
       "choices": [
         { "name": "Grass", "image": "" },
         { "name": "Corn", "image": "" },
@@ -48,6 +52,7 @@
     },
     {
       "question": "Which object has no definite shape?",
+      "image": "/assessment_images/grade2/module1/5.jpg",
       "choices": [
         { "name": "Sand", "image": "" },
         { "name": "Water", "image": "" },
@@ -59,6 +64,7 @@
     },
     {
       "question": "It is the ability of an object to move in a continuous way.",
+      "image": null,
       "choices": [
         { "name": "Flow", "image": "" },
         { "name": "Wind", "image": "" },
@@ -70,30 +76,35 @@
     },
     {
       "question": "Oil takes the shape of its container.",
+      "image": "/assessment_images/grade2/module1/7.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "A weighing scale can measure an object's mass.",
+      "image": "/assessment_images/grade2/module1/8.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Volume is the amount of space an object occupies.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Grass, frogs, and bananas all have the same color.",
+      "image": "/assessment_images/grade2/module1/10.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 3
     },
     {
       "question": "Which shape has three sides",
+      "image": "/assessment_images/grade2/module1/11.jpg",
       "choices": [
         { "name": "Circle", "image": "" },
         { "name": "Square", "image": "" },
@@ -105,6 +116,7 @@
     },
     {
       "question": "Which object is lighter?",
+      "image": "/assessment_images/grade2/module1/12.jpg",
       "choices": [
         { "name": "Rock", "image": "" },
         { "name": "Bag", "image": "" },
@@ -116,6 +128,7 @@
     },
     {
       "question": "What do we call the amount of space inside a container?",
+      "image": null,
       "choices": [
         { "name": "Volume", "image": "" },
         { "name": "Mass", "image": "" },
@@ -127,6 +140,7 @@
     },
     {
       "question": "What does strawberry and a crab have in common?",
+      "image": "/assessment_images/grade2/module1/14.jpg",
       "choices": [
         { "name": "Volume", "image": "" },
         { "name": "Mass", "image": "" },
@@ -138,6 +152,7 @@
     },
     {
       "question": "Which object does not take the shape of a container?",
+      "image": "/assessment_images/grade2/module1/15.jpg",
       "choices": [
         { "name": "Shampoo", "image": "" },
         { "name": "Milk", "image": "" },
@@ -149,6 +164,7 @@
     },
     {
       "question": "It is the measurement of how heavy an object is.",
+      "image": null,
       "choices": [
         { "name": "Volume", "image": "" },
         { "name": "Mass", "image": "" },
@@ -160,24 +176,28 @@
     },
     {
       "question": "A balloon creates its shape when air is blown into it.",
+      "image": "/assessment_images/grade2/module1/17.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 4
     },
     {
       "question": "A dog takes more space than a car.",
+      "image": "/assessment_images/grade2/module1/18.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 2
     },
     {
       "question": "Objects can change color as time passes.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 3
     },
     {
       "question": "Balls can be in a square shape.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0

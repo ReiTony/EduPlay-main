@@ -4,6 +4,7 @@
   "questions": [
     {
       "question": "What does a living thing not need to live?",
+      "image": null,
       "choices": [
         { "name": "Air", "image": "" },
         { "name": "Water", "image": "" },
@@ -15,6 +16,7 @@
     },
     {
       "question": "Which animal is capable of flying?",
+      "image": "/assessment_images/grade1/module2/2.jpg",
       "choices": [
         { "name": "Fish", "image": "" },
         { "name": "Bird", "image": "" },
@@ -26,6 +28,7 @@
     },
     {
       "question": "An animal that is caught and eaten by another animal.",
+      "image": null,
       "choices": [
         { "name": "Prey", "image": "" },
         { "name": "Plant", "image": "" },
@@ -37,6 +40,7 @@
     },
     {
       "question": "Which is not an example of a living thing?",
+      "image": "/assessment_images/grade1/module2/4.jpg",
       "choices": [
         { "name": "Humans", "image": "" },
         { "name": "Animals", "image": "" },
@@ -48,6 +52,7 @@
     },
     {
       "question": "Which is a non-living thing found in nature?",
+      "image": null,
       "choices": [
         { "name": "Air", "image": "" },
         { "name": "House", "image": "" },
@@ -59,6 +64,7 @@
     },
     {
       "question": "What do you call things that are not alive?",
+      "image": null,
       "choices": [
         { "name": "Living Things", "image": "" },
         { "name": "Non-Living Things", "image": "" },
@@ -70,30 +76,35 @@
     },
     {
       "question": "A plant is a living thing.",
+      "image": "/assessment_images/grade1/module2/7.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Living things cannot grow.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Water is a non-living thing.",
+      "image": "/assessment_images/grade1/module2/9.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Non-living things can breathe.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "It means to increase in size.",
+      "image": null,
       "choices": [
         { "name": "Shrink", "image": "" },
         { "name": "Grow", "image": "" },
@@ -105,6 +116,7 @@
     },
     {
       "question": "Which animal can climb trees?",
+      "image": "/assessment_images/grade1/module2/12.jpg",
       "choices": [
         { "name": "Dog", "image": "" },
         { "name": "Monkey", "image": "" },
@@ -116,6 +128,7 @@
     },
     {
       "question": "Which cannot be done by humans?",
+      "image": null,
       "choices": [
         { "name": "Walk", "image": "" },
         { "name": "Swim", "image": "" },
@@ -127,6 +140,7 @@
     },
     {
       "question": "Which is a non-living thing made by a person?",
+      "image": "/assessment_images/grade1/module2/14.jpg",
       "choices": [
         { "name": "Leaf", "image": "" },
         { "name": "Water", "image": "" },
@@ -138,6 +152,7 @@
     },
     {
       "question": "It is the surroundings composed of living and non-living things.",
+      "image": null,
       "choices": [
         { "name": "Air", "image": "" },
         { "name": "Land", "image": "" },
@@ -149,6 +164,7 @@
     },
     {
       "question": "Which is an example of a non-living thing?",
+      "image": "/assessment_images/grade1/module2/16.jpg",
       "choices": [
         { "name": "Dog", "image": "" },
         { "name": "Bread", "image": "" },
@@ -160,24 +176,28 @@
     },
     {
       "question": "Animals and Plants can also grow.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Fishes can move by walking.",
+      "image": "/assessment_images/grade1/module2/18.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Water is a non-living thing.",
+      "image": "/assessment_images/grade1/module2/19.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Chairs are made by people.",
+      "image": "/assessment_images/grade1/module2/20.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1

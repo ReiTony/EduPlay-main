@@ -4,6 +4,7 @@
   "questions": [
     {
       "question": "Which cannot be done by humans?",
+      "image": null,
       "choices": [
         { "name": "Grow", "image": "" },
         { "name": "Reproduce", "image": "" },
@@ -15,6 +16,7 @@
     },
     {
       "question": "A tadpole can _____ into an adult frog.",
+      "image": "/assessment_images/grade2/module2/2.jpg",
       "choices": [
         { "name": "Grow", "image": "" },
         { "name": "Reproduce", "image": "" },
@@ -26,6 +28,7 @@
     },
     {
       "question": "It is when you react to something that happens.",
+      "image": null,
       "choices": [
         { "name": "Happy", "image": "" },
         { "name": "Respond", "image": "" },
@@ -37,6 +40,7 @@
     },
     {
       "question": "These are the soft coverings of a bird's body.",
+      "image": null,
       "choices": [
         { "name": "Skin", "image": "" },
         { "name": "Scales", "image": "" },
@@ -48,6 +52,7 @@
     },
     {
       "question": "Which object is not made out of wood?",
+      "image": "/assessment_images/grade2/module2/5.jpg",
       "choices": [
         { "name": "Table", "image": "" },
         { "name": "Chair", "image": "" },
@@ -59,6 +64,7 @@
     },
     {
       "question": "It is used to create clothes and dresses.",
+      "image": null,
       "choices": [
         { "name": "Stone", "image": "" },
         { "name": "Silk", "image": "" },
@@ -70,30 +76,35 @@
     },
     {
       "question": "Living things don't need to drink water.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Living things can reproduce and make babies.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Non-living things can sense and respond to their environment.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "Plants are an example of non-living things.",
+      "image": "/assessment_images/grade2/module2/10.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "It is a young frog that has gills and a tail.",
+      "image": "/assessment_images/grade2/module2/11.jpg",
       "choices": [
         { "name": "Cub", "image": "" },
         { "name": "Kitten", "image": "" },
@@ -105,6 +116,7 @@
     },
     {
       "question": "What do caterpillars eat?",
+      "image": "/assessment_images/grade2/module2/12.jpg",
       "choices": [
         { "name": "Rice", "image": "" },
         { "name": "Leaves", "image": "" },
@@ -116,6 +128,7 @@
     },
     {
       "question": "What do you put in the ground for a plant to grow?",
+      "image": "/assessment_images/grade2/module2/13.jpg",
       "choices": [
         { "name": "Leaf", "image": "" },
         { "name": "Roots", "image": "" },
@@ -127,6 +140,7 @@
     },
     {
       "question": "It is a collection of tiny water droplets that float in the air.",
+      "image": null,
       "choices": [
         { "name": "Ice", "image": "" },
         { "name": "Cloud", "image": "" },
@@ -138,6 +152,7 @@
     },
     {
       "question": "It is the body covering of sheep.",
+      "image": "/assessment_images/grade2/module2/15.jpg",
       "choices": [
         { "name": "Feather", "image": "" },
         { "name": "Scales", "image": "" },
@@ -149,6 +164,7 @@
     },
     {
       "question": "What material can be used to make statues and decorations?",
+      "image": "/assessment_images/grade2/module2/16.jpg",
       "choices": [
         { "name": "Stone", "image": "" },
         { "name": "Soil", "image": "" },
@@ -160,24 +176,28 @@
     },
     {
       "question": "Humans should take good care of their baby.",
+      "image": "/assessment_images/grade2/module2/17.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "A monkey can move with its wings.",
+      "image": "/assessment_images/grade2/module2/18.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Paper is used to make books.",
+      "image": "/assessment_images/grade2/module2/19.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "A statue is used as a container to hold flowers.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
