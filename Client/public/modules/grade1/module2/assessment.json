@@ -34,7 +34,7 @@
         { "name": "Prey", "image": "" },
         { "name": "Plant", "image": "" },
         { "name": "Food", "image": "" },
-        { "name": "", "image": "" }
+        { "name": "Snack", "image": "" }
       ],
       "correctAnswer": 0,
       "category": 0
