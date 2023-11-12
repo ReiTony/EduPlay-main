@@ -4,6 +4,7 @@
   "questions": [
     {
       "question": "The process of solids turning into liquid.",
+      "image": "/assessment_images/grade3/module2/1.jpg",
       "choices": [
         { "name": "Melting", "image": "" },
         { "name": "Freezing", "image": "" },
@@ -15,6 +16,7 @@
     },
     {
       "question": "It is the reverse of the melting process.",
+      "image": "/assessment_images/grade3/module2/2.jpg",
       "choices": [
         { "name": "Icing", "image": "" },
         { "name": "Freezing", "image": "" },
@@ -26,6 +28,7 @@
     },
     {
       "question": "It occurs when wet clothes dry out in the sun.",
+      "image": "/assessment_images/grade3/module2/3.jpg",
       "choices": [
         { "name": "Melting", "image": "" },
         { "name": "Freezing", "image": "" },
@@ -37,6 +40,7 @@
     },
     {
       "question": "The process of solids turning directly to gas.",
+      "image": "/assessment_images/grade3/module2/4.jpg",
       "choices": [
         { "name": "Melting", "image": "" },
         { "name": "Freezing", "image": "" },
@@ -48,6 +52,7 @@
     },
     {
       "question": "What temparature does ice start melting to water?",
+      "image": null,
       "choices": [
         { "name": "0 Celsius", "image": "" },
         { "name": "32 Celsius", "image": "" },
@@ -59,6 +64,7 @@
     },
     {
       "question": "What is a product of freezing?",
+      "image": null,
       "choices": [
         { "name": "Water", "image": "" },
         { "name": "Juice", "image": "" },
@@ -70,30 +76,35 @@
     },
     {
       "question": "Steam is formed when water is evaporated.",
+      "image": "/assessment_images/grade3/module2/7.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Solid mothballs will eventually turn into gas.",
+      "image": "/assessment_images/grade3/module2/8.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 3
     },
     {
       "question": "Water vapor is formed by melting.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Freezing helps preserve food.",
+      "image": "/assessment_images/grade3/module2/10.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Steam is formed by ____.",
+      "image": "/assessment_images/grade3/module2/11.jpg",
       "choices": [
         { "name": "Melting", "image": "" },
         { "name": "Freezing", "image": "" },
@@ -105,6 +116,7 @@
     },
     {
       "question": "Mothballs are used to kill what?",
+      "image": "/assessment_images/grade3/module2/12.jpg",
       "choices": [
         { "name": "Insects", "image": "" },
         { "name": "Plants", "image": "" },
@@ -116,6 +128,7 @@
     },
     {
       "question": "It is used to measure the temperature of an object.",
+      "image": "/assessment_images/grade3/module2/13.jpg",
       "choices": [
         { "name": "Scale", "image": "" },
         { "name": "Finger", "image": "" },
@@ -127,6 +140,7 @@
     },
     {
       "question": "What would happen to water in low temperatures?",
+      "image": null,
       "choices": [
         { "name": "Melt", "image": "" },
         { "name": "Freeze", "image": "" },
@@ -138,6 +152,7 @@
     },
     {
       "question": "It is water in gas form.",
+      "image": null,
       "choices": [
         { "name": "Ice", "image": "" },
         { "name": "Water Vapor", "image": "" },
@@ -149,6 +164,7 @@
     },
     {
       "question": "Where are mothballs usually placed?",
+      "image": null,
       "choices": [
         { "name": "Closet", "image": "" },
         { "name": "Sink", "image": "" },
@@ -160,24 +176,28 @@
     },
     {
       "question": "The melting point for sugar is different from water.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Low temperatures can help bacteria grow.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "Evaporation can take place at any temperature.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Air fresheners gets used up through freezing.",
+      "image": "/assessment_images/grade3/module2/20.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 3

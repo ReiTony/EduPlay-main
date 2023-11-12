@@ -4,6 +4,7 @@
   "questions": [
     {
       "question": "What state of matter has a definite shape, size, and volume?",
+      "image": null,
       "choices": [
         { "name": "Solid", "image": "" },
         { "name": "Liquid", "image": "" },
@@ -15,6 +16,7 @@
     },
     {
       "question": "What solid will break into pieces when dropped?",
+      "image": "/assessment_images/grade3/module1/2.jpg",
       "choices": [
         { "name": "Paper", "image": "" },
         { "name": "Glass", "image": "" },
@@ -26,6 +28,7 @@
     },
     {
       "question": "What state of matter has a definite volume and can flow?",
+      "image": null,
       "choices": [
         { "name": "Solid", "image": "" },
         { "name": "Liquid", "image": "" },
@@ -37,6 +40,7 @@
     },
     {
       "question": "What is the most common liquid?",
+      "image": "/assessment_images/grade3/module1/4.jpg",
       "choices": [
         { "name": "Medicine", "image": "" },
         { "name": "Shampoo", "image": "" },
@@ -48,6 +52,7 @@
     },
     {
       "question": "What state of matter can expand and flow?",
+      "image": null,
       "choices": [
         { "name": "Solid", "image": "" },
         { "name": "Liquid", "image": "" },
@@ -59,6 +64,7 @@
     },
     {
       "question": "What is the gas that people and animals breathe out?",
+      "image": null,
       "choices": [
         { "name": "Carbon Dioxide", "image": "" },
         { "name": "Oxygen", "image": "" },
@@ -70,30 +76,35 @@
     },
     {
       "question": "Steel is used for making many sharp objects.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "Drink liquids without carefully checking if it's safe.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "Tell an adult if you smell gas near an LPG tank.",
+      "image": "/assessment_images/grade3/module1/9.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Never take any medicine without the supervision of an adult.",
+      "image": "/assessment_images/grade3/module1/10.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "The feel and appearance of the surface of an object.",
+      "image": null,
       "choices": [
         { "name": "Texture", "image": "" },
         { "name": "Volume", "image": "" },
@@ -105,6 +116,7 @@
     },
     {
       "question": "What do you call the shape of an object that has many different shapes?",
+      "image": null,
       "choices": [
         { "name": "Different", "image": "" },
         { "name": "Changing", "image": "" },
@@ -116,6 +128,7 @@
     },
     {
       "question": "Vinegar has a ____ taste.",
+      "image": null,
       "choices": [
         { "name": "Sweet", "image": "" },
         { "name": "Salty", "image": "" },
@@ -127,6 +140,7 @@
     },
     {
       "question": "Shampoo is an example of what?",
+      "image": "/assessment_images/grade3/module1/14.jpg",
       "choices": [
         { "name": "Solid", "image": "" },
         { "name": "Liquid", "image": "" },
@@ -138,6 +152,7 @@
     },
     {
       "question": "What is the gas that makes balloons float?",
+      "image": "/assessment_images/grade3/module1/15.jpg",
       "choices": [
         { "name": "Carbon Dioxide", "image": "" },
         { "name": "Oxygen", "image": "" },
@@ -149,6 +164,7 @@
     },
     {
       "question": "It is protective gear that protects you during science experiments.",
+      "image": "/assessment_images/grade3/module1/16.jpg",
       "choices": [
         { "name": "Goggles", "image": "" },
         { "name": "Socks", "image": "" },
@@ -160,24 +176,28 @@
     },
     {
       "question": "Paper cannot cause fires.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Soy sauce and fish sauce are solids.",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "Some products contain gases that can kill harmful insects.",
+      "image": "/assessment_images/grade3/module1/19.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Wood is a compact and a tightly packed solid.",
+      "image": "/assessment_images/grade3/module1/20.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0

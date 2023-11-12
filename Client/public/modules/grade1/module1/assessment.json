@@ -4,17 +4,19 @@
   "questions": [
     {
       "question": "What is the color of an apple? ",
+      "image": "/assessment_images/grade1/module1/1.jpg",
       "choices": [
-        { "name": "Blue", "image": "https://artstudiolife.com/wp-content/uploads/2020/07/how-to-make-blue-colour.jpg" },
-        { "name": "Yellow", "image": "https://img.freepik.com/free-vector/abstract-orange-watercolor-brush-stroke_1035-19511.jpg" },
-        { "name": "Red", "image": "https://www.color-meanings.com/wp-content/uploads/red-shade-brush-strokes-1024x1024.jpeg" },
-        { "name": "Black", "image": "https://media.architecturaldigest.com/photos/61b79351fb88c15abed8d5e9/master/w_1600%2Cc_limit/glidden-onyx-black.jpeg" }
+        { "name": "Blue", "image": "" },
+        { "name": "Yellow", "image": "" },
+        { "name": "Red", "image": "" },
+        { "name": "Black", "image": "" }
       ],
       "correctAnswer": 2,
       "category": 0
     },
     {
       "question": "What is the shape of a wheel",
+      "image": "/assessment_images/grade1/module1/2.jpg",
       "choices": [
         { "name": "Circle", "image": "" },
         { "name": "Square", "image": "" },
@@ -26,6 +28,7 @@
     },
     {
       "question": "Which one is the biggest?",
+      "image": "/assessment_images/grade1/module1/3.jpg",
       "choices": [
         { "name": "Worm", "image": "" },
         { "name": "Dog", "image": "" },
@@ -37,6 +40,7 @@
     },
     {
       "question": "Which object has a rough texture?",
+      "image": "/assessment_images/grade1/module1/4.jpg",
       "choices": [
         { "name": "Glass", "image": "" },
         { "name": "Apple", "image": "" },
@@ -48,6 +52,7 @@
     },
     {
       "question": "Which object is the heaviest?",
+      "image": "/assessment_images/grade1/module1/5.jpg",
       "choices": [
         { "name": "Table", "image": "" },
         { "name": "Pencil", "image": "" },
@@ -59,6 +64,7 @@
     },
     {
       "question": "Which object is the smallest?",
+      "image": "/assessment_images/grade1/module1/6.jpg",
       "choices": [
         { "name": "Tree", "image": "" },
         { "name": "Cat", "image": "" },
@@ -70,30 +76,35 @@
     },
     {
       "question": "A train is longer than a car.",
+      "image": "/assessment_images/grade1/module1/7.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 6
     },
     {
       "question": "A house is bigger than a flower.",
+      "image": "/assessment_images/grade1/module1/8.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "A giraffe is taller than a cat.",
+      "image": "/assessment_images/grade1/module1/9.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 5
     },
     {
       "question": "A basketball is lighter than a pencil.",
+      "image": "/assessment_images/grade1/module1/10.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 4
     },
     {
       "question": "Which object the color green?",
+      "image": "/assessment_images/grade1/module1/11.jpg",
       "choices": [
         { "name": "Watermelon", "image": "" },
         { "name": "Mango", "image": "" },
@@ -105,6 +116,7 @@
     },
     {
       "question": "Which object has a square shape?",
+      "image": "/assessment_images/grade1/module1/12.jpg",
       "choices": [
         { "name": "Ball", "image": "" },
         { "name": "Box", "image": "" },
@@ -116,6 +128,7 @@
     },
     {
       "question": "What texture does an egg have?",
+      "image": "/assessment_images/grade1/module1/13.jpg",
       "choices": [
         { "name": "Smooth", "image": "" },
         { "name": "Rough", "image": "" },
@@ -127,6 +140,7 @@
     },
     {
       "question": "Which object is the longest?",
+      "image": "/assessment_images/grade1/module1/14.jpg",
       "choices": [
         { "name": "Spoon", "image": "" },
         { "name": "Fork", "image": "" },
@@ -138,6 +152,7 @@
     },
     {
       "question": "What is the color of the sun?",
+      "image": "/assessment_images/grade1/module1/15.jpg",
       "choices": [
         { "name": "Orange", "image": "" },
         { "name": "Blue", "image": "" },
@@ -149,6 +164,7 @@
     },
     {
       "question": "Which does not have the same shape?",
+      "image": "/assessment_images/grade1/module1/16.jpg",
       "choices": [
         { "name": "Button", "image": "" },
         { "name": "Plate", "image": "" },
@@ -160,24 +176,28 @@
     },
     {
       "question": "A sponge has a rough texture.",
+      "image": "/assessment_images/grade1/module1/17.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 3
     },
     {
       "question": "A book is lighter than paper.",
+      "image": "/assessment_images/grade1/module1/18.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 4
     },
     {
       "question": "A tree is taller than a plant.",
+      "image": "/assessment_images/grade1/module1/19.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 5
     },
     {
       "question": "A truck is smaller than a bicycle.",
+      "image": "/assessment_images/grade1/module1/20.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 2
