@@ -24,8 +24,9 @@ function Student_Module_Review() {
     init();
   }, []);
 
-  const handleNext = async () => {
-    await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
+  const handleNext = async () => {    
+    // await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, moduleProgress: "100", title: data.title.split(":")[1].trim(), student: userId })
+    await axios.post(`${import.meta.env.VITE_API}student/module-record`, {  username,moduleId, title: data.title.split(":")[1].trim(), student: userId });
     navigate(`/student/module/${moduleNumber}/game`);
   };
 
