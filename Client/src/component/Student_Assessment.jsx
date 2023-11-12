@@ -10,6 +10,7 @@ function StudentAssessment() {
   const username = localStorage.getItem("username");
   const gradeLevel = localStorage.getItem("gradeLevel");
   const [data, setData] = useState();
+  const [moduleId, setModuleId] = useState();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [hasAnswered, setHasAnswered] = useState(false);
   const [isViewingScore, setIsViewingScore] = useState(false);
@@ -22,11 +23,13 @@ function StudentAssessment() {
 
   useEffect(() => {
     const init = async () => {
-      const temp = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`)).json();
-      temp.questions = temp.questions.sort(() => Math.random() - 0.5).slice(0, 10);
-      setData(temp);
+      const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`)).json();
+      setModuleId(id);
+      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      res.data.questions = res.data.questions.sort(() => Math.random() - 0.5).slice(0, 10);
+      setData(res.data);
       setIsLoading(false);
-      setUserAnswers(new Array(temp.questions.length).fill(-1));
+      setUserAnswers(new Array(res.data.questions.length).fill(-1));
     };
     init();
   }, []);
@@ -55,8 +58,9 @@ function StudentAssessment() {
   };
 
   const handleSubmitQuiz = async () => {
+    await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
-    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/65448a2f4f5a1617bbe90ca0`, { username, score }).catch((err) => alert(err.message));
+    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score }).catch((err) => alert(err.message));
     setResult(res.data);
     setIsCompleteModalOpen(true);
     setIsViewingScore(true);

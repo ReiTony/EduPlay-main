@@ -9,27 +9,25 @@ function Student_Module_Review() {
   const { moduleNumber } = useParams();
   const userId = localStorage.getItem("userId");
   const username = localStorage.getItem("username");
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const [data, setData] = useState(null);
+  const [moduleId, setModuleId] = useState();
   const [isFinished, setIsFinished] = useState(false);
 
   useEffect(() => {
     const init = async () => {
-      const gradeLevel = localStorage.getItem("gradeLevel");
-      let res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/review.json`);
-      setData(await res.json());
-
-      res = JSON.parse(localStorage.getItem("modules"));
-      res[moduleNumber - 1].submodules[2].locked = false;
-      localStorage.setItem("modules", JSON.stringify(res));
+      const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/review.json`)).json();
+      setModuleId(id);
+      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      setData(res.data);
     };
     init();
   }, []);
 
-  const handleNext = async () => {
-    axios
-      .post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId: "6545f625bd8d8a13a93dab08", moduleProgress: "100", title: data.title.split(":")[1].trim(), student: userId })
-      .then((res) => navigate(`/student/module/${moduleNumber}/game`))
-      .catch((err) => alert(err.message));
+  const handleNext = async () => {    
+    // await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, moduleProgress: "100", title: data.title.split(":")[1].trim(), student: userId })
+    await axios.post(`${import.meta.env.VITE_API}student/module-record`, {  username,moduleId, title: data.title.split(":")[1].trim(), student: userId });
+    navigate(`/student/module/${moduleNumber}/game`);
   };
 
   return (

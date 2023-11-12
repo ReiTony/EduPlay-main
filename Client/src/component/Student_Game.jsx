@@ -4,14 +4,15 @@ import Student_Game_FourPicsOneWord from "./Student_Game_FourPicsOneWord";
 import Student_Game_WordHunt from "./Student_Game_WordHunt";
 
 function Student_Game() {
-  const [data, setData] = useState(null);
   const { moduleNumber } = useParams();
+  const gradeLevel = localStorage.getItem("gradeLevel");
+    const [data, setData] = useState(null);
 
   useEffect(() => {
     const init = async () => {
-      const gradeLevel = localStorage.getItem("gradeLevel");
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`);
-      setData(await res.json());
+      const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`)).json();
+      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      setData(res.data);
     };
     init();
   }, []);

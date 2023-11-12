@@ -6,8 +6,10 @@ import axios from "axios";
 
 function Student_Game_FourPicsOneWord() {
   const navigate = useNavigate();
+  const gradeLevel = localStorage.getItem("gradeLevel");
   const username = localStorage.getItem("username");
   const { moduleNumber } = useParams();
+  const [moduleId, setModuleId] = useState();
   const [data, setData] = useState(null);
   const [roundNumber, setRoundNumber] = useState(0);
   const [answer, setAnswer] = useState("");
@@ -19,15 +21,17 @@ function Student_Game_FourPicsOneWord() {
 
   useEffect(() => {
     const init = async () => {
-      const gradeLevel = localStorage.getItem("gradeLevel");
-      const res = await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`);
-      setData(await res.json());
+      const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/game.json`)).json();
+      setModuleId(id);
+      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      setData(res.data);
     };
     init();
   }, []);
 
   useEffect(() => {
     if (isGameFinished) {
+      axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
       axios.post(`${import.meta.env.VITE_API}student/game-score`, { username, gameType: "4Pics", score: data.rounds.length });
       setIsModalCompleteOpen(true);
     }
@@ -63,7 +67,7 @@ function Student_Game_FourPicsOneWord() {
         <div className="flex flex-col justify-center items-center gap-4 py-4 h-full">
           <img src={data?.rounds[roundNumber].imagePath} style={{ height: "450px" }} />
           <div className="text-2xl my-2 font-semibold">{`Clue: ${"_ ".repeat(data?.rounds[roundNumber].answer.length)}`}</div>
-          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-center font-sourceSans3 my-4">
+          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-start font-sourceSans3 my-4">
             <div className="flex flex-col items-center gap-1">
               <input type="text" className="px-5 py-2 rounded-full shadow-md" placeholder="Type your answer here" style={{ width: "300px" }} value={answer} onChange={(e) => setAnswer(e.target.value)} />
               {errorText !== "" && <span className="text-red-500">{errorText}</span> }
@@ -79,13 +83,13 @@ function Student_Game_FourPicsOneWord() {
         <div className="flex flex-col justify-center items-center gap-8 font-sourceSans3 text-3xl font-semibold p-8">
           <div className="flex flex-col gap-2">
             <div className="text-center">Congratulations! You have finished 4 Pictures 1 Word.</div>
-            <div className="text-center">Do you want to go back to homepage?</div>
+            <div className="text-center">Do you want to go to assessment?</div>
           </div>
           <div className="flex flex-row justify-center gap-4">
             <button className="bg-red-500 text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => setIsModalCompleteOpen(false)}>
               NO
             </button>
-            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => navigate("/student")}>
+            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
               YES
             </button>
           </div>

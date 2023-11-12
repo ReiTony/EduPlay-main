@@ -21,9 +21,12 @@ function Teacher_LearningGroupStudent() {
       { topic: 2, learningMaterials: "Unviewed", game: "Unplayed", assessment: null },
     ];
 
+    console.log(data.modules);
+    console.log(data);
     data.gameScores.forEach((game, i) => (temp[i].game = "Played"));
-    data.modules.forEach((module, i) => (temp[i].learningMaterials = "Viewed"));
+    for (let i = 0; i < Math.floor((data.modules.length + 2)/ 4); i++) temp[i].learningMaterials = "Viewed";
     data.assessmentScores.forEach((ass, i) => (temp[i].assessment = `${ass.score}/10`));
+
     setData(temp);
   };
 

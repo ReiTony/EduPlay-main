@@ -8,16 +8,17 @@ import axios from "axios";
 function Student_Modules() {
   const navigate = useNavigate();
   const gradeLevel = JSON.parse(localStorage.getItem("gradeLevel"));
+  const username = localStorage.getItem("username");
   const [moduleStates, setModuleStates] = useState([]);
   const [studentProgressData, setStudentProgressData] = useState(null);
+  const [progress, setProgress] = useState(0);
 
   useEffect(() => {
     const init = async () => {
-      if (localStorage.getItem("modules") === null) {
-        const res = await fetch(`/modules/grade${gradeLevel}/summary.json`);
-        localStorage.setItem("modules", JSON.stringify(await res.json()));
-      }
-      setStudentProgressData(JSON.parse(localStorage.getItem("modules")));
+      let data = await (await fetch(`${import.meta.env.VITE_API}teacher/progress-report/${username}`)).json();
+      setProgress(data.progressReport.unlockedModules.length);
+      data = await (await fetch(`/modules/grade${gradeLevel}/summary.json`)).json();
+      setStudentProgressData(data);
     };
     init();
   }, []);
@@ -55,9 +56,10 @@ function Student_Modules() {
                     <div key={subIndex} className="flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl">
                       <h1>{submodule.title}</h1>
                       <button
-                        className="p-2 px-4 text-white bg-black rounded-full"
-                        onClick={() => !submodule.locked && navigate(`/student/module/${module.number}/${subIndex === 0 ? "lecture" : subIndex === 1 ? "review" : "game"}`)}>
-                        {submodule.locked ? <FaLock /> : "OPEN"}
+                        className={`text-white text-2xl ${index * 4 + subIndex > progress ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1"} shadow-md rounded-full`}
+                        disabled={index * 4 + subIndex > progress}
+                        onClick={() => navigate(`/student/module/${module.number}/${subIndex === 0 ? "lecture" : subIndex === 1 ? "review" : "game"}`)}>
+                        {index * 4 + subIndex > progress ? <FaLock /> : "OPEN"}
                       </button>
                     </div>
                   ))}
