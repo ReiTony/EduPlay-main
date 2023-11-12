@@ -65,9 +65,9 @@ function Student_Dashboard() {
         )}
       </div>
       <div className="m-4  lg:p-0 rounded-full grid lg:grid-cols-[32.5%_32.8%_32.6%] lg:gap-5 gap-5  ">
-        <div className="flex flex-col items-center bg-gradient-to-r from-green-300 via-teal-300 to-cyan-200 rounded-xl homepageParent ">
+        <div className="flex flex-col justify-between items-center bg-gradient-to-r from-green-300 via-teal-300 to-cyan-200 rounded-xl homepageParent ">
           <div className="text-3xl font-bold text-center xl:text-5xl xl:p-10 font-expletus">
-            <h1>MODULE</h1>
+            <h1 className="mt-8">MODULE</h1>
           </div>
           <div>
             <img
@@ -82,9 +82,9 @@ function Student_Dashboard() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center bg-gradient-to-tr from-rose-100 to-rose-200 rounded-xl homepageParent">
+        <div className="flex flex-col justify-between items-center bg-gradient-to-tr from-rose-100 to-rose-200 rounded-xl homepageParent">
           <div className="text-3xl font-bold text-center xl:text-5xl xl:p-10 font-expletus">
-            <h1>ASSESSMENTS</h1>
+            <h1 className="mt-8">ASSESSMENTS</h1>
           </div>
 
           <div>
@@ -100,9 +100,9 @@ function Student_Dashboard() {
           </div>
         </div>
 
-        <div className="flex flex-col items-center bg-gradient-to-l from-sky-300 via-cyan-300 to-cyan-500 rounded-xl homepageParent ">
+        <div className="flex flex-col justify-between items-center bg-gradient-to-l from-sky-300 via-cyan-300 to-cyan-500 rounded-xl homepageParent ">
           <div className="text-3xl font-bold text-center xl:text-5xl xl:p-10 font-expletus">
-            <h1>LEARNING GROUP</h1>
+            <h1 className="mt-8">LEARNING GROUP</h1>
           </div>
           <div>
             <img
