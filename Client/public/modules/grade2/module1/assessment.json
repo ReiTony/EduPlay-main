@@ -4,63 +4,183 @@
   "questions": [
     {
       "question": "Which one has a different shape?",
-      "choices": ["Basketball", "Globe", "Marble", "Box"],
+      "choices": [
+        { "name": "Basketball", "image": "" },
+        { "name": "Globe", "image": "" },
+        { "name": "Marble", "image": "" },
+        { "name": "Box", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 0
     },
     {
       "question": "Which object is heavier than a book?",
-      "choices": ["Feather", "Balloon", "Chair", "Pencil"],
+      "choices": [
+        { "name": "Feather", "image": "" },
+        { "name": "Balloon", "image": "" },
+        { "name": "Chair", "image": "" },
+        { "name": "Pencil", "image": "" }
+      ],
       "correctAnswer": 2,
       "category": 1
     },
     {
       "question": "Which occupies the most space?",
-      "choices": ["Apple", "Watermelon", "Banana", "Orange"],
+      "choices": [
+        { "name": "Apple", "image": "" },
+        { "name": "Watermelon", "image": "" },
+        { "name": "Banana", "image": "" },
+        { "name": "Orange", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 2
     },
     {
       "question": "Which one has a different color?",
-      "choices": ["Grass", "Corn", "Cheese", "Sun"],
+      "choices": [
+        { "name": "Grass", "image": "" },
+        { "name": "Corn", "image": "" },
+        { "name": "Cheese", "image": "" },
+        { "name": "Sun", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 3
     },
     {
       "question": "Which object has no definite shape?",
-      "choices": ["Sand", "Water", "Clothes", "Bread"],
+      "choices": [
+        { "name": "Sand", "image": "" },
+        { "name": "Water", "image": "" },
+        { "name": "Clothes", "image": "" },
+        { "name": "Bread", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "It is the ability of an object to move in a continuous way.",
-      "choices": ["Flow", "Wind", "Smooth", "Air"],
+      "choices": [
+        { "name": "Flow", "image": "" },
+        { "name": "Wind", "image": "" },
+        { "name": "Smooth", "image": "" },
+        { "name": "Air", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 4
     },
     {
       "question": "Oil takes the shape of its container.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "A weighing scale can measure an object's mass.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
     },
     {
       "question": "Volume is the amount of space an object occupies.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Grass, frogs, and bananas all have the same color.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 3
+    },
+    {
+      "question": "Which shape has three sides",
+      "choices": [
+        { "name": "Circle", "image": "" },
+        { "name": "Square", "image": "" },
+        { "name": "Triangle", "image": "" },
+        { "name": "Rectangle", "image": "" }
+      ],
+      "correctAnswer": 2,
+      "category": 0
+    },
+    {
+      "question": "Which object is lighter?",
+      "choices": [
+        { "name": "Rock", "image": "" },
+        { "name": "Bag", "image": "" },
+        { "name": "Eraser", "image": "" },
+        { "name": "Feather", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 1
+    },
+    {
+      "question": "What do we call the amount of space inside a container?",
+      "choices": [
+        { "name": "Volume", "image": "" },
+        { "name": "Mass", "image": "" },
+        { "name": "Shape", "image": "" },
+        { "name": "Color", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 2
+    },
+    {
+      "question": "What does strawberry and a crab have in common?",
+      "choices": [
+        { "name": "Volume", "image": "" },
+        { "name": "Mass", "image": "" },
+        { "name": "Shape", "image": "" },
+        { "name": "Color", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 3
+    },
+    {
+      "question": "Which object does not take the shape of a container?",
+      "choices": [
+        { "name": "Shampoo", "image": "" },
+        { "name": "Milk", "image": "" },
+        { "name": "Juice", "image": "" },
+        { "name": "Book", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 4
+    },
+    {
+      "question": "It is the measurement of how heavy an object is.",
+      "choices": [
+        { "name": "Volume", "image": "" },
+        { "name": "Mass", "image": "" },
+        { "name": "Shape", "image": "" },
+        { "name": "Color", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "A balloon creates its shape when air is blown into it.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 4
+    },
+    {
+      "question": "A dog takes more space than a car.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 2
+    },
+    {
+      "question": "Objects can change color as time passes.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 3
+    },
+    {
+      "question": "Balls can be in a square shape.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 0
     }
   ]
 }

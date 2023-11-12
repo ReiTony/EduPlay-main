@@ -4,63 +4,183 @@
   "questions": [
     {
       "question": "The process of solids turning into liquid.",
-      "choices": ["Melting", "Freezing", "Evaporation", "Sublimation"],
+      "choices": [
+        { "name": "Melting", "image": "" },
+        { "name": "Freezing", "image": "" },
+        { "name": "Evaporation", "image": "" },
+        { "name": "Sublimation", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "It is the reverse of the melting process.",
-      "choices": ["Icing", "Freezing", "Evaporation", "Sublimation"],
+      "choices": [
+        { "name": "Icing", "image": "" },
+        { "name": "Freezing", "image": "" },
+        { "name": "Evaporation", "image": "" },
+        { "name": "Sublimation", "image": "" }
+      ],
       "correctAnswer": 1,
       "category": 1
     },
     {
       "question": "It occurs when wet clothes dry out in the sun.",
-      "choices": ["Melting", "Freezing", "Evaporation", "Sublimation"],
+      "choices": [
+        { "name": "Melting", "image": "" },
+        { "name": "Freezing", "image": "" },
+        { "name": "Evaporation", "image": "" },
+        { "name": "Sublimation", "image": "" }
+      ],
       "correctAnswer": 2,
       "category": 2
     },
     {
       "question": "The process of solids turning directly to gas.",
-      "choices": ["Melting", "Freezing", "Evaporation", "Sublimation"],
+      "choices": [
+        { "name": "Melting", "image": "" },
+        { "name": "Freezing", "image": "" },
+        { "name": "Evaporation", "image": "" },
+        { "name": "Sublimation", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 3
     },
     {
       "question": "What temparature does ice start melting to water?",
-      "choices": ["0 Celsius", "32 Celsius", "10 Celsius", "64 Celsius"],
+      "choices": [
+        { "name": "0 Celsius", "image": "" },
+        { "name": "32 Celsius", "image": "" },
+        { "name": "10 Celsius", "image": "" },
+        { "name": "64 Celsius", "image": "" }
+      ],
       "correctAnswer": 0,
       "category": 0
     },
     {
       "question": "What is a product of freezing?",
-      "choices": ["Water", "Juice", "Candy", "Ice Cream"],
+      "choices": [
+        { "name": "Water", "image": "" },
+        { "name": "Juice", "image": "" },
+        { "name": "Candy", "image": "" },
+        { "name": "Ice Cream", "image": "" }
+      ],
       "correctAnswer": 3,
       "category": 1
     },
     {
       "question": "Steam is formed when water is evaporated.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 2
     },
     {
       "question": "Solid mothballs will eventually turn into gas.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 3
     },
     {
       "question": "Water vapor is formed by melting.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 1,
       "category": 0
     },
     {
       "question": "Freezing helps preserve food.",
-      "choices": ["True", "False"],
+      "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
+    },
+    {
+      "question": "Steam is formed by ____.",
+      "choices": [
+        { "name": "Melting", "image": "" },
+        { "name": "Freezing", "image": "" },
+        { "name": "Evaporation", "image": "" },
+        { "name": "Sublimation", "image": "" }
+      ],
+      "correctAnswer": 2,
+      "category": 2
+    },
+    {
+      "question": "Mothballs are used to kill what?",
+      "choices": [
+        { "name": "Insects", "image": "" },
+        { "name": "Plants", "image": "" },
+        { "name": "Worms", "image": "" },
+        { "name": "Crops", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 3
+    },
+    {
+      "question": "It is used to measure the temperature of an object.",
+      "choices": [
+        { "name": "Scale", "image": "" },
+        { "name": "Finger", "image": "" },
+        { "name": "Ruler", "image": "" },
+        { "name": "Thermometer", "image": "" }
+      ],
+      "correctAnswer": 3,
+      "category": 0
+    },
+    {
+      "question": "What would happen to water in low temperatures?",
+      "choices": [
+        { "name": "Melt", "image": "" },
+        { "name": "Freeze", "image": "" },
+        { "name": "Disappear", "image": "" },
+        { "name": "Evaporate", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "It is water in gas form.",
+      "choices": [
+        { "name": "Ice", "image": "" },
+        { "name": "Water Vapor", "image": "" },
+        { "name": "Air", "image": "" },
+        { "name": "Oxygen", "image": "" }
+      ],
+      "correctAnswer": 1,
+      "category": 2
+    },
+    {
+      "question": "Where are mothballs usually placed?",
+      "choices": [
+        { "name": "Closet", "image": "" },
+        { "name": "Sink", "image": "" },
+        { "name": "Bottle", "image": "" },
+        { "name": "Floor", "image": "" }
+      ],
+      "correctAnswer": 0,
+      "category": 3
+    },
+    {
+      "question": "The melting point for sugar is different from water.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 0
+    },
+    {
+      "question": "Low temperatures can help bacteria grow.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 1
+    },
+    {
+      "question": "Evaporation can take place at any temperature.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 0,
+      "category": 2
+    },
+    {
+      "question": "Air fresheners gets used up through freezing.",
+      "choices": [{ "name": "True" }, { "name": "False" }],
+      "correctAnswer": 1,
+      "category": 3
     }
   ]
 }
