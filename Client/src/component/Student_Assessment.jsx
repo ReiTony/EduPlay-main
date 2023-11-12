@@ -115,6 +115,11 @@ function StudentAssessment() {
                 <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
               </div>
               <h3 className="text-4xl font-semibold font-sourceSans3">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
+              {data?.questions[currentQuestion].image != null && (
+                <div className="shadow-md rounded-md w-auto mx-auto my-6" style={{ height: "200px" }}>
+                  <img className="rounded-2xl h-full w-auto" src={data?.questions[currentQuestion].image} />
+                </div>
+              )}
               <div className="flex flex-col md:grid md:grid-cols-2 gap-3 font-semibold font-sourceSans3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
@@ -123,11 +128,6 @@ function StudentAssessment() {
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={handleChoiceClick(ind)}
                     key={ind}>
-                    {choice.image !== undefined && (
-                      <div className="h-40 w-40">
-                        <img src={choice.image} className="object-cover object-center w-full h-full" alt={choice.name} />
-                      </div>
-                    )}
                     <div className="text-2xl">{choice.name}</div>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
