@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import textToSpeechIcon from "../assets/texttospeech.svg";
 import axios from "axios";
 
 function StudentAssessment() {
+  const navigate = useNavigate();
   const { moduleNumber } = useParams();
   const userId = localStorage.getItem("userId");
   const username = localStorage.getItem("username");
@@ -23,9 +24,11 @@ function StudentAssessment() {
 
   useEffect(() => {
     const init = async () => {
+      let { progressReport: res } = await (await fetch(`${import.meta.env.VITE_API}teacher/progress-report/${username}`)).json();
+      if ((moduleNumber - 1) * 4 > res.unlockedModules.length - 3) navigate("/student");
       const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/assessment.json`)).json();
       setModuleId(id);
-      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
       res.data.questions = res.data.questions.sort(() => Math.random() - 0.5).slice(0, 10);
       setData(res.data);
       setIsLoading(false);
@@ -101,6 +104,8 @@ function StudentAssessment() {
       setUserAnswers(temp);
     }
   };
+
+  if (isLoading) return;
 
   return (
     <>

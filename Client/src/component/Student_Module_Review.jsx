@@ -13,22 +13,29 @@ function Student_Module_Review() {
   const [data, setData] = useState(null);
   const [moduleId, setModuleId] = useState();
   const [isFinished, setIsFinished] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const init = async () => {
+      let { progressReport: res } = await (await fetch(`${import.meta.env.VITE_API}teacher/progress-report/${username}`)).json();
+      if ((moduleNumber - 1) * 4 > res.unlockedModules.length - 1) navigate("/student");
+      if ((moduleNumber - 1) * 4 <= res.unlockedModules.length - 2) setIsFinished(true);
+      setIsLoading(false);
       const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/review.json`)).json();
       setModuleId(id);
-      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
       setData(res.data);
     };
     init();
   }, []);
 
-  const handleNext = async () => {    
+  const handleNext = async () => {
     // await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, moduleProgress: "100", title: data.title.split(":")[1].trim(), student: userId })
-    await axios.post(`${import.meta.env.VITE_API}student/module-record`, {  username,moduleId, title: data.title.split(":")[1].trim(), student: userId });
+    await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title.split(":")[1].trim(), student: userId });
     navigate(`/student/module/${moduleNumber}/game`);
   };
+
+  if (isLoading) return;
 
   return (
     <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
