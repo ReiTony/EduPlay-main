@@ -190,7 +190,7 @@
       "category": 0
     },
     {
-      "question": "Water is a non-living thing.",
+      "question": "Fire is a non-living thing.",
       "image": "/assessment_images/grade1/module2/19.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,

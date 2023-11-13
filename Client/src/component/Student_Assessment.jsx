@@ -63,7 +63,7 @@ function StudentAssessment() {
   const handleSubmitQuiz = async () => {
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
-    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score }).catch((err) => alert(err.message));
+    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber }).catch((err) => alert(err.message));
     setResult(res.data);
     setIsCompleteModalOpen(true);
     setIsViewingScore(true);
