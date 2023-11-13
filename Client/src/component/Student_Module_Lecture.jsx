@@ -11,12 +11,17 @@ function Student_Module_Lecture() {
   const [data, setData] = useState(null);
   const [moduleId, setModuleId] = useState();
   const [isFinished, setIsFinished] = useState(false);
+  const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
     const init = async () => {
+      let { progressReport: res } = await (await fetch(`${import.meta.env.VITE_API}teacher/progress-report/${username}`)).json();
+      if ((moduleNumber - 1) * 4 > res.unlockedModules.length) navigate("/student");
+      if ((moduleNumber - 1) * 4 <= res.unlockedModules.length - 1) setIsFinished(true);
+      setIsLoading(false);
       const { id } = await (await fetch(`/modules/grade${gradeLevel}/module${moduleNumber}/lecture.json`)).json();
       setModuleId(id);
-      const res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
+      res = await (await fetch(`${import.meta.env.VITE_API}admin/module/${id}`)).json();
       setData(res.data);
     };
     init();
@@ -26,6 +31,8 @@ function Student_Module_Lecture() {
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     navigate(`/student/module/${moduleNumber}/review`);
   };
+
+  if (isLoading) return;
 
   return (
     <div className="bg-[#fff5be] flex flex-col flex-grow items-center m-4 mb-6 p-8 rounded-2xl h-full">
