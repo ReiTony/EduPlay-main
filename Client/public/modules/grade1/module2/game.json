@@ -6,26 +6,31 @@
     {
       "imagePath": "/4pics1word/Animal.png",
       "answer": "Animal",
+      "clue": "An _ _ _ _",
       "meaning": "Animals are an example of a living thing. They need food, water, and air to live and grow. Some animals can walk, fly, swim, and crawl."
     },
     {
       "imagePath": "/4pics1word/Car.png",
       "answer": "Car",
+      "clue": "C _ _",
       "meaning": "Cars are an example of a non-living thing. It does not grow and cannot move without other humans."
     },
     {
       "imagePath": "/4pics1word/Human.png",
       "answer": "Human",
+      "clue": "Hu _ _ _",
       "meaning": "Humans are an example of a living thing. They need food, water, and air to live and can move by walking or crawling."
     },
     {
       "imagePath": "/4pics1word/Pencil.png",
       "answer": "Pencil",
+      "clue": "Pe _ _ _ _",
       "meaning": "Pencils are an example of a non-living thing. It does not grow and cannot move on its own."
     },
     {
       "imagePath": "/4pics1word/Plant.png",
       "answer": "Plant",
+      "clue": "Pl _ _ _",
       "meaning": "Plants are an example of a living thing. They need food, water, air, and sunlight to live and grow. Plants can bend towards light for growth or sometimes even move to capture prey."
     }
   ]
