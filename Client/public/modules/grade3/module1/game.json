@@ -6,26 +6,31 @@
     {
       "imagePath": "/4pics1word/Freeze.png",
       "answer": "Freeze",
+      "clue": "Fr _ _ _ _",
       "meaning": "Freezing converts liquids to solids. A common example of this is freezing water into ice."
     },
     {
       "imagePath": "/4pics1word/Hot.png",
       "answer": "Hot",
+      "clue": "H _ _",
       "meaning": "Heat is responsible for many different phase changes."
     },
     {
       "imagePath": "/4pics1word/Melt.png",
       "answer": "Melt",
+      "clue": "M _ _ _",
       "meaning": "Melting converts solids into liquids. An ice cream can melt into a liquid if left outside the fridge for too long."
     },
     {
       "imagePath": "/4pics1word/Steam.png",
       "answer": "Steam",
+      "clue": "St _ _ _",
       "meaning": "Steam is the vapor produced by boiling liquids. They form a white smoke of water droplets in the air."
     },
     {
       "imagePath": "/4pics1word/Thermometer.png",
       "answer": "Thermometer",
+      "clue": "The _ _ _ _ _ _ _ _",
       "meaning": "A thermometer is a special device used to measure how hot or cold something is."
     }
   ]

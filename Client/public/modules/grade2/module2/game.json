@@ -6,26 +6,31 @@
     {
       "imagePath": "/4pics1word/Baby.png",
       "answer": "Baby",
+      "clue": "B _ _ _",
       "meaning": "A baby is a newly-born human child or animal. As time goes by, they are able to change and grow into adults."
     },
     {
       "imagePath": "/4pics1word/Cloud.png",
       "answer": "Cloud",
+      "clue": "Cl _ _ _",
       "meaning": "A cloud is a collection of tiny droplets of water that can float in the air. Eventually, the water from clouds form rain."
     },
     {
       "imagePath": "/4pics1word/Drink.png",
       "answer": "Drink",
+      "clue": "Dr _ _ _",
       "meaning": "Drinking water or other beverages helps regulate body temperature. It also provides nutrients and keeps humans and animals hydrated."
     },
     {
       "imagePath": "/4pics1word/Swim.png",
       "answer": "Swim",
+      "clue": "S _ _ _",
       "meaning": "Swimming is a movement done by humans and animals that helps them move across water."
     },
     {
       "imagePath": "/4pics1word/Wood.png",
       "answer": "Wood",
+      "clue": "W _ _ _",
       "meaning": "Wood is a material collected from trees that can be used for many different furnitures."
     }
   ]
