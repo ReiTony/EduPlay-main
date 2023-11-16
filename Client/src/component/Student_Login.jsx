@@ -41,9 +41,9 @@ function Student_Login() {
   return (
     <div className="flex justify-center min-h-screen background">
       <NavBar />
-      <main className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid grid-cols-[35%_65%] mt-24 mb-16">
-        <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] bg-opacity-95">
-          <div className="flex items-center justify-center">
+      <main className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] lg:mt-24 mt-16 mb-16">
+        <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] bg-opacity-95  hidden lg:block rounded-l-lg shadow-lg shadow-black">
+          <div className="flex items-center justify-center ">
             <img className="object-cover w-fit h-[90%] m-0" src={logo} alt="Logo" />
           </div>
           <div>
@@ -54,23 +54,23 @@ function Student_Login() {
           </div>
         </div>
 
-        <section className="bg-[#f7d538] opacity-95 flex flex-col gap-14 justify-center px-16 py-4">
-          <h2 className="font-extrabold px-14 text-6xl font-expletus my-8">Student Login</h2>
+        <section className="bg-[#f7d538] opacity-95 flex flex-col gap-14 justify-center  rounded-r-lg lg:px-16 py-4 shadow-2xl  shadow-black">
+          <h2 className="my-8 text-6xl font-extrabold font-expletus">Student Login</h2>
           <form onSubmit={handleSubmit}>
-            <label htmlFor="username" className={`block mb-2 text-xl font-semibold ${touched.username && errors.username ? "text-red-500" : ""}`}>
+            <label htmlFor="username" className={`items-start ml-6 flex mb-2 text-xl font-semibold ${touched.username && errors.username ? "text-red-500" : ""}`}>
               Username
             </label>
             <input
               id="username"
               name="username"
               type="text"
-              className={`w-[100%] rounded-full flex p-4 px-10 mt-2 text-xl bg-black text-white border-2 font-kumbh ${touched.username && errors.username ? "border-red-500 " : ""}`}
+              className={`w-[100%] rounded-full flex p-4 px-10 mt-2 text-xl bg-black text-white border-2 font-kumbh ${touched.username && errors.username ? "border-red-500 " : "border-green-500"}`}
               value={values.username}
               onChange={handleChange}
               onBlur={handleBlur}
               disabled={isSubmitting}
             />
-            <label htmlFor="password" className={`block mt-4 mb-2 text-xl font-semibold ${touched.password && errors.password ? "text-red-500" : ""}`}>
+            <label htmlFor="password" className={`items-start ml-6 flex mt-4 mb-2 text-xl font-semibold ${touched.password && errors.password ? "text-red-500" : ""}`}>
               Password
             </label>
             <div className="relative">
@@ -78,24 +78,24 @@ function Student_Login() {
                 id="password"
                 name="password"
                 type={showPassword ? "text" : "password"}
-                className={`w-[100%] justify-center flex items-center rounded-full px-10 border-2 p-4 text-xl bg-black text-white font-kumbh ${touched.password && errors.password ? "border-red-500 " : ""}`}
+                className={`w-[100%] justify-center flex items-center rounded-full px-10 border-2 p-4 text-xl bg-black text-white font-kumbh ${touched.password && errors.password ? "border-red-500 " : "border-green-500"}`}
                 value={values.password}
                 onChange={handleChange}
                 onBlur={handleBlur}
                 disabled={isSubmitting}
               />
-              <span className="absolute text-xl cursor-pointer top-7 right-5 " onClick={() => setShowPassword(!showPassword)}>
+              <span className="absolute text-xl cursor-pointer top-6 right-5 " onClick={() => setShowPassword(!showPassword)}>
                 {showPassword ? <FaEye className="text-white" /> : <FaEyeSlash className="text-white" />}
               </span>
             </div>
-            <div className="flex mt-4">
-              <label className="block font-bold text-gray-500 ms-4">
+            <div className="flex justify-end mt-4 mr-2 text-lg md:mr-0 md:text-lg">
+              <label className="flex justify-end font-bold text-gray-500 ms-4">
                 <input className="leading-tight" type="checkbox" />
-                <span className="ms-2 text-xl">Remember me</span>
+                <span className=" ms-2">Remember me</span>
               </label>
             </div>
             <button
-              className="font-sourceSans3 text-center rounded-full px-12 py-3 mt-4 text-2xl bg-black shadow-lg hover:shadow-green-400 text-white placeholder-white font-bold transition duration-300 ease-in-out transform hover:scale-105"
+              className="px-12 py-3 mt-4 text-2xl font-bold text-center text-white placeholder-white transition duration-300 ease-in-out transform bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400 hover:scale-105"
               type="submit"
               disabled={isSubmitting}>
               {isSubmitting ? "Signing in..." : "Sign In"}
