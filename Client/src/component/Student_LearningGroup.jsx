@@ -15,19 +15,19 @@ function Student_LearningGroup() {
   }, []);
 
   return (
-    <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 gap-6 rounded-2xl flex-grow">
-      <div className="flex flex-row justify-between w-full text-5xl font-semibold font-sourceSans3 items-center my-2">
+    <div className="flex flex-col items-center flex-grow gap-6 p-8 m-4 mb-6 shadow-lg secondBackground rounded-2xl shadow-black">
+      <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
         <h3 className="me-auto">LEARNING GROUP</h3>
       </div>
-      <hr className="bg-black h-1 w-full" />
-      <div className="flex flex-col gap-4 w-full">
+      <hr className="w-full h-1 bg-black" />
+      <div className="flex flex-col w-full gap-4">
         {assessments.map((assessment, i) => (
-          <div className="flex flex-row flex-grow justify-between items-center font-sourceSans3 font-bold text-2xl bg-[#ffbc5c] shadow-md rounded-2xl w-full px-8 py-4" key={i}>
+          <div className="flex flex-col lg:flex-row flex-grow justify-between items-center font-sourceSans3 font-bold  text-xl lg:text-2xl bg-[#ffbc5c] shadow-md rounded-2xl w-full px-8 py-4   hover:scale-[.99] transform-gpu" key={i}>
             <div className="flex flex-col">
               <div>{assessment.title}</div>
               <div>{`Module No. ${assessment.moduleNumber}`}</div>
             </div>
-            <button className="text-white bg-[#282424] rounded-full shadow-md px-8 py-2" onClick={() => navigate(assessment._id)}>
+            <button className="text-white bg-[#282424] rounded-full shadow-md px-8 py-2 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => navigate(assessment._id)}>
               TAKE QUIZ
             </button>
           </div>

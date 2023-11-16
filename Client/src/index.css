@@ -3,12 +3,15 @@
 @tailwind components;
 @tailwind utilities;
 
+/*
 .mygrid {
     display: grid;
     grid-template-columns: repeat(9, 1fr);
     grid-template-rows: repeat(10, 1fr); 
 }
+*/
 
+/* Styles for desktop screens word Hunt */
 .ele {
     height: calc(40vw / 10);
     width: calc(40vw / 10);
@@ -19,6 +22,19 @@
     -webkit-user-select: none;
     -ms-user-select: none;
 }
+
+/* Styles for mobile screens */
+@media (max-width: 767px) {
+    .ele {
+        /* Add your mobile-specific styles here */
+        height: calc(50vh / 10);
+        width: calc(100vw / 10);
+        max-height: 100%;
+        max-width: 100%;
+    }
+}
+
+
 
 @layer components {
     .sectionSize {

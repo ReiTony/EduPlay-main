@@ -28,15 +28,27 @@ function Student_Module_Lecture() {
   };
 
   return (
-    <div className="bg-[#fff5be] flex flex-col flex-grow items-center m-4 mb-6 p-8 rounded-2xl h-full">
+    <div className="flex flex-col items-center flex-grow h-full p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl lg:w-5/6 lg:mx-auto shadow-black">
       <h1 className="text-3xl font-semibold font-sourceSans3">{data?.title || ""}</h1>
 
-      <hr className="bg-black h-1 w-full my-2" />
+      <hr className="w-full h-1 my-2 bg-black" />
+      {/* HIDDEN TECHNIQUE FOR MOBILE RESPONSIVE NG VIDEO */}
+      <div className="flex flex-col items-center justify-center flex-grow gap-8">
+        <div className="flex flex-col items-center justify-center lg:hidden">
+          <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls
+            width="110%"
+          />
 
-      <div className="flex flex-col flex-grow justify-center items-center gap-8">
-        <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls />
+        </div>
+        <div className="hidden lg:flex lg:flex-col lg:items-center lg:justify-center xl:block">
+          <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls
+            width='1100px'
+            height='550px'
+          />
+        </div>
+
         {isFinished && (
-          <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-[#282424] rounded-full shadow-md" onClick={handleNext}>
+          <button className=" px-10 py-2 text-2xl font-bold text-center text-white bg-[#282424] rounded-full shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleNext}>
             NEXT
           </button>
         )}

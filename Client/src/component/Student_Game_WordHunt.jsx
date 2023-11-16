@@ -88,19 +88,18 @@ function Student_Game_WordHunt() {
 
   return (
     <>
-      <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
-        <h3 className="text-5xl font-semibold my-2 font-sourceSans3">{data?.title || ""}</h3>
+      <div className="flex flex-col items-center h-full p-8 m-4 mb-6 shadow-md secondBackground shadow-black rounded-2xl">
+        <h3 className="my-2 text-5xl font-semibold font-sourceSans3">{data?.title || ""}</h3>
 
-        <hr className="bg-black h-1 w-full" />
+        <hr className="w-full h-1 bg-black" />
 
-        <div className="flex items-start gap-10">
-          <div className="mygrid bg-slate-100 rounded-2xl shadow-lg flex-grow p-4 my-16">
+        <div className="flex flex-col items-start gap-10 lg:flex-row">
+          <div className="grid flex-grow grid-cols-9 p-4 my-16 shadow-lg grid-rows-10 bg-slate-100 rounded-2xl">
             {data?.puzzle.map((row, rowNum) =>
               row.map((i, colNum) => (
                 <div
-                  className={`ele flex justify-center items-center font-semibold text-2xl ${
-                    shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
-                  }`}
+                  className={`ele flex justify-center items-center font-semibold lg:text-2xl  ${shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
+                    }`}
                   key={rowNum + "-" + colNum}
                   onMouseDown={() => setOrigin([rowNum, colNum + 1])}
                   onMouseUp={handleMouseUp}
@@ -111,8 +110,8 @@ function Student_Game_WordHunt() {
             )}
           </div>
 
-          <div className="flex flex-col gap-2 flex-grow mx-2 my-16 font-sourceSans3 text-2xl" style={{ maxWidth: "720px" }}>
-            <div className="flex flex-row gap-6 items-center mb-8">
+          <div className="flex flex-col flex-grow gap-2 mx-2 my-16 text-2xl font-sourceSans3" style={{ maxWidth: "720px" }}>
+            <div className="flex flex-row items-center gap-6 mb-8">
               <h4 className="text-4xl font-semibold">Words to Find</h4>
               <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
             </div>
@@ -126,26 +125,26 @@ function Student_Game_WordHunt() {
         </div>
       </div>
       <ReactModal appElement={document.getElementById("root")} isOpen={isModalCompleteOpen} shouldCloseOnEsc={true} style={modalStyle}>
-        <div className="flex flex-col justify-center items-center gap-8 font-sourceSans3 text-3xl font-semibold p-8">
+        <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-semibold font-sourceSans3">
           <div className="flex flex-col gap-2">
             <div className="text-center">Congratulations! You have finished the word hunt.</div>
             <div className="text-center">Do you want to go to assessment?</div>
           </div>
           <div className="flex flex-row justify-center gap-4">
-            <button className="bg-red-500 text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => setIsModalCompleteOpen(false)}>
+            <button className="px-10 py-2 text-white bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsModalCompleteOpen(false)}>
               NO
             </button>
-            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
+            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
               YES
             </button>
           </div>
         </div>
       </ReactModal>
       <ReactModal appElement={document.getElementById("root")} isOpen={isModalFoundOpen} shouldCloseOnEsc={true} style={modalStyle}>
-        <div className="flex flex-col justify-center items-center gap-8 font-sourceSans3 p-8">
-          <h2 className="text-3xl text-center font-semibold">{lastFoundWord?.word}</h2>
+        <div className="flex flex-col items-center justify-center gap-8 p-8 font-sourceSans3">
+          <h2 className="text-3xl font-semibold text-center">{lastFoundWord?.word}</h2>
           <h4 className="text-2xl text-center">{lastFoundWord?.meaning}</h4>
-          <button className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => setIsModalFoundOpen(false)}>
+          <button className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90  hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => setIsModalFoundOpen(false)}>
             CONTINUE
           </button>
         </div>
@@ -154,6 +153,18 @@ function Student_Game_WordHunt() {
   );
 }
 
-const modalStyle = { content: { backgroundColor: "#d8ec8c", border: "0", borderRadius: "2rem", maxWidth: "540px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } };
+const modalStyle = {
+  content: {
+    background: `url("/src/assets/wordHuntPOPbg.svg")`,
+    border: "0",
+    borderRadius: "2rem",
+    maxWidth: "540px",
+    width: "fit-content",
+    height: "fit-content",
+    top: "50%", left: "50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)"
+  }
+};
 
 export default Student_Game_WordHunt;
