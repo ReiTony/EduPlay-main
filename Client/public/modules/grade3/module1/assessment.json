@@ -77,7 +77,7 @@
     },
     {
       "question": "Steel is used for making many sharp objects.",
-      "image": null,
+      "image": "/assessment_images/grade3/module1/7.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 0
@@ -98,7 +98,7 @@
     },
     {
       "question": "Never take any medicine without the supervision of an adult.",
-      "image": "/assessment_images/grade3/module1/10.jpg",
+      "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
       "correctAnswer": 0,
       "category": 1
