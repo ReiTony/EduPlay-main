@@ -1,6 +1,7 @@
 import { useEffect, useState, useMemo } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import { IoArrowBackCircle } from "react-icons/io5";
 import { useTable } from "react-table";
 import studentDP from "../assets/StudentProfilePicture/StudentDP.jpg";
 
@@ -24,7 +25,7 @@ function Teacher_LearningGroupStudent() {
     console.log(data.modules);
     console.log(data);
     data.gameScores.forEach((game, i) => (temp[i].game = "Played"));
-    for (let i = 0; i < Math.floor((data.modules.length + 2)/ 4); i++) temp[i].learningMaterials = "Viewed";
+    for (let i = 0; i < Math.floor((data.modules.length + 2) / 4); i++) temp[i].learningMaterials = "Viewed";
     data.assessmentScores.forEach((ass, i) => (temp[i].assessment = `${ass.score}/10`));
 
     setData(temp);
@@ -45,7 +46,8 @@ function Teacher_LearningGroupStudent() {
     <div className="flex flex-col flex-grow gap-4 p-4">
       <div className="bg-[#5874fc] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">LEARNING GROUP - PROGRESS TRACKING</div>
       <div className="flex flex-col bg-[#98ccfc] flex-grow gap-4 rounded-3xl p-5 font-bold">
-        <button className="bg-[#282424] rounded-full shadow-md text-white text-2xl me-auto px-6 py-2" onClick={() => navigate(-1)}>
+        <button className="flex flex-row items-center gap-2 bg-[#282424] rounded-full shadow-md text-white text-2xl me-auto px-6 py-2" onClick={() => navigate(-1)}>
+          <IoArrowBackCircle />
           BACK
         </button>
         <div className="flex flex-row gap-6 bg-[#e0dcdc] w-full rounded-2xl p-6">
