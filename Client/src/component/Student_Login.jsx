@@ -41,7 +41,7 @@ function Student_Login() {
   return (
     <div className="flex flex-col justify-between min-h-screen background">
       <NavBar />
-      <main className="w-[80%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto">
+      <main className="w-[80%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto ">
         <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] hidden bg-opacity-95 lg:block rounded-l-lg shadow-lg shadow-black">
           <div className="flex items-center justify-center ">
             <img className="object-cover w-fit h-[90%] m-0" src={logo} alt="Logo" />
@@ -54,8 +54,9 @@ function Student_Login() {
           </div>
         </div>
 
-        <section className="bg-[#f7d538] opacity-95 flex flex-col gap-14 justify-center rounded-r-lg lg:px-16 py-4 shadow-2xl shadow-black">
-          <h2 className="my-8 text-6xl font-extrabold font-expletus">Student Login</h2>
+        <section className="bg-[#f7d538] opacity-95 flex flex-col py-4 justify-center rounded-r-lg lg:rounded-l-none rounded-l
+        -lg lg:px-16 py-auto shadow-2xl shadow-black">
+          <h2 className="my-2 text-4xl font-extrabold lg:text-6xl lg:my-8 font-expletus">Student Login</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username" className={`items-start ml-6 flex mb-2 text-xl font-semibold ${touched.username && errors.username ? "text-red-500" : ""}`}>
               Username
@@ -90,7 +91,7 @@ function Student_Login() {
             </div>
             <div className="flex justify-end mt-4 mr-2 text-lg md:mr-0 md:text-lg">
               <label className="flex justify-end font-bold text-gray-500 ms-4">
-                <input className="leading-tight" type="checkbox" />
+                <input className="leading-tight " type="checkbox" />
                 <span className=" ms-2">Remember me</span>
               </label>
             </div>
