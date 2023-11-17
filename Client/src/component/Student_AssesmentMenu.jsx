@@ -19,16 +19,16 @@ function Student_AssessmentMenu() {
   }, []);
 
   return (
-    <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl flex-grow">
-      <h3 className="text-5xl font-semibold my-2 me-auto font-sourceSans3">Assessments</h3>
-      <hr className="bg-black h-1 w-full" />
+    <div className="flex flex-col items-center flex-grow p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
+      <h3 className="my-2 text-5xl font-semibold me-auto font-sourceSans3">Assessments</h3>
+      <hr className="w-full h-1 bg-black" />
 
-      <div className="flex flex-col gap-4 h-full justify-center my-6 w-full">
+      <div className="flex flex-col justify-center w-full h-full gap-4 my-6">
         {modules?.map((module, index) => (
-          <div className="flex flex-row justify-between items-center bg-[#ffbc5c] shadow-md rounded-full w-full px-8 py-4" key={index}>
+          <div className="flex flex-row justify-between items-center bg-[#ffbc5c] shadow-md rounded-full w-full px-8 py-4 hover:scale-[.99] transition-transform transform-gpu" key={index}>
             <div className="text-3xl font-bold">{`Module ${module.number}: ${module.title}`}</div>
             <button
-              className={`text-white font-semibold text-2xl ${module.locked ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1"} shadow-md rounded-full`}
+              className={`text-white font-semibold text-2xl ${module.locked ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1 hover:shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"} shadow-md rounded-full`}
               disabled={module.locked}
               onClick={() => navigate(`/student/module/${module.number}/assessment`)}>
               {module.locked ? <FaLock /> : "OPEN"}

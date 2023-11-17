@@ -38,12 +38,19 @@ function Student_Module_Review() {
   if (isLoading) return;
 
   return (
-    <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 rounded-2xl h-full">
+    <div className="secondBackground shadow-md shadow-black flex flex-col items-center m-4 lg:mx-auto mb-6 p-8 rounded-2xl h-full lg:h-[82vh] lg:w-5/6">
       <h1 className="text-3xl font-semibold font-sourceSans3">{data?.title || ""}</h1>
-      <hr className="bg-black h-1 w-full my-2" />
+      <hr className="w-full h-1 my-2 bg-black" />
 
-      <div style={{ maxWidth: "960px" }}>
+      <div className="lg:hidden w-[39vh]">
         <Carousel className="my-10" axis="horizontal" verticalSwipe="natural" showIndicators={false} showStatus="false" onChange={(e) => e === data?.slides.length - 1 && setIsFinished(true)}>
+          {data?.slides.map((slide, ind) => (
+            <img key={ind} src={slide} />
+          ))}
+        </Carousel>
+      </div>
+      <div className="hidden lg:block w-[98vh]">
+        <Carousel className="my-5" axis="horizontal" verticalSwipe="natural" showIndicators={false} showStatus="false" onChange={(e) => e === data?.slides.length - 1 && setIsFinished(true)}>
           {data?.slides.map((slide, ind) => (
             <img key={ind} src={slide} />
           ))}
@@ -51,7 +58,7 @@ function Student_Module_Review() {
       </div>
 
       {isFinished && (
-        <button className="px-10 py-2 text-2xl font-bold text-center text-white bg-black rounded-full" onClick={handleNext}>
+        <button className="px-10 py-2 text-2xl font-bold text-center text-white transition-transform bg-black rounded-full shadow-md hover:shadow-green-500 hover:scale-95 transform-gpu" onClick={handleNext}>
           NEXT
         </button>
       )}

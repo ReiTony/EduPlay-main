@@ -8,10 +8,11 @@
 }
 
 .backgroundYellow {
-    width: 100%;
-    flex-grow: 1;
-    background-color: #f7d538;
-    overflow-y: auto;
+    background-image: url('/src/assets/yellow.svg');
+}
+
+.secondBackground {
+    background-image: url('/src/assets/secondbackground.svg');
 }
 
 .homepageParent:hover .homepageChild {

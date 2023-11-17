@@ -102,12 +102,12 @@ function Student_LearningGroupAssessment() {
 
   return (
     <>
-      <div className="bg-[#fff5be] flex flex-col items-center m-4 mb-6 p-8 gap-6 rounded-2xl flex-grow">
-        <div className="flex flex-row justify-between w-full text-5xl font-semibold font-sourceSans3 items-center my-2">
+      <div className="flex flex-col items-center flex-grow gap-6 p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
+        <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
           <h3 className="me-auto">{data?.title || ""}</h3>
           {isViewingScore && <div className=""> {`Score: ${score}/${data?.questions.length}`}</div>}
         </div>
-        <hr className="bg-black h-1 w-full" />
+        <hr className="w-full h-1 bg-black" />
 
         <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl p-10 my-auto gap-4" style={{ maxWidth: "1024px" }}>
           {!isLoading && (
@@ -120,9 +120,8 @@ function Student_LearningGroupAssessment() {
               <div className="flex flex-col gap-3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
-                    className={`flex flex-row items-center gap-4 px-6 py-3 rounded-full shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
-                      hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
-                    } ${hasAnswered ? "" : "cursor-pointer"}`}
+                    className={`flex flex-row items-center gap-4 px-6 py-3 rounded-full shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
+                      } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={() => handleChoiceClick(ind)}
                     key={ind}>
                     <input type="radio" id={ind} checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
@@ -131,11 +130,11 @@ function Student_LearningGroupAssessment() {
                     </label>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
-                        <div className="font-sourceSans3 font-semibold text-lg">Your Answer (Correct)</div>
+                        <div className="text-lg font-semibold font-sourceSans3">Your Answer (Correct)</div>
                       ) : isAnswerWrong(ind) ? (
-                        <div className="font-sourceSans3 font-semibold text-lg">Your Answer (Wrong)</div>
+                        <div className="text-lg font-semibold font-sourceSans3">Your Answer (Wrong)</div>
                       ) : isTheCorrectAnswer(ind) ? (
-                        <div className="font-sourceSans3 font-semibold text-lg">The Correct Answer</div>
+                        <div className="text-lg font-semibold font-sourceSans3">The Correct Answer</div>
                       ) : (
                         <></>
                       ))}
@@ -146,24 +145,24 @@ function Student_LearningGroupAssessment() {
           )}
         </div>
         {isViewingScore ? (
-          <div className="flex flex-row justify-between w-full text-white font-sourceSans3 font-semibold text-2xl" style={{ maxWidth: "1024px" }}>
+          <div className="flex flex-row justify-between w-full text-2xl font-semibold text-white font-sourceSans3" style={{ maxWidth: "1024px" }}>
             {currentQuestion != 0 && (
-              <button className="me-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md" onClick={() => goToQuestion(currentQuestion - 1)}>
+              <button className="me-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => goToQuestion(currentQuestion - 1)}>
                 PREVIOUS
               </button>
             )}
             {currentQuestion + 1 != data?.questions.length && (
-              <button className="ms-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md" onClick={() => goToQuestion(currentQuestion + 1)}>
+              <button className="ms-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => goToQuestion(currentQuestion + 1)}>
                 NEXT
               </button>
             )}
           </div>
         ) : hasAnswered ? (
-          <button className="bg-[#282424] rounded-full px-10 py-2 text-3xl shadow-md text-white font-bold font-sourceSans3 hover:brightness-90" onClick={handleNext}>
+          <button className="bg-[#282424] rounded-full px-10 py-2 text-3xl shadow-md text-white font-bold font-sourceSans3 hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleNext}>
             NEXT
           </button>
         ) : (
-          <button className="bg-[#08a454] rounded-full px-10 py-2 text-3xl shadow-md text-white font-bold font-sourceSans3 hover:brightness-90" onClick={handleSubmit}>
+          <button className="bg-[#08a454] rounded-full px-10 py-2 text-3xl shadow-md text-white font-bold font-sourceSans3 hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleSubmit}>
             SUBMIT
           </button>
         )}
@@ -172,14 +171,14 @@ function Student_LearningGroupAssessment() {
         appElement={document.getElementById("root")}
         isOpen={isSubmitModalOpen}
         shouldCloseOnEsc={true}
-        style={{ content: { backgroundColor: "#d8ec8c", border: "0", borderRadius: "2rem", maxWidth: "540px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-        <div className="flex flex-col justify-center items-center gap-8 font-sourceSans3 text-3xl font-semibold p-8">
+        style={{ content: { background: `url("/src/assets/wordHuntPOPbg.svg")`, border: "0", borderRadius: "2rem", maxWidth: "540px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)" } }}>
+        <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-semibold font-sourceSans3">
           <div className="text-center">Are you sure you want to submit the quiz?</div>
           <div className="flex flex-row justify-center gap-4">
-            <button className="bg-red-500 text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={() => setIsSubmitModalOpen(false)}>
+            <button className="px-10 py-2 text-white transition-transform bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsSubmitModalOpen(false)}>
               CANCEL
             </button>
-            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90" onClick={handleSubmitQuiz}>
+            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleSubmitQuiz}>
               SUBMIT
             </button>
           </div>
