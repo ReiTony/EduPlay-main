@@ -39,10 +39,10 @@ function Student_Login() {
   });
 
   return (
-    <div className="flex justify-center min-h-screen background">
+    <div className="flex flex-col justify-between min-h-screen background">
       <NavBar />
-      <main className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] lg:mt-24 mt-16 mb-16">
-        <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] bg-opacity-95  hidden lg:block rounded-l-lg shadow-lg shadow-black">
+      <main className="w-[80%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto">
+        <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] hidden bg-opacity-95 lg:block rounded-l-lg shadow-lg shadow-black">
           <div className="flex items-center justify-center ">
             <img className="object-cover w-fit h-[90%] m-0" src={logo} alt="Logo" />
           </div>
@@ -54,7 +54,7 @@ function Student_Login() {
           </div>
         </div>
 
-        <section className="bg-[#f7d538] opacity-95 flex flex-col gap-14 justify-center  rounded-r-lg lg:px-16 py-4 shadow-2xl  shadow-black">
+        <section className="bg-[#f7d538] opacity-95 flex flex-col gap-14 justify-center rounded-r-lg lg:px-16 py-4 shadow-2xl shadow-black">
           <h2 className="my-8 text-6xl font-extrabold font-expletus">Student Login</h2>
           <form onSubmit={handleSubmit}>
             <label htmlFor="username" className={`items-start ml-6 flex mb-2 text-xl font-semibold ${touched.username && errors.username ? "text-red-500" : ""}`}>
