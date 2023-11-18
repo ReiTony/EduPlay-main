@@ -34,15 +34,15 @@ function Teacher_Add_Student() {
 
   return (
     <>
-      <header className="grid bg-red-500 grid-row-[50%_50%] mx-4 rounded-3xl gap-3 p-4 text-4xl font-reemkufifont font-bold">
+      <header className="grid backgroundRed text-white grid-row-[50%_50%]  mx-4 rounded-3xl gap-3 p-4 text-4xl font-reemkufifont font-bold ">
         <h1>ACCOUNT MANAGEMENT</h1>
       </header>
 
-      <main className="flex flex-col justify-between lg:min-h-[75vh] bg-[#a5d6a7] mx-4 rounded-lg mt-4 p-5">
+      <main className="flex flex-col justify-between lg:min-h-[75vh] backgroundRed shadow-lg shadow-red-500 mx-4 rounded-lg mt-4 p-5">
         <div>
-          <h1 className="font-bold lg:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
+          <h1 className="font-bold text-white lg:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
         </div>
-        <div className="bg-[#fff5be] rounded-lg mx-4 mt-2 lg:min-h-[65vh]">
+        <div className="bg-[#fff5be] shadow-md shadow-[#fff5be] bg-opacity-80 rounded-lg mx-4 mt-2 lg:min-h-[65vh]">
           <div>
             <h1 className="p-10 font-bold lg:text-4xl">Fill in the information:</h1>
           </div>
@@ -107,7 +107,7 @@ function Teacher_Add_Student() {
                   </div>
                 </div>
                 <div className="flex justify-center p-5">
-                  <button type="submit" className="px-10 py-2 text-3xl font-bold text-white bg-black rounded-2xl lg:mt-28 hover-bg-slate-800">
+                  <button type="submit" className="px-10 py-2 text-3xl font-bold text-white bg-green-500 rounded-lg shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300">
                     ADD
                   </button>
                 </div>

@@ -99,7 +99,7 @@ function Student_Login() {
               className="px-12 py-3 mt-4 text-2xl font-bold text-center text-white placeholder-white transition duration-300 ease-in-out transform bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400 hover:scale-105"
               type="submit"
               disabled={isSubmitting}>
-              {isSubmitting ? "Signing in..." : "Sign In"}
+              {isSubmitting ? "SIGNING IN..." : "SIGN IN"}
             </button>
           </form>
         </section>

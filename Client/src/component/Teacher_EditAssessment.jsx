@@ -67,28 +67,30 @@ function Teacher_EditAssessment() {
   return (
     <>
       <div className="flex flex-col flex-grow gap-4 p-4">
-        <div className="bg-[#08a454] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">CUSTOM ASSESSMENTS</div>
-        <div className="flex flex-col bg-[#a8d4a4] flex-grow gap-4 rounded-3xl p-5 font-bold">
+        <header className="p-4 text-4xl font-bold text-white shadow-md backgroundGreen rounded-3xl font-reemkufifont ">
+          <h1>CUSTOM-ASSESSMENTS</h1>
+        </header>
+        <div className="flex flex-col flex-grow gap-4 p-5 font-bold backgroundGreen rounded-3xl">
           <div className="flex flex-row justify-end gap-2">
-            <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowAddModal(true)}>
+            <button className="bg-[#282424] rounded-full px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => setShowAddModal(true)}>
               ADD QUESTION
             </button>
-            <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowSaveAssessmentModal(true)}>
+            <button className="bg-[#282424] rounded-full  px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => setShowSaveAssessmentModal(true)}>
               SAVE ASSESSMENT
             </button>
           </div>
 
-          <div className="flex flex-col gap-4 m-4">
+          <div className="flex flex-col gap-4 m-4 ">
             {assessment?.questions.map((i, ind) => (
               <Accordion key={ind}>
                 <Accordion.Title>
-                  <div className="flex flex-row flex-grow justify-between items-center px-6">
+                  <div className="flex flex-row items-center justify-between flex-grow px-6 ">
                     <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
-                    <div className="flex flex-row gap-2 text-white font-bold">
-                      <button className="bg-[#08a454] rounded-full shadow-md px-8 py-2" onClick={showEditQuestion(ind)}>
+                    <div className="flex flex-row gap-2 font-bold text-white">
+                      <button className="bg-[#08a454] rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={showEditQuestion(ind)}>
                         EDIT
                       </button>
-                      <button className="bg-[#d00c24] rounded-full shadow-md px-8 py-2" onClick={showDelete(ind)}>
+                      <button className="bg-[#d00c24] rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={showDelete(ind)}>
                         DELETE
                       </button>
                     </div>
@@ -96,7 +98,7 @@ function Teacher_EditAssessment() {
                 </Accordion.Title>
                 <Accordion.Content>
                   <div className="flex flex-col gap-4 font-sourceSans3 ">
-                    <div className="text-3xl ms-8 font-bold">{i.question}</div>
+                    <div className="text-3xl font-bold ms-8">{i.question}</div>
                     <div className="flex flex-col text-2xl ms-16">
                       {i.choices.map((c, indc) => (
                         <div className={indc === i.correctAnswer ? "font-bold" : "font-normal"} key={indc}>{`${String.fromCharCode(97 + indc)}. ${c}`}</div>
@@ -143,32 +145,43 @@ function AddModal({ show, onHide, onSave }) {
       appElement={document.getElementById("root")}
       isOpen={show}
       shouldCloseOnEsc={true}
-      style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 font-sourceSans3 font-semibold p-6">
-        <div className="text-center text-3xl">ADD QUESTION</div>
+      style={{
+        content: {
+          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
+          border: "3px solid black",
+          borderRadius: "2rem",
+          maxWidth: "720px",
+          width: "100%", height: "fit-content",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
+        }
+      }}>
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3 ">
+        <div className="text-3xl text-center text-white">ADD QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question">Question:</label>
-          <input className="flex-grow px-4 py-1 rounded-full border-2 border-black" type="text" id="question" placeholder="Question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+          <label htmlFor="question" className="text-white">Question:</label>
+          <input className="flex-grow px-4 py-1 border-2 border-black rounded-full" type="text" id="question" placeholder="Question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
         </div>
         <div className="flex flex-row gap-3">
-          <div className="text-2xl">Choices:</div>
-          <div className="flex flex-col gap-3 flex-grow">
+          <div className="text-2xl text-white">Choices:</div>
+          <div className="flex flex-col flex-grow gap-3">
             {choices.map((choice, ind) => (
-              <div className="flex flex-row gap-2 items-center" key={ind}>
-                <input className="flex-grow text-2xl rounded-full px-5 py-1 border-2 border-black" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} placeholder="Choice" />
+              <div className="flex flex-row items-center gap-2" key={ind}>
+                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} placeholder="Choice" />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
-            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12" onClick={() => setChoices([...choices, ""])}>
-              + Add a choice
+            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => setChoices([...choices, ""])}>
+              + ADD A CHOICE
             </button>
           </div>
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
             ADD
           </button>
         </div>
@@ -203,29 +216,40 @@ function EditModal({ show, onHide, onSave, question }) {
       appElement={document.getElementById("root")}
       isOpen={show}
       shouldCloseOnEsc={true}
-      style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 font-sourceSans3 font-semibold p-6">
-        <div className="text-center text-3xl">EDIT QUESTION</div>
+      style={{
+        content: {
+          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
+          border: "3px solid black",
+          borderRadius: "2rem",
+          maxWidth: "720px",
+          width: "100%", height: "fit-content",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
+        }
+      }}>
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+        <div className="text-3xl text-center text-white">EDIT QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question">Question:</label>
-          <input className="flex-grow px-4 py-1 rounded-full border-2 border-black" type="text" id="question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+          <label htmlFor="question" className="text-white">Question:</label>
+          <input className="flex-grow px-4 py-1 border-black rounded-full border-1" type="text" id="question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
         </div>
         <div className="flex flex-row gap-3">
-          <div className="text-2xl">Choices:</div>
-          <div className="flex flex-col gap-3 flex-grow">
+          <div className="text-2xl text-white">Choices:</div>
+          <div className="flex flex-col flex-grow gap-3">
             {choices.map((choice, ind) => (
-              <div className="flex flex-row gap-2 items-center" key={ind}>
-                <input className="flex-grow text-2xl rounded-full px-5 py-1 border-2 border-black" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} />
+              <div className="flex flex-row items-center gap-2" key={ind}>
+                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
           </div>
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
             SAVE
           </button>
         </div>
@@ -241,18 +265,29 @@ function DeleteModal({ show, onHide, onSave }) {
       appElement={document.getElementById("root")}
       isOpen={show}
       shouldCloseOnEsc={true}
-      style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 font-sourceSans3 font-semibold p-6">
+      style={{
+        content: {
+          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
+          border: "3px solid black",
+          borderRadius: "2rem",
+          maxWidth: "720px",
+          width: "100%", height: "fit-content",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
+        }
+      }}>
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking proceed, all information provided under the question will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
+          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
             PROCEED
           </button>
         </div>
@@ -268,8 +303,19 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
       appElement={document.getElementById("root")}
       isOpen={show}
       shouldCloseOnEsc={true}
-      style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 font-sourceSans3 font-semibold p-6">
+      style={{
+        content: {
+          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
+          border: "3px solid black",
+          borderRadius: "2rem",
+          maxWidth: "720px",
+          width: "100%", height: "fit-content",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
+        }
+      }}>
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">SAVE ASSESSMENT</h2>
         <div className="text-2xl">
           Reminders: <br />
@@ -277,10 +323,10 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
           2. Please make sure all questions were properly created and no question was added without any questions/answer.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
+          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
             SAVE
           </button>
         </div>
