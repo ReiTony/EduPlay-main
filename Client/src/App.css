@@ -49,3 +49,7 @@
 .backgroundGreen {
     background-image: url('/src/assets/Homepage_Image/green.svg');
 }
+
+.backgroundMainTeacher {
+    background-image: url('/src/assets/Homepage_Image/TeacherMainBg.svg');
+}

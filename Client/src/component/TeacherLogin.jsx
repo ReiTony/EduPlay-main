@@ -36,9 +36,9 @@ function TeacherLogin() {
   });
 
   return (
-    <div className="flex justify-center min-h-screen background">
+    <div className="flex flex-col justify-between min-h-screen background">
       <NavBar />
-      <main className="w-full md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid grid-cols-[35%_65%] mt-24 mb-16">
+      <main className="w-[80%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto">
         <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] bg-opacity-95">
           <div className="flex items-center justify-center">
             <img className="object-cover w-fit h-[90%] m-0" src={logo} alt="Logo" />
@@ -53,10 +53,10 @@ function TeacherLogin() {
           </div>
         </div>
         <section className="bg-[#2596be] opacity-95 flex flex-col gap-14 justify-center px-16 py-4">
-          <h2 className="font-extrabold px-14 text-6xl font-expletus my-8">Teacher Login</h2>
+          <h2 className="my-8 text-6xl font-extrabold px-14 font-expletus">Teacher Login</h2>
           <form onSubmit={handleSubmit}>
             <div className="mb-6">
-              <label htmlFor="TeacherEmail" className={`block mb-2 text-xl font-semibold ${touched.TeacherEmail && errors.TeacherEmail ? "text-red-500" : ""}`}>
+              <label htmlFor="TeacherEmail" className={`items-start ml-6 flex mb-2 text-xl font-semibold ${touched.TeacherEmail && errors.TeacherEmail ? "text-red-500" : ""}`}>
                 Email
               </label>
               <input
@@ -71,7 +71,7 @@ function TeacherLogin() {
               />
             </div>
             <div className="mb-6">
-              <label htmlFor="TeacherPassword" className={`block mt-4 mb-2 text-xl font-semibold ${touched.TeacherPassword && errors.TeacherPassword ? "text-red-500" : ""}`}>
+              <label htmlFor="TeacherPassword" className={`items-start ml-6 flex mt-4 mb-2 text-xl font-semibold ${touched.TeacherPassword && errors.TeacherPassword ? "text-red-500" : ""}`}>
                 Password
               </label>
               <div className="relative">
@@ -90,21 +90,21 @@ function TeacherLogin() {
                 </span>
               </div>
             </div>
-            <div className="flex justify-between items-center mt-4">
+            <div className="flex items-center justify-between mt-4">
               <div className="flex">
                 <label className="block font-bold text-gray-500 ms-4">
                   <input className="leading-tight" type="checkbox" />
-                  <span className="ms-2 text-xl text-neutral-800">Remember me</span>
+                  <span className="text-xl ms-2 text-neutral-800">Remember me</span>
                 </label>
               </div>
               <div>
-                <Link to="/Teacher_Send_Email" className="inline-block text-lg font-bold text-neutral-800 underline align-baseline hover:text-blue-800">
+                <Link to="/Teacher_Send_Email" className="inline-block text-lg font-bold underline align-baseline text-neutral-800 hover:text-blue-800">
                   Forgot Password?
                 </Link>
               </div>
             </div>
-            <button className="font-sourceSans3 text-center rounded-full px-12 py-3 mt-4 text-2xl bg-black shadow-lg hover:shadow-green-400 text-white placeholder-white font-bold" type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Signing in..." : "Sign In"}
+            <button className="px-12 py-3 mt-4 text-2xl font-bold text-center text-white placeholder-white bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400" type="submit" disabled={isSubmitting}>
+              {isSubmitting ? "SIGNING IN..." : "SIGN IN"}
             </button>
           </form>
         </section>

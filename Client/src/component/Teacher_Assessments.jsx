@@ -39,26 +39,28 @@ function TeacherAssessments() {
   return (
     <>
       <div className="flex flex-col flex-grow gap-4 p-4">
-        <div className="bg-[#08a454] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">CUSTOM ASSESSMENTS</div>
-        <div className="flex flex-col bg-[#a8d4a4] flex-grow gap-4 rounded-3xl p-5 font-bold">
+        <header className="p-4 text-4xl font-bold text-white shadow-md backgroundGreen rounded-3xl font-reemkufifont ">
+          <h1>CUSTOM-ASSESSMENTS</h1>
+        </header>
+        <div className="flex flex-col flex-grow gap-4 p-5 font-bold backgroundGreen rounded-3xl">
           <div className="flex flex-row justify-end gap-2">
-            <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => navigate("create")}>
+            <button className="bg-[#282424] rounded-full  px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => navigate("create")}>
               CREATE AN ASSESSMENT
             </button>
           </div>
 
           <div className="flex flex-col gap-4 m-4">
             {assessments.map((i, ind) => (
-              <div className="flex flex-row flex-grow justify-between items-center bg-white rounded-2xl px-8 py-4" key={ind}>
+              <div className="flex flex-row items-center justify-between flex-grow px-8 py-4 bg-white rounded-2xl bg-opacity-90 shadow-black hover:scale-[.99] shadow-lg transition-transform transform-gpu hover:shadow-green-400" key={ind}>
                 <h4 className="text-4xl font-bold font-sourceSans3">{i.title}</h4>
-                <div className="flex flex-row gap-2 text-white text-2xl font-bold">
-                  <button className="bg-[#282424] rounded-full shadow-md px-8 py-2" onClick={() => navigate(`${i._id}/analysis`)}>
+                <div className="flex flex-row gap-2 text-2xl font-bold text-white ">
+                  <button className="bg-[#282424] rounded-full  px-8 py-2 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => navigate(`${i._id}/analysis`)}>
                     ANALYSIS
                   </button>
-                  <button className="bg-[#08a454] rounded-full shadow-md px-8 py-2" onClick={() => navigate(i._id)}>
+                  <button className="bg-[#08a454] rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate(i._id)}>
                     EDIT
                   </button>
-                  <button className="bg-[#d00c24] rounded-full shadow-md px-8 py-2" onClick={showDelete(ind)}>
+                  <button className="bg-[#d00c24] rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={showDelete(ind)}>
                     DELETE
                   </button>
                 </div>
@@ -79,18 +81,28 @@ function DeleteModal({ show, onHide, onSave }) {
       appElement={document.getElementById("root")}
       isOpen={show}
       shouldCloseOnEsc={true}
-      style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 font-sourceSans3 font-semibold p-6">
+      style={{
+        content: {
+          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
+          border: "3px solid black",
+          borderRadius: "2rem",
+          maxWidth: "720px",
+          width: "100%", height: "fit-content",
+          top: "50%", left: "50%",
+          transform: "translate(-50%, -50%)",
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
+        }
+      }}><div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking proceed, all information provided under the question will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
+          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
             PROCEED
           </button>
         </div>
