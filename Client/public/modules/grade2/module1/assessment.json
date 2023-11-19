@@ -193,7 +193,7 @@
       "question": "Objects can change color as time passes.",
       "image": null,
       "choices": [{ "name": "True" }, { "name": "False" }],
-      "correctAnswer": 1,
+      "correctAnswer": 0,
       "category": 3
     },
     {

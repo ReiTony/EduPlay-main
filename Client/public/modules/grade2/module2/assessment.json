@@ -57,7 +57,7 @@
       "choices": [
         { "name": "Table", "image": "" },
         { "name": "Chair", "image": "" },
-        { "name": "Soild", "image": "" },
+        { "name": "Soil", "image": "" },
         { "name": "House", "image": "" }
       ],
       "correctAnswer": 2,
@@ -186,7 +186,7 @@
       "question": "A monkey can move with its wings.",
       "image": "/assessment_images/grade2/module2/18.jpg",
       "choices": [{ "name": "True" }, { "name": "False" }],
-      "correctAnswer": 0,
+      "correctAnswer": 1,
       "category": 0
     },
     {
