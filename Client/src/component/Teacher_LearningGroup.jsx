@@ -27,7 +27,7 @@ function Teacher_LearningGroup() {
       {
         Header: "PROGRESS",
         Cell: ({ row }) => (
-          <button className="flex items-center justify-center m-auto shadow-md text-white bg-green-500 rounded-full font-bold px-5 py-1 hover:brightness-90" onClick={() => navigate(row.original.username)}>
+          <button className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-full shadow-md hover:brightness-90" onClick={() => navigate(row.original.username)}>
             VIEW
           </button>
         ),
@@ -40,8 +40,10 @@ function Teacher_LearningGroup() {
 
   return (
     <div className="flex flex-col flex-grow gap-4 p-4">
-      <div className="bg-[#5874fc] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">LEARNING GROUP</div>
-      <div className="flex flex-col bg-[#98ccfc] flex-grow gap-4 rounded-3xl p-5 font-bold">
+      <header className="p-4 text-4xl font-bold text-white backgroundBlue rounded-3xl font-reemkufifont">
+        <h1>LEARNING GROUP</h1>
+      </header>
+      <div className="flex flex-col flex-grow gap-4 p-5 font-bold shadow-lg backgroundBlue rounded-3xl shadow-blue-800">
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (

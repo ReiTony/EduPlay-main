@@ -44,29 +44,29 @@ function StudentProfile() {
     return "";
   };
 
-  if (!studentData) return <div className="text-2xl font-bold m-auto">Loading...</div>;
+  if (!studentData) return <div className="m-auto text-2xl font-bold">Loading...</div>;
 
   return (
     <div className="backgroundYellow">
-      <div className="bg-[#fff5be] rounded-3xl p-8 m-4">
-        <div className="flex items-center profile-header">
+      <div className="p-8 mx-4 shadow-md secondBackground rounded-3xl shadow-black">
+        <div className="flex flex-col items-center mx-auto lg:mx-0 lg:flex-row profile-header">
           <div className="w-40 h-40 mr-4 bg-gray-500 profile-picture aspect-square rounded-SM">
             <img src={studentDP} alt="Profile" className="object-cover w-full h-full rounded-lg" />
           </div>
-          <div className="overflow-hidden font-bold profile-info">
-            <p className="text-3xl font-expletus">Name: {studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
-            <p className="text-3xl font-expletus">Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}</p>
-            <p className="text-3xl font-expletus">
+          <div className="font-bold profile-info">
+            <p className="text-xl lg:text-3xl font-expletus">Name: {studentData ? `${studentData.firstName} ${studentData.lastName}` : "Loading..."}</p>
+            <p className="text-xl lg:text-3xl font-expletus">Grade Level: {studentData ? studentData.gradeLevel : "Loading..."}</p>
+            <p className="text-xl lg:text-3xl font-expletus">
               Birthday: <span>{`${months[studentData.birthMonth - 1]} ${studentData.birthDay}`}</span>
             </p>
           </div>
         </div>
       </div>
 
-      <div className="flex flex-row w-full">
+      <div className="flex flex-col w-full lg:flex-row">
         {/* BADGES */}
-        <div className="flex flex-col flex-grow gap-4 bg-[#fff5be] rounded-3xl p-6 m-4">
-          <h1 className="text-center text-4xl font-bold">BADGES</h1>
+        <div className="flex flex-col flex-grow gap-4 p-6 m-4 shadow-md secondBackground rounded-3xl shadow-black">
+          <h1 className="text-4xl font-bold text-center">BADGES</h1>
           <div className="flex flex-wrap justify-center">
             {studentData.assessmentRecords.length === 0 ? (
               <h5 className="text-xl font-normal">No badges to display.</h5>
@@ -87,16 +87,16 @@ function StudentProfile() {
         </div>
 
         {/* ACHIEVEMENTS */}
-        <div className="flex flex-col flex-grow gap-4 bg-[#fff5be] rounded-3xl p-6 m-4">
-          <h1 className="text-center text-4xl font-bold">ACHIEVEMENTS</h1>
-          <div className="flex flex-wrap gap-4 font-semibold justify-center">
+        <div className="flex flex-col flex-grow gap-4 p-6 m-4 shadow-md secondBackground rounded-3xl shadow-black">
+          <h1 className="text-4xl font-bold text-center">ACHIEVEMENTS</h1>
+          <div className="flex flex-wrap justify-center gap-4 font-semibold">
             {achievements === null ? (
               <h5 className="text-xl">Loading...</h5>
             ) : achievements.length === 0 ? (
               <h5 className="text-xl font-normal">No achievements to display.</h5>
             ) : (
               achievements.map((achievement, i) => (
-                <div className="p-6 bg-white rounded-2xl text-lg shadow-md" key={i}>
+                <div className="p-6 text-lg bg-white shadow-md shadow-black rounded-2xl" key={i}>
                   {achievement.moduleOrAssessmentTitle}
                 </div>
               ))

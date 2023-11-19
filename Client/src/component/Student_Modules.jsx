@@ -56,7 +56,7 @@ function Student_Modules() {
                     <div key={subIndex} className="flex items-center justify-between p-2 px-6 mb-2 font-bold bg-white rounded-full sm:text-3xl">
                       <h1>{submodule.title}</h1>
                       <button
-                        className={`text-white text-2xl ${index * 4 + subIndex > progress ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1"} shadow-md rounded-full`}
+                        className={`text-white text-2xl hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu  ${index * 4 + subIndex > progress ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1"} shadow-md rounded-full`}
                         disabled={index * 4 + subIndex > progress}
                         onClick={() => navigate(`/student/module/${module.number}/${subIndex === 0 ? "lecture" : subIndex === 1 ? "review" : "game"}`)}>
                         {index * 4 + subIndex > progress ? <FaLock /> : "OPEN"}

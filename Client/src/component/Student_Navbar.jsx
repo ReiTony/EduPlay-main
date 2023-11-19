@@ -9,22 +9,22 @@ function Student_Navbar() {
   const toggleMenu = () => setIsMenuOpen(!isMenuOpen);
 
   return (
-    <nav className="m-4 text-white bg-[#252525] rounded-3xl sticky top-0">
+    <nav className="m-4 text-white bg-[#252525] rounded-3xl  top-0">
       <div className="flex items-center justify-between w-full p-2 ">
         <div className="flex items-center">
           <img className="w-24 m-0 " src={logo} alt="Logo" />
           <h1 className="pl-2 text-4xl font-bold xl:pr-40 font-reemkufifont">EDUPLAY</h1>
         </div>
         <div className="justify-end hidden w-full space-x-4 text-2xl font-bold font-expletus xl:flex">
-          <Link to="/student" className="p-5 hover:text-gray-500 ">
+          <Link to="/student" className="p-5 hover:text-[#252525] hover:bg-[#a5d6a7] hover:rounded-sm ">
             HOME
           </Link>
 
-          <Link to="/student/profile" className="p-5 hover:text-gray-500">
+          <Link to="/student/profile" className="p-5 hover:text-[#252525] hover:bg-[#a5d6a7] hover:rounded-sm">
             PROFILE
           </Link>
 
-          <Link to="/student/logout" className="p-5 hover:text-gray-500">
+          <Link to="/student/logout" className="p-5  hover:text-[#252525] hover:bg-[#e54e4e] hover:rounded-sm">
             LOGOUT
           </Link>
         </div>

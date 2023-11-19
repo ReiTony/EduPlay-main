@@ -18,11 +18,11 @@ function Teacher_Navbar() {
           </div>
         </div>
         <div className="justify-end hidden w-full space-x-4 text-2xl font-bold font-expletus xl:flex">
-          <Link to="/teacher" className="p-5 hover:text-gray-500 ">
+          <Link to="/teacher" className="p-5 hover:text-[#252525] hover:bg-[#a5d6a7] hover:rounded-sm ">
             HOME
           </Link>
 
-          <Link to="/teacher/logout" className="p-5 hover:text-gray-500">
+          <Link to="/teacher/logout" className="p-5 hover:text-[#252525] hover:bg-[#e54e4e] hover:rounded-sm">
             LOGOUT
           </Link>
         </div>

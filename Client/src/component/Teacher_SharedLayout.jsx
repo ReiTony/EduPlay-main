@@ -4,13 +4,13 @@ import Teacher_Navbar from "./Teacher_Navbar";
 
 function Teacher_SharedLayout() {
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     if (!localStorage.getItem("userId") || localStorage.getItem("userType") !== "teacher") navigate("/");
   }, []);
 
   return (
-    <div className="bg-[#08a4e4] flex flex-col min-h-screen flex-grow overflow-y-auto">
+    <div className="flex flex-col flex-grow min-h-screen overflow-y-auto backgroundMainTeacher">
       <Teacher_Navbar />
       <Outlet />
     </div>
