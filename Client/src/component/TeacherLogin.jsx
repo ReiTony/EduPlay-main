@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import boygirl from "../assets/BoyAndGirl.png";
 import { useFormik } from "formik";
@@ -19,9 +19,9 @@ function TeacherLogin() {
   const onSubmit = async (values, setSubmitting) => {
     try {
       const res = await axios.post(`${import.meta.env.VITE_API}teacher/login`, { email: values.TeacherEmail, password: values.TeacherPassword }, { withCredentials: true });
-      localStorage.setItem("userId", res.data.user.user.userId)
-      localStorage.setItem("userType", "teacher")
-      navigate("/teacher")
+      localStorage.setItem("userId", res.data.user.user.userId);
+      localStorage.setItem("userType", "teacher");
+      navigate("/teacher");
     } catch (error) {
       alert(error.message);
     } finally {
@@ -98,12 +98,12 @@ function TeacherLogin() {
                 </label>
               </div>
               <div>
-                <Link to="/Teacher_Send_Email" className="inline-block text-lg font-bold underline align-baseline text-neutral-800 hover:text-blue-800">
+                <button className="inline-block text-lg font-bold underline align-baseline text-neutral-800 hover:text-blue-800" type="button" onClick={() => navigate("/teacher/forgot-password")}>
                   Forgot Password?
-                </Link>
+                </button>
               </div>
             </div>
-            <button className="px-12 py-3 mt-4 text-2xl font-bold text-center text-white placeholder-white bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400" type="submit" disabled={isSubmitting}>
+            <button type="submit" className="px-12 py-3 mt-4 text-2xl font-bold text-center text-white placeholder-white bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400" disabled={isSubmitting}>
               {isSubmitting ? "SIGNING IN..." : "SIGN IN"}
             </button>
           </form>
