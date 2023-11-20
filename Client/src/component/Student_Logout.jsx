@@ -12,26 +12,26 @@ function Logout() {
     const logoutStudent = async () => {
       try {
         localStorage.clear();
-        const response = await axios.delete(`${import.meta.env.VITE_API}student/logout`, { withCredentials: true });
+        // const response = await axios.delete(`${import.meta.env.VITE_API}student/logout`, { withCredentials: true });
 
         // Check if the logout was successful
-        if (response.status === 200) {
-          Cookies.remove("studentToken");
-          Cookies.remove("accessToken");
-          Cookies.remove("refreshToken");
+        // if (response.status === 200) {
+        Cookies.remove("studentToken");
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
 
-          navigate("/");
+        navigate("/");
 
-          toast.success("You have been logged out.", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
+        toast.success("You have been logged out.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // }
       } catch (error) {
         console.error("Error during student logout:", error);
 

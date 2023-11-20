@@ -3,7 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import { toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
-import axios from "axios"; 
+import axios from "axios";
 
 function Logout() {
   const navigate = useNavigate();
@@ -12,26 +12,26 @@ function Logout() {
     const logoutTeacher = async () => {
       try {
         localStorage.clear();
-        const response = await axios.delete("http://localhost:5000/api/v1/Teacher/logout", {withCredentials: true});
-        
+        // const response = await axios.delete("http://localhost:5000/api/v1/Teacher/logout", {withCredentials: true});
+
         // Check if the logout was successful
-        if (response.status === 200) {
-          Cookies.remove("teacherToken");
-          Cookies.remove("accessToken");
-          Cookies.remove("refreshToken");
+        // if (response.status === 200) {
+        Cookies.remove("teacherToken");
+        Cookies.remove("accessToken");
+        Cookies.remove("refreshToken");
 
-          navigate("/");
+        navigate("/");
 
-          toast.success("You have been logged out.", {
-            position: "top-center",
-            autoClose: 3000,
-            hideProgressBar: true,
-            closeOnClick: true,
-            pauseOnHover: true,
-            draggable: true,
-            progress: undefined,
-          });
-        }
+        toast.success("You have been logged out.", {
+          position: "top-center",
+          autoClose: 3000,
+          hideProgressBar: true,
+          closeOnClick: true,
+          pauseOnHover: true,
+          draggable: true,
+          progress: undefined,
+        });
+        // }
       } catch (error) {
         console.error("Error during teacher logout:", error);
 
@@ -44,11 +44,10 @@ function Logout() {
           draggable: true,
           progress: undefined,
         });
-
       }
     };
 
-    logoutTeacher(); 
+    logoutTeacher();
   }, [navigate]);
 
   return null;
