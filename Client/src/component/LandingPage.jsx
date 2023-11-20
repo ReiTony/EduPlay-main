@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 import myHighlight1 from "../assets/LandingPage/Highlight1.svg";
 import myHighlight2 from "../assets/LandingPage/Highlight2.svg";
 import kids from "../assets/LandingPage/kids.png";
-import heart from "../assets/LandingPage/logos/heart.svg";
+// import heart from "../assets/LandingPage/logos/heart.svg";
 import NavBar from "./NavBar";
 
 function LandingPage() {
@@ -65,7 +65,7 @@ function LandingPage() {
         </div>
         <div className="md:grid md:grid-cols-2 md:grid-rows-2">
           <div className="flex items-start my-6 mr-10 font-montserrat">
-            <img src={heart} alt="" className="mr-4 h-7" />
+            {/* <img src={heart} alt="" className="mr-4 h-7" /> */}
             <div>
               <h3 className="text-2xl font-semibold">Modules and Lectures</h3>
               <p>Provide the students with lectures whether through documents or videos to keep them engaged and provide relevant information to the subjects.</p>
@@ -73,7 +73,7 @@ function LandingPage() {
           </div>
 
           <div className="flex items-start my-6 mr-10 font-montserrat">
-            <img src={heart} alt="" className="mr-4 h-7" />
+            {/* <img src={heart} alt="" className="mr-4 h-7" /> */}
             <div>
               <h3 className="text-2xl font-semibold">Assessments</h3>
               <p>Challenge and test the knowledge of the students through basic assessments that tests how much the student understood the lessons.</p>
@@ -81,7 +81,7 @@ function LandingPage() {
           </div>
 
           <div className="flex items-start my-6 mr-10 font-montserrat">
-            <img src={heart} alt="" className="mr-4 h-7" />
+            {/* <img src={heart} alt="" className="mr-4 h-7" /> */}
             <div>
               <h3 className="text-2xl font-semibold">Game</h3>
               <p>Enjoy various games that can help students remember and understand what they have learned while also having fun.</p>
@@ -89,7 +89,7 @@ function LandingPage() {
           </div>
 
           <div className="flex items-start my-6 mr-10 font-montserrat">
-            <img src={heart} alt="" className="mr-4 h-7" />
+            {/* <img src={heart} alt="" className="mr-4 h-7" /> */}
             <div>
               <h3 className="text-2xl font-semibold">Learning Group</h3>
               <p>Allow teachers to interact with their students by providing them custom instructor-made assessments and monitor their progress.</p>
