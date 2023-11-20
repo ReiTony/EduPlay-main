@@ -42,6 +42,7 @@ import Student_LearningGroupAssessment from "./component/Student_LearningGroupAs
 import Teacher_CustomAssessmentAnalysis from "./component/Teacher_CustomAssessmentAnalysis";
 import Teacher_LearningGroup from "./component/Teacher_LearningGroup";
 import Teacher_LearningGroupStudent from "./component/Teacher_LearningGroupStudent";
+import Teacher_ForgotPassword from "./component/Teacher_ForgotPassword";
 
 const queryClient = new QueryClient();
 
@@ -77,6 +78,7 @@ function App() {
             {/* Teacher Routes */}
             <Route path="/teacher/login" element={<TeacherLogin />} />
             <Route path="/teacher/signUp" element={<TeacherSignUp />} />
+            <Route path="/teacher/forgot-password" element={<Teacher_ForgotPassword />} />
             <Route path="/teacher/send-email" element={<Teacher_Send_Email />} />
             <Route path="/teacher/enter-code" element={<Teacher_Enter_Code />} />
             <Route path="/teacher/reset-password" element={<Teacher_Reset_Password />} />
