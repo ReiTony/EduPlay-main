@@ -184,7 +184,7 @@ function AddModal({ show, onHide, onSave }) {
       isOpen={show}
       shouldCloseOnEsc={true}
       style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+      <div className="flex flex-col justify-center gap-8 p-6 text-black font-semibold font-sourceSans3">
         <div className="text-3xl text-center">ADD QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
           <label htmlFor="question">Question:</label>
@@ -244,7 +244,7 @@ function EditModal({ show, onHide, onSave, question }) {
       isOpen={show}
       shouldCloseOnEsc={true}
       style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+      <div className="flex flex-col justify-center gap-8 p-6 text-black font-semibold font-sourceSans3">
         <div className="text-3xl text-center">EDIT QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
           <label htmlFor="question">Question:</label>
@@ -282,7 +282,7 @@ function DeleteModal({ show, onHide, onSave }) {
       isOpen={show}
       shouldCloseOnEsc={true}
       style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+      <div className="flex flex-col justify-center gap-8 p-6 text-black font-semibold font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
@@ -309,7 +309,7 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
       isOpen={show}
       shouldCloseOnEsc={true}
       style={{ content: { backgroundColor: "#FFFFFF", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+      <div className="flex flex-col justify-center gap-8 p-6 text-black font-semibold font-sourceSans3">
         <h2 className="text-3xl text-center">SAVE ASSESSMENT</h2>
         <div className="text-2xl">
           Reminders: <br />
