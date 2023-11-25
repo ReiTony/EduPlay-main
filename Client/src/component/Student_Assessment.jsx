@@ -21,6 +21,7 @@ function StudentAssessment() {
   const [isLoading, setIsLoading] = useState(true);
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState();
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   useEffect(() => {
     const init = async () => {
@@ -61,9 +62,11 @@ function StudentAssessment() {
   };
 
   const handleSubmitQuiz = async () => {
+    setIsSubmitting(true);
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
     await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber }).catch((err) => alert(err.message));
+    setIsSubmitting(false);
     setResult(res.data);
     setIsCompleteModalOpen(true);
     setIsViewingScore(true);
@@ -132,8 +135,9 @@ function StudentAssessment() {
               <div className="flex flex-col gap-3 font-semibold md:grid md:grid-cols-2 font-sourceSans3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
-                    className={`flex flex-col items-center shadow-md rounded-2xl p-4 ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === userAnswers[currentQuestion] ? "bg-neutral-200" : "bg-white"
-                      } ${hasAnswered ? "" : "cursor-pointer"}`}
+                    className={`flex flex-col items-center shadow-md rounded-2xl p-4 ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
+                      hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === userAnswers[currentQuestion] ? "bg-neutral-200" : "bg-white"
+                    } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={handleChoiceClick(ind)}
                     key={ind}>
                     <div className="text-2xl">{choice.name}</div>
@@ -171,7 +175,9 @@ function StudentAssessment() {
             NEXT
           </button>
         ) : (
-          <button className="bg-[#08a454] rounded-full px-10 py-2 text-3xl shadow-lg text-white font-bold font-sourceSans3 hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleSubmit}>
+          <button
+            className="bg-[#08a454] rounded-full px-10 py-2 text-3xl shadow-lg text-white font-bold font-sourceSans3 hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+            onClick={handleSubmit}>
             SUBMIT
           </button>
         )}
@@ -180,15 +186,31 @@ function StudentAssessment() {
         appElement={document.getElementById("root")}
         isOpen={isSubmitModalOpen}
         shouldCloseOnEsc={true}
-        style={{ content: { background: `url("/src/assets/wordHuntPOPbg.svg")`, border: "0", borderRadius: "2rem", maxWidth: "540px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)" } }}>
+        style={{
+          content: {
+            background: `url("/src/assets/wordHuntPOPbg.svg")`,
+            border: "0",
+            borderRadius: "2rem",
+            maxWidth: "540px",
+            width: "fit-content",
+            height: "fit-content",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+          },
+        }}>
         <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-semibold font-sourceSans3">
           <div className="text-center">Are you sure you want to submit the quiz?</div>
           <div className="flex flex-row justify-center gap-4">
             <button className="px-10 py-2 text-white bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsSubmitModalOpen(false)}>
               CANCEL
             </button>
-            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleSubmitQuiz}>
-              SUBMIT
+            <button
+              className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+              onClick={handleSubmitQuiz}
+              disabled={isSubmitting}>
+              {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
             </button>
           </div>
         </div>
@@ -198,7 +220,20 @@ function StudentAssessment() {
         appElement={document.getElementById("root")}
         isOpen={isCompleteModalOpen}
         shouldCloseOnEsc={true}
-        style={{ content: { background: `url("/src/assets/wordHuntPOPbg.svg")`, border: "0", borderRadius: "2rem", maxWidth: "620px", width: "fit-content", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)", boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)" } }}>
+        style={{
+          content: {
+            background: `url("/src/assets/wordHuntPOPbg.svg")`,
+            border: "0",
+            borderRadius: "2rem",
+            maxWidth: "620px",
+            width: "fit-content",
+            height: "fit-content",
+            top: "50%",
+            left: "50%",
+            transform: "translate(-50%, -50%)",
+            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+          },
+        }}>
         <div className="flex flex-col items-center justify-center gap-2 p-8 text-2xl font-semibold font-sourceSans3">
           <div className="text-4xl text-center">{`Assessment ${moduleNumber}`}</div>
           {result?.score / result?.total >= 0.4 && (
@@ -213,7 +248,9 @@ function StudentAssessment() {
           )}
           <div className="my-2 text-center">{result?.recommendation}</div>
           <div className="flex flex-row justify-center gap-4">
-            <button className="px-10 py-2 text-white transition-transform bg-green-500 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transform-gpu" onClick={() => setIsCompleteModalOpen(false)}>
+            <button
+              className="px-10 py-2 text-white transition-transform bg-green-500 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transform-gpu"
+              onClick={() => setIsCompleteModalOpen(false)}>
               OK
             </button>
           </div>
