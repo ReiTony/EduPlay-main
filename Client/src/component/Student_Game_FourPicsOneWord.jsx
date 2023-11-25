@@ -40,6 +40,7 @@ function Student_Game_FourPicsOneWord() {
   const handleSubmitAnswer = (e) => {
     e.preventDefault();
     if (data?.rounds[roundNumber].answer.toLowerCase().trim() === answer.toLowerCase()) {
+      new Audio("/sound/ding.wav").play();
       setLastCorrectWord(data.rounds[roundNumber]);
       setIsModalCorrectOpen(true);
       setErrorText("");
