@@ -49,25 +49,30 @@ function Student_Game_FourPicsOneWord() {
     setAnswer("");
   };
 
-  const handleTTSClick = () => {
+  const handleTTSClick = (meaning) => {
     if (speechSynthesis.speaking) return;
-    let utterance = new SpeechSynthesisUtterance(`Clue: It is a ${data?.rounds[roundNumber].answer.length} letter word.`);
+    let utterance = new SpeechSynthesisUtterance(meaning);
     speechSynthesis.speak(utterance);
+  };
+
+  const handleContinueModal = () => {
+    speechSynthesis.cancel();
+    setIsModalCorrectOpen(false);
   };
 
   return (
     <>
-      <div className="flex flex-col h-full lg:h-[82vh] p-8 m-4 mb-6 secondBackground rounded-2xl lg:w-5/6 lg:mx-auto">
+      <div className="flex flex-col flex-grow p-8 m-4 mb-6 secondBackground rounded-2xl lg:w-5/6 lg:mx-auto">
         <div className="flex justify-between lg:px-10">
           <h3 className="text-2xl font-semibold lg:my-2 lg:text-3xl font-sourceSans3">{data?.title || ""}</h3>
         </div>
 
-        <hr className="h-1 bg-black" />
+        <hr className="h-1 bg-black mb-4" />
 
         <div className="flex flex-col items-center justify-center h-full gap-4 py-2 lg:flex-col">
           <img src={data?.rounds[roundNumber].imagePath} style={{ height: "450px" }} />
           <div className="text-2xl my-2 font-semibold">{data?.rounds[roundNumber].clue}</div>
-          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-start font-sourceSans3 my-4">
+          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-start font-sourceSans3 mt-4">
             <div className="flex flex-col items-center gap-1">
               <input type="text" className="px-5 py-2 rounded-full shadow-md" placeholder="Type your answer here" style={{ width: "300px" }} value={answer} onChange={(e) => setAnswer(e.target.value)} />
               {errorText !== "" && <span className="text-red-500">{errorText}</span>}
@@ -75,7 +80,7 @@ function Student_Game_FourPicsOneWord() {
             <button type="submit" className="bg-[#252525] rounded-full shadow-md font-semibold px-6 py-2 text-white text-lg" disabled={isGameFinished}>
               SUBMIT
             </button>
-            <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
+            <img className="cursor-pointer" onClick={() => handleTTSClick(data?.rounds[roundNumber].meaning)} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
           </form>
         </div>
       </div>
@@ -89,7 +94,9 @@ function Student_Game_FourPicsOneWord() {
             <button className="px-10 py-2 text-white transition-transform bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsModalCompleteOpen(false)}>
               NO
             </button>
-            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
+            <button
+              className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+              onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
               YES
             </button>
           </div>
@@ -99,7 +106,9 @@ function Student_Game_FourPicsOneWord() {
         <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-sourceSans3">
           <h2 className="text-3xl font-semibold text-center">{lastCorrectWord?.answer}</h2>
           <h2 className="text-3xl text-center">{lastCorrectWord?.meaning}</h2>
-          <button className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => setIsModalCorrectOpen(false)}>
+          <button
+            className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+            onClick={handleContinueModal}>
             CONTINUE
           </button>
         </div>
@@ -114,11 +123,12 @@ const modalStyle = {
     borderRadius: "2rem",
     maxWidth: "540px",
     width: "fit-content",
-    height: "fit-content", top: "50%"
-    , left: "50%",
+    height: "fit-content",
+    top: "50%",
+    left: "50%",
     transform: "translate(-50%, -50%)",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)"
-  }
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+  },
 };
 
 export default Student_Game_FourPicsOneWord;
