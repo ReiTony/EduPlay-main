@@ -114,14 +114,14 @@ function StudentAssessment() {
 
   return (
     <>
-      <div className="flex flex-col items-center flex-grow gap-6 p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl lg:w-5/6 lg:mx-auto shadow-black">
+      <div className="flex flex-col items-center flex-grow gap-6 p-4 sm:p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
         <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
           <h3 className="me-auto">{data?.title || ""}</h3>
           {isViewingScore && <div className=""> {`Score: ${score}/${data?.questions.length}`}</div>}
         </div>
         <hr className="w-full h-1 bg-black" />
 
-        <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl p-10 my-auto gap-4 shadow-sm  shadow-black" style={{ maxWidth: "1024px" }}>
+        <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl px-4 py-8 sm:p-10 my-auto gap-4 shadow-sm  shadow-black" style={{ maxWidth: "1024px" }}>
           {!isLoading && (
             <>
               <div className="flex flex-row justify-between">
@@ -130,8 +130,8 @@ function StudentAssessment() {
               </div>
               <h3 className="text-4xl font-semibold font-sourceSans3">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
               {data?.questions[currentQuestion].image != null && (
-                <div className="w-auto mx-auto my-6 rounded-md shadow-md" style={{ height: "200px" }}>
-                  <img className="w-auto h-full rounded-2xl" src={data?.questions[currentQuestion].image} />
+                <div className="flex justify-center items-center m-0 sm:m-6 rounded-md" style={{ maxHeight: "200px" }}>
+                  <img className="h-full rounded-2xl shadow-md" style={{ maxHeight: "200px" }} src={data?.questions[currentQuestion].image} />
                 </div>
               )}
               <div className="flex flex-col gap-3 font-semibold md:grid md:grid-cols-2 font-sourceSans3">
