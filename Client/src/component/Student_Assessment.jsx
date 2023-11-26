@@ -48,6 +48,7 @@ function StudentAssessment() {
   };
 
   const handleSubmit = () => {
+    new Audio("/sound/press.mp3").play();
     if (userAnswers[currentQuestion] === -1) return alert("Select your answer before submitting.");
     setHasAnswered(true);
     const correctAns = data?.questions.map((i) => i.correctAnswer);
@@ -62,6 +63,7 @@ function StudentAssessment() {
   };
 
   const handleSubmitQuiz = async () => {
+    new Audio("/sound/press.mp3").play();
     setIsSubmitting(true);
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
