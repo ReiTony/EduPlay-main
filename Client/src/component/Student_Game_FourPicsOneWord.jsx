@@ -73,9 +73,9 @@ function Student_Game_FourPicsOneWord() {
         <div className="flex flex-col items-center justify-center h-full gap-4 py-2 lg:flex-col">
           <img src={data?.rounds[roundNumber].imagePath} style={{ height: "450px" }} />
           <div className="text-2xl my-2 font-semibold">{data?.rounds[roundNumber].clue}</div>
-          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center gap-2 items-start font-sourceSans3 mt-4">
-            <div className="flex flex-col items-center gap-1">
-              <input type="text" className="px-5 py-2 rounded-full shadow-md" placeholder="Type your answer here" style={{ width: "300px" }} value={answer} onChange={(e) => setAnswer(e.target.value)} />
+          <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center items-start gap-2 w-full font-sourceSans3 mt-4">
+            <div className="flex flex-col items-center gap-1 w-full" style={{ maxWidth: "300px" }}>
+              <input type="text" className="px-5 py-2 rounded-full w-full shadow-md" placeholder="Type your answer here" value={answer} onChange={(e) => setAnswer(e.target.value)} />
               {errorText !== "" && <span className="text-red-500">{errorText}</span>}
             </div>
             <button type="submit" className="bg-[#252525] rounded-full shadow-md font-semibold px-6 py-2 text-white text-lg" disabled={isGameFinished}>
