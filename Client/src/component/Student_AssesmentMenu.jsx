@@ -25,10 +25,12 @@ function Student_AssessmentMenu() {
 
       <div className="flex flex-col justify-center w-full h-full gap-4 my-6">
         {modules?.map((module, index) => (
-          <div className="flex flex-row justify-between items-center bg-[#ffbc5c] shadow-md rounded-full w-full px-8 py-4 hover:scale-[.99] transition-transform transform-gpu" key={index}>
+          <div className="flex flex-row justify-between items-center bg-[#ffbc5c] shadow-md rounded-[3rem] sm:rounded-full w-full px-8 py-4 hover:scale-[.99] transition-transform transform-gpu" key={index}>
             <div className="text-3xl font-bold">{`Module ${module.number}: ${module.title}`}</div>
             <button
-              className={`text-white font-semibold text-2xl ${module.locked ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1 hover:shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"} shadow-md rounded-full`}
+              className={`text-white font-semibold text-2xl ${
+                module.locked ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1 hover:shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+              } shadow-md rounded-full`}
               disabled={module.locked}
               onClick={() => navigate(`/student/module/${module.number}/assessment`)}>
               {module.locked ? <FaLock /> : "OPEN"}
