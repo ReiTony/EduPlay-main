@@ -68,6 +68,8 @@ function Student_Game_WordHunt() {
     setData(temp);
     setLastFoundWord(data.words[ind]);
     setIsModalFoundOpen(true);
+    speechSynthesis.cancel();
+    speechSynthesis.speak(new SpeechSynthesisUtterance(data.words[ind].meaning));
   };
   const shade = () => {
     const temp = answers;
@@ -98,8 +100,9 @@ function Student_Game_WordHunt() {
             {data?.puzzle.map((row, rowNum) =>
               row.map((i, colNum) => (
                 <div
-                  className={`ele flex justify-center items-center font-semibold lg:text-2xl  ${shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
-                    }`}
+                  className={`ele flex justify-center items-center font-semibold lg:text-2xl  ${
+                    shaded.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-green-400" : answers.includes(rowNum.toString() + (colNum + 1).toString()) ? "bg-blue-400" : "bg-slate-100"
+                  }`}
                   key={rowNum + "-" + colNum}
                   onMouseDown={() => setOrigin([rowNum, colNum + 1])}
                   onMouseUp={handleMouseUp}
@@ -134,7 +137,9 @@ function Student_Game_WordHunt() {
             <button className="px-10 py-2 text-white bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsModalCompleteOpen(false)}>
               NO
             </button>
-            <button className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
+            <button
+              className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+              onClick={() => navigate(`/student/module/${moduleNumber}/assessment`)}>
               YES
             </button>
           </div>
@@ -144,7 +149,9 @@ function Student_Game_WordHunt() {
         <div className="flex flex-col items-center justify-center gap-8 p-8 font-sourceSans3">
           <h2 className="text-3xl font-semibold text-center">{lastFoundWord?.word}</h2>
           <h4 className="text-2xl text-center">{lastFoundWord?.meaning}</h4>
-          <button className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90  hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => setIsModalFoundOpen(false)}>
+          <button
+            className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90  hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+            onClick={() => setIsModalFoundOpen(false)}>
             CONTINUE
           </button>
         </div>
@@ -161,10 +168,11 @@ const modalStyle = {
     maxWidth: "540px",
     width: "fit-content",
     height: "fit-content",
-    top: "50%", left: "50%",
+    top: "50%",
+    left: "50%",
     transform: "translate(-50%, -50%)",
-    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)"
-  }
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+  },
 };
 
 export default Student_Game_WordHunt;
