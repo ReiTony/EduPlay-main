@@ -27,10 +27,10 @@ function Teacher_CustomAssessmentAnalysis() {
             ) : (
               <>
                 <h2 className="text-3xl text-center mt-4">{data.title}</h2>
-                <div className="flex flex-col gap-4">
+                <div className="flex flex-col mx-auto gap-4 w-full" style={{ maxWidth: "800px" }}>
                   {data.questions.map((question, j) => (
-                    <div className="flex flex-row justify-center items-center gap-6" key={j}>
-                      <div style={{ width: 150, height: 150 }}>
+                    <div className="flex flex-row justify-start items-center gap-6" key={j}>
+                      <div className="flex justify-center items-center" style={{ width: 150, height: 150 }}>
                         <CircularProgressbar value={question.analysis} text={`${question.analysis}%`} />
                       </div>
                       <div className="flex flex-col text-2xl">

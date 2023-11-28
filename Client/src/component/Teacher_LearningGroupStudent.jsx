@@ -33,7 +33,7 @@ function Teacher_LearningGroupStudent() {
 
   const columns = useMemo(
     () => [
-      { Header: "TOPIC", accessor: "topic", id: "topic" },
+      { Header: "MODULE", accessor: "topic", id: "topic" },
       { Header: "LEARNING MATERIALS", accessor: "learningMaterials", id: "learningMaterials" },
       { Header: "GAMES", accessor: "game", id: "game" },
       { Header: "ASSESSMENTS", accessor: "assessment", id: "assesssment" },
@@ -44,8 +44,8 @@ function Teacher_LearningGroupStudent() {
 
   return (
     <div className="flex flex-col flex-grow gap-4 p-4">
-      <div className="bg-[#5874fc] rounded-full shadow-md px-10 py-3 text-4xl font-bold font-sourceSans3">LEARNING GROUP - PROGRESS TRACKING</div>
-      <div className="flex flex-col bg-[#98ccfc] flex-grow gap-4 rounded-3xl p-5 font-bold">
+      <div className="bg-[#5874fc] rounded-full shadow-md px-10 py-3 text-4xl text-white font-bold font-sourceSans3 backgroundBlue">LEARNING GROUP - PROGRESS TRACKING</div>
+      <div className="flex flex-col bg-[#98ccfc] flex-grow gap-4 rounded-3xl p-5 font-bold backgroundBlue">
         <button className="flex flex-row items-center gap-2 bg-[#282424] rounded-full shadow-md text-white text-2xl me-auto px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
