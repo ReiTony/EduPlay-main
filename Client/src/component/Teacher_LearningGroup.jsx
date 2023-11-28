@@ -21,9 +21,9 @@ function Teacher_LearningGroup() {
 
   const columns = useMemo(
     () => [
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "gradeLevel" },
       { Header: "FIRST NAME", accessor: "firstName", id: "firstName" },
       { Header: "LAST NAME", accessor: "lastName", id: "lastName" },
-      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "gradeLevel" },
       {
         Header: "PROGRESS",
         Cell: ({ row }) => (

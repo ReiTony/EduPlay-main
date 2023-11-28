@@ -43,9 +43,9 @@ function Admin_StudentAccounts() {
 
   const columns = useMemo(
     () => [
-      { Header: "GRADELEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
-      { Header: "LASTNAME", accessor: "lastName", id: "LASTNAME" },
-      { Header: "FIRSTNAME", accessor: "firstName" },
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
+      { Header: "FIRST NAME", accessor: "firstName", id: "FIRSTNAME" },
+      { Header: "LAST NAME", accessor: "lastName", id: "LASTNAME" },
       { Header: "BIRTHDAY", accessor: (d) => `${d.birthMonth}/${d.birthDay}` },
       {
         Header: "EDIT",

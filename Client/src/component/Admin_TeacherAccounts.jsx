@@ -43,7 +43,7 @@ function Admin_TeacherAccounts() {
 
   const columns = useMemo(
     () => [
-      { Header: "GRADELEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
       { Header: "NAME", accessor: "name", id: "NAME" },
       { Header: "EMAIL", accessor: "email", id: "EMAIL" },
       {
