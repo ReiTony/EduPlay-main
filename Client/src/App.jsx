@@ -43,6 +43,7 @@ import Teacher_CustomAssessmentAnalysis from "./component/Teacher_CustomAssessme
 import Teacher_LearningGroup from "./component/Teacher_LearningGroup";
 import Teacher_LearningGroupStudent from "./component/Teacher_LearningGroupStudent";
 import Teacher_ForgotPassword from "./component/Teacher_ForgotPassword";
+import Admin_Login from "./component/Admin_LogIn";
 
 const queryClient = new QueryClient();
 
@@ -100,7 +101,8 @@ function App() {
             </Route>
 
             {/* Admin Route */}
-            <Route path="/AdminSignin" element={<AdminSignin />} />
+            {/* <Route path="/AdminSignin" element={<AdminSignin />} /> */}
+            <Route path="/admin/login" element={<Admin_Login />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
