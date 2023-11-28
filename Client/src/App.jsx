@@ -52,6 +52,7 @@ import Admin_EditStudent from "./component/Admin_EditStudent";
 import Admin_TeacherAccounts from "./component/Admin_TeacherAccounts";
 import Admin_AddTeacher from "./component/Admin_AddTeacher";
 import Admin_EditTeacher from "./component/Admin_EditTeacher";
+import EmailVerified from "./component/EmailVerified";
 
 const queryClient = new QueryClient();
 
@@ -119,6 +120,8 @@ function App() {
               <Route path="teacher-accounts/create" element={<Admin_AddTeacher />} />
               <Route path="teacher-accounts/:accountId" element={<Admin_EditTeacher />} />
             </Route>
+
+            <Route path="/user/verify-email" element={<EmailVerified />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
