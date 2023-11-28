@@ -16,6 +16,9 @@ function Admin_AddTeacher() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) return showError("Please enter a valid email.");
+    if (password.length < 6) return showError("Please enter a password with at least 6 characters.");
+    if (name.length < 3) return showError("Please enter a name with at least 3 characters.");
     axios
       .post(`${import.meta.env.VITE_API}admin/addTeacher`, { email, password, name, lrn, gradeLevel })
       .then((res) => navigate("/admin/teacher-accounts"))
