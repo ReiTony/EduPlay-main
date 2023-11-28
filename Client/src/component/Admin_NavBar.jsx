@@ -1,10 +1,16 @@
 import { useState } from "react";
 import { HiMenu } from "react-icons/hi";
 import logo from "../assets/logo.png";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 function Admin_NavBar() {
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  const handleLogOut = () => {
+    localStorage.clear();
+    navigate("/");
+  };
 
   return (
     <nav className="m-4 text-white bg-[#252525] rounded-3xl sticky top-0">
@@ -22,9 +28,9 @@ function Admin_NavBar() {
             HOME
           </Link>
 
-          <Link to="/admin/logout" className="p-5 hover:text-[#252525] hover:bg-[#e54e4e] hover:rounded-sm">
+          <button className="p-5 hover:text-[#252525] hover:bg-[#e54e4e] hover:rounded-sm" onClick={handleLogOut}>
             LOGOUT
-          </Link>
+          </button>
         </div>
 
         <div className=" xl:hidden">
@@ -37,9 +43,9 @@ function Admin_NavBar() {
             <Link to="/admin" className="text-white">
               HOME
             </Link>
-            <Link to="/admin/logout" className="text-white">
+            <button className="text-white" onClick={handleLogOut}>
               LOGOUT
-            </Link>
+            </button>
           </div>
         </div>
       )}
