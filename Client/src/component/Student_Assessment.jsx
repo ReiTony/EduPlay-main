@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import ReactModal from "react-modal";
 import textToSpeechIcon from "../assets/texttospeech.svg";
 import axios from "axios";
+import ErrorModal from "./ErrorModal";
 
 function StudentAssessment() {
   const navigate = useNavigate();
@@ -22,6 +23,8 @@ function StudentAssessment() {
   const [score, setScore] = useState(0);
   const [userAnswers, setUserAnswers] = useState();
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [errorInfo, setErrorInfo] = useState("Error");
 
   useEffect(() => {
     const init = async () => {
@@ -38,6 +41,11 @@ function StudentAssessment() {
     init();
   }, []);
 
+  const showError = (err) => {
+    setErrorInfo(err);
+    setIsErrorModalOpen(true);
+  };
+
   const handleTTSClick = () => {
     if (speechSynthesis.speaking) return;
     let test = data?.questions[currentQuestion].question + "\n";
@@ -49,7 +57,7 @@ function StudentAssessment() {
 
   const handleSubmit = () => {
     new Audio("/sound/press.mp3").play();
-    if (userAnswers[currentQuestion] === -1) return alert("Select your answer before submitting.");
+    if (userAnswers[currentQuestion] === -1) return showError("Select your answer before submitting.");
     setHasAnswered(true);
     const correctAns = data?.questions.map((i) => i.correctAnswer);
     setScore(computeScore(userAnswers, correctAns));
@@ -67,7 +75,7 @@ function StudentAssessment() {
     setIsSubmitting(true);
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
-    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber }).catch((err) => alert(err.message));
+    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber }).catch((err) => showError("Something went wrong. Please try again."));
     setIsSubmitting(false);
     setResult(res.data);
     setIsCompleteModalOpen(true);
@@ -258,6 +266,7 @@ function StudentAssessment() {
           </div>
         </div>
       </ReactModal>
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
     </>
   );
 }
