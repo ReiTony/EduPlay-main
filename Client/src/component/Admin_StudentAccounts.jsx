@@ -90,6 +90,7 @@ function Admin_StudentAccounts() {
   const handleScrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
+
   return (
     <>
       <header className="bg-[#d8cccc] rounded-full shadow-md text-4xl font-reemkufifont font-bold mx-4 p-4 px-6">
@@ -108,28 +109,15 @@ function Admin_StudentAccounts() {
                 ADD STUDENT
               </button>
             </div>
-            <div className="relative mx-4 text-white">
-              <input
-                type="text"
-                value={filterInput}
-                onChange={(e) => {
-                  setFilterInput(e.target.value);
-                }}
-                placeholder="Search by lastname..."
-                className="w-56 p-2 bg-[#7e2626] border-red-300 border-2 rounded-md focus:border-white focus:shadow-md focus:shadow-red-300 "
-              />
+            <div className="relative mx-4">
+              <input type="text" value={filterInput} onChange={(e) => setFilterInput(e.target.value)} placeholder="Search by lastname..." className="w-56 p-2 rounded-md focus:border-white focus:shadow-md" />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
                 <BsSearch className="mr-2 text-white cursor-pointer" />
               </span>
             </div>
             <div className="mx-4">
               {/* Dropdown Select for Grade Level */}
-              <select
-                value={selectedGrade}
-                onChange={(e) => {
-                  setSelectedGrade(e.target.value);
-                }}
-                className="p-2 bg-[#ff5757] text-white border-2 font-semibold border-red-300 rounded-md focus:outline-none focus:border-white">
+              <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 font-semibold rounded-md focus:outline-none focus:border-white">
                 <option value="">All Grades</option>
                 {[1, 2, 3].map((grade) => (
                   <option key={grade} value={grade}>
@@ -157,12 +145,7 @@ function Admin_StudentAccounts() {
               prepareRow(row);
 
               return (
-                <tr
-                  {...row.getRowProps()}
-                  className="gap-5 font-semibold border-8 border-[#d8cccc]"
-                  style={{
-                    background: index % 2 === 0 ? "#b6b6b6" : "white", // Apply gray background for even rows
-                  }}>
+                <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#d8cccc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
                   {row.cells.map((cell) => {
                     return (
                       <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
@@ -203,25 +186,8 @@ export default Admin_StudentAccounts;
 function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal
-      appElement={document.getElementById("root")}
-      isOpen={show}
-      shouldCloseOnEsc={true}
-      style={{
-        content: {
-          backgroundImage: `url('/src/assets/Homepage_Image/red.svg')`,
-          borderRadius: "2rem",
-          maxWidth: "720px",
-          width: "100%",
-          height: "fit-content",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(255, 0, 0, 0.5)",
-        },
-      }}>
-      {/* style={{ content: { backgroundColor: "#FF5454", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}> */}
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
         <h2 className="text-4xl text-center">DISABLE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
@@ -239,3 +205,16 @@ function DeleteModal({ show, onHide, onSave }) {
     </ReactModal>
   );
 }
+
+const modalStyle = {
+  content: {
+    backgroundColor: "#a8a4a4",
+    borderRadius: "2rem",
+    maxWidth: "720px",
+    width: "100%",
+    height: "fit-content",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+  },
+};
