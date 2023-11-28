@@ -51,6 +51,7 @@ import Admin_AddStudent from "./component/Admin_AddStudent";
 import Admin_EditStudent from "./component/Admin_EditStudent";
 import Admin_TeacherAccounts from "./component/Admin_TeacherAccounts";
 import Admin_AddTeacher from "./component/Admin_AddTeacher";
+import Admin_EditTeacher from "./component/Admin_EditTeacher";
 
 const queryClient = new QueryClient();
 
@@ -116,6 +117,7 @@ function App() {
               <Route path="student-accounts/:accountId" element={<Admin_EditStudent />} />
               <Route path="teacher-accounts" element={<Admin_TeacherAccounts />} />
               <Route path="teacher-accounts/create" element={<Admin_AddTeacher />} />
+              <Route path="teacher-accounts/:accountId" element={<Admin_EditTeacher />} />
             </Route>
 
             <Route path="*" element={<NotFound />} />
