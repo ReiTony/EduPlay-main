@@ -46,6 +46,7 @@ import Teacher_ForgotPassword from "./component/Teacher_ForgotPassword";
 import Admin_Login from "./component/Admin_LogIn";
 import Admin_SharedLayout from "./component/Admin_SharedLayout";
 import Admin_Homepage from "./component/Admin_Homepage";
+import Admin_StudentAccounts from "./component/Admin_StudentAccounts";
 
 const queryClient = new QueryClient();
 
@@ -107,6 +108,7 @@ function App() {
             <Route path="/admin/login" element={<Admin_Login />} />
             <Route path="/admin" element={<Admin_SharedLayout />}>
               <Route index element={<Admin_Homepage />} />
+              <Route path="student-accounts" element={<Admin_StudentAccounts />} />
             </Route>
             <Route path="*" element={<NotFound />} />
           </Routes>

@@ -10,7 +10,7 @@ function Admin_SharedLayout() {
   }, []);
 
   return (
-    <div className="flex flex-col flex-grow min-h-screen bg-[#f0e4e4]">
+    <div className="flex flex-col flex-grow min-h-screen overflow-y-auto bg-[#f0e4e4]">
       <Admin_NavBar />
       <Outlet />
     </div>
