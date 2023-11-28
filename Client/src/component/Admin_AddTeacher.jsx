@@ -12,14 +12,23 @@ function Admin_AddTeacher() {
   const [lrn, setLrn] = useState("");
   const [gradeLevel, setGradeLevel] = useState("1");
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [errorInfo, setErrorInfo] = useState("Something went wrong. Please try again.");
+  const [errorInfo, setErrorInfo] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_API}admin/addTeacher`, { email, password, name, lrn, gradeLevel })
-      .then((res) => navigate("/admin/student-accounts"))
-      .catch((err) => setIsErrorModalOpen(true));
+      .then((res) => navigate("/admin/teacher-accounts"))
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 500) showError("The teacher you are trying to add already exists.");
+        else showError("Something went wrong. Please try again.");
+      });
+  };
+
+  const showError = (err) => {
+    setErrorInfo(err);
+    setIsErrorModalOpen(true);
   };
 
   return (
@@ -126,7 +135,6 @@ function Admin_AddTeacher() {
         </form>
       </main>
       <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
-      {/* <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"The student you are trying to add already exists."} /> */}
     </>
   );
 }

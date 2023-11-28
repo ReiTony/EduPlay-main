@@ -28,7 +28,7 @@ function Admin_TeacherAccounts() {
 
   const handleDisableTeacher = async () => {
     axios
-      .delete(`${import.meta.env.VITE_API}teacher/deleteStudent/${toBeDisabledTeacher}`)
+      .delete(`${import.meta.env.VITE_API}admin/deleteTeacher/${toBeDisabledTeacher}`)
       .then((res) => {
         refresh();
         setShowDeleteModal(false);
@@ -36,9 +36,9 @@ function Admin_TeacherAccounts() {
       .catch((err) => alert(err.message));
   };
 
-  const showDelete = (username) => {
+  const showDelete = (id) => {
     setShowDeleteModal(true);
-    setToBeDisabledTeacher(username);
+    setToBeDisabledTeacher(id);
   };
 
   const columns = useMemo(
@@ -66,7 +66,7 @@ function Admin_TeacherAccounts() {
         Cell: ({ row }) => (
           <button
             className="bg-[#d00c24] rounded-full shadow-md text-white font-bold px-5 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
-            onClick={() => showDelete(row.original.username)}>
+            onClick={() => showDelete(row.original._id)}>
             DISABLE
           </button>
         ),
