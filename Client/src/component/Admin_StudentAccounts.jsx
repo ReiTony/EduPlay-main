@@ -194,10 +194,10 @@ function DeleteModal({ show, onHide, onSave }) {
           Upon clicking disable, all information associated under this student will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
+          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95 shadow-black hover:scale-[.98] transition-transform transform-gpu" onClick={onHide}>
             CANCEL
           </button>
-          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-neutral-800 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
+          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-neutral-800 hover:brightness-95 shadow-black hover:scale-[.98] transition-transform transform-gpu" onClick={onSave}>
             DISABLE
           </button>
         </div>
