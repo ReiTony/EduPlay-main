@@ -17,7 +17,7 @@ function Admin_AddTeacher() {
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
-      .post(`${import.meta.env.VITE_API}teacher/addStudent`, { email, password, name, lrn, gradeLevel })
+      .post(`${import.meta.env.VITE_API}admin/addTeacher`, { email, password, name, lrn, gradeLevel })
       .then((res) => navigate("/admin/student-accounts"))
       .catch((err) => setIsErrorModalOpen(true));
   };
