@@ -1,7 +1,8 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import ErrorModal from "./ErrorModal";
 
 function Admin_AddStudent() {
   const navigate = useNavigate();
@@ -10,13 +11,14 @@ function Admin_AddStudent() {
   const [birthDay, setBirthDay] = useState("");
   const [birthMonth, setBirthMonth] = useState("");
   const [gradeLevel, setGradeLevel] = useState("1");
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
     axios
       .post(`${import.meta.env.VITE_API}teacher/addStudent`, { firstName, lastName, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0"), gradeLevel })
       .then((res) => navigate("/admin/student-accounts"))
-      .catch((err) => alert(err.message));
+      .catch((err) => setIsErrorModalOpen(true));
   };
 
   return (
@@ -120,6 +122,7 @@ function Admin_AddStudent() {
           </div>
         </form>
       </main>
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"The student you are trying to add already exists."} />
     </>
   );
 }
