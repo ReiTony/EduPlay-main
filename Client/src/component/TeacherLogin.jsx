@@ -45,8 +45,8 @@ function TeacherLogin() {
     <>
       <div className="flex flex-col justify-between min-h-screen background">
         <NavBar />
-        <main className="w-[80%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto">
-          <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] bg-opacity-95">
+        <main className="w-[80%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto ">
+          <div className="grid grid-rows-[40%_15%_35%] text-white bg-[#252525] hidden bg-opacity-95 lg:block rounded-l-lg shadow-lg shadow-black">
             <div className="flex items-center justify-center">
               <img className="object-cover w-fit h-[90%] m-0" src={logo} alt="Logo" />
             </div>
@@ -59,7 +59,7 @@ function TeacherLogin() {
               <img className="object-cover w-fit h-[90%]" src={boygirl} alt="Logo" />
             </div>
           </div>
-          <section className="bg-[#2596be] opacity-95 flex flex-col gap-14 justify-center px-16 py-4">
+          <section className="bg-[#2596be] opacity-95 flex flex-col py-4 justify-center rounded-r-lg lg:rounded-l-none rounded-lg lg:px-16 py-auto shadow-2xl shadow-black">
             <h2 className="my-8 text-6xl font-extrabold px-14 font-expletus">Teacher Login</h2>
             <form onSubmit={handleSubmit}>
               <div className="mb-6">
