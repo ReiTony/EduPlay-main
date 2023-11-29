@@ -43,6 +43,14 @@ import Teacher_CustomAssessmentAnalysis from "./component/Teacher_CustomAssessme
 import Teacher_LearningGroup from "./component/Teacher_LearningGroup";
 import Teacher_LearningGroupStudent from "./component/Teacher_LearningGroupStudent";
 import Teacher_ForgotPassword from "./component/Teacher_ForgotPassword";
+import Admin_Login from "./component/Admin_LogIn";
+import Admin_SharedLayout from "./component/Admin_SharedLayout";
+import Admin_Homepage from "./component/Admin_Homepage";
+import Admin_StudentAccounts from "./component/Admin_StudentAccounts";
+import Admin_AddStudent from "./component/Admin_AddStudent";
+import Admin_EditStudent from "./component/Admin_EditStudent";
+import Admin_TeacherAccounts from "./component/Admin_TeacherAccounts";
+import Admin_AddTeacher from "./component/Admin_AddTeacher";
 
 const queryClient = new QueryClient();
 
@@ -100,7 +108,16 @@ function App() {
             </Route>
 
             {/* Admin Route */}
-            <Route path="/AdminSignin" element={<AdminSignin />} />
+            <Route path="/admin/login" element={<Admin_Login />} />
+            <Route path="/admin" element={<Admin_SharedLayout />}>
+              <Route index element={<Admin_Homepage />} />
+              <Route path="student-accounts" element={<Admin_StudentAccounts />} />
+              <Route path="student-accounts/create" element={<Admin_AddStudent />} />
+              <Route path="student-accounts/:accountId" element={<Admin_EditStudent />} />
+              <Route path="teacher-accounts" element={<Admin_TeacherAccounts />} />
+              <Route path="teacher-accounts/create" element={<Admin_AddTeacher />} />
+            </Route>
+
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BrowserRouter>
