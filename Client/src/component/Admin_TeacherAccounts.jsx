@@ -52,7 +52,7 @@ function Admin_TeacherAccounts() {
         Cell: ({ row }) => (
           <button
             className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-full shadow-md hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-            onClick={() => navigate(row.original.email)}>
+            onClick={() => navigate(`${row.original.email}/${row.original._id}`)}>
             <span className="flex items-center">
               <BiEditAlt className="mr-2 cursor-pointer" />
               EDIT

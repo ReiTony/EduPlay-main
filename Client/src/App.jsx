@@ -118,7 +118,7 @@ function App() {
               <Route path="student-accounts/:accountId" element={<Admin_EditStudent />} />
               <Route path="teacher-accounts" element={<Admin_TeacherAccounts />} />
               <Route path="teacher-accounts/create" element={<Admin_AddTeacher />} />
-              <Route path="teacher-accounts/:accountId" element={<Admin_EditTeacher />} />
+              <Route path="teacher-accounts/:teacherEmail/:teacherId" element={<Admin_EditTeacher />} />
             </Route>
 
             <Route path="/user/verify-email" element={<EmailVerified />} />
