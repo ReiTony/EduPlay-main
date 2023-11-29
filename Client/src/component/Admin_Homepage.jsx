@@ -7,7 +7,7 @@ function Admin_Homepage() {
   return (
     <main className="flex flex-col gap-5 p-5">
       <div className="bg-[#d8cccc] h-[24rem] relative rounded-3xl hover:scale-[.99] transition-transform transform-gpu hover:neutral-blue-700 shadow-black shadow-xl">
-        <div className="absolute p-8 text-3xl font-bold tracking-wider text-white lg:text-6xl font-sourceSans3">
+        <div className="absolute p-8 text-3xl font-bold tracking-wider lg:text-6xl font-sourceSans3">
           <h1>Manage</h1>
           <br />
           <h1 className="ml-20">Student</h1>
@@ -25,7 +25,7 @@ function Admin_Homepage() {
       </div>
 
       <div className="bg-[#d8cccc] h-[24rem] relative rounded-3xl hover:scale-[.99] transition-transform transform-gpu hover:neutral-blue-700 shadow-black shadow-xl">
-        <div className="absolute p-8 text-3xl font-bold tracking-wider text-white lg:text-6xl font-sourceSans3">
+        <div className="absolute p-8 text-3xl font-bold tracking-wider lg:text-6xl font-sourceSans3">
           <h1>Manage </h1>
           <br />
           <h1 className="ml-20">Teacher</h1>
