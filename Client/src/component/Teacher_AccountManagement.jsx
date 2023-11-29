@@ -117,7 +117,7 @@ function Teacher_AccountManagement() {
                 onChange={(e) => {
                   setFilterInput(e.target.value);
                 }}
-                placeholder="Search by lastname..."
+                placeholder="Search by last name..."
                 className="w-56 p-2 bg-[#7e2626] border-red-300 border-2 rounded-md  focus:border-white focus:shadow-md focus:shadow-red-300 "
               />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">

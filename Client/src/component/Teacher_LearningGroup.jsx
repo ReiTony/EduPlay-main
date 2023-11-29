@@ -1,11 +1,14 @@
 import axios from "axios";
 import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
-import { useTable } from "react-table";
+import { useFilters, useTable } from "react-table";
+import { BsSearch } from "react-icons/bs";
 
 function Teacher_LearningGroup() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
+  const [filterInput, setFilterInput] = useState("");
+  const [selectedGrade, setSelectedGrade] = useState("");
 
   useEffect(() => {
     axios.get(`${import.meta.env.VITE_API}teacher/progress-reports`).then(async (res) => {
@@ -19,9 +22,18 @@ function Teacher_LearningGroup() {
     });
   }, []);
 
+  useEffect(() => {
+    if (selectedGrade === "") setFilter("gradeLevel", undefined);
+    else setFilter("gradeLevel", selectedGrade);
+  }, [selectedGrade]);
+
+  useEffect(() => {
+    setFilter("lastName", filterInput);
+  }, [filterInput]);
+
   const columns = useMemo(
     () => [
-      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "gradeLevel" },
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "gradeLevel", Filter: GradeLevelFilter, filter: "equals" },
       { Header: "FIRST NAME", accessor: "firstName", id: "firstName" },
       { Header: "LAST NAME", accessor: "lastName", id: "lastName" },
       {
@@ -36,7 +48,7 @@ function Teacher_LearningGroup() {
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data });
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   return (
     <div className="flex flex-col flex-grow gap-4 p-4">
@@ -44,6 +56,25 @@ function Teacher_LearningGroup() {
         <h1>LEARNING GROUP</h1>
       </header>
       <div className="flex flex-col flex-grow gap-4 p-5 font-bold shadow-lg backgroundBlue rounded-3xl shadow-blue-800">
+        <div className="flex flex-row gap-4 ms-auto">
+          <div className="relative mx-4 text-white">
+            <input
+              type="text"
+              value={filterInput}
+              onChange={(e) => setFilterInput(e.target.value)}
+              placeholder="Search by last name..."
+              className="w-56 p-2 bg-[#086cfc] border-[#50a4ec] border-2 rounded-md focus:border-white focus:shadow-md focus:shadow-red-300 "
+            />
+            <BsSearch className="absolute transform -translate-y-1/2 top-1/2 right-4 mr-2 text-white cursor-pointer" />
+          </div>
+          <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 bg-[#086cfc] text-white border-2 font-semibold border-[#50a4ec] rounded-md focus:outline-none focus:border-white">
+            <option value="">All Grades</option>
+            <option value="1">1</option>
+            <option value="2">2</option>
+            <option value="3">3</option>
+          </select>
+        </div>
+
         <table {...getTableProps()}>
           <thead>
             {headerGroups.map((headerGroup) => (
@@ -73,6 +104,20 @@ function Teacher_LearningGroup() {
         </table>
       </div>
     </div>
+  );
+}
+
+function GradeLevelFilter({ column }) {
+  const { filterValue, setFilter } = column;
+  return (
+    <select value={filterValue || ""} onChange={(e) => setFilter(e.target.value || undefined)} className="p-2 rounded-md">
+      <option value="">All Grades</option>
+      {[1, 2, 3].map((grade) => (
+        <option key={grade} value={grade}>
+          Grade {grade}
+        </option>
+      ))}
+    </select>
   );
 }
 
