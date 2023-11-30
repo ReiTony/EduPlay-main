@@ -28,7 +28,7 @@ function Admin_TeacherAccounts() {
 
   const handleDisableTeacher = async () => {
     axios
-      .delete(`${import.meta.env.VITE_API}teacher/deleteStudent/${toBeDisabledTeacher}`)
+      .delete(`${import.meta.env.VITE_API}admin/deleteTeacher/${toBeDisabledTeacher}`)
       .then((res) => {
         refresh();
         setShowDeleteModal(false);
@@ -36,14 +36,14 @@ function Admin_TeacherAccounts() {
       .catch((err) => alert(err.message));
   };
 
-  const showDelete = (username) => {
+  const showDelete = (id) => {
     setShowDeleteModal(true);
-    setToBeDisabledTeacher(username);
+    setToBeDisabledTeacher(id);
   };
 
   const columns = useMemo(
     () => [
-      { Header: "GRADELEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
       { Header: "NAME", accessor: "name", id: "NAME" },
       { Header: "EMAIL", accessor: "email", id: "EMAIL" },
       {
@@ -52,7 +52,7 @@ function Admin_TeacherAccounts() {
         Cell: ({ row }) => (
           <button
             className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-full shadow-md hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-            onClick={() => navigate(row.original.name)}>
+            onClick={() => navigate(`${row.original.email}/${row.original._id}`)}>
             <span className="flex items-center">
               <BiEditAlt className="mr-2 cursor-pointer" />
               EDIT
@@ -66,7 +66,7 @@ function Admin_TeacherAccounts() {
         Cell: ({ row }) => (
           <button
             className="bg-[#d00c24] rounded-full shadow-md text-white font-bold px-5 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
-            onClick={() => showDelete(row.original.username)}>
+            onClick={() => showDelete(row.original._id)}>
             DISABLE
           </button>
         ),

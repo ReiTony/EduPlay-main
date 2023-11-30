@@ -43,15 +43,17 @@ function Teacher_AccountManagement() {
 
   const columns = useMemo(
     () => [
-      { Header: "GRADELEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
-      { Header: "LASTNAME", accessor: "lastName", id: "LASTNAME" },
-      { Header: "FIRSTNAME", accessor: "firstName" },
+      { Header: "GRADE LEVEL", accessor: "gradeLevel", id: "GRADELEVEL", Filter: GradeLevelFilter, filter: "equals" },
+      { Header: "FIRST NAME", accessor: "firstName", id: "FIRSTNAME" },
+      { Header: "LAST NAME", accessor: "lastName", id: "LASTNAME" },
       { Header: "BIRTHDAY", accessor: (d) => `${d.birthMonth}/${d.birthDay}` },
       {
         Header: "EDIT",
         accessor: "EDIT_STATUS",
         Cell: ({ row }) => (
-          <button className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate(row.original.username)}>
+          <button
+            className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
+            onClick={() => navigate(row.original.username)}>
             <span className="flex items-center">
               <BiEditAlt className="mr-2 cursor-pointer" />
               EDIT
@@ -63,7 +65,9 @@ function Teacher_AccountManagement() {
         Header: "STATUS",
         accessor: "STATUS",
         Cell: ({ row }) => (
-          <button className="bg-[#d00c24] rounded-full shadow-lg text-white font-bold px-5 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={() => showDelete(row.original.username)}>
+          <button
+            className="bg-[#d00c24] rounded-full shadow-lg text-white font-bold px-5 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+            onClick={() => showDelete(row.original.username)}>
             DISABLE
           </button>
         ),
@@ -100,7 +104,9 @@ function Teacher_AccountManagement() {
 
           <div className="flex">
             <div className="mx-4">
-              <button className="px-5 py-1 text-2xl font-bold rounded-full text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu" onClick={() => navigate("create")}>
+              <button
+                className="px-5 py-1 text-2xl font-bold rounded-full text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
+                onClick={() => navigate("create")}>
                 ADD STUDENT
               </button>
             </div>
@@ -111,7 +117,7 @@ function Teacher_AccountManagement() {
                 onChange={(e) => {
                   setFilterInput(e.target.value);
                 }}
-                placeholder="Search by lastname..."
+                placeholder="Search by last name..."
                 className="w-56 p-2 bg-[#7e2626] border-red-300 border-2 rounded-md  focus:border-white focus:shadow-md focus:shadow-red-300 "
               />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
@@ -208,12 +214,13 @@ function DeleteModal({ show, onHide, onSave }) {
           backgroundImage: `url('/src/assets/Homepage_Image/red.svg')`,
           borderRadius: "2rem",
           maxWidth: "720px",
-          width: "100%", height: "fit-content",
-          top: "50%", left: "50%",
+          width: "100%",
+          height: "fit-content",
+          top: "50%",
+          left: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(255, 0, 0, 0.5)"
-
-        }
+          boxShadow: "0 20px 20px rgba(255, 0, 0, 0.5)",
+        },
       }}>
       {/* style={{ content: { backgroundColor: "#FF5454", border: "5px solid black", borderRadius: "2rem", maxWidth: "720px", width: "100%", height: "fit-content", top: "50%", left: "50%", transform: "translate(-50%, -50%)" } }}> */}
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">

@@ -16,7 +16,7 @@ function Admin_Login() {
   const [errorInfo, setErrorInfo] = useState("Error");
 
   useEffect(() => {
-    if (localStorage.getItem("userId") && localStorage.getItem("userType") === "student") navigate("/student");
+    if (localStorage.getItem("userId") && localStorage.getItem("userType") === "admin") navigate("/admin");
   }, []);
 
   const onSubmit = async (values, setSubmitting) => {

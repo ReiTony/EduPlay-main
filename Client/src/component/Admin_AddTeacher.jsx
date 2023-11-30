@@ -3,23 +3,36 @@ import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
+import ReactModal from "react-modal";
 
 function Admin_AddTeacher() {
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [name, setName] = useState("");
-  const [lrn, setLrn] = useState("");
   const [gradeLevel, setGradeLevel] = useState("1");
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [errorInfo, setErrorInfo] = useState("Something went wrong. Please try again.");
+  const [errorInfo, setErrorInfo] = useState("");
+  const [isVerifyAccountModalOpen, setIsVerifyAccountModalOpen] = useState(false);
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (!/^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/.test(email)) return showError("Please enter a valid email.");
+    if (password.length < 6) return showError("Please enter a password with at least 6 characters.");
+    if (name.length < 3) return showError("Please enter a name with at least 3 characters.");
     axios
-      .post(`${import.meta.env.VITE_API}admin/addTeacher`, { email, password, name, lrn, gradeLevel })
-      .then((res) => navigate("/admin/student-accounts"))
-      .catch((err) => setIsErrorModalOpen(true));
+      .post(`${import.meta.env.VITE_API}admin/addTeacher`, { email, password, name, gradeLevel })
+      .then(() => setIsVerifyAccountModalOpen(true))
+      .catch((err) => {
+        console.log(err);
+        if (err.response.status === 500) showError("The teacher you are trying to add already exists.");
+        else showError("Something went wrong. Please try again.");
+      });
+  };
+
+  const showError = (err) => {
+    setErrorInfo(err);
+    setIsErrorModalOpen(true);
   };
 
   return (
@@ -88,22 +101,7 @@ function Admin_AddTeacher() {
                 />
               </div>
             </div>
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="lrn" className="pr-2 ml-5 text-right">
-                  LRN:
-                </label>
-                <input
-                  type="number"
-                  value={lrn}
-                  onChange={(e) => setLrn(e.target.value)}
-                  id="lrn"
-                  name="lrn"
-                  placeholder="Enter LRN"
-                  className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                />
-              </div>
-            </div>
+
             <div className="flex items-center justify-center">
               <label htmlFor="gradeLevel" className="pr-2 text-right">
                 Grade Level:
@@ -126,9 +124,34 @@ function Admin_AddTeacher() {
         </form>
       </main>
       <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
-      {/* <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"The student you are trying to add already exists."} /> */}
+      <ReactModal appElement={document.getElementById("root")} isOpen={isVerifyAccountModalOpen} shouldCloseOnEsc={true} style={modalStyle}>
+        <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-sourceSans3">
+          <h2 className="text-3xl font-semibold text-center">Verify Account</h2>
+          <h2 className="text-3xl text-center">Verification email sent. Please check your email.</h2>
+          <button
+            className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
+            onClick={() => navigate("/admin/teacher-accounts")}>
+            CONTINUE
+          </button>
+        </div>
+      </ReactModal>
     </>
   );
 }
+
+const modalStyle = {
+  content: {
+    background: `url("/src/assets/wordHuntPOPbg.svg")`,
+    border: "0",
+    borderRadius: "2rem",
+    maxWidth: "540px",
+    width: "fit-content",
+    height: "fit-content",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+  },
+};
 
 export default Admin_AddTeacher;
