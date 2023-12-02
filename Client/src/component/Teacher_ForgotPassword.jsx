@@ -8,13 +8,17 @@ import ErrorModal from "./ErrorModal";
 function Teacher_ForgotPassword() {
   const [email, setEmail] = useState("");
   const [isEmailSentModalOpen, setIsEmailSentModalOpen] = useState(false);
+  const [isSending, setIsSending] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const handleResetPassword = async (e) => {
     e.preventDefault();
+    setIsSending(true);
     await axios
       .post(`${import.meta.env.VITE_API}teacher/forgot-password`, { email })
       .then(() => setIsEmailSentModalOpen(true))
-      .catch(() => alert("Email does not exist!"));
+      .catch(() => setIsErrorModalOpen(true))
+      .finally(() => setIsSending(false));
   };
 
   return (
@@ -36,13 +40,14 @@ function Teacher_ForgotPassword() {
           <form className="bg-[#2596be] flex flex-col gap-6 justify-center items-center px-16 py-4 font-sourceSans3">
             <h2 className="my-8 text-6xl font-extrabold px-14">Teacher Forgot Password</h2>
             <input type="text" className="bg-[#282424] w-full shadow-md rounded-full font-semibold text-2xl text-white px-8 py-3" placeholder="Enter your email" value={email} onChange={(e) => setEmail(e.target.value)} />
-            <button type="submit" className="bg-[#282424] rounded-full shadow-md text-white text-2xl font-bold px-10 py-3 mt-10 hover:brightness-90" onClick={handleResetPassword}>
-              SEND EMAIL
+            <button type="submit" className="bg-[#282424] rounded-full shadow-md text-white text-2xl font-bold px-10 py-3 mt-10 hover:brightness-90" onClick={handleResetPassword} disabled={isSending}>
+              {isSending ? "SENDING EMAIL..." : "SEND EMAIL"}
             </button>
           </form>
         </main>
       </div>
       <ErrorModal show={isEmailSentModalOpen} onHide={() => setIsEmailSentModalOpen(false)} errorInfo={"Please check your email for the link."} />
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"Email does not exist!"} />
     </>
   );
 }
