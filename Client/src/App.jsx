@@ -53,6 +53,7 @@ import Admin_TeacherAccounts from "./component/Admin_TeacherAccounts";
 import Admin_AddTeacher from "./component/Admin_AddTeacher";
 import Admin_EditTeacher from "./component/Admin_EditTeacher";
 import EmailVerified from "./component/EmailVerified";
+import Teacher_ForgotPasswordLink from "./component/Teacher_ForgotPasswordLink";
 
 const queryClient = new QueryClient();
 
@@ -122,6 +123,7 @@ function App() {
             </Route>
 
             <Route path="/user/verify-email" element={<EmailVerified />} />
+            <Route path="/user/reset-password" element={<Teacher_ForgotPasswordLink />} />
 
             <Route path="*" element={<NotFound />} />
           </Routes>
