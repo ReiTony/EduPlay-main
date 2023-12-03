@@ -53,3 +53,7 @@
 .backgroundMainTeacher {
     background-image: url('/src/assets/Homepage_Image/TeacherMainBg.svg');
 }
+
+button[disabled] {
+    cursor: not-allowed;
+}

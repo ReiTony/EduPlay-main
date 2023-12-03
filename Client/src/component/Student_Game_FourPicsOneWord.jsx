@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import { useNavigate, useParams } from "react-router-dom";
-import textToSpeechIcon from "../assets/texttospeech.svg";
 import ReactModal from "react-modal";
 import axios from "axios";
 
@@ -44,16 +43,12 @@ function Student_Game_FourPicsOneWord() {
       setLastCorrectWord(data.rounds[roundNumber]);
       setIsModalCorrectOpen(true);
       setErrorText("");
+      speechSynthesis.cancel();
+      speechSynthesis.speak(new SpeechSynthesisUtterance(data.rounds[roundNumber].meaning));
       if (roundNumber + 1 !== data.rounds.length) setRoundNumber((i) => i + 1);
       else setIsGameFinished(true);
     } else setErrorText("Wrong Answer. Try Again.");
     setAnswer("");
-  };
-
-  const handleTTSClick = (meaning) => {
-    if (speechSynthesis.speaking) return;
-    let utterance = new SpeechSynthesisUtterance(meaning);
-    speechSynthesis.speak(utterance);
   };
 
   const handleContinueModal = () => {
@@ -81,7 +76,6 @@ function Student_Game_FourPicsOneWord() {
             <button type="submit" className="bg-[#252525] rounded-full shadow-md font-semibold px-6 py-2 text-white text-lg" disabled={isGameFinished}>
               SUBMIT
             </button>
-            <img className="cursor-pointer" onClick={() => handleTTSClick(data?.rounds[roundNumber].meaning)} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
           </form>
         </div>
       </div>
