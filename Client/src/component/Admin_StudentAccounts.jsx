@@ -68,7 +68,7 @@ function Admin_StudentAccounts() {
           <button
             className="bg-[#d00c24] rounded-full shadow-md text-white font-bold px-5 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
             onClick={() => showDelete(row.original.username)}>
-            DISABLE
+            DELETE
           </button>
         ),
       },
@@ -188,17 +188,17 @@ function DeleteModal({ show, onHide, onSave }) {
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
-        <h2 className="text-4xl text-center">DISABLE STUDENT</h2>
+        <h2 className="text-4xl text-center">DELETE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking disable, all information associated under this student will be deleted.
+          Upon clicking delete, all information associated under this student will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95 shadow-black hover:scale-[.98] transition-transform transform-gpu" onClick={onHide}>
             CANCEL
           </button>
           <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-neutral-800 hover:brightness-95 shadow-black hover:scale-[.98] transition-transform transform-gpu" onClick={onSave}>
-            DISABLE
+            DELETE
           </button>
         </div>
       </div>
