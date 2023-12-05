@@ -66,7 +66,7 @@ function Student_Game_FourPicsOneWord() {
         <hr className="h-1 bg-black mb-4" />
 
         <div className="flex flex-col items-center justify-center h-full gap-4 py-2 lg:flex-col">
-          <img src={data?.rounds[roundNumber].imagePath} style={{ height: "450px" }} />
+          <img className="rounded-xl shadow-md mt-4" style={{ maxHeight: "450px" }} src={data?.rounds[roundNumber].imagePath} alt="question image" />
           <div className="text-2xl my-2 font-semibold">{data?.rounds[roundNumber].clue}</div>
           <form onSubmit={handleSubmitAnswer} className="flex flex-row justify-center items-start gap-2 w-full font-sourceSans3 mt-4">
             <div className="flex flex-col items-center gap-1 w-full" style={{ maxWidth: "300px" }}>
