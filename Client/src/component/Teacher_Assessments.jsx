@@ -93,10 +93,10 @@ function DeleteModal({ show, onHide, onSave }) {
           boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
         }
       }}><div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
-        <h2 className="text-3xl text-center">DELETE QUESTION</h2>
+        <h2 className="text-3xl text-center">DELETE ASSESSMENT</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking proceed, all information provided under the question will be deleted.
+          Upon clicking proceed, all information provided under the assessment will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
           <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
