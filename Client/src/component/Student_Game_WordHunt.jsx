@@ -88,6 +88,11 @@ function Student_Game_WordHunt() {
     return temp;
   };
 
+  const handleTouchMove = (e, rowNum, colNum) => {
+    e.preventDefault();
+    setCurrent([rowNum, colNum + 1]);
+  };
+
   return (
     <>
       <div className="flex flex-col items-center h-full p-4 sm:p-8 m-4 mb-6 shadow-md secondBackground shadow-black rounded-2xl">
@@ -109,7 +114,7 @@ function Student_Game_WordHunt() {
                   onMouseUp={handleMouseUp}
                   onTouchEnd={handleMouseUp}
                   onMouseEnter={() => setCurrent([rowNum, colNum + 1])}
-                  onTouchMove={() => setCurrent([rowNum, colNum + 1])}>
+                  onTouchMove={(e) => handleTouchMove(e, rowNum, colNum)}>
                   {i}
                 </div>
               ))
