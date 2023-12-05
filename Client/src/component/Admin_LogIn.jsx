@@ -91,13 +91,8 @@ function Admin_Login() {
                   {showPassword ? <FaEye className="text-white" /> : <FaEyeSlash className="text-white" />}
                 </span>
               </div>
-              <div className="flex justify-end mt-4 mr-2 text-lg md:mr-0 md:text-lg">
-                <a href="forgot-password" className="text-xl font-semibold font-sourceSans3 underline">
-                  Forgot Password?
-                </a>
-              </div>
               <button
-                className="px-12 py-3 mt-4 text-2xl font-bold text-center text-white placeholder-white transition duration-300 ease-in-out transform bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400 hover:scale-105"
+                className="px-12 py-3 mt-10 text-2xl font-bold text-center text-white placeholder-white transition duration-300 ease-in-out transform bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400 hover:scale-105"
                 type="submit"
                 disabled={isSubmitting}>
                 {isSubmitting ? "SIGNING IN..." : "SIGN IN"}
