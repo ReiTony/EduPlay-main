@@ -67,9 +67,6 @@ function App() {
             {/* Set LandingPage as the root route */}
             <Route path="/" element={<LandingPage />} />
 
-            {/* TokenTransfer */}
-            <Route path="/setToken" element={<TokenTransfer />} />
-
             {/* Student Routes */}
             <Route path="/student/login" element={<Student_Login />} />
             <Route path="/student" element={<Student_SharedLayout />}>

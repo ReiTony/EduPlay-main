@@ -42,16 +42,10 @@ function Student_Module_Lecture() {
       {/* HIDDEN TECHNIQUE FOR MOBILE RESPONSIVE NG VIDEO */}
       <div className="flex flex-col items-center justify-center flex-grow gap-8">
         <div className="flex flex-col items-center justify-center lg:hidden">
-          <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls
-            width="110%"
-          />
-
+          <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls width="110%" />
         </div>
         <div className="hidden lg:flex lg:flex-col lg:items-center lg:justify-center xl:block">
-          <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls
-            width='1100px'
-            height='550px'
-          />
+          <ReactPlayer url={data?.videoLink || ""} onEnded={() => setIsFinished(true)} controls width="1100px" height="550px" />
         </div>
 
         {isFinished && (
