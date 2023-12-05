@@ -30,7 +30,6 @@ function Student_Module_Review() {
   }, []);
 
   const handleNext = async () => {
-    // await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, moduleProgress: "100", title: data.title.split(":")[1].trim(), student: userId })
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title.split(":")[1].trim(), student: userId });
     navigate(`/student/module/${moduleNumber}/game`);
   };
@@ -38,7 +37,7 @@ function Student_Module_Review() {
   if (isLoading) return;
 
   return (
-    <div className="secondBackground shadow-md shadow-black flex flex-col items-center m-4 lg:mx-auto mb-6 p-8 rounded-2xl h-full lg:h-[82vh] lg:w-5/6">
+    <div className="secondBackground shadow-md shadow-black flex flex-col items-center mx-auto my-6 p-8 rounded-2xl lg:w-5/6">
       <h1 className="text-3xl font-semibold font-sourceSans3">{data?.title || ""}</h1>
       <hr className="w-full h-1 my-2 bg-black" />
 

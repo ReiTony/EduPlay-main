@@ -17,8 +17,6 @@ import Student_AssessmentMenu from "./component/Student_AssesmentMenu";
 import Student_LearningGroup from "./component/Student_LearningGroup";
 import Student_Game from "./component/Student_Game";
 
-import TokenTransfer from "./component/TokenTransfer";
-
 import Teacher_Navbar from "./component/Teacher_Navbar";
 import TeacherLogin from "./component/TeacherLogin";
 import Teacher_Logout from "./component/Teacher_Logout";

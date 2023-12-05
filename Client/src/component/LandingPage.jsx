@@ -1,11 +1,11 @@
-import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import myHighlight1 from "../assets/LandingPage/Highlight1.svg";
 import myHighlight2 from "../assets/LandingPage/Highlight2.svg";
 import kids from "../assets/LandingPage/kids.png";
-// import heart from "../assets/LandingPage/logos/heart.svg";
 import NavBar from "./NavBar";
 
 function LandingPage() {
+  const navigate = useNavigate();
   return (
     <div className="backgroundYellow flex flex-col">
       <NavBar />
@@ -17,12 +17,12 @@ function LandingPage() {
           </h1>
           <p className="font-normal font-pt-serif mb-7">Embark on an educational adventure like no other as this website combines learning with exciting games, turning knowledge into a thrilling quest.</p>
           <div className="font-montserrat">
-            <Link to="/student/login">
-              <button className="px-6 py-4 mb-2 mr-2 text-white border-2 border-black border-solid rounded-lg bg-zinc-800 font-expletus">Student Login</button>
-            </Link>
-            <Link to="/teacher/login">
-              <button className="px-6 py-4 text-white border-2 border-solid rounded-lg bg-rose-500 border-rose-500 font-expletus">Teacher Login</button>
-            </Link>
+            <button className="px-6 py-4 mb-2 mr-2 text-white border-2 border-black border-solid rounded-lg bg-zinc-800 font-expletus" onClick={() => navigate("/student/login")}>
+              Student Login
+            </button>
+            <button className="px-6 py-4 text-white border-2 border-solid rounded-lg bg-rose-500 border-rose-500 font-expletus" onClick={() => navigate("teacher/login")}>
+              Teacher Login
+            </button>
           </div>
         </div>
         <div className="flex justify-around mt-8 md:block md:mt-0 md:flex-1">

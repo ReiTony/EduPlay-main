@@ -90,13 +90,13 @@ function Student_Game_WordHunt() {
 
   return (
     <>
-      <div className="flex flex-col items-center h-full p-8 m-4 mb-6 shadow-md secondBackground shadow-black rounded-2xl">
+      <div className="flex flex-col items-center h-full p-4 sm:p-8 m-4 mb-6 shadow-md secondBackground shadow-black rounded-2xl">
         <h3 className="my-2 text-5xl font-semibold font-sourceSans3">{data?.title || ""}</h3>
 
         <hr className="w-full h-1 bg-black" />
 
         <div className="flex flex-col items-start gap-10 lg:flex-row">
-          <div className="grid flex-grow grid-cols-9 p-4 my-16 shadow-lg grid-rows-10 bg-slate-100 rounded-2xl">
+          <div className="grid flex-grow grid-cols-9 p-2 sm:p-4 my-16 shadow-lg grid-rows-10 text-xl bg-slate-100 rounded-2xl">
             {data?.puzzle.map((row, rowNum) =>
               row.map((i, colNum) => (
                 <div
@@ -105,8 +105,11 @@ function Student_Game_WordHunt() {
                   }`}
                   key={rowNum + "-" + colNum}
                   onMouseDown={() => setOrigin([rowNum, colNum + 1])}
+                  onTouchStart={() => setOrigin([rowNum, colNum + 1])}
                   onMouseUp={handleMouseUp}
-                  onMouseEnter={() => setCurrent([rowNum, colNum + 1])}>
+                  onTouchEnd={handleMouseUp}
+                  onMouseEnter={() => setCurrent([rowNum, colNum + 1])}
+                  onTouchMove={() => setCurrent([rowNum, colNum + 1])}>
                   {i}
                 </div>
               ))
