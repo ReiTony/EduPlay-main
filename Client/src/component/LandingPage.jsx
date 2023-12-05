@@ -98,8 +98,40 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-800 sectionSize">
-        <div className="text-sm text-white font-montserrat">© 2023 EDUPLAY. All rights reserved</div>
+      <section className="flex flex-col gap-14 bg-zinc-800 sectionSize text-white font-sourceSans3 py-20" id="about">
+        <div className="flex flex-col gap-4 sm:flex-row sm:gap-16">
+          <h2 className="text-yellow-400 font-bold text-5xl">ABOUT</h2>
+          <p>In this school, Education and Behavior play the most powerful motivating forces and essential means to create significant life changes among its students.</p>
+        </div>
+
+        <div className="flex flex-col sm:flex-row gap-10">
+          <div className="flex flex-col gap-2">
+            <h3 className="text-yellow-400 font-bold text-2xl text-center">MISSION</h3>
+            <p>Infant Jesus Montessori Center is a leading school recognized globally for excellence and developing wholistic leaders who will play a great role in improving the nation.</p>
+          </div>
+          <div className="flex flex-col gap-2">
+            <h3 className="text-yellow-400 font-bold text-2xl text-center">VISION</h3>
+            <p>The IJMC is committed to shape the hearts, minds and souls of all students through quality education that will bring about the best in them.</p>
+          </div>
+        </div>
+
+        <div className="flex flex-col gap-4">
+          <h2 className="text-yellow-400 font-bold text-2xl text-center">PHILOSOPHY</h2>
+          <p>
+            The aims and objectives of Infant Jesus Montessori Center recognized that every human being has an eternal destiny as well as earth existence. IJMC, therefore, pursues full and integrated development of the whole
+            man, intellectually, culturally, morally, and spiritually. The school carries on the role as promoter of Christian and humanistic ideals and thereby seeks to fulfill its individual commitment of individual to
+            community and to God.
+          </p>
+          <p>The school recognizes the role of the parents as the primary and principal educators of their children.</p>
+          <p>
+            In keeping the role of an educational institution, IJMC wants to remain faithful to its function.. to serve the educational needs of every students and develop a like-long learner with the core values Maka-Diyos,
+            makatao, maka kalikasan at makabansa.
+          </p>
+        </div>
+      </section>
+
+      <section className="bg-secondary sectionSize">
+        <div className="text-sm font-montserrat">© 2023 EDUPLAY. All rights reserved</div>
       </section>
     </div>
   );
