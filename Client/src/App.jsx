@@ -30,7 +30,6 @@ import Teacher_AccountManagement from "./component/Teacher_AccountManagement";
 import Teacher_SharedLayout from "./component/Teacher_SharedLayout";
 import Teacher_EditStudent from "./component/Teacher_EditStudent";
 
-import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
 import NotFound from "./component/NotFound";
 import Teacher_CreateAssessment from "./component/Teacher_CreateAssessment";
