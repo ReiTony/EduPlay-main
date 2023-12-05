@@ -95,9 +95,8 @@ function Student_Game_WordHunt() {
     return temp;
   };
 
-  const handleTouchStart = (move) => {
-    if (isSwiping) {
-      setIsSwiping(false);
+  const handleTouchStart = (move, status) => {
+    if (isSwiping && status === "END") {
       let tempShaded;
       if (origin[0] > move[0] && origin[1] === move[1]) tempShaded = generateUpDownPattern(origin, move); // upward
       else if (origin[0] < move[0] && origin[1] === move[1]) tempShaded = generateUpDownPattern(move, origin); // downward
@@ -105,17 +104,18 @@ function Student_Game_WordHunt() {
       else if (origin[1] < move[1] && origin[0] === move[0]) tempShaded = generateLeftRightPattern(origin, move); // right
       else tempShaded = "";
       if (data?.answers.includes(move + " " + origin)) {
-        found(data?.answers.indexOf(move + " " + origin));
         const temp = answers;
         tempShaded.forEach((i) => temp.push(i));
         setAnswers(temp);
         setSolved((i) => i + 1);
+        found(data?.answers.indexOf(move + " " + origin));
       }
       setShaded([]);
       setCurrent([-1, -1]);
       setOrigin([-1, -1]);
-    } else {
-      setIsSwiping(true);
+      setIsSwiping(false);
+    } else if (!isSwiping) {
+      if (status === "END") return setIsSwiping(true);
       setShaded([move.join("")]);
       setOrigin(move);
     }
@@ -138,7 +138,8 @@ function Student_Game_WordHunt() {
                   }`}
                   key={rowNum + "-" + colNum}
                   onMouseDown={() => setOrigin([rowNum, colNum + 1])}
-                  onTouchStart={() => handleTouchStart([rowNum, colNum + 1])}
+                  onTouchStart={() => handleTouchStart([rowNum, colNum + 1], "START")}
+                  onTouchEnd={() => handleTouchStart([rowNum, colNum + 1], "END")}
                   onMouseUp={handleMouseUp}
                   onMouseEnter={() => setCurrent([rowNum, colNum + 1])}>
                   {i}
