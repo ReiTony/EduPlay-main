@@ -104,7 +104,7 @@ function DeleteModal({ show, onHide, onSave }) {
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking proceed, all information provided under the question will be deleted.
+          Upon clicking proceed, all information provided under the assessment will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
           <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
