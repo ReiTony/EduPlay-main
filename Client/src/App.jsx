@@ -17,8 +17,6 @@ import Student_AssessmentMenu from "./component/Student_AssesmentMenu";
 import Student_LearningGroup from "./component/Student_LearningGroup";
 import Student_Game from "./component/Student_Game";
 
-import TokenTransfer from "./component/TokenTransfer";
-
 import Teacher_Navbar from "./component/Teacher_Navbar";
 import TeacherLogin from "./component/TeacherLogin";
 import Teacher_Logout from "./component/Teacher_Logout";
@@ -32,7 +30,6 @@ import Teacher_AccountManagement from "./component/Teacher_AccountManagement";
 import Teacher_SharedLayout from "./component/Teacher_SharedLayout";
 import Teacher_EditStudent from "./component/Teacher_EditStudent";
 
-import AdminSignin from "./component/AdminSignin";
 import Teacher_Add_Student from "./component/Teacher_Add_Student";
 import NotFound from "./component/NotFound";
 import Teacher_CreateAssessment from "./component/Teacher_CreateAssessment";
@@ -66,9 +63,6 @@ function App() {
           <Routes>
             {/* Set LandingPage as the root route */}
             <Route path="/" element={<LandingPage />} />
-
-            {/* TokenTransfer */}
-            <Route path="/setToken" element={<TokenTransfer />} />
 
             {/* Student Routes */}
             <Route path="/student/login" element={<Student_Login />} />

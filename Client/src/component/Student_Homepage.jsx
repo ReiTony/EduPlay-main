@@ -19,18 +19,8 @@ function Student_Dashboard() {
   useEffect(() => {
     axios
       .get(`${import.meta.env.VITE_API}student/${userId}`)
-      .then((res) => setNotificationMessages(res.data.notifications))
+      .then((res) => setNotificationMessages(res.data.notifications.slice(0, 5)))
       .catch((err) => alert(err.message));
-  }, []);
-
-  useEffect(() => {
-    axios
-    .get(`${import.meta.env.VITE_API}student/notifications?recipient=${userId}&gradeLevel=${gradeLevel}`)
-    .then((res) => {
-      const latestNotifications = res.data.request.slice(0, 5);
-      setNotificationMessages(latestNotifications);
-    })
-    .catch((err) => alert(err.message));
   }, []);
 
   const handleCloseClick = () => {
