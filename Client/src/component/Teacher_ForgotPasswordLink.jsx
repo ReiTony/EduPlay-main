@@ -29,7 +29,7 @@ function Teacher_ForgotPasswordLink() {
         <h1 className="text-4xl text-center font-bold my-6">Teacher Forgot Password</h1>
         {isVerifying ? (
           <form className="flex flex-col items-center justify-center gap-4">
-            <input type="password" className="rounded-full border-2 w-full text-2xl px-6 py-2" placeholder="Enter your new newPassword" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
+            <input type="password" className="rounded-full border-2 w-full text-2xl px-6 py-2" placeholder="Enter new password" value={newPassword} onChange={(e) => setNewPassword(e.target.value)} />
             <button type="submit" className="bg-[#282424] rounded-full shadow-md w-full text-white text-xl font-bold px-10 py-3 hover:brightness-90" onClick={handleChangePassword} disabled={isChanging}>
               {isChanging ? "CHANGING PASSWORD..." : "CHANGE PASSWORD"}
             </button>
