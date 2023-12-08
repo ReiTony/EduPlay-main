@@ -5,9 +5,9 @@ function About() {
     <>
       <NavBar />
       <main className="flex flex-col gap-14 bg-zinc-800 sectionSize text-white font-sourceSans3 py-20" id="about">
-        <div className="flex flex-col gap-4 sm:flex-row sm:gap-16">
-          <h2 className="text-yellow-400 font-bold text-5xl">ABOUT</h2>
-          <p>In this school, Education and Behavior play the most powerful motivating forces and essential means to create significant life changes among its students.</p>
+        <div className="flex flex-col gap-4">
+          <h2 className="text-yellow-400 text-center font-bold text-5xl">{"INFANT JESUS MONTESSORI CENTER (LAGUNA)"}</h2>
+          <p className="text-center">In this school, Education and Behavior play the most powerful motivating forces and essential means to create significant life changes among its students.</p>
         </div>
 
         <div className="flex flex-col sm:flex-row gap-10">
