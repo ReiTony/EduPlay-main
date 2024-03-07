@@ -37,91 +37,58 @@ function Admin_AddTeacher() {
 
   return (
     <>
-      <header className="bg-[#d8cccc] rounded-full shadow-md text-4xl font-reemkufifont font-bold mx-4 p-4 px-6">
-        <h1>TEACHER ACCOUNT MANAGEMENT</h1>
-      </header>
+      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex-grow bg-[#d8cccc] shadow-md rounded-3xl p-5 mx-4 my-3">
+      <main className="flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg text-black bg-[#d8cccc] font-bold">
         <button className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
         </button>
-
-        <h1 className="font-bold font-reemkufifont lg:text-4xl">REGISTERED USERS - ADD TEACHER</h1>
-        <div>
-          <h1 className="p-10 font-bold lg:text-4xl">Fill in the information:</h1>
-        </div>
-        <form>
-          <div className="grid gap-10 font-semibold lg:text-3xl lg:grid-cols-2">
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="email" className="pr-2 text-right">
-                  Email:
-                </label>
-                <input
-                  type="email"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  id="email"
-                  name="email"
-                  placeholder="Enter Email"
-                  className="px-4 py-2 lg:w-[400px] rounded-full lg:mx-4 border-4 border-l-8 border-r-8 border-black"
-                />
-              </div>
+        <div className="flex flex-col lg:mx-auto lg:w-[1000px]">
+          <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
+          <h1 className="text-xl sm:text-3xl my-5">Fill in the information:</h1>
+          <form className="flex flex-col gap-4 text-xl sm:text-3xl" onSubmit={handleSubmit}>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="email">Email:</label>
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                id="email"
+                placeholder="Enter Email"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "300px" }}
+              />
             </div>
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="password" className="pr-2 text-right lg:ml-5">
-                  Password:
-                </label>
-                <input
-                  type="password"
-                  value={password}
-                  onChange={(e) => e.target.value.length <= 15 && setPassword(e.target.value)}
-                  id="password"
-                  name="password"
-                  placeholder="Enter Password"
-                  className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                />
-              </div>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="password">Password:</label>
+              <input
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                id="password"
+                placeholder="Enter Password"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "300px" }}
+              />
             </div>
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="name" className="pr-2 ml-5 text-right">
-                  Name:
-                </label>
-                <input
-                  type="text"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  id="name"
-                  name="name"
-                  placeholder="Enter Name"
-                  className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                />
-              </div>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="name">Name:</label>
+              <input type="text" value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter Name" className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "300px" }} />
             </div>
-
-            <div className="flex items-center justify-center">
-              <label htmlFor="gradeLevel" className="pr-2 text-right">
-                Grade Level:
-              </label>
-              <select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4">
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="gradeLevel">Grade Level:</label>
+              <select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "100px" }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </div>
-          </div>
-          <div className="flex justify-center p-5">
-            <button
-              type="submit"
-              onClick={handleSubmit}
-              className="px-10 py-2 text-3xl font-bold text-white bg-[#282424] rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu">
+            <button type="submit" onClick={handleSubmit} className="mx-auto px-10 py-2 text-2xl font-bold text-white bg-[#282424] rounded-xl shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu ">
               ADD
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </main>
       <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
       <ReactModal appElement={document.getElementById("root")} isOpen={isVerifyAccountModalOpen} shouldCloseOnEsc={true} style={modalStyle}>
@@ -130,7 +97,8 @@ function Admin_AddTeacher() {
           <h2 className="text-3xl text-center">Verification email sent. Please check your email.</h2>
           <button
             className="bg-[#08a454] text-white text-2xl font-bold px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
-            onClick={() => navigate("/admin/teacher-accounts")}>
+            onClick={() => navigate("/admin/teacher-accounts")}
+          >
             CONTINUE
           </button>
         </div>
