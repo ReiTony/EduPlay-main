@@ -37,7 +37,7 @@ function Student_Module_Review() {
   if (isLoading) return;
 
   return (
-    <div className="secondBackground shadow-md shadow-black flex flex-col items-center mx-auto my-6 p-8 rounded-2xl lg:w-5/6">
+    <div className="flex flex-col items-center flex-grow h-full p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl lg:w-5/6 lg:mx-auto shadow-black">
       <h1 className="text-3xl font-semibold font-sourceSans3">{data?.title || ""}</h1>
       <hr className="w-full h-1 my-2 bg-black" />
 
@@ -57,7 +57,10 @@ function Student_Module_Review() {
       </div>
 
       {isFinished && (
-        <button className="px-10 py-2 text-2xl font-bold text-center text-white transition-transform bg-black rounded-full shadow-md hover:shadow-green-500 hover:scale-95 transform-gpu" onClick={handleNext}>
+        <button
+          className="px-10 py-2 text-2xl font-bold text-center text-white transition-transform bg-black rounded-full shadow-md hover:shadow-green-500 hover:scale-95 transform-gpu"
+          onClick={handleNext}
+        >
           NEXT
         </button>
       )}
