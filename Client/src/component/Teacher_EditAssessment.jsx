@@ -66,37 +66,42 @@ function Teacher_EditAssessment() {
 
   return (
     <>
-      <div className="flex flex-col flex-grow gap-4 p-4">
-        <header className="p-4 text-4xl font-bold text-white shadow-md backgroundGreen rounded-3xl font-reemkufifont ">
-          <h1>CUSTOM-ASSESSMENTS</h1>
-        </header>
-        <div className="flex flex-col flex-grow gap-4 p-5 font-bold backgroundGreen rounded-3xl">
-          <div className="flex flex-row justify-end gap-2">
-            <button className="bg-[#282424] rounded-full px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => setShowAddModal(true)}>
+      <div className="flex flex-col flex-grow gap-4">
+        <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont ">CUSTOM-ASSESSMENTS</h1>
+
+        <div className="mx-2 flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-3xl">
+          <div className="flex flex-row flex-wrap-reverse justify-end gap-4 text-xl sm:text-2xl">
+            <button
+              className="bg-[#282424] rounded-xl px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
+              onClick={() => setShowAddModal(true)}
+            >
               ADD QUESTION
             </button>
-            <button className="bg-[#282424] rounded-full  px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => setShowSaveAssessmentModal(true)}>
+            <button
+              className="bg-[#282424] rounded-xl px-8 py-2 mt-3 sm:mt-0 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
+              onClick={() => setShowSaveAssessmentModal(true)}
+            >
               SAVE ASSESSMENT
             </button>
           </div>
 
-          <div className="flex flex-col gap-4 m-4 ">
+          <div className="flex flex-col gap-4 my-4">
             {assessment?.questions.map((i, ind) => (
               <Accordion key={ind}>
                 <Accordion.Title>
-                  <div className="flex flex-row items-center justify-between flex-grow px-6 ">
-                    <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
+                  <div className="flex flex-col sm:flex-row items-center text-xl sm:text-3xl justify-between flex-grow">
+                    <h4 className="font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
                     <div className="flex flex-row gap-2 font-bold text-white">
-                      <button className="bg-[#08a454] rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={showEditQuestion(ind)}>
+                      <button className="bg-[#08a454] rounded-xl shadow-lg px-4 sm:px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={showEditQuestion(ind)}>
                         EDIT
                       </button>
-                      <button className="bg-[#d00c24] rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={showDelete(ind)}>
+                      <button className="bg-[#d00c24] rounded-xl shadow-lg px-4 sm:px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={showDelete(ind)}>
                         DELETE
                       </button>
                     </div>
                   </div>
                 </Accordion.Title>
-                <Accordion.Content>
+              <Accordion.Content>
                   <div className="flex flex-col gap-4 font-sourceSans3 ">
                     <div className="text-3xl font-bold ms-8">{i.question}</div>
                     <div className="flex flex-col text-2xl ms-16">
@@ -151,16 +156,21 @@ function AddModal({ show, onHide, onSave }) {
           border: "3px solid black",
           borderRadius: "2rem",
           maxWidth: "720px",
-          width: "100%", height: "fit-content",
-          top: "50%", left: "50%",
+          width: "100%",
+          height: "fit-content",
+          top: "50%",
+          left: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
-        }
-      }}>
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
+        },
+      }}
+    >
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3 ">
         <div className="text-3xl text-center text-white">ADD QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question" className="text-white">Question:</label>
+          <label htmlFor="question" className="text-white">
+            Question:
+          </label>
           <input className="flex-grow px-4 py-1 border-2 border-black rounded-full" type="text" id="question" placeholder="Question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
         </div>
         <div className="flex flex-row gap-3">
@@ -222,16 +232,21 @@ function EditModal({ show, onHide, onSave, question }) {
           border: "3px solid black",
           borderRadius: "2rem",
           maxWidth: "720px",
-          width: "100%", height: "fit-content",
-          top: "50%", left: "50%",
+          width: "100%",
+          height: "fit-content",
+          top: "50%",
+          left: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
-        }
-      }}>
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
+        },
+      }}
+    >
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
         <div className="text-3xl text-center text-white">EDIT QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question" className="text-white">Question:</label>
+          <label htmlFor="question" className="text-white">
+            Question:
+          </label>
           <input className="flex-grow px-4 py-1 border-black rounded-full border-1" type="text" id="question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
         </div>
         <div className="flex flex-row gap-3">
@@ -271,12 +286,15 @@ function DeleteModal({ show, onHide, onSave }) {
           border: "3px solid black",
           borderRadius: "2rem",
           maxWidth: "720px",
-          width: "100%", height: "fit-content",
-          top: "50%", left: "50%",
+          width: "100%",
+          height: "fit-content",
+          top: "50%",
+          left: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
-        }
-      }}>
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
+        },
+      }}
+    >
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
@@ -309,12 +327,15 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
           border: "3px solid black",
           borderRadius: "2rem",
           maxWidth: "720px",
-          width: "100%", height: "fit-content",
-          top: "50%", left: "50%",
+          width: "100%",
+          height: "fit-content",
+          top: "50%",
+          left: "50%",
           transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)"
-        }
-      }}>
+          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
+        },
+      }}
+    >
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">SAVE ASSESSMENT</h2>
         <div className="text-2xl">
