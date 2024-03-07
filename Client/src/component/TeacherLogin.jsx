@@ -45,7 +45,7 @@ function TeacherLogin() {
     <>
       <div className="flex flex-col min-h-[100dvh] background2 overflow-y-auto">
         <NavBar />
-        <main className="w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto my-4">
+        <main className="w-[90%] md:w-[80%] lg:w-[70%] xl:w-[60%] text-center grid lg:grid-cols-[35%_65%] m-auto py-10 my-auto">
           <div className="hidden bg-[#252525] rounded-l-lg p-4 xl:p-10 lg:flex flex-col justify-center items-center gap-2">
             <img src={logo} alt="logo" />
             <h1 className="text-5xl text-white font-bold font-reemkufifont">EDUPLAY</h1>
