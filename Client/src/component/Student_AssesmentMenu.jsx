@@ -19,14 +19,14 @@ function Student_AssessmentMenu() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center flex-grow p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
-      <h3 className="my-2 text-5xl font-semibold me-auto font-sourceSans3">Assessments</h3>
+    <div className="flex flex-col items-center flex-grow p-2 m-2 md:p-8 md:m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
+      <h3 className="m-3 text-4xl md:text-5xl font-semibold text-center font-sourceSans3">Assessments</h3>
       <hr className="w-full h-1 bg-black" />
 
       <div className="flex flex-col justify-center w-full h-full gap-4 my-6">
         {modules?.map((module, index) => (
-          <div className="flex flex-row justify-between items-center bg-[#ffbc5c] shadow-md rounded-[3rem] sm:rounded-full w-full px-8 py-4 hover:scale-[.99] transition-transform transform-gpu" key={index}>
-            <div className="text-3xl font-bold">{`Module ${module.number}: ${module.title}`}</div>
+          <div className="flex flex-row justify-between items-center bg-[#ffbc5c] shadow-md rounded-3xl md:rounded-[3rem] sm:rounded-full w-full p-4 md:px-8 md:py-4 hover:scale-[.99] transition-transform transform-gpu" key={index}>
+            <div className="text-xl md:text-3xl font-bold">{`Module ${module.number}: ${module.title}`}</div>
             <button
               className={`text-white font-semibold text-2xl ${
                 module.locked ? "bg-neutral-600 px-11 py-2" : "bg-[#282424] px-6 py-1 hover:shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
