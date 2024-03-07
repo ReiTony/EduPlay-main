@@ -51,6 +51,7 @@ import Admin_AddTeacher from "./component/Admin_AddTeacher";
 import Admin_EditTeacher from "./component/Admin_EditTeacher";
 import EmailVerified from "./component/EmailVerified";
 import Teacher_ForgotPasswordLink from "./component/Teacher_ForgotPasswordLink";
+import About from "./component/About";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ function App() {
           <Routes>
             {/* Set LandingPage as the root route */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/about" element={<About />} />
 
             {/* Student Routes */}
             <Route path="/student/login" element={<Student_Login />} />

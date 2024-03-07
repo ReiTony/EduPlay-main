@@ -102,14 +102,14 @@ function Student_LearningGroupAssessment() {
 
   return (
     <>
-      <div className="flex flex-col items-center flex-grow gap-6 p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
+      <div className="flex flex-col items-center flex-grow gap-6 p-4 sm:p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
         <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
           <h3 className="me-auto">{data?.title || ""}</h3>
           {isViewingScore && <div className=""> {`Score: ${score}/${data?.questions.length}`}</div>}
         </div>
         <hr className="w-full h-1 bg-black" />
 
-        <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl p-10 my-auto gap-4" style={{ maxWidth: "1024px" }}>
+        <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl p-5 sm:p-10 my-auto gap-4" style={{ maxWidth: "1024px" }}>
           {!isLoading && (
             <>
               <div className="flex flex-row justify-between">
@@ -120,7 +120,7 @@ function Student_LearningGroupAssessment() {
               <div className="flex flex-col gap-3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
-                    className={`flex flex-row items-center gap-4 px-6 py-3 rounded-full shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
+                    className={`flex flex-row items-center gap-4 px-3 sm:px-5 py-3 rounded-2xl shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
                       hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={() => handleChoiceClick(ind)}
@@ -131,11 +131,11 @@ function Student_LearningGroupAssessment() {
                     </label>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3">Your Answer (Correct)</div>
+                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end">Your Answer (Correct)</div>
                       ) : isAnswerWrong(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3">Your Answer (Wrong)</div>
+                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end">Your Answer (Wrong)</div>
                       ) : isTheCorrectAnswer(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3">The Correct Answer</div>
+                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end">The Correct Answer</div>
                       ) : (
                         <></>
                       ))}
@@ -200,7 +200,7 @@ function Student_LearningGroupAssessment() {
         }}>
         <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-semibold font-sourceSans3">
           <div className="text-center">Are you sure you want to submit the quiz?</div>
-          <div className="flex flex-row justify-center gap-4">
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
             <button className="px-10 py-2 text-white transition-transform bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsSubmitModalOpen(false)}>
               CANCEL
             </button>

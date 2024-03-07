@@ -7,6 +7,13 @@
     background-image: url('/src/assets/bgSchool.jpg');
 }
 
+.background2 {
+    background-image: url('/src/assets/bgSchool.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+}
+
 .backgroundYellow {
     background-image: url('/src/assets/yellow.svg');
 }

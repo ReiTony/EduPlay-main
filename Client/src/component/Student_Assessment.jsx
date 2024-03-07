@@ -75,7 +75,9 @@ function StudentAssessment() {
     setIsSubmitting(true);
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
     const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
-    await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber }).catch((err) => showError("Something went wrong. Please try again."));
+    await axios
+      .post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber })
+      .catch((err) => showError("Something went wrong. Please try again."));
     setIsSubmitting(false);
     setResult(res.data);
     setIsCompleteModalOpen(true);
@@ -123,7 +125,7 @@ function StudentAssessment() {
   return (
     <>
       <div className="flex flex-col items-center flex-grow gap-6 p-4 sm:p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
-        <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
+        <div className="flex flex-col sm:flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
           <h3 className="me-auto">{data?.title || ""}</h3>
           {isViewingScore && <div className=""> {`Score: ${score}/${data?.questions.length}`}</div>}
         </div>
@@ -146,10 +148,19 @@ function StudentAssessment() {
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
                     className={`flex flex-col items-center shadow-md rounded-2xl p-4 ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
-                      hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === userAnswers[currentQuestion] ? "bg-neutral-200" : "bg-white"
+                      hasAnswered
+                        ? isAnswerCorrect(ind) || isTheCorrectAnswer(ind)
+                          ? "bg-green-400"
+                          : isAnswerWrong(ind)
+                          ? "bg-red-400"
+                          : "bg-white"
+                        : ind === userAnswers[currentQuestion]
+                        ? "bg-neutral-200"
+                        : "bg-white"
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={handleChoiceClick(ind)}
-                    key={ind}>
+                    key={ind}
+                  >
                     <div className="text-2xl">{choice.name}</div>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
@@ -168,14 +179,14 @@ function StudentAssessment() {
           )}
         </div>
         {isViewingScore ? (
-          <div className="flex flex-row justify-between w-full text-2xl font-semibold text-white font-sourceSans3" style={{ maxWidth: "1024px" }}>
+          <div className="flex flex-col sm:flex-row gap-2 justify-between w-full text-2xl font-semibold text-white font-sourceSans3" style={{ maxWidth: "1024px" }}>
             {currentQuestion != 0 && (
-              <button className="me-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md" onClick={() => goToQuestion(currentQuestion - 1)}>
+              <button className="mx-auto sm:ms-0 bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md" onClick={() => goToQuestion(currentQuestion - 1)}>
                 PREVIOUS
               </button>
             )}
             {currentQuestion + 1 != data?.questions.length && (
-              <button className="ms-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md" onClick={() => goToQuestion(currentQuestion + 1)}>
+              <button className="mx-auto sm:me-0 bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md" onClick={() => goToQuestion(currentQuestion + 1)}>
                 NEXT
               </button>
             )}
@@ -187,7 +198,8 @@ function StudentAssessment() {
         ) : (
           <button
             className="bg-[#08a454] rounded-full px-10 py-2 text-3xl shadow-lg text-white font-bold font-sourceSans3 hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
-            onClick={handleSubmit}>
+            onClick={handleSubmit}
+          >
             SUBMIT
           </button>
         )}
@@ -201,29 +213,31 @@ function StudentAssessment() {
             background: `url("/src/assets/wordHuntPOPbg.svg")`,
             border: "0",
             borderRadius: "2rem",
-            maxWidth: "540px",
-            maxHeight: "200px",
-            boxSizing: "content-box",
-            padding: "3rem 0rem",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
+            maxWidth: "90dvw",
+            maxHeight: "80dvh",
+            width: "fit-content",
+            height: "fit-content",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
           },
-        }}>
+        }}
+      >
         <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-semibold font-sourceSans3">
           <div className="text-center">Are you sure you want to submit the quiz?</div>
-          <div className="flex flex-row justify-center gap-4">
-            <button className="px-10 py-2 text-white bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu" onClick={() => setIsSubmitModalOpen(false)}>
+          <div className="flex flex-col sm:flex-row justify-center gap-4">
+            <button
+              className="px-10 py-2 text-white bg-red-500 rounded-full shadow-md hover:brightness-90 hover:shadow-red-500 hover:scale-95 transform-gpu"
+              onClick={() => setIsSubmitModalOpen(false)}
+            >
               CANCEL
             </button>
             <button
               className="bg-[#08a454] text-white px-10 py-2 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu"
               onClick={handleSubmitQuiz}
-              disabled={isSubmitting}>
+              disabled={isSubmitting}
+            >
               {isSubmitting ? "SUBMITTING..." : "SUBMIT"}
             </button>
           </div>
@@ -239,17 +253,19 @@ function StudentAssessment() {
             background: `url("/src/assets/wordHuntPOPbg.svg")`,
             border: "0",
             borderRadius: "2rem",
-            maxWidth: "620px",
-            width: "fit-content",
+            maxWidth: "90dvw",
+            maxHeight: "80dvh",
+            width: "100%",
             height: "fit-content",
             top: "50%",
             left: "50%",
             transform: "translate(-50%, -50%)",
             boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
           },
-        }}>
-        <div className="flex flex-col items-center justify-center gap-2 p-8 text-2xl font-semibold font-sourceSans3">
-          <div className="text-4xl text-center">{`Assessment ${moduleNumber}`}</div>
+        }}
+      >
+        <div className="flex flex-col items-center justify-center gap-2 p-2 sm:p-8 text-2xl font-semibold font-sourceSans3">
+          <div className="text-3xl text-center">{`Assessment ${moduleNumber}`}</div>
           {result?.score / result?.total >= 0.4 && (
             <>
               <div className="text-center">
@@ -264,7 +280,8 @@ function StudentAssessment() {
           <div className="flex flex-row justify-center gap-4">
             <button
               className="px-10 py-2 text-white transition-transform bg-green-500 rounded-full shadow-md hover:brightness-90 hover:shadow-green-500 hover:scale-95 transform-gpu"
-              onClick={() => setIsCompleteModalOpen(false)}>
+              onClick={() => setIsCompleteModalOpen(false)}
+            >
               OK
             </button>
           </div>
