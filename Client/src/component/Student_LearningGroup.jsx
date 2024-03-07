@@ -15,14 +15,14 @@ function Student_LearningGroup() {
   }, []);
 
   return (
-    <div className="flex flex-col items-center flex-grow gap-6 p-8 m-4 mb-6 shadow-lg secondBackground rounded-2xl shadow-black">
+    <div className="flex flex-col items-center flex-grow gap-4 p-4 sm:p-6 m-4 mb-6 shadow-lg secondBackground rounded-2xl shadow-black">
       <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
         <h3 className="me-auto">LEARNING GROUP</h3>
       </div>
-      <hr className="w-full h-1 bg-black" />
+      <hr className="w-full h-1 bg-black mb-2" />
       <div className="flex flex-col w-full gap-4">
         {assessments.map((assessment, i) => (
-          <div className="flex flex-col lg:flex-row flex-grow justify-between items-center font-sourceSans3 font-bold  text-xl lg:text-2xl bg-[#ffbc5c] shadow-md rounded-2xl w-full px-8 py-4   hover:scale-[.99] transform-gpu" key={i}>
+          <div className="flex flex-col sm:flex-row flex-grow justify-between items-center font-sourceSans3 font-bold  text-xl sm:text-2xl bg-[#ffbc5c] shadow-md rounded-2xl w-full px-8 py-4   hover:scale-[.99] transform-gpu" key={i}>
             <div className="flex flex-col">
               <div>{assessment.title}</div>
               <div>{`Module No. ${assessment.moduleNumber}`}</div>
