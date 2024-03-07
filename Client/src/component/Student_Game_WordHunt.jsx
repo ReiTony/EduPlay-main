@@ -128,8 +128,8 @@ function Student_Game_WordHunt() {
 
         <hr className="w-full h-1 bg-black" />
 
-        <div className="flex flex-col items-start gap-10 lg:flex-row">
-          <div className="grid flex-grow grid-cols-9 p-2 sm:p-4 my-16 shadow-lg grid-rows-10 text-xl bg-slate-100 rounded-2xl">
+        <div className="flex flex-col items-start lg:gap-10 lg:flex-row">
+          <div className="grid flex-grow grid-cols-9 p-2 sm:p-4 my-4 sm:my-16 shadow-lg grid-rows-10 text-xl bg-slate-100 rounded-2xl">
             {data?.puzzle.map((row, rowNum) =>
               row.map((i, colNum) => (
                 <div
@@ -148,7 +148,7 @@ function Student_Game_WordHunt() {
             )}
           </div>
 
-          <div className="flex flex-col flex-grow gap-2 mx-2 my-16 text-2xl font-sourceSans3" style={{ maxWidth: "720px" }}>
+          <div className="flex flex-col flex-grow gap-2 mx-2 my-4 lg:my-16 text-2xl font-sourceSans3" style={{ maxWidth: "720px" }}>
             <div className="flex flex-row items-center gap-6 mb-8">
               <h4 className="text-4xl font-semibold">Words to Find</h4>
               <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
