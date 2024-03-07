@@ -42,7 +42,7 @@ function Teacher_CreateAssessment() {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="Enter Title"
-                  className="text-black px-4 py-1 border-2 w-full border-green-300 focus:outline-none focus:shadow-green-300 rounded-full focus:shadow-md"
+                  className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
                   style={{ maxWidth: "300px" }}
                 />
               </div>
@@ -54,7 +54,7 @@ function Teacher_CreateAssessment() {
                   max="3"
                   value={gradeLevel}
                   onChange={(e) => setGradeLevel(e.target.value)}
-                  className="text-black px-4 py-1 border-2 w-full border-green-300 focus:outline-none focus:shadow-green-300 rounded-full focus:shadow-md"
+                  className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
                   style={{ maxWidth: "100px" }}
                 />
               </div>
@@ -132,11 +132,11 @@ function ManageAssessments({ onSave }) {
 
   return (
     <>
-      <div className="flex flex-row justify-end gap-2">
-        <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowAddModal(true)}>
+      <div className="flex flex-row flex-wrap-reverse justify-end gap-2 text-xl text-white sm:text-2xl font-bold">
+        <button className="bg-[#282424] rounded-xl shadow-md px-8 py-2 hover:brightness-90" onClick={() => setShowAddModal(true)}>
           ADD QUESTION
         </button>
-        <button className="bg-[#282424] rounded-full shadow-md px-8 py-2 text-white text-2xl font-bold hover:brightness-90" onClick={() => setShowSaveAssessmentModal(true)}>
+        <button className="bg-[#282424] rounded-xl shadow-md px-8 py-2 hover:brightness-90" onClick={() => setShowSaveAssessmentModal(true)}>
           SAVE ASSESSMENT
         </button>
       </div>
@@ -145,13 +145,13 @@ function ManageAssessments({ onSave }) {
         {questions.map((i, ind) => (
           <Accordion key={ind}>
             <Accordion.Title>
-              <div className="flex flex-row items-center justify-between flex-grow px-6">
-                <h4 className="text-4xl font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
+              <div className="flex flex-col sm:flex-row items-center text-xl sm:text-3xl justify-between flex-grow">
+                <h4 className="font-bold font-sourceSans3">{`Question ${ind + 1}`}</h4>
                 <div className="flex flex-row gap-2 font-bold text-white">
-                  <button className="bg-[#08a454] rounded-full shadow-md px-8 py-2" onClick={showEditQuestion(ind)}>
+                  <button className="bg-[#08a454] rounded-xl shadow-lg px-4 sm:px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={showEditQuestion(ind)}>
                     EDIT
                   </button>
-                  <button className="bg-[#d00c24] rounded-full shadow-md px-8 py-2" onClick={showDelete(ind)}>
+                  <button className="bg-[#d00c24] rounded-xl shadow-lg px-4 sm:px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={showDelete(ind)}>
                     DELETE
                   </button>
                 </div>
@@ -198,19 +198,36 @@ function AddModal({ show, onHide, onSave }) {
   if (!show) return;
 
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
-      <div className="flex flex-col justify-center gap-8 p-6 text-white font-semibold font-sourceSans3">
-        <div className="text-3xl text-center">ADD QUESTION</div>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 text-white font-semibold font-sourceSans3">
+        <div className="text-xl sm:text-3xl text-center">ADD QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question">Question:</label>
-          <input className="flex-grow px-4 py-1 border-2 text-black border-black rounded-full" type="text" id="question" placeholder="Question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+          <label className="hidden sm:block" htmlFor="question">
+            Question:
+          </label>
+          <input
+            className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+            style={{ maxWidth: "400px" }}
+            type="text"
+            id="question"
+            placeholder="Question"
+            value={questionInput}
+            onChange={(e) => setQuestionInput(e.target.value)}
+          />
         </div>
         <div className="flex flex-row gap-3">
-          <div className="text-2xl">Choices:</div>
+          <div className="hidden sm:block text-2xl">Choices:</div>
           <div className="flex flex-col flex-grow gap-3">
             {choices.map((choice, ind) => (
               <div className="flex flex-row items-center gap-2" key={ind}>
-                <input className="flex-grow px-5 py-1 text-2xl border-2 text-black border-black rounded-full" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} placeholder="Choice" />
+                <input
+                  className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "400px" }}
+                  type="text"
+                  value={choice}
+                  onChange={(e) => editChoice(ind, e.target.value)}
+                  placeholder="Choice"
+                />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
@@ -254,19 +271,36 @@ function EditModal({ show, onHide, onSave, question }) {
   if (!show) return;
 
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
-      <div className="flex flex-col justify-center gap-8 p-6 text-white font-semibold font-sourceSans3">
-        <div className="text-3xl text-center">EDIT QUESTION</div>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 text-white font-semibold font-sourceSans3">
+        <div className="text-xl sm:text-3xl text-center">EDIT QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question">Question:</label>
-          <input className="flex-grow px-4 py-1 border-2 text-black border-black rounded-full" type="text" id="question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+          <label className="hidden sm:block" htmlFor="question">
+            Question:
+          </label>
+          <input
+            className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+            style={{ maxWidth: "400px" }}
+            type="text"
+            id="question"
+            placeholder="Question"
+            value={questionInput}
+            onChange={(e) => setQuestionInput(e.target.value)}
+          />
         </div>
         <div className="flex flex-row gap-3">
-          <div className="text-2xl">Choices:</div>
+          <div className="hidden sm:block text-2xl">Choices:</div>
           <div className="flex flex-col flex-grow gap-3">
             {choices.map((choice, ind) => (
               <div className="flex flex-row items-center gap-2" key={ind}>
-                <input className="flex-grow px-5 py-1 text-2xl text-black border-2 border-black rounded-full" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} />
+                <input
+                  className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "400px" }}
+                  type="text"
+                  value={choice}
+                  onChange={(e) => editChoice(ind, e.target.value)}
+                  placeholder="Choice"
+                />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
@@ -288,18 +322,18 @@ function EditModal({ show, onHide, onSave, question }) {
 function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
-      <div className="flex flex-col justify-center gap-8 p-6 text-white font-semibold font-sourceSans3">
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 p-4 text-white font-semibold font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking proceed, all information provided under the question will be deleted.
         </div>
-        <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
+        <div className="flex flex-row flex-wrap justify-center gap-2 text-white">
+          <button className="text-2xl bg-[#d00c24] rounded-xl shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
+          <button className="text-2xl bg-[#08a454] rounded-xl shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
             PROCEED
           </button>
         </div>
@@ -311,7 +345,7 @@ function DeleteModal({ show, onHide, onSave }) {
 function SaveAssessmentModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
       <div className="flex flex-col justify-center gap-8 p-6 text-white font-semibold font-sourceSans3">
         <h2 className="text-3xl text-center">SAVE ASSESSMENT</h2>
         <div className="text-2xl">
@@ -334,13 +368,15 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
 const modalStyle = {
   content: {
     backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
-    border: "5px solid black",
+    border: "0",
     borderRadius: "2rem",
-    maxWidth: "720px",
-    width: "100%",
+    maxWidth: "95dvw",
+    maxHeight: "80dvh",
+    width: "fit-content",
     height: "fit-content",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
   },
 };
