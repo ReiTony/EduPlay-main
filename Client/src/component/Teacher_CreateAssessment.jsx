@@ -28,29 +28,48 @@ function Teacher_CreateAssessment() {
 
   return (
     <>
-      <header className="p-4 mx-4 text-4xl font-bold text-white shadow-md backgroundGreen rounded-3xl font-reemkufifont ">
-        <h1>CUSTOM-ASSESSMENTS</h1>
-      </header>
-      <div className="flex flex-col items-center flex-grow gap-4 p-4">
-        <div className="flex flex-col items-center w-5/6 gap-4 p-5 font-bold rounded-lg shadow-xl backgroundGreen shadow-green-500">
+      <div className="flex flex-col flex-grow gap-4">
+        <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont ">CUSTOM-ASSESSMENTS</h1>
+
+        <div className="mx-2 flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-3xl">
           {stepNumber === 0 && (
             <div className="flex flex-col gap-5 mx-auto" style={{ maxWidth: "960px", width: "100%" }}>
-              <h2 className="my-6 text-4xl text-center text-white">CREATE A CUSTOM ASSESSMENT</h2>
+              <h2 className="m-4 text-xl text-start sm:text-center sm:text-4xl text-white">CREATE A CUSTOM ASSESSMENT</h2>
               <div className="flex flex-row items-center gap-2 text-2xl">
                 <label className="text-white">Title: </label>
-                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Title" />
+                <input
+                  type="text"
+                  value={title}
+                  onChange={(e) => setTitle(e.target.value)}
+                  placeholder="Enter Title"
+                  className="text-black px-4 py-1 border-2 w-full border-green-300 focus:outline-none focus:shadow-green-300 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "300px" }}
+                />
               </div>
               <div className="flex flex-row items-center gap-2 text-2xl">
                 <label className="text-white">Grade Level: </label>
-                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="number" min="1" max="3" value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} placeholder="Grade Level" />
+                <input
+                  type="number"
+                  min="1"
+                  max="3"
+                  value={gradeLevel}
+                  onChange={(e) => setGradeLevel(e.target.value)}
+                  className="text-black px-4 py-1 border-2 w-full border-green-300 focus:outline-none focus:shadow-green-300 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "100px" }}
+                />
               </div>
               <div className="flex flex-row items-center gap-2 text-2xl">
-                <label className="text-white">Module Number: </label>
-                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="number" min="1" value={moduleNumber} onChange={(e) => setModuleNumber(e.target.value)} placeholder="Module Number" />
+                <label className="text-white inline">Module Number: </label>
+                <input
+                  type="number"
+                  min="1"
+                  value={moduleNumber}
+                  onChange={(e) => setModuleNumber(e.target.value)}
+                  className="text-black px-4 py-1 border-2 w-full border-green-300 focus:outline-none focus:shadow-green-300 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "100px" }}
+                />
               </div>
-              <button
-                className="text-2xl text-white my-6 mx-auto hover:brightness-95 bg-black rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-                onClick={handleProceed}>
+              <button className="text-2xl text-white my-6 mx-auto hover:brightness-95 bg-black rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={handleProceed}>
                 PROCEED
               </button>
             </div>
