@@ -34,12 +34,10 @@ function Admin_EditStudent() {
   };
 
   return (
-    <div className="flex flex-col flex-grow gap-4 p-4">
-      <header className="bg-[#d8cccc] rounded-full shadow-md text-4xl font-reemkufifont font-bold p-4 px-6">
-        <h1>STUDENT ACCOUNT MANAGEMENT</h1>
-      </header>
+    <div className="flex flex-col flex-grow font-bold">
+      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont">STUDENT ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex flex-col flex-grow gap-2 bg-[#d8cccc] shadow-md rounded-3xl font-bold p-5 my-3">
+      <main className="flex flex-col flex-grow text-xl sm:text-3xl p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg bg-[#d8cccc]">
         <button className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
@@ -49,15 +47,7 @@ function Admin_EditStudent() {
         <div className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
           <div className="flex flex-row items-center gap-4">
             <label htmlFor="firstname">First Name:</label>
-            <input
-              type="text"
-              className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
-              style={{ maxWidth: "300px" }}
-              value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
-              placeholder="First Name"
-              id="firstname"
-            />
+            <input type="text" className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "300px" }} value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" id="firstname" />
           </div>
 
           <div className="flex flex-row items-center gap-4">
@@ -97,19 +87,14 @@ function Admin_EditStudent() {
                 </option>
               ))}
             </select>
-            <input
-              type="number"
-              className="px-4 py-1 border-2 border-black rounded-full w-full max-w-[75px] focus:outline-none focus:shadow-md"
-              value={birthDay}
-              onChange={(e) => setBirthDay(e.target.value)}
-              placeholder="Birth Day"
-            />
+            <input type="number" className="px-4 py-1 border-2 border-black rounded-full w-full max-w-[75px] focus:outline-none focus:shadow-md" value={birthDay} onChange={(e) => setBirthDay(e.target.value)} placeholder="Birth Day" />
           </div>
 
           <div className="flex flex-row justify-center gap-4 mt-6">
             <button
               className="bg-[#d00c24] rounded-full shadow-md text-white px-8 py-2 hover:brightness-90 hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-black hover:scale-[.98] transition-transform transform-gpu"
-              onClick={() => navigate(-1)}>
+              onClick={() => navigate(-1)}
+            >
               CANCEL
             </button>
             <button className="text-white px-8 py-2 bg-green-500 rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={handleSave}>
