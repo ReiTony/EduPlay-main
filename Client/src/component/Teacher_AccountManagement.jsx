@@ -180,7 +180,13 @@ function Teacher_AccountManagement() {
           </table>
         </div>
         <div className="md:hidden">
-          <Teacher_AccountManagementMinTable data={data} refresh={refresh} filterInput={filterInput} selectedGrade={selectedGrade}/>
+          <Teacher_AccountManagementMinTable
+            data={data}
+            refresh={refresh}
+            filterInput={filterInput}
+            selectedGrade={selectedGrade}
+            modalStyle={modalStyle}
+          />
         </div>
       </main>
       <button
@@ -213,7 +219,7 @@ export default Teacher_AccountManagement;
 function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-4xl text-center">DELETE STUDENT</h2>
         <div className="text-2xl">
@@ -241,14 +247,16 @@ function DeleteModal({ show, onHide, onSave }) {
 
 const modalStyle = {
   content: {
-    backgroundImage: `url('/src/assets/Homepage_Image/red.svg')`,
+    background: `url("/src/assets/Homepage_Image/red.svg")`,
+    border: "0",
     borderRadius: "2rem",
-    maxWidth: "720px",
-    width: "100%",
+    maxWidth: "90dvw",
+    maxHeight: "80dvh",
+    width: "fit-content",
     height: "fit-content",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    boxShadow: "0 20px 20px rgba(255, 0, 0, 0.5)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
   },
 };

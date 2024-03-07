@@ -5,7 +5,7 @@ import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import ReactModal from "react-modal";
 import axios from "axios";
 
-function Teacher_AccountManagementMinTable({ data, refresh, filterInput, selectedGrade }) {
+function Teacher_AccountManagementMinTable({ data, refresh, filterInput, selectedGrade, modalStyle }) {
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [toBeDisabledStudent, setToBeDisabledStudent] = useState("");
@@ -121,7 +121,7 @@ function Teacher_AccountManagementMinTable({ data, refresh, filterInput, selecte
       >
         <BsFillArrowUpCircleFill className="text-3xl " />
       </button>
-      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} />
+      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} modalStyle={modalStyle}/>
     </>
   );
 }
@@ -142,17 +142,17 @@ function GradeLevelFilter({ column }) {
 
 export default Teacher_AccountManagementMinTable;
 
-function DeleteModal({ show, onHide, onSave }) {
+function DeleteModal({ show, onHide, onSave, modalStyle }) {
   if (!show) return;
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={ modalStyle }>
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
         <h2 className="text-4xl text-center">DELETE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking delete, all information associated under this student will be deleted.
         </div>
-        <div className="flex flex-row justify-end gap-2 text-white">
+        <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
           <button
             className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 "
             onClick={onHide}
@@ -170,17 +170,3 @@ function DeleteModal({ show, onHide, onSave }) {
     </ReactModal>
   );
 }
-
-const modalStyle = {
-  content: {
-    backgroundImage: `url('/src/assets/Homepage_Image/red.svg')`,
-    borderRadius: "2rem",
-    maxWidth: "720px",
-    width: "100%",
-    height: "fit-content",
-    top: "50%",
-    left: "50%",
-    transform: "translate(-50%, -50%)",
-    boxShadow: "0 20px 20px rgba(255, 0, 0, 0.5)",
-  },
-};
