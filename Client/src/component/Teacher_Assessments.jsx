@@ -70,7 +70,10 @@ function TeacherAssessments() {
 
           <div className="flex flex-col gap-4 m-0 sm:m-4">
             {filteredAssessments.map((i, ind) => (
-              <div className="flex flex-col sm:flex-row items-center justify-between flex-grow px-2 sm:px-8 py-4 bg-white rounded-2xl bg-opacity-90 shadow-black hover:scale-[.99] shadow-lg transition-transform transform-gpu hover:shadow-green-400" key={ind}>
+              <div
+                className="flex flex-col sm:flex-row items-center justify-between flex-grow px-2 sm:px-8 py-4 bg-white rounded-2xl bg-opacity-90 shadow-black hover:scale-[.99] shadow-lg transition-transform transform-gpu hover:shadow-green-400"
+                key={ind}
+              >
                 <h4 className="text-xl sm:text-4xl font-bold font-sourceSans3">{i.title}</h4>
                 <div className="flex flex-row gap-2 text-lg sm:text-2xl font-bold text-white mt-2 sm:mt-0">
                   <button className="bg-[#282424] rounded-xl shadow-lg px-3 sm:px-8 py-2 shadow-black hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500" onClick={() => navigate(`${i._id}/analysis`)}>
@@ -96,18 +99,18 @@ function TeacherAssessments() {
 function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={{ modalStyle }}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking proceed, all information provided under the assessment will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
+          <button className="bg-[#08a454] text-2xl rounded-xl shadow-lg px-4 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
+          <button className="bg-[#d00c24] text-2xl rounded-xl shadow-lg px-4 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
             PROCEED
           </button>
         </div>
@@ -121,14 +124,15 @@ export default TeacherAssessments;
 const modalStyle = {
   content: {
     backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
-    border: "3px solid black",
+    border: "0",
     borderRadius: "2rem",
-    maxWidth: "720px",
-    width: "100%",
+    maxWidth: "95dvw",
+    maxHeight: "80dvh",
+    width: "fit-content",
     height: "fit-content",
     top: "50%",
     left: "50%",
     transform: "translate(-50%, -50%)",
-    boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
   },
 };
