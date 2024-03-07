@@ -106,7 +106,7 @@ function Teacher_AccountManagement() {
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
           <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
 
-          <div className="flex flex flex-wrap gap-2">
+          <div className="flex flex-wrap gap-2">
             <button
               className="px-5 py-1 text-2xl font-bold rounded-full text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
               onClick={() => navigate("create")}

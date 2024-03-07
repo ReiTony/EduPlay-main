@@ -24,7 +24,7 @@ function Teacher_Add_Student() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return alert("Fill out all fields completely.");
+    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return alert("Fill out all fields completely.  ");
     axios
       .post(`${import.meta.env.VITE_API}teacher/addStudent`, {
         firstName,
