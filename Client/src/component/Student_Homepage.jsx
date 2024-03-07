@@ -53,7 +53,7 @@ function Student_Dashboard() {
         )}
       </div>
 
-      <div className="flex flex-col md:flex-row justify-center gap-4 m-4">
+      <div className="flex flex-col sm:flex-row justify-center gap-4 m-4">
         <div
           className="flex flex-col items-center justify-between bg-gradient-to-r from-green-300 via-teal-300 to-cyan-200 rounded-xl homepageParent shadow-xl hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu cursor-pointer"
           onClick={() => navigate("modules")}
