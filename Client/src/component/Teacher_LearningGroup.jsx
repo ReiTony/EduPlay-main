@@ -51,13 +51,12 @@ function Teacher_LearningGroup() {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   return (
-    <div className="flex flex-col flex-grow gap-4 p-4">
-      <header className="p-4 text-4xl font-bold text-white backgroundBlue rounded-3xl font-reemkufifont">
-        <h1>LEARNING GROUP</h1>
-      </header>
-      <div className="flex flex-col flex-grow gap-4 p-5 font-bold shadow-lg backgroundBlue rounded-3xl shadow-blue-800">
-        <div className="flex flex-row gap-4 ms-auto">
-          <div className="relative mx-4 text-white">
+    <>
+      <h1 className="backgroundBlue text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">LEARNING GROUP</h1>
+
+      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundBlue">
+        <div className="flex flex-wrap ms-auto gap-2">
+          <div className="relative text-white">
             <input
               type="text"
               value={filterInput}
@@ -75,35 +74,38 @@ function Teacher_LearningGroup() {
           </select>
         </div>
 
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-2xl py-4">
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row, index) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
-                      {cell.render("Cell")}
-                    </td>
+        <div className="hidden md:block">
+          <table {...getTableProps()}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
+                  {headerGroup.headers.map((column) => (
+                    <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-2xl py-4">
+                      {column.render("Header")}
+                    </th>
                   ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, index) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
+                    {row.cells.map((cell) => (
+                      <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="md:hidden"></div>
+      </main>
+    </>
   );
 }
 
