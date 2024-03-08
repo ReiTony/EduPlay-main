@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFilters, useTable } from "react-table";
 import { BsSearch } from "react-icons/bs";
+import Teacher_LearningGroupMinTable from "./Teacher_LearningGroupMinTable";
 
 function Teacher_LearningGroup() {
   const navigate = useNavigate();
@@ -11,16 +12,20 @@ function Teacher_LearningGroup() {
   const [selectedGrade, setSelectedGrade] = useState("");
 
   useEffect(() => {
+    refresh();
+  }, []);
+
+  const refresh = async () => {
     axios.get(`${import.meta.env.VITE_API}teacher/progress-reports`).then(async (res) => {
       let temp = [];
       const promises = res.data.progressReports.map(async (stud) => {
-        const res = await axios.get(`${import.meta.env.VITE_API}teacher/showStudent/${stud.username}`);
-        temp.push(res.data.student);
+        const res = await fetch(`${import.meta.env.VITE_API}teacher/showStudent/${stud.username}`);
+        if (res.status === 200) temp.push((await res.json()).student);
       });
       await Promise.all(promises);
       setData(temp);
     });
-  }, []);
+  };
 
   useEffect(() => {
     if (selectedGrade === "") setFilter("gradeLevel", undefined);
@@ -75,7 +80,7 @@ function Teacher_LearningGroup() {
         </div>
 
         <div className="hidden md:block">
-          <table {...getTableProps()}>
+          <table {...getTableProps()} style={{ borderCollapse: "collapse", width: "100%" }}>
             <thead>
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
@@ -103,7 +108,9 @@ function Teacher_LearningGroup() {
             </tbody>
           </table>
         </div>
-        <div className="md:hidden"></div>
+        <div className="md:hidden">
+          {/* <Teacher_LearningGroupMinTable data={data} filterInput={filterInput} refresh={refresh} selectedGrade={selectedGrade} /> */}
+        </div>
       </main>
     </>
   );
