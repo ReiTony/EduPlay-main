@@ -60,13 +60,13 @@ function Teacher_LearningGroup() {
       <h1 className="backgroundBlue text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">LEARNING GROUP</h1>
 
       <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundBlue">
-        <div className="flex flex-wrap ms-auto gap-2">
+        <div className="flex flex-wrap ms-auto gap-2 pb-4">
           <div className="relative text-white">
             <input
               type="text"
               value={filterInput}
               onChange={(e) => setFilterInput(e.target.value)}
-              placeholder="Search by last name..."
+              placeholder="Search by name..."
               className="w-56 p-2 bg-[#086cfc] border-[#50a4ec] border-2 rounded-md focus:border-white focus:shadow-md focus:shadow-red-300 "
             />
             <BsSearch className="absolute transform -translate-y-1/2 top-1/2 right-4 mr-2 text-white cursor-pointer" />
@@ -109,7 +109,7 @@ function Teacher_LearningGroup() {
           </table>
         </div>
         <div className="md:hidden">
-          {/* <Teacher_LearningGroupMinTable data={data} filterInput={filterInput} refresh={refresh} selectedGrade={selectedGrade} /> */}
+          <Teacher_LearningGroupMinTable data={data} filterInput={filterInput} refresh={refresh} selectedGrade={selectedGrade} />
         </div>
       </main>
     </>

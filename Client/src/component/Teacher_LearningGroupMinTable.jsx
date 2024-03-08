@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useTable, useFilters } from "react-table";
 import { useNavigate } from "react-router-dom";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
@@ -29,12 +29,12 @@ function Teacher_LearningGroupMinTable({ data, refresh, filterInput, selectedGra
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   useEffect(() => {
-    if (selectedGrade === "") setFilter("GRADELEVEL", undefined);
-    else setFilter("GRADELEVEL", selectedGrade);
+    if (selectedGrade === "") setFilter("gradeLevel", undefined);
+    else setFilter("gradeLevel", selectedGrade);
   }, [selectedGrade]);
 
   useEffect(() => {
-    setFilter("NAME", filterInput);
+    setFilter("name", filterInput);
   }, [filterInput]);
 
   const handleScrollToTop = () => {
@@ -95,4 +95,3 @@ function GradeLevelFilter({ column }) {
 }
 
 export default Teacher_LearningGroupMinTable;
-
