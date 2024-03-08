@@ -47,7 +47,15 @@ function Admin_EditStudent() {
         <div className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
           <div className="flex flex-row items-center gap-4">
             <label htmlFor="firstname">First Name:</label>
-            <input type="text" className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "300px" }} value={firstName} onChange={(e) => setFirstName(e.target.value)} placeholder="First Name" id="firstname" />
+            <input
+              type="text"
+              className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+              style={{ maxWidth: "300px" }}
+              value={firstName}
+              onChange={(e) => e.target.value.length <= 20 && setFirstName(e.target.value)}
+              placeholder="First Name"
+              id="firstname"
+            />
           </div>
 
           <div className="flex flex-row items-center gap-4">
@@ -57,7 +65,7 @@ function Admin_EditStudent() {
               style={{ maxWidth: "300px" }}
               className="px-4 py-1 border-2 w-full border-black rounded-full focus:outline-none focus:shadow-md"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => e.target.value.length <= 20 && setLastName(e.target.value)}
               placeholder="Last Name"
               id="lastname"
             />

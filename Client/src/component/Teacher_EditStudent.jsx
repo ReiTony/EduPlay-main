@@ -53,7 +53,7 @@ function Teacher_EditStudent() {
             <input
               type="text"
               value={firstName}
-              onChange={(e) => setFirstName(e.target.value)}
+              onChange={(e) => e.target.value.length <= 20 && setFirstName(e.target.value)}
               placeholder="Enter First Name"
               id="firstname"
               className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
@@ -68,7 +68,7 @@ function Teacher_EditStudent() {
             <input
               type="text"
               value={lastName}
-              onChange={(e) => setLastName(e.target.value)}
+              onChange={(e) => e.target.value.length <= 20 && setLastName(e.target.value)}
               placeholder="Enter Last Name"
               id="lastname"
               className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
