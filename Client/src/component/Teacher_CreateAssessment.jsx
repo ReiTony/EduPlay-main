@@ -40,7 +40,7 @@ function Teacher_CreateAssessment() {
                 <input
                   type="text"
                   value={title}
-                  onChange={(e) => setTitle(e.target.value)}
+                  onChange={(e) => e.target.value.length <= 20 && setTitle(e.target.value)}
                   placeholder="Enter Title"
                   className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
                   style={{ maxWidth: "300px" }}
@@ -212,7 +212,7 @@ function AddModal({ show, onHide, onSave }) {
             id="question"
             placeholder="Question"
             value={questionInput}
-            onChange={(e) => setQuestionInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3">
@@ -225,7 +225,7 @@ function AddModal({ show, onHide, onSave }) {
                   style={{ maxWidth: "400px" }}
                   type="text"
                   value={choice}
-                  onChange={(e) => editChoice(ind, e.target.value)}
+                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
                   placeholder="Choice"
                 />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
@@ -285,7 +285,7 @@ function EditModal({ show, onHide, onSave, question }) {
             id="question"
             placeholder="Question"
             value={questionInput}
-            onChange={(e) => setQuestionInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3">
@@ -298,7 +298,7 @@ function EditModal({ show, onHide, onSave, question }) {
                   style={{ maxWidth: "400px" }}
                   type="text"
                   value={choice}
-                  onChange={(e) => editChoice(ind, e.target.value)}
+                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
                   placeholder="Choice"
                 />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
