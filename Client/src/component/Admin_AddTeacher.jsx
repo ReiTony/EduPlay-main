@@ -45,7 +45,7 @@ function Admin_AddTeacher() {
           BACK
         </button>
         <div className="flex flex-col lg:mx-auto lg:w-[1000px]">
-          <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
+          <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD TEACHER</h1>
           <h1 className="text-xl sm:text-3xl my-5">Fill in the information:</h1>
           <form className="flex flex-col gap-4 text-xl sm:text-3xl" onSubmit={handleSubmit}>
             <div className="flex flex-row items-center gap-2">
