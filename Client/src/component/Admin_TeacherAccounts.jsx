@@ -193,7 +193,7 @@ function DeleteModal({ show, onHide, onSave }) {
             CANCEL
           </button>
           <button className="px-6 py-2 text-2xl rounded-xl shadow-md bg-[#d00c24] hover:brightness-95 shadow-black hover:scale-[.98] transition-transform transform-gpu" onClick={onSave}>
-            DELETESSS
+            DELETE
           </button>
         </div>
       </div>
