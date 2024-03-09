@@ -15,6 +15,7 @@ function Admin_AddStudent() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return setIsErrorModalOpen(true);
     axios
       .post(`${import.meta.env.VITE_API}teacher/addStudent`, { firstName, lastName, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0"), gradeLevel })
       .then((res) => navigate("/admin/student-accounts"))
@@ -99,7 +100,7 @@ function Admin_AddStudent() {
           </form>
         </div>
       </main>
-      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"The student you are trying to add already exists."} />
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"Fill out all fields completely."} />
     </>
   );
 }
