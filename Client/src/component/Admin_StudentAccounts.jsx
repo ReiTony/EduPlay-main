@@ -6,10 +6,9 @@ import { useNavigate } from "react-router-dom";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import ReactModal from "react-modal";
 import axios from "axios";
-import Teacher_AccountManagementMinTable from "./Teacher_AccountManagementMinTable";
 import Admin_AccountManagementMinTable from "./Admin_AccountManagementMinTable";
 
-function Teacher_AccountManagement() {
+function Admin_StudentAccounts() {
   const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [filterInput, setFilterInput] = useState("");
@@ -96,14 +95,17 @@ function Teacher_AccountManagement() {
   };
   return (
     <>
-      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">STUDENT ACCOUNT MANAGEMENT</h1>
+      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">STUDENT ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg bg-[#d8cccc]">
+      <main className="backgroundRed flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg">
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
-          <h1 className="text-2xl sm:text-4xl font-bold text-black">REGISTERED ACCOUNTS</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
 
           <div className="flex flex-wrap gap-2">
-            <button className="px-5 py-1 text-2xl font-bold rounded-full text-white bg-[#444444] hover:bg-[#333333] hover:shadow-[#333333] shadow-lg hover:scale-[.98] transition-transform transform-gpu" onClick={() => navigate("create")}>
+            <button
+              className="px-5 py-1 text-2xl font-bold rounded-xl text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
+              onClick={() => navigate("create")}
+            >
               ADD STUDENT
             </button>
             <div className="relative text-white">
@@ -112,13 +114,13 @@ function Teacher_AccountManagement() {
                 value={filterInput}
                 onChange={(e) => setFilterInput(e.target.value)}
                 placeholder="Search by name..."
-                className="w-56 p-2 bg-[#444444] border-[#333333] border-2 rounded-md focus:outline-none focus:shadow-md focus:shadow-[#333333] "
+                className="w-56 p-2 bg-[#7e2626] border-red-300 border-2 rounded-md  focus:border-white focus:shadow-md focus:shadow-red-300 "
               />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
                 <BsSearch className="mr-2 text-white cursor-pointer" />
               </span>
             </div>
-            <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 bg-[#444444] text-white border-2 font-semibold border-[#333333] rounded-md focus:outline-none focus:shadow-[#333333]">
+            <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 bg-[#ff5757] text-white border-2 font-semibold border-red-300 rounded-md focus:outline-none focus:border-white">
               <option value="">All Grades</option>
               {[1, 2, 3].map((grade) => (
                 <option key={grade} value={grade}>
@@ -186,15 +188,15 @@ function GradeLevelFilter({ column }) {
   );
 }
 
-export default Teacher_AccountManagement;
+export default Admin_StudentAccounts;
 
 function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-black font-sourceSans3">
-        <h2 className="text-4xl text-center text-black">DELETE STUDENT</h2>
-        <div className="text-2xl">
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+        <h2 className="text-4xl text-center text-white">DELETE STUDENT</h2>
+        <div className="text-2xl text-white">
           Reminder: <br />
           Upon clicking delete, all information associated under this student will be deleted.
         </div>
@@ -213,7 +215,7 @@ function DeleteModal({ show, onHide, onSave }) {
 
 const modalStyle = {
   content: {
-    backgroundColor: "#eeeeee",
+    background: `url("/src/assets/Homepage_Image/red.svg")`,
     border: "0",
     borderRadius: "2rem",
     maxWidth: "90dvw",

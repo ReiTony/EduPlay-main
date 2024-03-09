@@ -23,11 +23,11 @@ function Admin_AddStudent() {
 
   return (
     <>
-      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">
+      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">
         STUDENT ACCOUNT MANAGEMENT
       </h1>
-      <main className="flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg text-black bg-[#d8cccc] font-bold">
-        <button className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
+      <main className="backgroundRed text-white flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg font-bold">
+        <button className="flex flex-row items-center gap-2 bg-[#ff5757] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
         </button>
@@ -92,7 +92,7 @@ function Admin_AddStudent() {
             <button
               type="submit"
               onClick={handleSubmit}
-              className="mx-auto px-10 py-2 text-3xl font-bold text-white bg-green-500 rounded-xl shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
+              className="mx-auto px-6 sm:px-10 py-1 sm:py-2 text-xl sm:text-3xl font-bold text-white bg-green-500 rounded-xl shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
             >
               ADD
             </button>

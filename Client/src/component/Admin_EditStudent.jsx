@@ -35,10 +35,10 @@ function Admin_EditStudent() {
 
   return (
     <div className="flex flex-col flex-grow font-bold">
-      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont">STUDENT ACCOUNT MANAGEMENT</h1>
+      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont">STUDENT ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex flex-col flex-grow text-xl sm:text-3xl p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg bg-[#d8cccc]">
-        <button className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
+      <main className="backgroundRed text-white flex flex-col flex-grow text-xl sm:text-3xl p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg">
+        <button className="flex flex-row items-center gap-2 bg-[#ff5757] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
         </button>
@@ -49,7 +49,7 @@ function Admin_EditStudent() {
             <label htmlFor="firstname">First Name:</label>
             <input
               type="text"
-              className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+              className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md text-black"
               style={{ maxWidth: "300px" }}
               value={firstName}
               onChange={(e) => e.target.value.length <= 20 && setFirstName(e.target.value)}
@@ -63,7 +63,7 @@ function Admin_EditStudent() {
             <input
               type="text"
               style={{ maxWidth: "300px" }}
-              className="px-4 py-1 border-2 w-full border-black rounded-full focus:outline-none focus:shadow-md"
+              className="px-4 py-1 border-2 w-full border-black rounded-full focus:outline-none focus:shadow-md text-black"
               value={lastName}
               onChange={(e) => e.target.value.length <= 20 && setLastName(e.target.value)}
               placeholder="Last Name"
@@ -76,7 +76,7 @@ function Admin_EditStudent() {
             <input
               type="number"
               style={{ maxWidth: "75px" }}
-              className="px-4 py-1 border-black w-full border-2 rounded-full focus:outline-none focus:shadow-md"
+              className="px-4 py-1 border-black w-full border-2 rounded-full focus:outline-none focus:shadow-md text-black"
               value={gradeLevel}
               onChange={(e) => setGrade(e.target.value)}
               placeholder="Grade"
@@ -88,14 +88,14 @@ function Admin_EditStudent() {
 
           <div className="flex flex-row items-center gap-4">
             <label>Birth Date:</label>
-            <select className="px-4 py-1 border-2 border-black w-full max-w-[200px] rounded-full" value={birthMonth} onChange={(e) => setBirthMonth(e.target.value)}>
+            <select className="px-4 py-1 border-2 border-black w-full max-w-[200px] rounded-full text-black" value={birthMonth} onChange={(e) => setBirthMonth(e.target.value)}>
               {months.map((i, ind) => (
                 <option className="px-4 py-1 border-2 border-black rounded-full focus:outline-none focus:shadow-md" value={ind + 1} key={ind}>
                   {i}
                 </option>
               ))}
             </select>
-            <input type="number" className="px-4 py-1 border-2 border-black rounded-full w-full max-w-[75px] focus:outline-none focus:shadow-md" value={birthDay} onChange={(e) => setBirthDay(e.target.value)} placeholder="Birth Day" />
+            <input type="number" className="px-4 py-1 border-2 border-black rounded-full w-full max-w-[75px] focus:outline-none focus:shadow-md text-black" value={birthDay} onChange={(e) => setBirthDay(e.target.value)} placeholder="Birth Day" />
           </div>
 
           <div className="flex flex-row justify-center gap-4 mt-6">
