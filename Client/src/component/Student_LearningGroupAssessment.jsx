@@ -116,7 +116,7 @@ function Student_LearningGroupAssessment() {
                 <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
                 <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
               </div>
-              <h3 className="text-4xl font-semibold font-sourceSans3">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
+              <h3 className="text-4xl font-semibold font-sourceSans3 break-all">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
               <div className="flex flex-col gap-3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
