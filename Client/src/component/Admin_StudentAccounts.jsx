@@ -75,6 +75,7 @@ function Admin_StudentAccounts() {
           </button>
         ),
       },
+      { accessor: (d) => `${d.firstName} ${d.lastName}`, id: "NAME", Cell: () => <div className="p-0 h-0 w-0"></div> },
     ],
     []
   );
@@ -87,7 +88,7 @@ function Admin_StudentAccounts() {
   }, [selectedGrade]);
 
   useEffect(() => {
-    setFilter("LASTNAME", filterInput);
+    setFilter("NAME", filterInput);
   }, [filterInput]);
 
   const handleScrollToTop = () => {
@@ -136,7 +137,7 @@ function Admin_StudentAccounts() {
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                    <th {...column.getHeaderProps()} style={{}} className="p-2 py-4 text-2xl text-center text-white bg-black">
+                    <th {...column.getHeaderProps()} className="py-4 text-2xl text-center text-white bg-black">
                       {column.render("Header")}
                     </th>
                   ))}
@@ -151,7 +152,7 @@ function Admin_StudentAccounts() {
                   <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#a8a4a4]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
                     {row.cells.map((cell) => {
                       return (
-                        <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
+                        <td {...cell.getCellProps()} className="py-5 text-2xl text-center border-black">
                           {cell.render("Cell")}
                         </td>
                       );

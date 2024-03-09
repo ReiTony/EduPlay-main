@@ -75,14 +75,12 @@ function Teacher_AccountManagement() {
           </button>
         ),
       },
+      { accessor: (d) => `${d.firstName} ${d.lastName}`, id: "NAME", Cell: () => <div className="p-0 h-0 w-0"></div> },
     ],
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable(
-    { columns, data },
-    useFilters
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   useEffect(() => {
     if (selectedGrade === "") setFilter("GRADELEVEL", undefined);
@@ -90,7 +88,7 @@ function Teacher_AccountManagement() {
   }, [selectedGrade]);
 
   useEffect(() => {
-    setFilter("LASTNAME", filterInput);
+    setFilter("NAME", filterInput);
   }, [filterInput]);
 
   const handleScrollToTop = () => {
@@ -98,9 +96,7 @@ function Teacher_AccountManagement() {
   };
   return (
     <>
-      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">
-        ACCOUNT MANAGEMENT
-      </h1>
+      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">ACCOUNT MANAGEMENT</h1>
 
       <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundRed">
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
@@ -125,11 +121,7 @@ function Teacher_AccountManagement() {
                 <BsSearch className="mr-2 text-white cursor-pointer" />
               </span>
             </div>
-            <select
-              value={selectedGrade}
-              onChange={(e) => setSelectedGrade(e.target.value)}
-              className="p-2 bg-[#ff5757] text-white border-2 font-semibold border-red-300 rounded-md focus:outline-none focus:border-white"
-            >
+            <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 bg-[#ff5757] text-white border-2 font-semibold border-red-300 rounded-md focus:outline-none focus:border-white">
               <option value="">All Grades</option>
               {[1, 2, 3].map((grade) => (
                 <option key={grade} value={grade}>
@@ -145,11 +137,7 @@ function Teacher_AccountManagement() {
               {headerGroups.map((headerGroup) => (
                 <tr {...headerGroup.getHeaderGroupProps()}>
                   {headerGroup.headers.map((column) => (
-                    <th
-                      {...column.getHeaderProps()}
-                      style={{}}
-                      className="p-2 py-4 text-2xl text-center text-white bg-black"
-                    >
+                    <th {...column.getHeaderProps()} className="py-4 text-2xl text-center text-white bg-black">
                       {column.render("Header")}
                     </th>
                   ))}
@@ -161,14 +149,10 @@ function Teacher_AccountManagement() {
                 prepareRow(row);
 
                 return (
-                  <tr
-                    {...row.getRowProps()}
-                    className="gap-5 font-semibold border-8 border-red-800"
-                    style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}
-                  >
+                  <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-red-800" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
                     {row.cells.map((cell) => {
                       return (
-                        <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
+                        <td {...cell.getCellProps()} className="py-5 text-2xl text-center border-black">
                           {cell.render("Cell")}
                         </td>
                       );
@@ -180,19 +164,10 @@ function Teacher_AccountManagement() {
           </table>
         </div>
         <div className="md:hidden">
-          <Teacher_AccountManagementMinTable
-            data={data}
-            refresh={refresh}
-            filterInput={filterInput}
-            selectedGrade={selectedGrade}
-            modalStyle={modalStyle}
-          />
+          <Teacher_AccountManagementMinTable data={data} refresh={refresh} filterInput={filterInput} selectedGrade={selectedGrade} modalStyle={modalStyle} />
         </div>
       </main>
-      <button
-        className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none"
-        onClick={handleScrollToTop}
-      >
+      <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
         <BsFillArrowUpCircleFill className="text-3xl " />
       </button>
       <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} />
@@ -227,16 +202,10 @@ function DeleteModal({ show, onHide, onSave }) {
           Upon clicking delete, all information associated under this student will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button
-            className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 "
-            onClick={onHide}
-          >
+          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
             CANCEL
           </button>
-          <button
-            className="px-6 py-2 text-2xl rounded-full shadow-md bg-neutral-800 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
-            onClick={onSave}
-          >
+          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-neutral-800 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
             DELETE
           </button>
         </div>

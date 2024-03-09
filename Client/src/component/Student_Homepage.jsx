@@ -36,19 +36,19 @@ function Student_Dashboard() {
       {/* NOTIFICATION SECTION */}
       <div>
         {isVisible && (
-          <div className="relative p-4 m-4 bg-[#fff5be] rounded-3xl">
+          <div className="relative p-4 m-2 mt-0 sm:m-4 bg-[#fff5be] rounded-xl">
             <div className="absolute top-0 right-0 p-2">
               <HiX className="text-5xl cursor-pointer" onClick={handleCloseClick} />
             </div>
             <div className="flex items-center">
-              <h1 className="p-4 mt-2 text-3xl font-bold lg:text-5xl font-sourceSans3">NOTIFICATIONS</h1>
+              <h1 className="p-0 sm:p-4 mt-0 sm:mt-2 text-3xl font-bold lg:text-5xl font-sourceSans3">NOTIFICATIONS</h1>
               <MdNotificationsActive className="text-5xl animate-pulse " />
             </div>
-            <div className="flex flex-col mx-4">
+            <ul className="flex flex-col mx-0 sm:mx-4">
               {notifications.map((notification, index) => (
-                <h2 className="text-2xl font-semibold" key={index}>{`• ${notification.message}`}</h2>
+                <li className="text-lg sm:text-2xl font-semibold list-disc ms-4" key={index}>{notification.message}</li>
               ))}
-            </div>
+            </ul>
           </div>
         )}
       </div>

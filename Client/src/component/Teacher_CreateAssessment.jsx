@@ -4,13 +4,15 @@ import axios from "axios";
 import ReactModal from "react-modal";
 import Accordion from "./Accordion";
 import "../styles/Teacher_EditAssessment.css";
+import ErrorModal from "./ErrorModal";
 
 function Teacher_CreateAssessment() {
   const navigate = useNavigate();
   const [stepNumber, setStepNumber] = useState(0);
   const [title, setTitle] = useState("");
-  const [gradeLevel, setGradeLevel] = useState("");
+  const [gradeLevel, setGradeLevel] = useState("1");
   const [moduleNumber, setModuleNumber] = useState("");
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   const handleSave = async (questions) => {
     const answers = questions.map((i) => ({ answer: i.choices[i.correctAnswer] }));
@@ -21,8 +23,7 @@ function Teacher_CreateAssessment() {
   };
 
   const handleProceed = () => {
-    if (title === "") return alert("Please enter a title.");
-    if (!["1", "2", "3"].includes(gradeLevel)) return alert("Please choose between 1, 2, and 3 for the grade level.");
+    if (title === "" || moduleNumber === "") return setIsErrorModalOpen(true);
     setStepNumber((i) => i + 1);
   };
 
@@ -47,16 +48,19 @@ function Teacher_CreateAssessment() {
                 />
               </div>
               <div className="flex flex-row items-center gap-2 text-2xl">
-                <label className="text-white">Grade Level: </label>
-                <input
-                  type="number"
-                  min="1"
-                  max="3"
+                <label className="text-white" htmlFor="gradeLevel">
+                  Grade Level:
+                </label>
+                <select
                   value={gradeLevel}
                   onChange={(e) => setGradeLevel(e.target.value)}
                   className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
                   style={{ maxWidth: "100px" }}
-                />
+                >
+                  <option value="1">1</option>
+                  <option value="2">2</option>
+                  <option value="3">3</option>
+                </select>
               </div>
               <div className="flex flex-row items-center gap-2 text-2xl">
                 <label className="text-white inline">Module Number: </label>
@@ -77,6 +81,7 @@ function Teacher_CreateAssessment() {
           {stepNumber === 1 && <ManageAssessments onSave={handleSave} />}
         </div>
       </div>
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"Please fill out all fields completely."} />
     </>
   );
 }
@@ -116,9 +121,9 @@ function ManageAssessments({ onSave }) {
   };
 
   const handleAddQuestion = (question) => {
-    if (question.question === "") return alert("Please enter a question.");
-    if (question.choices.length < 2 || question.choices[0] === "" || question.choices[1] === "") return alert("Please enter at least 2 choices.");
-    if (question.correctAnswer < 0 || question.correctAnswer > question.choices.length - 1) return alert("Please check the correct answer");
+    if (question.question === "") return showError("Please enter a question.");
+    if (question.choices.length < 2 || question.choices[0] === "" || question.choices[1] === "") return showError("Please enter at least 2 choices.");
+    if (question.correctAnswer < 0 || question.correctAnswer > question.choices.length - 1) return showError("Please check the correct answer");
     setQuestions([...questions, question]);
     setShowAddModal(false);
   };
@@ -195,6 +200,10 @@ function AddModal({ show, onHide, onSave }) {
     setChoices(temp);
   };
 
+  const isAddDisabled = () => {
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
+  }
+
   if (!show) return;
 
   return (
@@ -212,7 +221,7 @@ function AddModal({ show, onHide, onSave }) {
             id="question"
             placeholder="Question"
             value={questionInput}
-            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 80 && setQuestionInput(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3">
@@ -225,7 +234,7 @@ function AddModal({ show, onHide, onSave }) {
                   style={{ maxWidth: "400px" }}
                   type="text"
                   value={choice}
-                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
+                  onChange={(e) => e.target.value.length <= 30 && editChoice(ind, e.target.value)}
                   placeholder="Choice"
                 />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
@@ -240,7 +249,7 @@ function AddModal({ show, onHide, onSave }) {
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-75" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
             ADD
           </button>
         </div>
@@ -268,6 +277,10 @@ function EditModal({ show, onHide, onSave, question }) {
     setChoices(temp);
   };
 
+  const isAddDisabled = () => {
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
+  }
+
   if (!show) return;
 
   return (
@@ -285,7 +298,7 @@ function EditModal({ show, onHide, onSave, question }) {
             id="question"
             placeholder="Question"
             value={questionInput}
-            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 80 && setQuestionInput(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3">
@@ -298,7 +311,7 @@ function EditModal({ show, onHide, onSave, question }) {
                   style={{ maxWidth: "400px" }}
                   type="text"
                   value={choice}
-                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
+                  onChange={(e) => e.target.value.length <= 30 && editChoice(ind, e.target.value)}
                   placeholder="Choice"
                 />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
@@ -310,7 +323,7 @@ function EditModal({ show, onHide, onSave, question }) {
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-50" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
             SAVE
           </button>
         </div>

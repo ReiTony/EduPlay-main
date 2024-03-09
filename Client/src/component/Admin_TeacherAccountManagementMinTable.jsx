@@ -8,15 +8,15 @@ import axios from "axios";
 function Admin_TeacherAccountManagementMinTable({ data, refresh, filterInput, selectedGrade, modalStyle }) {
   const navigate = useNavigate();
   const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [toBeDisabledStudent, setToBeDisabledStudent] = useState("");
+  const [toBeDisabledTeacher, setToBeDisabledTeacher] = useState("");
 
   useEffect(() => {
     refresh();
   }, []);
 
-  const handleDisableStudent = async () => {
+  const handleDisableTeacher = async () => {
     axios
-      .delete(`${import.meta.env.VITE_API}teacher/deleteStudent/${toBeDisabledStudent}`)
+      .delete(`${import.meta.env.VITE_API}admin/deleteTeacher/${toBeDisabledTeacher}`)
       .then((res) => {
         refresh();
         setShowDeleteModal(false);
@@ -24,9 +24,9 @@ function Admin_TeacherAccountManagementMinTable({ data, refresh, filterInput, se
       .catch((err) => alert(err.message));
   };
 
-  const showDelete = (username) => {
+  const showDelete = (id) => {
     setShowDeleteModal(true);
-    setToBeDisabledStudent(username);
+    setToBeDisabledTeacher(id);
   };
 
   const columns = useMemo(
@@ -111,7 +111,7 @@ function Admin_TeacherAccountManagementMinTable({ data, refresh, filterInput, se
       <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
         <BsFillArrowUpCircleFill className="text-3xl " />
       </button>
-      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} modalStyle={modalStyle} />
+      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableTeacher} modalStyle={modalStyle} />
     </>
   );
 }

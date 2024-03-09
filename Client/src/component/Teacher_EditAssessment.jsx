@@ -48,9 +48,6 @@ function Teacher_EditAssessment() {
   };
 
   const handleAddQuestion = (question) => {
-    if (question.question === "") return alert("Please enter a question.");
-    if (question.choices.length < 2 || question.choices[0] === "" || question.choices[1] === "") return alert("Please enter at least 2 choices.");
-    if (question.correctAnswer < 0 || question.correctAnswer > question.choices.length - 1) return alert("Please check the correct answer");
     const temp = { ...assessment };
     temp.questions = [...temp.questions, question];
     setAssessment(temp);
@@ -143,6 +140,10 @@ function AddModal({ show, onHide, onSave }) {
     setChoices(temp);
   };
 
+  const isAddDisabled = () => {
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
+  }
+
   if (!show) return;
 
   return (
@@ -160,7 +161,7 @@ function AddModal({ show, onHide, onSave }) {
             id="question"
             placeholder="Question"
             value={questionInput}
-            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 80 && setQuestionInput(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3">
@@ -173,7 +174,7 @@ function AddModal({ show, onHide, onSave }) {
                   style={{ maxWidth: "400px" }}
                   type="text"
                   value={choice}
-                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
+                  onChange={(e) => e.target.value.length <= 30 && editChoice(ind, e.target.value)}
                   placeholder="Choice"
                 />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
@@ -188,7 +189,8 @@ function AddModal({ show, onHide, onSave }) {
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-75" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
+          {/* <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}> */}
             SAVE
           </button>
         </div>
@@ -216,6 +218,10 @@ function EditModal({ show, onHide, onSave, question }) {
     setChoices(temp);
   };
 
+  const isAddDisabled = () => {
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
+  }
+
   if (!show) return;
 
   return (
@@ -233,7 +239,7 @@ function EditModal({ show, onHide, onSave, question }) {
             id="question"
             placeholder="Question"
             value={questionInput}
-            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
+            onChange={(e) => e.target.value.length <= 80 && setQuestionInput(e.target.value)}
           />
         </div>
         <div className="flex flex-row gap-3">
@@ -246,7 +252,7 @@ function EditModal({ show, onHide, onSave, question }) {
                   style={{ maxWidth: "400px" }}
                   type="text"
                   value={choice}
-                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
+                  onChange={(e) => e.target.value.length <= 30 && editChoice(ind, e.target.value)}
                   placeholder="Choice"
                 />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
@@ -261,7 +267,7 @@ function EditModal({ show, onHide, onSave, question }) {
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-50" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
             SAVE
           </button>
         </div>
