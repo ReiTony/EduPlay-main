@@ -11,7 +11,7 @@ function Teacher_Navbar() {
       <div className="flex items-center justify-between w-full p-2">
         <div className="flex flex-grow items-center">
           <img className="h-12 sm:h-24" src={logo} alt="eduplay-logo" />
-          <h1 className="flex text-xl sm:text-4xl font-bold font-reemkufifont flex-grow">
+          <h1 className="flex text-xl sm:text-4xl font-bold font-reemkufifont me-2" style={{ wordSpacing: "0.3em" }}>
             EDUPLAY TEACHER
           </h1>
         </div>
