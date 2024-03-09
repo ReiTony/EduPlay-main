@@ -8,7 +8,7 @@ function TeacherAssessments() {
   const [assessments, setAssessments] = useState([]);
   const [filteredAssessments, setFilteredAssessments] = useState([]);
   const [currentAssessment, setCurrentAssessment] = useState(-1);
-  const [gradeLevelFilter, setGradeLevelFilter] = useState("");
+  const [gradeLevelFilter, setGradeLevelFilter] = useState("all");
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   useEffect(() => {
@@ -43,9 +43,9 @@ function TeacherAssessments() {
 
   const handleGradeLevelFilterChange = (level) => {
     const temp = [...assessments];
-    if (level === "") return setFilteredAssessments(temp);
-    setFilteredAssessments(temp.filter((i) => i.gradeLevel == level));
     setGradeLevelFilter(level);
+    if (level === "all") return setFilteredAssessments(temp);
+    setFilteredAssessments(temp.filter((i) => i.gradeLevel == level));
   };
 
   return (
@@ -55,7 +55,7 @@ function TeacherAssessments() {
         <div className="mx-2 flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-3xl">
           <div className="flex flex-row flex-wrap-reverse justify-end gap-4 text-xl sm:text-2xl">
             <select className="bg-[#282424] text-white rounded-md shadow-md px-4 py-1 me-4 sm:me-0" value={gradeLevelFilter} onChange={(e) => handleGradeLevelFilterChange(e.target.value)}>
-              <option value="">All grades</option>
+              <option value="all">All grades</option>
               <option value="1">Grade 1</option>
               <option value="2">Grade 2</option>
               <option value="3">Grade 3</option>
