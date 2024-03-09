@@ -23,104 +23,81 @@ function Admin_AddStudent() {
 
   return (
     <>
-      <header className="bg-[#d8cccc] rounded-full shadow-md text-4xl font-reemkufifont font-bold mx-4 p-4 px-6">
-        <h1>STUDENT ACCOUNT MANAGEMENT</h1>
-      </header>
-
-      <main className="flex-grow bg-[#d8cccc] shadow-md rounded-3xl p-5 mx-4 my-3">
-        <button className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
+      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">
+        STUDENT ACCOUNT MANAGEMENT
+      </h1>
+      <main className="backgroundRed text-white flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg font-bold">
+        <button className="flex flex-row items-center gap-2 bg-[#ff5757] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
         </button>
-
-        <h1 className="font-bold font-reemkufifont lg:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
-        <div>
-          <h1 className="p-10 font-bold lg:text-4xl">Fill in the information:</h1>
-        </div>
-        <form>
-          <div className="grid gap-10 font-semibold lg:text-3xl lg:grid-cols-2">
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="firstName" className="pr-2 text-right">
-                  First Name:
-                </label>
-                <input
-                  type="text"
-                  value={firstName}
-                  onChange={(e) => e.target.value.length <= 15 && setFirstName(e.target.value)}
-                  id="firstName"
-                  name="firstName"
-                  placeholder="Enter First Name"
-                  className="px-4 py-2 lg:w-[400px] rounded-full lg:mx-4 border-4 border-l-8 border-r-8 border-black"
-                />
-              </div>
+        <div className="flex flex-col lg:mx-auto lg:w-[1000px]">
+          <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
+          <h1 className="text-xl sm:text-3xl my-5">Fill in the information:</h1>
+          <form className="flex flex-col gap-4 text-xl sm:text-3xl" onSubmit={handleSubmit}>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="firstName">First Name:</label>
+              <input
+                type="text"
+                value={firstName}
+                onChange={(e) => e.target.value.length <= 15 && setFirstName(e.target.value)}
+                id="firstName"
+                placeholder="Enter First Name"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "300px" }}
+              />
             </div>
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="lastName" className="pr-2 text-right lg:ml-5">
-                  Last Name:
-                </label>
-                <input
-                  type="text"
-                  value={lastName}
-                  onChange={(e) => e.target.value.length <= 15 && setLastName(e.target.value)}
-                  id="lastName"
-                  name="lastName"
-                  placeholder="Enter Last Name"
-                  className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                />
-              </div>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="lastName">Last Name:</label>
+              <input
+                type="text"
+                value={lastName}
+                onChange={(e) => e.target.value.length <= 15 && setLastName(e.target.value)}
+                id="lastName"
+                placeholder="Enter Last Name"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "300px" }}
+              />
             </div>
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="birthDay" className="pr-2 ml-5 text-right">
-                  Birth Day:
-                </label>
-                <input
-                  type="number"
-                  value={birthDay}
-                  onChange={(e) => ((e.target.value <= 31 && e.target.value >= 1) || e.target.value === "") && setBirthDay(e.target.value)}
-                  id="birthDay"
-                  name="birthDay"
-                  className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                />
-              </div>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="birthDay">Birth Day:</label>
+              <input
+                type="number"
+                value={birthDay}
+                onChange={(e) => ((e.target.value <= 31 && e.target.value >= 1) || e.target.value === "") && setBirthDay(e.target.value)}
+                id="birthDay"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "100px" }}
+              />
             </div>
-            <div className="flex-col">
-              <div className="flex items-center justify-center">
-                <label htmlFor="birthMonth" className="pr-2 ml-5 text-right">
-                  Birth Month:
-                </label>
-                <input
-                  type="number"
-                  value={birthMonth}
-                  onChange={(e) => ((e.target.value <= 12 && e.target.value >= 1) || e.target.value === "") && setBirthMonth(e.target.value)}
-                  id="birthMonth"
-                  name="birthMonth"
-                  className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4"
-                />
-              </div>
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="birthMonth">Birth Month:</label>
+              <input
+                type="number"
+                value={birthMonth}
+                onChange={(e) => ((e.target.value <= 12 && e.target.value >= 1) || e.target.value === "") && setBirthMonth(e.target.value)}
+                id="birthMonth"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "100px" }}
+              />
             </div>
-            <div className="flex items-center justify-center">
-              <label htmlFor="gradeLevel" className="pr-2 text-right">
-                Grade Level:
-              </label>
-              <select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} className="px-4 py-2 lg:w-[400px] border-4 border-l-8 border-r-8 border-black rounded-full lg:mx-4">
+            <div className="flex flex-row items-center gap-2">
+              <label htmlFor="gradeLevel">Grade Level:</label>
+              <select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "100px" }}>
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
               </select>
             </div>
-          </div>
-          <div className="flex justify-center p-5">
             <button
               type="submit"
               onClick={handleSubmit}
-              className="px-10 py-2 text-3xl font-bold text-white bg-[#282424] rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu">
+              className="mx-auto px-6 sm:px-10 py-1 sm:py-2 text-xl sm:text-3xl font-bold text-white bg-green-500 rounded-xl shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
+            >
               ADD
             </button>
-          </div>
-        </form>
+          </form>
+        </div>
       </main>
       <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"The student you are trying to add already exists."} />
     </>

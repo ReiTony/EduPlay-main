@@ -69,7 +69,7 @@ function Teacher_EditAssessment() {
       <div className="flex flex-col flex-grow gap-4">
         <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont ">CUSTOM-ASSESSMENTS</h1>
 
-        <div className="mx-2 flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-3xl">
+        <div className="mx-2 flex flex-col flex-grow gap-4 p-2 pt-4 sm:p-5 font-bold backgroundGreen rounded-3xl">
           <div className="flex flex-row flex-wrap-reverse justify-end gap-4 text-xl sm:text-2xl">
             <button
               className="bg-[#282424] rounded-xl px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
@@ -78,7 +78,7 @@ function Teacher_EditAssessment() {
               ADD QUESTION
             </button>
             <button
-              className="bg-[#282424] rounded-xl px-8 py-2 mt-3 sm:mt-0 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
+              className="bg-[#282424] rounded-xl px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
               onClick={() => setShowSaveAssessmentModal(true)}
             >
               SAVE ASSESSMENT
@@ -101,7 +101,7 @@ function Teacher_EditAssessment() {
                     </div>
                   </div>
                 </Accordion.Title>
-              <Accordion.Content>
+                <Accordion.Content>
                   <div className="flex flex-col gap-4 font-sourceSans3 ">
                     <div className="text-3xl font-bold ms-8">{i.question}</div>
                     <div className="flex flex-col text-2xl ms-16">
@@ -146,53 +146,50 @@ function AddModal({ show, onHide, onSave }) {
   if (!show) return;
 
   return (
-    <ReactModal
-      appElement={document.getElementById("root")}
-      isOpen={show}
-      shouldCloseOnEsc={true}
-      style={{
-        content: {
-          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
-          border: "3px solid black",
-          borderRadius: "2rem",
-          maxWidth: "720px",
-          width: "100%",
-          height: "fit-content",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
-        },
-      }}
-    >
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3 ">
-        <div className="text-3xl text-center text-white">ADD QUESTION</div>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 text-white font-semibold font-sourceSans3">
+        <div className="text-xl sm:text-3xl text-center">ADD A QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question" className="text-white">
+          <label className="hidden sm:block" htmlFor="question">
             Question:
           </label>
-          <input className="flex-grow px-4 py-1 border-2 border-black rounded-full" type="text" id="question" placeholder="Question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+          <input
+            className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+            style={{ maxWidth: "400px" }}
+            type="text"
+            id="question"
+            placeholder="Question"
+            value={questionInput}
+            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
+          />
         </div>
         <div className="flex flex-row gap-3">
-          <div className="text-2xl text-white">Choices:</div>
+          <div className="hidden sm:block text-2xl">Choices:</div>
           <div className="flex flex-col flex-grow gap-3">
             {choices.map((choice, ind) => (
               <div className="flex flex-row items-center gap-2" key={ind}>
-                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} placeholder="Choice" />
+                <input
+                  className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "400px" }}
+                  type="text"
+                  value={choice}
+                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
+                  placeholder="Choice"
+                />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
-            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => setChoices([...choices, ""])}>
-              + ADD A CHOICE
+            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12" onClick={() => setChoices([...choices, ""])}>
+              + Add a choice
             </button>
           </div>
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
+          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
-            ADD
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+            SAVE
           </button>
         </div>
       </div>
@@ -222,49 +219,49 @@ function EditModal({ show, onHide, onSave, question }) {
   if (!show) return;
 
   return (
-    <ReactModal
-      appElement={document.getElementById("root")}
-      isOpen={show}
-      shouldCloseOnEsc={true}
-      style={{
-        content: {
-          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
-          border: "3px solid black",
-          borderRadius: "2rem",
-          maxWidth: "720px",
-          width: "100%",
-          height: "fit-content",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
-        },
-      }}
-    >
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
-        <div className="text-3xl text-center text-white">EDIT QUESTION</div>
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 text-white font-semibold font-sourceSans3">
+        <div className="text-xl sm:text-3xl text-center">EDIT QUESTION</div>
         <div className="flex flex-row items-center gap-2 text-2xl">
-          <label htmlFor="question" className="text-white">
+          <label className="hidden sm:block" htmlFor="question">
             Question:
           </label>
-          <input className="flex-grow px-4 py-1 border-black rounded-full border-1" type="text" id="question" value={questionInput} onChange={(e) => setQuestionInput(e.target.value)} />
+          <input
+            className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+            style={{ maxWidth: "400px" }}
+            type="text"
+            id="question"
+            placeholder="Question"
+            value={questionInput}
+            onChange={(e) => e.target.value.length <= 20 && setQuestionInput(e.target.value)}
+          />
         </div>
         <div className="flex flex-row gap-3">
-          <div className="text-2xl text-white">Choices:</div>
+          <div className="hidden sm:block text-2xl">Choices:</div>
           <div className="flex flex-col flex-grow gap-3">
             {choices.map((choice, ind) => (
               <div className="flex flex-row items-center gap-2" key={ind}>
-                <input className="flex-grow px-5 py-1 text-2xl border-2 border-black rounded-full" type="text" value={choice} onChange={(e) => editChoice(ind, e.target.value)} />
+                <input
+                  className="text-black px-4 py-1 border-2 w-full border-[#08a454] focus:outline-none focus:shadow-green-400 rounded-full focus:shadow-md"
+                  style={{ maxWidth: "400px" }}
+                  type="text"
+                  value={choice}
+                  onChange={(e) => e.target.value.length <= 20 && editChoice(ind, e.target.value)}
+                  placeholder="Choice"
+                />
                 <input type="checkbox" checked={ind === correctAnswer} onChange={() => setCorrectAnswer(ind)} />
               </div>
             ))}
+            <button className="flex-grow text-2xl text-white bg-[#08a454] rounded-full shadow-md py-2 me-12" onClick={() => setChoices([...choices, ""])}>
+              + Add a choice
+            </button>
           </div>
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
+          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
             SAVE
           </button>
         </div>
@@ -276,36 +273,18 @@ function EditModal({ show, onHide, onSave, question }) {
 function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal
-      appElement={document.getElementById("root")}
-      isOpen={show}
-      shouldCloseOnEsc={true}
-      style={{
-        content: {
-          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
-          border: "3px solid black",
-          borderRadius: "2rem",
-          maxWidth: "720px",
-          width: "100%",
-          height: "fit-content",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
-        },
-      }}
-    >
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 p-4 text-white font-semibold font-sourceSans3">
         <h2 className="text-3xl text-center">DELETE QUESTION</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking proceed, all information provided under the question will be deleted.
         </div>
-        <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
+        <div className="flex flex-row flex-wrap justify-center gap-2 text-white">
+          <button className="text-2xl bg-[#08a454] rounded-xl shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
+          <button className="text-2xl bg-[#d00c24] rounded-xl shadow-md px-6 py-2 hover:brightness-95" onClick={onSave}>
             PROCEED
           </button>
         </div>
@@ -317,26 +296,8 @@ function DeleteModal({ show, onHide, onSave }) {
 function SaveAssessmentModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
-    <ReactModal
-      appElement={document.getElementById("root")}
-      isOpen={show}
-      shouldCloseOnEsc={true}
-      style={{
-        content: {
-          backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
-          border: "3px solid black",
-          borderRadius: "2rem",
-          maxWidth: "720px",
-          width: "100%",
-          height: "fit-content",
-          top: "50%",
-          left: "50%",
-          transform: "translate(-50%, -50%)",
-          boxShadow: "0 20px 20px rgba(0, 255, 0, 0.5)",
-        },
-      }}
-    >
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 p-2 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">SAVE ASSESSMENT</h2>
         <div className="text-2xl">
           Reminders: <br />
@@ -344,10 +305,10 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
           2. Please make sure all questions were properly created and no question was added without any questions/answer.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="bg-[#d00c24] rounded-full text-2xl shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
+          <button className="bg-[#d00c24] text-2xl rounded-xl shadow-lg px-4 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
             CANCEL
           </button>
-          <button className="bg-[#08a454] text-2xl rounded-full shadow-lg px-8 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
+          <button className="bg-[#08a454] text-2xl rounded-xl shadow-lg px-4 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={onSave}>
             SAVE
           </button>
         </div>
@@ -355,3 +316,19 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
     </ReactModal>
   );
 }
+
+const modalStyle = {
+  content: {
+    backgroundImage: `url('/src/assets/Homepage_Image/green.svg')`,
+    border: "0",
+    borderRadius: "2rem",
+    maxWidth: "95dvw",
+    maxHeight: "80dvh",
+    width: "fit-content",
+    height: "fit-content",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+  },
+};

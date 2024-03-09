@@ -3,6 +3,7 @@ import { useState, useEffect, useMemo } from "react";
 import { useNavigate } from "react-router-dom";
 import { useFilters, useTable } from "react-table";
 import { BsSearch } from "react-icons/bs";
+import Teacher_LearningGroupMinTable from "./Teacher_LearningGroupMinTable";
 
 function Teacher_LearningGroup() {
   const navigate = useNavigate();
@@ -11,16 +12,20 @@ function Teacher_LearningGroup() {
   const [selectedGrade, setSelectedGrade] = useState("");
 
   useEffect(() => {
+    refresh();
+  }, []);
+
+  const refresh = async () => {
     axios.get(`${import.meta.env.VITE_API}teacher/progress-reports`).then(async (res) => {
       let temp = [];
       const promises = res.data.progressReports.map(async (stud) => {
-        const res = await axios.get(`${import.meta.env.VITE_API}teacher/showStudent/${stud.username}`);
-        temp.push(res.data.student);
+        const res = await fetch(`${import.meta.env.VITE_API}teacher/showStudent/${stud.username}`);
+        if (res.status === 200) temp.push((await res.json()).student);
       });
       await Promise.all(promises);
       setData(temp);
     });
-  }, []);
+  };
 
   useEffect(() => {
     if (selectedGrade === "") setFilter("gradeLevel", undefined);
@@ -51,18 +56,17 @@ function Teacher_LearningGroup() {
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   return (
-    <div className="flex flex-col flex-grow gap-4 p-4">
-      <header className="p-4 text-4xl font-bold text-white backgroundBlue rounded-3xl font-reemkufifont">
-        <h1>LEARNING GROUP</h1>
-      </header>
-      <div className="flex flex-col flex-grow gap-4 p-5 font-bold shadow-lg backgroundBlue rounded-3xl shadow-blue-800">
-        <div className="flex flex-row gap-4 ms-auto">
-          <div className="relative mx-4 text-white">
+    <>
+      <h1 className="backgroundBlue text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">LEARNING GROUP</h1>
+
+      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundBlue">
+        <div className="flex flex-wrap ms-auto gap-2 pb-4">
+          <div className="relative text-white">
             <input
               type="text"
               value={filterInput}
               onChange={(e) => setFilterInput(e.target.value)}
-              placeholder="Search by last name..."
+              placeholder="Search by name..."
               className="w-56 p-2 bg-[#086cfc] border-[#50a4ec] border-2 rounded-md focus:border-white focus:shadow-md focus:shadow-red-300 "
             />
             <BsSearch className="absolute transform -translate-y-1/2 top-1/2 right-4 mr-2 text-white cursor-pointer" />
@@ -75,35 +79,40 @@ function Teacher_LearningGroup() {
           </select>
         </div>
 
-        <table {...getTableProps()}>
-          <thead>
-            {headerGroups.map((headerGroup) => (
-              <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
-                {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-2xl py-4">
-                    {column.render("Header")}
-                  </th>
-                ))}
-              </tr>
-            ))}
-          </thead>
-          <tbody {...getTableBodyProps()}>
-            {rows.map((row, index) => {
-              prepareRow(row);
-              return (
-                <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
-                  {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
-                      {cell.render("Cell")}
-                    </td>
+        <div className="hidden md:block">
+          <table {...getTableProps()} style={{ borderCollapse: "collapse", width: "100%" }}>
+            <thead>
+              {headerGroups.map((headerGroup) => (
+                <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
+                  {headerGroup.headers.map((column) => (
+                    <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-2xl py-4">
+                      {column.render("Header")}
+                    </th>
                   ))}
                 </tr>
-              );
-            })}
-          </tbody>
-        </table>
-      </div>
-    </div>
+              ))}
+            </thead>
+            <tbody {...getTableBodyProps()}>
+              {rows.map((row, index) => {
+                prepareRow(row);
+                return (
+                  <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
+                    {row.cells.map((cell) => (
+                      <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
+                        {cell.render("Cell")}
+                      </td>
+                    ))}
+                  </tr>
+                );
+              })}
+            </tbody>
+          </table>
+        </div>
+        <div className="md:hidden">
+          <Teacher_LearningGroupMinTable data={data} filterInput={filterInput} refresh={refresh} selectedGrade={selectedGrade} />
+        </div>
+      </main>
+    </>
   );
 }
 

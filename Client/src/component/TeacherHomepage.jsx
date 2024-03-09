@@ -23,7 +23,7 @@ function TeacherHomepage() {
           <h1>Combine </h1>
           <h1 className="ml-0 sm:ml-20">Fun with</h1>
           <h1 className="ml-0 sm:ml-40">Knowledge</h1>
-          <Link to="/teacher/accounts">
+          <Link to="/teacher/learning-group">
             <button className="bg-[#5271ff] hover:bg-[#2047f1] shadow-lg shadow-black hover:shadow-blue-300 flex items-center text-white font-bold py-2 px-4 ms-auto rounded-2xl hover:scale-[.99] transition-transform transform-gpu text-2xl sm:text-5xl">
               LEARNING GROUP
               <IoChevronForwardCircleSharp className="sm:text-6xl" />

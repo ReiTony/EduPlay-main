@@ -21,9 +21,6 @@ function Teacher_LearningGroupStudent() {
       { topic: 1, learningMaterials: "Unviewed", game: "Unplayed", assessment: null },
       { topic: 2, learningMaterials: "Unviewed", game: "Unplayed", assessment: null },
     ];
-
-    console.log(data.modules);
-    console.log(data);
     data.gameScores.forEach((game, i) => (temp[i].game = "Played"));
     for (let i = 0; i < Math.floor((data.modules.length + 2) / 4); i++) temp[i].learningMaterials = "Viewed";
     data.assessmentScores.forEach((ass, i) => (temp[i].assessment = `${ass.score}/10`));
@@ -33,28 +30,29 @@ function Teacher_LearningGroupStudent() {
 
   const columns = useMemo(
     () => [
-      { Header: "MODULE", accessor: "topic", id: "topic" },
-      { Header: "LEARNING MATERIALS", accessor: "learningMaterials", id: "learningMaterials" },
-      { Header: "GAMES", accessor: "game", id: "game" },
-      { Header: "ASSESSMENTS", accessor: "assessment", id: "assesssment" },
+      { Header: "Module", accessor: "topic", id: "topic" },
+      { Header: "Learning Materials", accessor: "learningMaterials", id: "learningMaterials" },
+      { Header: "Games", accessor: "game", id: "game" },
+      { Header: "Assessments", accessor: "assessment", id: "assesssment" },
     ],
     []
   );
   const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data });
 
   return (
-    <div className="flex flex-col flex-grow gap-4 p-4">
-      <div className="bg-[#5874fc] rounded-full shadow-md px-10 py-3 text-4xl text-white font-bold font-sourceSans3 backgroundBlue">LEARNING GROUP - PROGRESS TRACKING</div>
-      <div className="flex flex-col bg-[#98ccfc] flex-grow gap-4 rounded-3xl p-5 font-bold backgroundBlue">
+    <>
+      <h1 className="backgroundBlue text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">LEARNING GROUP - PROGRESS TRACKING</h1>
+
+      <main className="flex flex-col flex-grow gap-4 p-2 pt-4 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundBlue">
         <button className="flex flex-row items-center gap-2 bg-[#282424] rounded-full shadow-md text-white text-2xl me-auto px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
         </button>
-        <div className="flex flex-row gap-6 bg-[#e0dcdc] w-full rounded-2xl p-6">
+        <div className="flex flex-row gap-2 sm:gap-6 bg-[#e0dcdc] w-full rounded-2xl p-3 sm:p-6">
           {userData !== null && (
             <>
-              <img src={studentDP} alt="Profile" style={{ height: "200px" }} />
-              <h2 className="text-3xl ">{`${userData?.firstName || ""} ${userData?.lastName || ""}`}</h2>
+              <img src={studentDP} alt="Profile" className="h-24 sm:h-40" />
+              <h2 className="text-3xl font-semibold break-all">{`${userData?.firstName || ""} ${userData?.lastName || ""}`}</h2>
             </>
           )}
         </div>
@@ -64,7 +62,7 @@ function Teacher_LearningGroupStudent() {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-2xl py-4">
+                  <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-md sm:text-2xl py-4 break-all">
                     {column.render("Header")}
                   </th>
                 ))}
@@ -75,9 +73,9 @@ function Teacher_LearningGroupStudent() {
             {rows.map((row, index) => {
               prepareRow(row);
               return (
-                <tr {...row.getRowProps()} className="gap-5 font-semibold border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
+                <tr {...row.getRowProps()} className="gap-0 sm:gap-5 font-semibold border-0 sm:border-8 border-[#98ccfc]" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
                   {row.cells.map((cell) => (
-                    <td {...cell.getCellProps()} className="p-2 py-5 text-2xl text-center border-black">
+                    <td {...cell.getCellProps()} className="px-0 py-5 sm:px-2 text-md sm:text-2xl text-center border-black">
                       {cell.render("Cell")}
                     </td>
                   ))}
@@ -86,8 +84,8 @@ function Teacher_LearningGroupStudent() {
             })}
           </tbody>
         </table>
-      </div>
-    </div>
+      </main>
+    </>
   );
 }
 

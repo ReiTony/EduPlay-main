@@ -57,6 +57,10 @@
     background-image: url('/src/assets/Homepage_Image/green.svg');
 }
 
+.backgroundGrey {
+    background-image: url('/src/assets/Homepage_Image/grey.svg');
+}
+
 .backgroundMainTeacher {
     background-image: url('/src/assets/Homepage_Image/TeacherMainBg.svg');
 }
