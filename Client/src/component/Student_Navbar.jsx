@@ -34,7 +34,7 @@ function Student_Navbar() {
         </div>
       </div>
       {isMenuOpen && (
-        <div className="py-4 bg-gray-800 xl:hidden">
+        <div className="py-4 bg-gray-800 xl:hidden rounded-b-3xl">
           <div className="container flex flex-col items-center mx-auto space-y-4 font-expletus">
             <Link to="/student" className="text-white">
               HOME
