@@ -24,7 +24,6 @@ function Teacher_CreateAssessment() {
 
   const handleProceed = () => {
     if (title === "" || moduleNumber === "") return setIsErrorModalOpen(true);
-    if (!["1", "2", "3"].includes(gradeLevel)) return alert("Please choose between 1, 2, and 3 for the grade level.");
     setStepNumber((i) => i + 1);
   };
 
@@ -95,8 +94,6 @@ function ManageAssessments({ onSave }) {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [showSaveAssessmentModal, setShowSaveAssessmentModal] = useState(false);
   const [currentQuestion, setCurrentQuestion] = useState(-1);
-  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
-  const [errorInfo, setErrorInfo] = useState("");
   const [questions, setQuestions] = useState([]);
 
   const handleSaveAssessment = () => {
@@ -283,7 +280,6 @@ function EditModal({ show, onHide, onSave, question }) {
   const isAddDisabled = () => {
     return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
   }
-
 
   if (!show) return;
 

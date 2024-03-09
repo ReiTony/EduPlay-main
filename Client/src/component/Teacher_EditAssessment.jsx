@@ -48,9 +48,6 @@ function Teacher_EditAssessment() {
   };
 
   const handleAddQuestion = (question) => {
-    if (question.question === "") return alert("Please enter a question.");
-    if (question.choices.length < 2 || question.choices[0] === "" || question.choices[1] === "") return alert("Please enter at least 2 choices.");
-    if (question.correctAnswer < 0 || question.correctAnswer > question.choices.length - 1) return alert("Please check the correct answer");
     const temp = { ...assessment };
     temp.questions = [...temp.questions, question];
     setAssessment(temp);
@@ -143,6 +140,10 @@ function AddModal({ show, onHide, onSave }) {
     setChoices(temp);
   };
 
+  const isAddDisabled = () => {
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
+  }
+
   if (!show) return;
 
   return (
@@ -188,7 +189,8 @@ function AddModal({ show, onHide, onSave }) {
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-75" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
+          {/* <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}> */}
             SAVE
           </button>
         </div>
@@ -215,6 +217,10 @@ function EditModal({ show, onHide, onSave, question }) {
     temp[ind] = choice;
     setChoices(temp);
   };
+
+  const isAddDisabled = () => {
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
+  }
 
   if (!show) return;
 
@@ -261,7 +267,7 @@ function EditModal({ show, onHide, onSave, question }) {
           <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={onHide}>
             CANCEL
           </button>
-          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}>
+          <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-50" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
             SAVE
           </button>
         </div>
