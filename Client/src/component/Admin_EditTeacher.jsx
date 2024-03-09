@@ -67,106 +67,78 @@ function Admin_EditTeacher() {
 
   return (
     <>
-      <div className="flex flex-col flex-grow gap-4 p-4">
-        <header className="bg-[#d8cccc] rounded-full shadow-md text-4xl font-reemkufifont font-bold p-4 px-6">
-          <h1>TEACHER ACCOUNT MANAGEMENT</h1>
-        </header>
+      <h1 className="backgroundGreen text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
-        <main className="flex flex-col flex-grow gap-2 bg-[#d8cccc] shadow-md rounded-3xl font-bold p-5 my-3">
-          <button
-            className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2"
-            onClick={() => (isEditingPassword ? setIsEditingPassord(false) : navigate(-1))}>
-            <IoArrowBackCircle />
-            BACK
-          </button>
-          <h1 className="font-bold font-reemkufifont text-4xl">REGISTERED USERS - EDIT TEACHER</h1>
+      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg text-white font-bold backgroundGreen">
+        <button className="flex flex-row items-center gap-2 bg-[#08a454] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
+          <IoArrowBackCircle />
+          BACK
+        </button>
+        <h1 className="font-bold font-reemkufifont text-4xl">REGISTERED USERS - EDIT TEACHER</h1>
 
-          {isEditingPassword ? (
-            <form className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
-              <div className="flex flex-row items-center gap-4">
-                <label htmlFor="oldpass">Old Password:</label>
-                <input
-                  type="password"
-                  className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
-                  style={{ maxWidth: "400px" }}
-                  value={oldPassword}
-                  onChange={(e) => setOldPassword(e.target.value)}
-                  placeholder="Enter your old password"
-                  id="oldpass"
-                />
-              </div>
-              <div className="flex flex-row items-center gap-4">
-                <label htmlFor="newpass">New Password:</label>
-                <input
-                  type="password"
-                  className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
-                  style={{ maxWidth: "400px" }}
-                  value={newPassword}
-                  onChange={(e) => setNewPassword(e.target.value)}
-                  placeholder="Enter your new password"
-                  id="newpass"
-                />
-              </div>
-              <button
-                type="submit"
-                className="bg-[#282424] rounded-full shadow-md hover:brightness-90 text-white px-6 py-2 mt-4 mx-auto"
-                disabled={oldPassword.length === 0 || newPassword.length === 0}
-                onClick={handleEditPassword}>
+        {isEditingPassword ? (
+          <form className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
+            <div className="flex flex-row items-center gap-4">
+              <label htmlFor="oldpass">Old Password:</label>
+              <input
+                type="password"
+                className="px-4 py-1 border-2 w-full border-black text-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "400px" }}
+                value={oldPassword}
+                onChange={(e) => setOldPassword(e.target.value)}
+                placeholder="Enter your old password"
+                id="oldpass"
+              />
+            </div>
+            <div className="flex flex-row items-center gap-4">
+              <label htmlFor="newpass">New Password:</label>
+              <input
+                type="password"
+                className="px-4 py-1 border-2 w-full border-black text-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "400px" }}
+                value={newPassword}
+                onChange={(e) => setNewPassword(e.target.value)}
+                placeholder="Enter your new password"
+                id="newpass"
+              />
+            </div>
+            <button type="submit" className="bg-[#282424] rounded-full shadow-md hover:brightness-90 text-white px-6 py-2 mt-4 mx-auto" disabled={oldPassword.length === 0 || newPassword.length === 0} onClick={handleEditPassword}>
+              Change Password
+            </button>
+          </form>
+        ) : (
+          <form className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
+            <div className="flex flex-row items-center gap-4">
+              <label htmlFor="email">Email:</label>
+              <input type="email" className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md text-black" style={{ maxWidth: "400px" }} value={email} onChange={(e) => e.target.value.length <= 30 && setEmail(e.target.value)} placeholder="Email" id="email" />
+            </div>
+
+            <div className="flex flex-row items-center gap-4">
+              <label htmlFor="name">Name:</label>
+              <input type="text" style={{ maxWidth: "400px" }} className="px-4 py-1 border-2 w-full border-black text-black rounded-full focus:outline-none focus:shadow-md" value={name} onChange={(e) => e.target.value.length <= 20 && setName(e.target.value)} placeholder="Name" id="name" />
+            </div>
+            <div className="flex flex-row items-center gap-4">
+              <div>Password:</div>
+              <button type="button" className="bg-[#282424] rounded-full shadow-md hover:brightness-90 text-white px-6 py-1" onClick={goToEditPassword}>
                 Change Password
               </button>
-            </form>
-          ) : (
-            <form className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
-              <div className="flex flex-row items-center gap-4">
-                <label htmlFor="email">Email:</label>
-                <input
-                  type="email"
-                  className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
-                  style={{ maxWidth: "400px" }}
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Email"
-                  id="email"
-                />
-              </div>
+            </div>
 
-              <div className="flex flex-row items-center gap-4">
-                <label htmlFor="name">Name:</label>
-                <input
-                  type="text"
-                  style={{ maxWidth: "400px" }}
-                  className="px-4 py-1 border-2 w-full border-black rounded-full focus:outline-none focus:shadow-md"
-                  value={name}
-                  onChange={(e) => setName(e.target.value)}
-                  placeholder="Name"
-                  id="name"
-                />
-              </div>
-              <div className="flex flex-row items-center gap-4">
-                <div>Password:</div>
-                <button type="button" className="bg-[#282424] rounded-full shadow-md hover:brightness-90 text-white px-6 py-1" onClick={goToEditPassword}>
-                  Change Password
-                </button>
-              </div>
-
-              <div className="flex flex-row justify-center gap-4 mt-6">
-                <button
-                  type="button"
-                  className="bg-[#d00c24] rounded-full shadow-md text-white px-8 py-2 hover:brightness-90 hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-black hover:scale-[.98] transition-transform transform-gpu"
-                  onClick={() => navigate(-1)}>
-                  CANCEL
-                </button>
-                <button
-                  type="submit"
-                  className="text-white px-8 py-2 bg-green-500 rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-                  onClick={handleSave}>
-                  SAVE
-                </button>
-              </div>
-            </form>
-          )}
-        </main>
-      </div>
+            <div className="flex flex-row justify-center gap-4 mt-6">
+              <button
+                type="button"
+                className="bg-[#d00c24] rounded-full shadow-md text-white px-8 py-2 hover:brightness-90 hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-black hover:scale-[.98] transition-transform transform-gpu"
+                onClick={() => navigate(-1)}
+              >
+                CANCEL
+              </button>
+              <button type="submit" className="text-white px-8 py-2 bg-green-500 rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={handleSave}>
+                SAVE
+              </button>
+            </div>
+          </form>
+        )}
+      </main>
       <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
     </>
   );

@@ -6,7 +6,6 @@ import { useNavigate } from "react-router-dom";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import ReactModal from "react-modal";
 import axios from "axios";
-import Admin_AccountManagementMinTable from "./Admin_AccountManagementMinTable";
 import Admin_TeacherAccountManagementMinTable from "./Admin_TeacherAccountManagementMinTable";
 
 function Admin_TeacherAccounts() {
@@ -93,23 +92,23 @@ function Admin_TeacherAccounts() {
 
   return (
     <>
-      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
+      <h1 className="backgroundGreen text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg bg-[#d8cccc]">
+      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundGreen">
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
-          <h1 className="text-2xl sm:text-4xl font-bold text-black">REGISTERED ACCOUNTS</h1>
+          <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
 
           <div className="flex flex-wrap gap-2">
-            <button className="bg-[#282424] rounded-xl shadow-md text-2xl font-bold text-white hover:brightness-90 hover:scale-[.98] px-5 py-1 transition-transform transform-gpu" onClick={() => navigate("create")}>
+            <button className="bg-[#08a454] rounded-xl shadow-lg font-bold text-white px-3 sm:px-8 py-2 hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate("create")}>
               ADD TEACHER
             </button>
             <div className="relative">
-              <input type="text" value={filterInput} onChange={(e) => setFilterInput(e.target.value)} placeholder="Search by Name..." className="w-56 p-2 rounded-md focus:border-white focus:shadow-md" />
+              <input type="text" value={filterInput} onChange={(e) => setFilterInput(e.target.value)} placeholder="Search by Name..." className="w-56 p-2 rounded-md focus:shadow-green focus:outline-none focus:shadow-lg bg-[#08a454] text-white" />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
                 <BsSearch className="mr-2 text-white cursor-pointer" />
               </span>
             </div>
-            <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 font-semibold rounded-md focus:outline-none focus:border-white">
+            <select value={selectedGrade} onChange={(e) => setSelectedGrade(e.target.value)} className="p-2 font-semibold rounded-md focus:outline-none shadow-lg focus:shadow-green bg-[#08a454] text-white">
               <option value="">All Grades</option>
               {[1, 2, 3].map((grade) => (
                 <option key={grade} value={grade}>
@@ -119,7 +118,7 @@ function Admin_TeacherAccounts() {
             </select>
           </div>
         </div>
-        <div className="hidden md:block">
+        <div className="hidden lg:block">
           <table {...getTableProps()} style={{ borderCollapse: "collapse", width: "100%" }}>
             <thead>
               {headerGroups.map((headerGroup) => (
@@ -151,7 +150,7 @@ function Admin_TeacherAccounts() {
             </tbody>
           </table>
         </div>
-        <div className="md:hidden">
+        <div className="lg:hidden">
           <Admin_TeacherAccountManagementMinTable data={data} filterInput={filterInput} modalStyle={modalStyle} refresh={refresh} selectedGrade={selectedGrade} />
         </div>
       </main>
@@ -183,7 +182,7 @@ function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3 text-white">
         <h2 className="text-4xl text-center">DELETE TEACHER</h2>
         <div className="text-2xl">
           Reminder: <br />
@@ -204,7 +203,7 @@ function DeleteModal({ show, onHide, onSave }) {
 
 const modalStyle = {
   content: {
-    backgroundColor: "#a8a4a4",
+    background: `url("/src/assets/Homepage_Image/green.svg")`,
     border: "0",
     borderRadius: "2rem",
     maxWidth: "90dvw",

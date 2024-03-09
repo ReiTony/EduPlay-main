@@ -37,10 +37,10 @@ function Admin_AddTeacher() {
 
   return (
     <>
-      <h1 className="bg-[#d8cccc] text-black mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
+      <h1 className="backgroundGreen text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg text-black bg-[#d8cccc] font-bold">
-        <button className="flex flex-row items-center gap-2 bg-[#282424] shadow-md rounded-full font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
+      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg text-white font-bold backgroundGreen">
+        <button className="flex flex-row items-center gap-2 bg-[#08a454] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
           <IoArrowBackCircle />
           BACK
         </button>
@@ -53,7 +53,7 @@ function Admin_AddTeacher() {
               <input
                 type="email"
                 value={email}
-                onChange={(e) => setEmail(e.target.value)}
+                onChange={(e) => e.target.value.length <= 30 && setEmail(e.target.value)}
                 id="email"
                 placeholder="Enter Email"
                 className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
@@ -74,7 +74,15 @@ function Admin_AddTeacher() {
             </div>
             <div className="flex flex-row items-center gap-2">
               <label htmlFor="name">Name:</label>
-              <input type="text" value={name} onChange={(e) => setName(e.target.value)} id="name" placeholder="Enter Name" className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "300px" }} />
+              <input
+                type="text"
+                value={name}
+                onChange={(e) => e.target.value.length <= 20 && setName(e.target.value)}
+                id="name"
+                placeholder="Enter Name"
+                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                style={{ maxWidth: "300px" }}
+              />
             </div>
             <div className="flex flex-row items-center gap-2">
               <label htmlFor="gradeLevel">Grade Level:</label>
@@ -84,7 +92,11 @@ function Admin_AddTeacher() {
                 <option value="3">3</option>
               </select>
             </div>
-            <button type="submit" onClick={handleSubmit} className="mx-auto px-10 py-2 text-2xl font-bold text-white bg-[#282424] rounded-xl shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu ">
+            <button
+              type="submit"
+              onClick={handleSubmit}
+              className="mx-auto px-6 sm:px-10  py-1 sm:py-2 my-2 text-2xl font-bold text-white bg-[#08a454] rounded-xl shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu "
+            >
               ADD
             </button>
           </form>
