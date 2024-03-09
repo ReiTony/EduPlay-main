@@ -23,7 +23,10 @@ function Admin_TeacherAccounts() {
   const refresh = async () => {
     axios
       .get(`${import.meta.env.VITE_API}admin/teachers`)
-      .then((res) => setData(res.data.teachers))
+      .then((res) => {
+        res.data.teachers.sort((a, b) => a.gradeLevel - b.gradeLevel || a.name.localeCompare(b.name));
+        setData(res.data.teachers);
+      })
       .catch((err) => alert(err.message));
   };
 
