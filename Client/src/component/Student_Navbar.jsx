@@ -12,8 +12,10 @@ function Student_Navbar() {
     <nav className="m-4 text-white bg-[#252525] rounded-3xl  top-0">
       <div className="flex items-center justify-between w-full p-2 ">
         <div className="flex items-center">
-          <img className="w-24 m-0 " src={logo} alt="Logo" />
-          <h1 className="pl-2 text-4xl font-bold xl:pr-40 font-reemkufifont">EDUPLAY</h1>
+          <img className="h-12 sm:h-24" src={logo} alt="eduplay-logo" />
+          <h1 className="flex text-xl sm:text-4xl font-bold font-reemkufifont me-2" style={{ wordSpacing: "0.3em" }}>
+            EDUPLAY
+          </h1>
         </div>
         <div className="justify-end hidden w-full space-x-4 text-2xl font-bold font-expletus xl:flex">
           <Link to="/student" className="p-5 hover:text-[#252525] hover:bg-[#a5d6a7] hover:rounded-sm ">
