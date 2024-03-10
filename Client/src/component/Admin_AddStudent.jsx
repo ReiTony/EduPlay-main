@@ -12,26 +12,27 @@ function Admin_AddStudent() {
   const [birthMonth, setBirthMonth] = useState("");
   const [gradeLevel, setGradeLevel] = useState("1");
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [errorInfo, setErrorInfo] = useState("");
+
+  const showError = (error) => {
+    setErrorInfo(error);
+    setIsErrorModalOpen(true);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return setIsErrorModalOpen(true);
+    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return showError("Fill out all fields completely.");
     axios
       .post(`${import.meta.env.VITE_API}teacher/addStudent`, { firstName, lastName, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0"), gradeLevel })
       .then((res) => navigate("/admin/student-accounts"))
-      .catch((err) => setIsErrorModalOpen(true));
+      .catch((err) => showError("Student with the same name already exists."));
   };
 
   return (
     <>
-      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">
-        STUDENT ACCOUNT MANAGEMENT
-      </h1>
-      <main className="backgroundRed text-white flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg font-bold">
-        <button className="flex flex-row items-center gap-2 bg-[#ff5757] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
-          <IoArrowBackCircle />
-          BACK
-        </button>
+      <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">ACCOUNT MANAGEMENT</h1>
+
+      <main className="flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg backgroundRed text-white font-bold">
         <div className="flex flex-col lg:mx-auto lg:w-[1000px]">
           <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
           <h1 className="text-xl sm:text-3xl my-5">Fill in the information:</h1>
@@ -44,7 +45,7 @@ function Admin_AddStudent() {
                 onChange={(e) => e.target.value.length <= 15 && setFirstName(e.target.value)}
                 id="firstName"
                 placeholder="Enter First Name"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
                 style={{ maxWidth: "300px" }}
               />
             </div>
@@ -56,7 +57,7 @@ function Admin_AddStudent() {
                 onChange={(e) => e.target.value.length <= 15 && setLastName(e.target.value)}
                 id="lastName"
                 placeholder="Enter Last Name"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
                 style={{ maxWidth: "300px" }}
               />
             </div>
@@ -67,24 +68,28 @@ function Admin_AddStudent() {
                 value={birthDay}
                 onChange={(e) => ((e.target.value <= 31 && e.target.value >= 1) || e.target.value === "") && setBirthDay(e.target.value)}
                 id="birthDay"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
                 style={{ maxWidth: "100px" }}
               />
             </div>
             <div className="flex flex-row items-center gap-2">
               <label htmlFor="birthMonth">Birth Month:</label>
-              <input
-                type="number"
-                value={birthMonth}
-                onChange={(e) => ((e.target.value <= 12 && e.target.value >= 1) || e.target.value === "") && setBirthMonth(e.target.value)}
-                id="birthMonth"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
-                style={{ maxWidth: "100px" }}
-              />
+              <select className="text-black px-4 py-1 border-2 border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md" value={birthMonth} id="birthMonth" onChange={(e) => setBirthMonth(e.target.value)}>
+                {months.map((i, ind) => (
+                  <option value={ind + 1} key={ind}>
+                    {i}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="flex flex-row items-center gap-2">
               <label htmlFor="gradeLevel">Grade Level:</label>
-              <select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "100px" }}>
+              <select
+                value={gradeLevel}
+                onChange={(e) => setGradeLevel(e.target.value)}
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
+                style={{ maxWidth: "100px" }}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -100,9 +105,11 @@ function Admin_AddStudent() {
           </form>
         </div>
       </main>
-      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"Fill out all fields completely."} />
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
     </>
   );
 }
 
 export default Admin_AddStudent;
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];

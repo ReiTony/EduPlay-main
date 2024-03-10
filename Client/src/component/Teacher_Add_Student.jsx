@@ -11,30 +11,21 @@ function Teacher_Add_Student() {
   const [birthDay, setBirthDay] = useState("");
   const [birthMonth, setBirthMonth] = useState("");
   const [gradeLevel, setGradeLevel] = useState("1");
-  const [teacherToken, setTeacherToken] = useState(null);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
+  const [errorInfo, setErrorInfo] = useState("");
 
-  useEffect(() => {
-    const token = Cookies.get("teacherToken");
-    if (token) {
-      const tokenObject = JSON.parse(token);
-      setTeacherToken(tokenObject);
-    }
-  }, []);
+  const showError = (error) => {
+    setErrorInfo(error);
+    setIsErrorModalOpen(true);
+  };
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return setIsErrorModalOpen(true);
+    if (firstName === "" || lastName === "" || birthDay === "" || birthMonth === "") return showError("Fill out all fields completely.");
     axios
-      .post(`${import.meta.env.VITE_API}teacher/addStudent`, {
-        firstName,
-        lastName,
-        birthDay: birthDay.toString().padStart(2, "0"),
-        birthMonth: birthMonth.toString().padStart(2, "0"),
-        gradeLevel,
-      })
+      .post(`${import.meta.env.VITE_API}teacher/addStudent`, { firstName, lastName, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0"), gradeLevel })
       .then((res) => navigate("/teacher/accounts"))
-      .catch((err) => alert(err.message));
+      .catch((err) => showError("Student with the same name already exists."));
   };
 
   return (
@@ -54,7 +45,7 @@ function Teacher_Add_Student() {
                 onChange={(e) => e.target.value.length <= 15 && setFirstName(e.target.value)}
                 id="firstName"
                 placeholder="Enter First Name"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
                 style={{ maxWidth: "300px" }}
               />
             </div>
@@ -66,7 +57,7 @@ function Teacher_Add_Student() {
                 onChange={(e) => e.target.value.length <= 15 && setLastName(e.target.value)}
                 id="lastName"
                 placeholder="Enter Last Name"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
                 style={{ maxWidth: "300px" }}
               />
             </div>
@@ -77,24 +68,28 @@ function Teacher_Add_Student() {
                 value={birthDay}
                 onChange={(e) => ((e.target.value <= 31 && e.target.value >= 1) || e.target.value === "") && setBirthDay(e.target.value)}
                 id="birthDay"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
                 style={{ maxWidth: "100px" }}
               />
             </div>
             <div className="flex flex-row items-center gap-2">
               <label htmlFor="birthMonth">Birth Month:</label>
-              <input
-                type="number"
-                value={birthMonth}
-                onChange={(e) => ((e.target.value <= 12 && e.target.value >= 1) || e.target.value === "") && setBirthMonth(e.target.value)}
-                id="birthMonth"
-                className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md"
-                style={{ maxWidth: "100px" }}
-              />
+              <select className="text-black px-4 py-1 border-2 border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md" value={birthMonth} id="birthMonth" onChange={(e) => setBirthMonth(e.target.value)}>
+                {months.map((i, ind) => (
+                  <option value={ind + 1} key={ind}>
+                    {i}
+                  </option>
+                ))}
+              </select>
             </div>
             <div className="flex flex-row items-center gap-2">
               <label htmlFor="gradeLevel">Grade Level:</label>
-              <select value={gradeLevel} onChange={(e) => setGradeLevel(e.target.value)} className="text-black px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md" style={{ maxWidth: "100px" }}>
+              <select
+                value={gradeLevel}
+                onChange={(e) => setGradeLevel(e.target.value)}
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
+                style={{ maxWidth: "100px" }}
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -110,9 +105,11 @@ function Teacher_Add_Student() {
           </form>
         </div>
       </main>
-      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"Fill out all fields completely."} />
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={errorInfo} />
     </>
   );
 }
 
 export default Teacher_Add_Student;
+
+const months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
