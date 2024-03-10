@@ -118,27 +118,27 @@ function Student_LearningGroupAssessment() {
                 <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
                 <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
               </div>
-              <h3 className="text-4xl font-semibold font-sourceSans3 hyphens-auto">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
+              <h3 className="text-4xl font-semibold font-sourceSans3 hyphens-auto break-words">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
               <div className="flex flex-col gap-3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div
-                    className={`flex flex-row items-center gap-4 px-3 sm:px-5 py-3 rounded-2xl shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
+                    className={`flex flex-row items-center gap-4  px-3 sm:px-5 py-3 rounded-2xl shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
                       hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
                     } ${hasAnswered ? "" : "cursor-pointer"}`}
                     onClick={() => handleChoiceClick(ind)}
                     key={ind}
                   >
                     <input type="radio" id={ind} checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
-                    <label className={`text-2xl font-bold flex-grow ${hasAnswered ? "" : "cursor-pointer"}`} htmlFor={ind}>
+                    <label className={`text-2xl flex-grow w-1 font-bold hyphens-auto break-words ${hasAnswered ? "" : "cursor-pointer"}`} htmlFor={ind}>
                       {choice}
                     </label>
                     {hasAnswered &&
                       (isAnswerCorrect(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end">Your Answer (Correct)</div>
+                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end hyphens-auto break-words">Your Answer (Correct)</div>
                       ) : isAnswerWrong(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end">Your Answer (Wrong)</div>
+                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end hyphens-auto break-words">Your Answer (Wrong)</div>
                       ) : isTheCorrectAnswer(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end">The Correct Answer</div>
+                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end hyphens-auto break-words">The Correct Answer</div>
                       ) : (
                         <></>
                       ))}
