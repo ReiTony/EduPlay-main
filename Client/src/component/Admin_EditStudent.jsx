@@ -29,7 +29,7 @@ function Admin_EditStudent() {
   }, []);
 
   const handleSave = async () => {
-    if (firstName === "" || lastName === "" || gradeLevel === "" || birthDay === "" || birthMonth === "") return setIsErrorModalOpen(true)
+    if (firstName === "" || lastName === "" || gradeLevel === "" || birthDay === "" || birthMonth === "") return setIsErrorModalOpen(true);
     axios
       .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, { firstName, lastName, gradeLevel, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0") })
       .then((res) => navigate(-1))

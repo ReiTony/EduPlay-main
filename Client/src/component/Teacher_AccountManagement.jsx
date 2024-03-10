@@ -107,7 +107,7 @@ function Teacher_AccountManagement() {
 
           <div className="flex flex-wrap gap-2">
             <button
-              className="px-5 py-1 text-2xl font-bold rounded-full text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
+              className="px-5 py-1 text-lg sm:text-2xl font-bold rounded-xl text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
               onClick={() => navigate("create")}
             >
               ADD STUDENT
@@ -205,10 +205,10 @@ function DeleteModal({ show, onHide, onSave }) {
           Upon clicking delete, all information associated under this student will be deleted.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-[#d00c24] rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
+          <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
             CANCEL
           </button>
-          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-neutral-800 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
+          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-[#d00c24] hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
             DELETE
           </button>
         </div>

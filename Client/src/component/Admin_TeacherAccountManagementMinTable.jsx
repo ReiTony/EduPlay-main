@@ -138,10 +138,10 @@ function DeleteModal({ show, onHide, onSave, modalStyle }) {
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
-        <h2 className="text-4xl text-center">DELETE TEACHER</h2>
+        <h2 className="text-4xl text-center">DELETE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking delete, all information associated under this teacher will be deleted.
+          Upon clicking delete, all information associated under this student will be deleted.
         </div>
         <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
           <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
