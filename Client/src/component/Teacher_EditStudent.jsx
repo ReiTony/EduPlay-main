@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
+import ErrorModal from "./ErrorModal";
 
 function Teacher_EditStudent() {
   const navigate = useNavigate();
@@ -10,6 +11,7 @@ function Teacher_EditStudent() {
   const [gradeLevel, setGrade] = useState("1");
   const [birthDay, setBirthDay] = useState("");
   const [birthMonth, setBirthMonth] = useState("");
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
 
   useEffect(() => {
     axios
@@ -26,19 +28,15 @@ function Teacher_EditStudent() {
   }, []);
 
   const handleSave = async () => {
+    if (firstName === "" || lastName === "" || gradeLevel === "" || birthDay === "" || birthMonth === "") return setIsErrorModalOpen(true);
     axios
-      .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, {
-        firstName,
-        lastName,
-        gradeLevel,
-        birthDay: birthDay.toString().padStart(2, "0"),
-        birthMonth: birthMonth.toString().padStart(2, "0"),
-      })
+      .patch(`${import.meta.env.VITE_API}teacher/updateStudent/${accountId}`, { firstName, lastName, gradeLevel, birthDay: birthDay.toString().padStart(2, "0"), birthMonth: birthMonth.toString().padStart(2, "0") })
       .then((res) => navigate(-1))
       .catch((err) => alert(err.message));
   };
 
   return (
+    <>
     <div className="flex flex-col flex-grow font-bold">
       <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont">ACCOUNT MANAGEMENT</h1>
 
@@ -77,11 +75,17 @@ function Teacher_EditStudent() {
           </div>
 
           <div className="flex flex-row items-center gap-4">
-            <div className="flex flex-row items-center gap-2">  
+            <div className="flex flex-row items-center gap-2">
               <label htmlFor="gradelevel" className="text-white">
                 Grade:
               </label>
-              <select value={gradeLevel} onChange={(e) => setGrade(e.target.value)} className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md" style={{ maxWidth: "100px" }} id="gradeLevel">
+              <select
+                value={gradeLevel}
+                onChange={(e) => setGrade(e.target.value)}
+                className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
+                style={{ maxWidth: "100px" }}
+                id="gradeLevel"
+              >
                 <option value="1">1</option>
                 <option value="2">2</option>
                 <option value="3">3</option>
@@ -122,6 +126,8 @@ function Teacher_EditStudent() {
         </div>
       </div>
     </div>
+      <ErrorModal show={isErrorModalOpen} onHide={() => setIsErrorModalOpen(false)} errorInfo={"Fill out all fields completely."} />
+</>
   );
 }
 

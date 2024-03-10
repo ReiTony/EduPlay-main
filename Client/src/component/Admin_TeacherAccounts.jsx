@@ -103,7 +103,7 @@ function Admin_TeacherAccounts() {
           <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
 
           <div className="flex flex-wrap gap-2">
-            <button className="bg-[#08a454] rounded-xl shadow-lg font-bold text-white px-3 sm:px-8 py-2 hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate("create")}>
+            <button className="bg-[#08a454] text-lg sm:text-2xl rounded-xl shadow-lg font-bold text-white px-3 sm:px-8 py-2 hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate("create")}>
               ADD TEACHER
             </button>
             <div className="relative">
