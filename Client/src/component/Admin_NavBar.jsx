@@ -17,7 +17,9 @@ function Admin_NavBar() {
       <div className="flex items-center justify-between w-full p-2 ">
         <div className="flex flex-grow items-center">
           <img className="h-12 sm:h-24" src={logo} alt="eduplay-logo" />
-          <h1 className="flex text-xl sm:text-4xl font-bold font-reemkufifont flex-grow">EDUPLAY ADMIN</h1>
+          <h1 className="flex text-xl sm:text-4xl font-bold font-reemkufifont me-2" style={{ wordSpacing: "0.3em" }}>
+            EDUPLAY ADMIN
+          </h1>
         </div>
         <div className="justify-end hidden w-full space-x-4 text-2xl font-bold font-expletus xl:flex">
           <Link to="/admin" className="p-5 hover:text-[#252525] hover:bg-[#a5d6a7] hover:rounded-sm ">

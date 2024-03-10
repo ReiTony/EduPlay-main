@@ -23,7 +23,10 @@ function Admin_TeacherAccounts() {
   const refresh = async () => {
     axios
       .get(`${import.meta.env.VITE_API}admin/teachers`)
-      .then((res) => setData(res.data.teachers))
+      .then((res) => {
+        res.data.teachers.sort((a, b) => a.gradeLevel - b.gradeLevel || a.name.localeCompare(b.name));
+        setData(res.data.teachers);
+      })
       .catch((err) => alert(err.message));
   };
 
@@ -71,6 +74,7 @@ function Admin_TeacherAccounts() {
           </button>
         ),
       },
+      { accessor: (d) => `${d.name} ${d.email}`, id: "NAME-EMAIL", Cell: () => <div className="p-0 h-0 w-0" /> },
     ],
     []
   );
@@ -83,7 +87,7 @@ function Admin_TeacherAccounts() {
   }, [selectedGrade]);
 
   useEffect(() => {
-    setFilter("NAME", filterInput);
+    setFilter("NAME-EMAIL", filterInput);
   }, [filterInput]);
 
   const handleScrollToTop = () => {
@@ -99,11 +103,11 @@ function Admin_TeacherAccounts() {
           <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
 
           <div className="flex flex-wrap gap-2">
-            <button className="bg-[#08a454] rounded-xl shadow-lg font-bold text-white px-3 sm:px-8 py-2 hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate("create")}>
+            <button className="bg-[#08a454] text-lg sm:text-2xl rounded-xl shadow-lg font-bold text-white px-3 sm:px-8 py-2 hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate("create")}>
               ADD TEACHER
             </button>
             <div className="relative">
-              <input type="text" value={filterInput} onChange={(e) => setFilterInput(e.target.value)} placeholder="Search by Name..." className="w-56 p-2 rounded-md focus:shadow-green focus:outline-none focus:shadow-lg bg-[#08a454] text-white" />
+              <input type="text" value={filterInput} onChange={(e) => setFilterInput(e.target.value)} placeholder="Search by name or email..." className="w-56 p-2 rounded-md focus:shadow-green focus:outline-none focus:shadow-lg bg-[#08a454] text-white" />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
                 <BsSearch className="mr-2 text-white cursor-pointer" />
               </span>

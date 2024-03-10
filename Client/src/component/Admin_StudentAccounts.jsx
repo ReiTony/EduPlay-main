@@ -23,7 +23,10 @@ function Admin_StudentAccounts() {
   const refresh = async () => {
     axios
       .get(`${import.meta.env.VITE_API}teacher/class`)
-      .then((res) => setData(res.data.students))
+      .then((res) => {
+        res.data.students.sort((a, b) => a.gradeLevel - b.gradeLevel || a.firstName.localeCompare(b.firstName));
+        setData(res.data.students);
+      })
       .catch((err) => alert(err.message));
   };
 
@@ -104,7 +107,7 @@ function Admin_StudentAccounts() {
 
           <div className="flex flex-wrap gap-2">
             <button
-              className="px-5 py-1 text-2xl font-bold rounded-xl text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
+              className="px-5 py-1 text-lg sm:text-2xl font-bold rounded-xl text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"
               onClick={() => navigate("create")}
             >
               ADD STUDENT
@@ -195,9 +198,9 @@ function DeleteModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold font-sourceSans3">
-        <h2 className="text-4xl text-center text-white">DELETE STUDENT</h2>
-        <div className="text-2xl text-white">
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
+        <h2 className="text-4xl text-center">DELETE STUDENT</h2>
+        <div className="text-2xl">
           Reminder: <br />
           Upon clicking delete, all information associated under this student will be deleted.
         </div>
