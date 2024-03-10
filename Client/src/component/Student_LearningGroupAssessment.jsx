@@ -106,7 +106,7 @@ function Student_LearningGroupAssessment() {
     <>
       <div className="flex flex-col items-center flex-grow gap-6 p-4 sm:p-8 m-4 mb-6 shadow-md secondBackground rounded-2xl shadow-black">
         <div className="flex flex-row items-center justify-between w-full my-2 text-5xl font-semibold font-sourceSans3">
-          <h3 className="me-auto">{data?.title || ""}</h3>
+          <h3 className="me-auto hyphens-auto">{data?.title || ""}</h3>
           {isViewingScore && <div className=""> {`Score: ${score}/${data?.questions.length}`}</div>}
         </div>
         <hr className="w-full h-1 bg-black" />
@@ -118,7 +118,7 @@ function Student_LearningGroupAssessment() {
                 <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
                 <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
               </div>
-              <h3 className="text-4xl font-semibold font-sourceSans3 break-all">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
+              <h3 className="text-4xl font-semibold font-sourceSans3 hyphens-auto">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
               <div className="flex flex-col gap-3">
                 {data?.questions[currentQuestion].choices.map((choice, ind) => (
                   <div

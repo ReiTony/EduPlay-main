@@ -52,7 +52,7 @@ function Teacher_LearningGroupStudent() {
           {userData !== null && (
             <>
               <img src={studentDP} alt="Profile" className="h-24 sm:h-40" />
-              <h2 className="text-3xl font-semibold break-all">{`${userData?.firstName || ""} ${userData?.lastName || ""}`}</h2>
+              <h2 className="text-3xl font-semibold hypens-auto">{`${userData?.firstName || ""} ${userData?.lastName || ""}`}</h2>
             </>
           )}
         </div>
@@ -62,7 +62,7 @@ function Teacher_LearningGroupStudent() {
             {headerGroups.map((headerGroup) => (
               <tr {...headerGroup.getHeaderGroupProps()} className="rounded-2xl">
                 {headerGroup.headers.map((column) => (
-                  <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-md sm:text-2xl py-4 break-all">
+                  <th {...column.getHeaderProps()} className="bg-[#282424] text-white text-md sm:text-2xl py-4 hyphens-auto">
                     {column.render("Header")}
                   </th>
                 ))}
