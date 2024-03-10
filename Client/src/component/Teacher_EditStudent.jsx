@@ -7,7 +7,7 @@ function Teacher_EditStudent() {
   const { accountId } = useParams();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
-  const [gradeLevel, setGrade] = useState("");
+  const [gradeLevel, setGrade] = useState("1");
   const [birthDay, setBirthDay] = useState("");
   const [birthMonth, setBirthMonth] = useState("");
 
@@ -77,20 +77,16 @@ function Teacher_EditStudent() {
           </div>
 
           <div className="flex flex-row items-center gap-4">
-            <label htmlFor="gradelevel" className="text-white">
-              Grade:
-            </label>
-            <input
-              type="number"
-              value={gradeLevel}
-              onChange={(e) => setGrade(e.target.value)}
-              placeholder="Grade"
-              id="gradelevel"
-              min="1"
-              max="3"
-              className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
-              style={{ maxWidth: "100px" }}
-            />
+            <div className="flex flex-row items-center gap-2">  
+              <label htmlFor="gradelevel" className="text-white">
+                Grade:
+              </label>
+              <select value={gradeLevel} onChange={(e) => setGrade(e.target.value)} className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md" style={{ maxWidth: "100px" }} id="gradeLevel">
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+              </select>
+            </div>
           </div>
 
           <div className="flex flex-row items-center gap-4">
@@ -105,7 +101,7 @@ function Teacher_EditStudent() {
             <input
               type="number"
               value={birthDay}
-              onChange={(e) => setBirthDay(e.target.value)}
+              onChange={(e) => ((e.target.value <= 31 && e.target.value >= 1) || e.target.value === "") && setBirthDay(e.target.value)}
               placeholder="Birth Day"
               className="text-black px-4 py-1 border-2 w-full border-red-300 focus:outline-none focus:shadow-red-300 rounded-full focus:shadow-md"
               style={{ maxWidth: "100px" }}
