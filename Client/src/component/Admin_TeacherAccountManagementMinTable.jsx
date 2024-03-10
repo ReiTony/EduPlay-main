@@ -57,6 +57,7 @@ function Admin_TeacherAccountManagementMinTable({ data, refresh, filterInput, se
           </button>
         ),
       },
+      { accessor: (d) => `${d.name} ${d.email}`, id: "NAME-EMAIL", Cell: () => <div className="p-0 h-0 w-0" /> },
     ],
     []
   );
@@ -69,7 +70,7 @@ function Admin_TeacherAccountManagementMinTable({ data, refresh, filterInput, se
   }, [selectedGrade]);
 
   useEffect(() => {
-    setFilter("NAME", filterInput);
+    setFilter("NAME-EMAIL", filterInput);
   }, [filterInput]);
 
   const handleScrollToTop = () => {
