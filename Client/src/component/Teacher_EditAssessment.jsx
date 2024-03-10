@@ -306,9 +306,8 @@ function SaveAssessmentModal({ show, onHide, onSave }) {
       <div className="flex flex-col justify-center gap-8 p-2 font-semibold text-white font-sourceSans3">
         <h2 className="text-3xl text-center">SAVE ASSESSMENT</h2>
         <div className="text-2xl">
-          Reminders: <br />
-          1. Upon clicking save, you will not be able to make any changes. <br />
-          2. Please make sure all questions were properly created and no question was added without any questions/answer.
+          Reminder: <br />
+          Please make sure all questions were properly created and no question was added without any questions/answer.
         </div>
         <div className="flex flex-row justify-end gap-2 text-white">
           <button className="bg-[#d00c24] text-2xl rounded-xl shadow-lg px-4 py-2 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onHide}>
