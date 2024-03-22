@@ -4,6 +4,7 @@ import ReactModal from "react-modal";
 import textToSpeechIcon from "../assets/texttospeech.svg";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
+import Instruction from "./students/Instruction";
 
 function Student_LearningGroupAssessment() {
   const { assessmentId } = useParams();
@@ -15,6 +16,7 @@ function Student_LearningGroupAssessment() {
   const [isViewingScore, setIsViewingScore] = useState(false);
   const [isSubmitModalOpen, setIsSubmitModalOpen] = useState(false);
   const [isLoading, setIsLoading] = useState(true);
+  const [isInstructShown, setIsInstructShown] = useState(true);
   const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [score, setScore] = useState(0);
 
@@ -54,6 +56,7 @@ function Student_LearningGroupAssessment() {
   };
 
   const handleSubmit = () => {
+    new Audio("/sound/press.mp3").play();
     if (currentAnswer === -1) return setIsErrorModalOpen(true);
     const temp = JSON.parse(localStorage.getItem(`${assessmentId}-answers`));
     temp[temp.indexOf(-1)] = currentAnswer;
@@ -64,6 +67,7 @@ function Student_LearningGroupAssessment() {
   };
 
   const handleNext = async () => {
+    new Audio("/sound/press.mp3").play();
     if (currentQuestion + 1 < data?.questions.length) {
       setCurrentQuestion((i) => i + 1);
       setCurrentAnswer(-1);
@@ -91,11 +95,21 @@ function Student_LearningGroupAssessment() {
     setCurrentAnswer(JSON.parse(localStorage.getItem(`${assessmentId}-answers`))[i]);
   };
 
-  const handleChoiceClick = (ind) => {
+  const handleChoiceClick = (ind) => (e) => {
     if (!hasAnswered) {
       setCurrentAnswer(ind);
       new Audio("/sound/press.mp3").play();
     }
+  };
+
+  const handleStart = () => {
+    new Audio("/sound/press.mp3").play();
+    setIsInstructShown(false);
+  };
+
+  const getQuestion = () => {
+    let q = data?.questions[currentQuestion].question.trim();
+    return `${currentQuestion + 1}. ${q.endsWith("?") ? q : q + "?"}`;
   };
 
   const isAnswerCorrect = (ind) => data?.questions[currentQuestion].correctAnswer === currentAnswer && ind === currentAnswer;
@@ -112,43 +126,49 @@ function Student_LearningGroupAssessment() {
         <hr className="w-full h-1 bg-black" />
 
         <div className="flex flex-col bg-[#ffbc5c] w-full rounded-3xl p-5 sm:p-10 my-auto gap-4" style={{ maxWidth: "1024px" }}>
-          {!isLoading && (
-            <>
-              <div className="flex flex-row justify-between">
-                <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
-                <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
-              </div>
-              <h3 className="text-4xl font-semibold font-sourceSans3 hyphens-auto break-words">{`${currentQuestion + 1}. ${data?.questions[currentQuestion].question}`}</h3>
-              <div className="flex flex-col gap-3">
-                {data?.questions[currentQuestion].choices.map((choice, ind) => (
-                  <div
-                    className={`flex flex-row items-center gap-4  px-3 sm:px-5 py-3 rounded-2xl shadow-md ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
-                      hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : ind === currentAnswer ? "bg-neutral-200" : "bg-white"
-                    } ${hasAnswered ? "" : "cursor-pointer"}`}
-                    onClick={() => handleChoiceClick(ind)}
-                    key={ind}
-                  >
-                    <input type="radio" id={ind} checked={ind === currentAnswer} className={hasAnswered ? "" : "cursor-pointer"} readOnly />
-                    <label className={`text-2xl flex-grow w-1 font-bold hyphens-auto break-words ${hasAnswered ? "" : "cursor-pointer"}`} htmlFor={ind}>
-                      {choice}
-                    </label>
-                    {hasAnswered &&
-                      (isAnswerCorrect(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end hyphens-auto break-words">Your Answer (Correct)</div>
-                      ) : isAnswerWrong(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end hyphens-auto break-words">Your Answer (Wrong)</div>
-                      ) : isTheCorrectAnswer(ind) ? (
-                        <div className="text-lg font-semibold font-sourceSans3 ms-auto text-end hyphens-auto break-words">The Correct Answer</div>
-                      ) : (
-                        <></>
-                      ))}
-                  </div>
-                ))}
-              </div>
-            </>
+          {isInstructShown ? (
+            <Instruction />
+          ) : (
+            !isLoading && (
+              <>
+                <div className="flex flex-row justify-between">
+                  <h2 className="text-3xl font-semibold font-sourceSans3">Question</h2>
+                  <img className="cursor-pointer" onClick={handleTTSClick} src={textToSpeechIcon} alt="textToSpeechIcon" style={{ maxHeight: "40px" }} />
+                </div>
+                <h3 className="text-4xl font-semibold font-sourceSans3 hyphens-auto break-words">{getQuestion()}</h3>
+                <div className="flex flex-col gap-3 font-semibold md:grid md:grid-cols-2 font-sourceSans3">
+                  {data?.questions[currentQuestion].choices.map((choice, ind) => (
+                    <div
+                      className={`flex flex-col items-center shadow-md rounded-2xl p-4 ${hasAnswered ? "" : "hover:shadow-xl hover:brightness-95"} ${
+                        hasAnswered ? (isAnswerCorrect(ind) || isTheCorrectAnswer(ind) ? "bg-green-400" : isAnswerWrong(ind) ? "bg-red-400" : "bg-white") : "bg-white"
+                      } ${hasAnswered ? "" : "cursor-pointer"}`}
+                      onClick={handleChoiceClick(ind)}
+                      key={ind}
+                    >
+                      <div className="text-2xl">{choice}</div>
+                      {hasAnswered &&
+                        (isAnswerCorrect(ind) ? (
+                          <div className="text-lg font-semibold font-sourceSans3">Your Answer (Correct)</div>
+                        ) : isAnswerWrong(ind) ? (
+                          <div className="text-lg font-semibold font-sourceSans3">Your Answer (Wrong)</div>
+                        ) : isTheCorrectAnswer(ind) ? (
+                          <div className="text-lg font-semibold font-sourceSans3">The Correct Answer</div>
+                        ) : (
+                          <></>
+                        ))}
+                    </div>
+                  ))}
+                </div>
+              </>
+            )
           )}
         </div>
-        {isViewingScore ? (
+
+        {isInstructShown ? (
+          <button className="bg-[#08a454] rounded-full px-10 py-2 text-3xl shadow-lg text-white font-bold font-sourceSans3 hover:brightness-90 hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={handleStart}>
+            START
+          </button>
+        ) : isViewingScore ? (
           <div className="flex flex-row justify-between w-full text-2xl font-semibold text-white font-sourceSans3" style={{ maxWidth: "1024px" }}>
             {currentQuestion != 0 && (
               <button className="me-auto bg-[#282424] px-10 py-2 rounded-full hover:brightness-90 shadow-md hover:shadow-green-500 hover:scale-95 transition-transform transform-gpu" onClick={() => goToQuestion(currentQuestion - 1)}>
@@ -171,29 +191,7 @@ function Student_LearningGroupAssessment() {
           </button>
         )}
       </div>
-      <ReactModal
-        appElement={document.getElementById("root")}
-        isOpen={isSubmitModalOpen}
-        shouldCloseOnEsc={true}
-        style={{
-          content: {
-            background: `url("/src/assets/wordHuntPOPbg.svg")`,
-            border: "0",
-            borderRadius: "2rem",
-            maxWidth: "540px",
-            maxHeight: "200px",
-            boxSizing: "content-box",
-            padding: "3rem 0rem",
-            width: "100%",
-            display: "flex",
-            justifyContent: "center",
-            top: "50%",
-            left: "50%",
-            transform: "translate(-50%, -50%)",
-            boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
-          },
-        }}
-      >
+      <ReactModal appElement={document.getElementById("root")} isOpen={isSubmitModalOpen} shouldCloseOnEsc={true} style={modalStyle}>
         <div className="flex flex-col items-center justify-center gap-8 p-8 text-3xl font-semibold font-sourceSans3">
           <div className="text-center">Are you sure you want to submit the quiz?</div>
           <div className="flex flex-col sm:flex-row justify-center gap-4">
@@ -212,3 +210,19 @@ function Student_LearningGroupAssessment() {
 }
 
 export default Student_LearningGroupAssessment;
+
+const modalStyle = {
+  content: {
+    background: `url("/src/assets/wordHuntPOPbg.svg")`,
+    border: "0",
+    borderRadius: "2rem",
+    maxWidth: "90dvw",
+    maxHeight: "80dvh",
+    width: "100%",
+    height: "fit-content",
+    top: "50%",
+    left: "50%",
+    transform: "translate(-50%, -50%)",
+    boxShadow: "0 4px 8px rgba(0, 0, 0, 0.4)",
+  },
+};
