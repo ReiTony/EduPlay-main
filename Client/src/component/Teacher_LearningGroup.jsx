@@ -23,7 +23,7 @@ function Teacher_LearningGroup() {
         if (res.status === 200) temp.push((await res.json()).student);
       });
       await Promise.all(promises);
-      setData(temp);
+      setData(temp.sort((a, b) => a.gradeLevel - b.gradeLevel || a.firstName.localeCompare(b.firstName) || a.lastName.localeCompare(b.lastName)));
     });
   };
 
