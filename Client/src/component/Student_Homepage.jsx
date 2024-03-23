@@ -10,7 +10,6 @@ import BGlr from "../assets/Homepage_Image/learningGroup_bg.png";
 
 //const Student_Dashboard = () => {
 function Student_Dashboard() {
-  const gradeLevel = localStorage.getItem("gradeLevel");
   const navigate = useNavigate();
   const userId = localStorage.getItem("userId");
   const [isVisible, setIsVisible] = useState(true);
@@ -46,7 +45,7 @@ function Student_Dashboard() {
             </div>
             <ul className="flex flex-col mx-0 sm:mx-4">
               {notifications.map((notification, index) => (
-                <li className="text-lg sm:text-2xl font-semibold list-disc ms-4" key={index}>{notification.message}</li>
+                <li className="text-lg sm:text-2xl font-semibold list-disc ms-4" key={index}>{notification.message + " "}<span className="text-lg font-normal">{`(${new Date(notification.createdAt).toLocaleDateString('en-US', options)})`}</span></li>
               ))}
             </ul>
           </div>
@@ -118,3 +117,5 @@ function Student_Dashboard() {
 }
 
 export default Student_Dashboard;
+
+const options = { month: 'short', day: '2-digit', year: 'numeric', hour: '2-digit', minute: '2-digit' };

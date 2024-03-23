@@ -4,6 +4,11 @@ import myHighlight2 from "../assets/LandingPage/Highlight2.svg";
 import kids from "../assets/LandingPage/kids.png";
 import NavBar from "./NavBar";
 
+const resourcesLogo = [
+  { src: "/images/canva.webp", alt: "canva" },
+  { src: "/images/pixelbay.webp", alt: "pixelbay" },
+];
+
 function LandingPage() {
   const navigate = useNavigate();
   return (
@@ -36,9 +41,9 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="text-white bg-zinc-800 sectionSize" id="section-1">
+      <section className="text-white bg-zinc-800 sectionSize" id="about">
         <div>
-          <h2 className="secondaryTitle bg-underline2 bg-100%">About</h2>
+          <h2 className="text-3xl font-semibold mb-4 bg-underline2 bg-100%">About</h2>
         </div>
         <div className="flex flex-col md:flex-row">
           <div className="flex flex-col items-center flex-1 mx-8 my-4">
@@ -59,9 +64,9 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="sectionSize bg-secondary" id="section-2">
+      <section className="sectionSize bg-secondary" id="features">
         <div>
-          <h2 className="secondaryTitle bg-underline3 bg-100%">Features</h2>
+          <h2 className="text-3xl font-semibold mb-4 bg-underline3 bg-100%">Features</h2>
         </div>
         <div className="md:grid md:grid-cols-2 md:grid-rows-2">
           <div className="flex items-start my-6 mr-10 font-montserrat">
@@ -98,8 +103,17 @@ function LandingPage() {
         </div>
       </section>
 
-      <section className="bg-zinc-800 sectionSize">
-        <div className="text-sm text-white font-montserrat">© 2023 EDUPLAY. All rights reserved</div>
+      <section className="bg-zinc-800 sectionSize text-white">
+        <h2 className="text-3xl font-semibold bg-underline3 bg-100%">Resources</h2>
+        <div className="flex flex-row flex-wrap gap-4 justify-center items-center my-8">
+          {resourcesLogo.map((l, ind) => (
+            <div key={ind} className="w-24">
+              <img src={l.src} alt={l.alt} />
+            </div>
+          ))}
+        </div>
+
+        <div className="text-sm font-montserrat mt-6">© 2023 EDUPLAY. All rights reserved</div>
       </section>
     </div>
   );
