@@ -32,7 +32,7 @@ function Student_Login() {
       navigate("/student");
     } catch (err) {
       if (err.code === "ERR_NETWORK") setErrorInfo("You are not connected to the internet.");
-      else if (err.response.status === 500) setErrorInfo("Invalid student credentials.");
+      else if (err.response.status === 401) setErrorInfo("Invalid student credentials.");
       else setErrorInfo("Error");
       setIsErrorModalOpen(true);
     }

@@ -13,8 +13,9 @@ function Teacher_AccountManagement() {
   const [data, setData] = useState([]);
   const [filterInput, setFilterInput] = useState("");
   const [selectedGrade, setSelectedGrade] = useState("");
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [toBeDisabledStudent, setToBeDisabledStudent] = useState("");
+  const [showDisableModal, setShowDisableModal] = useState(false);
+  const [showEnableModal, setShowEnableModal] = useState(false);
+  const [selectedStudent, setSelectedStudent] = useState("");
 
   useEffect(() => {
     refresh();
@@ -32,17 +33,30 @@ function Teacher_AccountManagement() {
 
   const handleDisableStudent = async () => {
     axios
-      .delete(`${import.meta.env.VITE_API}teacher/deleteStudent/${toBeDisabledStudent}`)
+      .put(`${import.meta.env.VITE_API}teacher/disableStudent/${selectedStudent}`)
       .then((res) => {
         refresh();
-        setShowDeleteModal(false);
+        setShowDisableModal(false);
+      })
+      .catch((err) => alert(err.message));
+  };
+  const handleEnableStudent = async () => {
+    axios
+      .put(`${import.meta.env.VITE_API}teacher/enableStudent/${selectedStudent}`)
+      .then((res) => {
+        refresh();
+        setShowEnableModal(false);
       })
       .catch((err) => alert(err.message));
   };
 
-  const showDelete = (username) => {
-    setShowDeleteModal(true);
-    setToBeDisabledStudent(username);
+  const showDisable = (username) => {
+    setShowDisableModal(true);
+    setSelectedStudent(username);
+  };
+  const showEnable = (username) => {
+    setShowEnableModal(true);
+    setSelectedStudent(username);
   };
 
   const columns = useMemo(
@@ -56,7 +70,7 @@ function Teacher_AccountManagement() {
         accessor: "EDIT_STATUS",
         Cell: ({ row }) => (
           <button
-            className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-full shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
+            className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-lg shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
             onClick={() => navigate(row.original.username)}
           >
             <span className="flex items-center">
@@ -69,14 +83,22 @@ function Teacher_AccountManagement() {
       {
         Header: "STATUS",
         accessor: "STATUS",
-        Cell: ({ row }) => (
-          <button
-            className="bg-[#d00c24] rounded-full shadow-lg text-white font-bold px-5 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
-            onClick={() => showDelete(row.original.username)}
-          >
-            DELETE
-          </button>
-        ),
+        Cell: ({ row }) =>
+          row.original.isActive ? (
+            <button
+              className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+              onClick={() => showDisable(row.original.username)}
+            >
+              DISABLE
+            </button>
+          ) : (
+            <button
+              className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+              onClick={() => showEnable(row.original.username)}
+            >
+              ENABLE
+            </button>
+          ),
       },
       { accessor: (d) => `${d.firstName} ${d.lastName}`, id: "NAME", Cell: () => <div className="p-0 h-0 w-0"></div> },
     ],
@@ -167,13 +189,14 @@ function Teacher_AccountManagement() {
           </table>
         </div>
         <div className="md:hidden">
-          <Teacher_AccountManagementMinTable data={data} refresh={refresh} filterInput={filterInput} selectedGrade={selectedGrade} modalStyle={modalStyle} />
+          <Teacher_AccountManagementMinTable data={data} filterInput={filterInput} selectedGrade={selectedGrade} refresh={refresh} showDisable={showDisable} showEnable={showEnable} />
         </div>
       </main>
       <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
         <BsFillArrowUpCircleFill className="text-3xl " />
       </button>
-      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} />
+      <DisableModal show={showDisableModal} onHide={() => setShowDisableModal(false)} onSave={handleDisableStudent} />
+      <EnableModal show={showEnableModal} onHide={() => setShowEnableModal(false)} onSave={handleEnableStudent} />
     </>
   );
 }
@@ -194,22 +217,45 @@ function GradeLevelFilter({ column }) {
 
 export default Teacher_AccountManagement;
 
-function DeleteModal({ show, onHide, onSave }) {
+function DisableModal({ show, onHide, onSave }) {
   if (!show) return;
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
-        <h2 className="text-4xl text-center">DELETE STUDENT</h2>
+        <h2 className="text-4xl text-center">DISABLE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking delete, all information associated under this student will be deleted.
+          Upon clicking disable, the student account cannot be logged in.
         </div>
-        <div className="flex flex-row justify-end gap-2 text-white">
+        <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
           <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
             CANCEL
           </button>
           <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-[#d00c24] hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
-            DELETE
+            DISABLE
+          </button>
+        </div>
+      </div>
+    </ReactModal>
+  );
+}
+
+function EnableModal({ show, onHide, onSave }) {
+  if (!show) return;
+  return (
+    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
+      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
+        <h2 className="text-4xl text-center">Enable STUDENT</h2>
+        <div className="text-2xl">
+          Reminder: <br />
+          Upon clicking enable, the student account cannot be logged in.
+        </div>
+        <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
+          <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
+            CANCEL
+          </button>
+          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-[#d00c24] hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
+            ENABLE
           </button>
         </div>
       </div>
