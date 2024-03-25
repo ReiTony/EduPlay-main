@@ -1,33 +1,11 @@
-import { useState, useEffect, useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import { useTable, useFilters } from "react-table";
-import { useNavigate } from "react-router-dom";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
-import ReactModal from "react-modal";
-import axios from "axios";
 
-function Admin_AccountManagementMinTable({ data, refresh, filterInput, selectedGrade, modalStyle }) {
-  const navigate = useNavigate();
-  const [showDeleteModal, setShowDeleteModal] = useState(false);
-  const [toBeDisabledStudent, setToBeDisabledStudent] = useState("");
-
+function Admin_AccountManagementMinTable({ data, filterInput, selectedGrade, refresh, showDisable, showEnable }) {
   useEffect(() => {
     refresh();
   }, []);
-
-  const handleDisableStudent = async () => {
-    axios
-      .delete(`${import.meta.env.VITE_API}teacher/deleteStudent/${toBeDisabledStudent}`)
-      .then((res) => {
-        refresh();
-        setShowDeleteModal(false);
-      })
-      .catch((err) => alert(err.message));
-  };
-
-  const showDelete = (username) => {
-    setShowDeleteModal(true);
-    setToBeDisabledStudent(username);
-  };
 
   const columns = useMemo(
     () => [
@@ -48,14 +26,22 @@ function Admin_AccountManagementMinTable({ data, refresh, filterInput, selectedG
       {
         Header: "STATUS",
         accessor: "STATUS",
-        Cell: ({ row }) => (
-          <button
-            className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
-            onClick={() => showDelete(row.original.username)}
-          >
-            DELETE
-          </button>
-        ),
+        Cell: ({ row }) =>
+          row.original.isActive ? (
+            <button
+              className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+              onClick={() => showDisable(row.original.username)}
+            >
+              DISABLE
+            </button>
+          ) : (
+            <button
+              className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+              onClick={() => showEnable(row.original.username)}
+            >
+              ENABLE
+            </button>
+          ),
       },
     ],
     []
@@ -111,7 +97,6 @@ function Admin_AccountManagementMinTable({ data, refresh, filterInput, selectedG
       <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
         <BsFillArrowUpCircleFill className="text-3xl " />
       </button>
-      <DeleteModal show={showDeleteModal} onHide={() => setShowDeleteModal(false)} onSave={handleDisableStudent} modalStyle={modalStyle} />
     </>
   );
 }
@@ -131,26 +116,3 @@ function GradeLevelFilter({ column }) {
 }
 
 export default Admin_AccountManagementMinTable;
-
-function DeleteModal({ show, onHide, onSave, modalStyle }) {
-  if (!show) return;
-  return (
-    <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
-      <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
-        <h2 className="text-4xl text-center">DELETE STUDENT</h2>
-        <div className="text-2xl">
-          Reminder: <br />
-          Upon clicking delete, all information associated under this student will be deleted.
-        </div>
-        <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
-          <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
-            CANCEL
-          </button>
-          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-[#d00c24] hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
-            DELETE
-          </button>
-        </div>
-      </div>
-    </ReactModal>
-  );
-}
