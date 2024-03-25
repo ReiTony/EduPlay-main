@@ -32,8 +32,11 @@ function Student_Login() {
       navigate("/student");
     } catch (err) {
       if (err.code === "ERR_NETWORK") setErrorInfo("You are not connected to the internet.");
-      else if (err.response.status === 401) setErrorInfo("Invalid student credentials.");
-      else setErrorInfo("Error");
+      else if (err.response.status === 401) {
+        if (err.response.data.error === "Invalid Credentials") setErrorInfo("Invalid student credentials.");
+        else if (err.response.data.error === "Account is disabled") setErrorInfo("This Student account is disabled and therefore can't be logged in.");
+        else setErrorInfo("Error");
+      }
       setIsErrorModalOpen(true);
     }
   };
@@ -93,7 +96,8 @@ function Student_Login() {
               <button
                 className="px-12 py-3 mt-8 text-2xl font-bold text-center text-white placeholder-white transition duration-300 ease-in-out transform bg-black rounded-full shadow-lg font-sourceSans3 hover:shadow-green-400 hover:scale-105"
                 type="submit"
-                disabled={isSubmitting}>
+                disabled={isSubmitting}
+              >
                 {isSubmitting ? "SIGNING IN..." : "SIGN IN"}
               </button>
             </form>
