@@ -7,6 +7,7 @@ import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import ReactModal from "react-modal";
 import axios from "axios";
 import Admin_AccountManagementMinTable from "./Admin_AccountManagementMinTable";
+import ErrorModal from "./ErrorModal";
 
 function Admin_StudentAccounts() {
   const navigate = useNavigate();
@@ -15,6 +16,7 @@ function Admin_StudentAccounts() {
   const [selectedGrade, setSelectedGrade] = useState("");
   const [showDisableModal, setShowDisableModal] = useState(false);
   const [showEnableModal, setShowEnableModal] = useState(false);
+  const [isErrorModalOpen, setIsErrorModalOpen] = useState(false);
   const [selectedStudent, setSelectedStudent] = useState("");
 
   useEffect(() => {
@@ -71,7 +73,7 @@ function Admin_StudentAccounts() {
         Cell: ({ row }) => (
           <button
             className="flex items-center justify-center px-5 py-1 m-auto font-bold text-white bg-green-500 rounded-lg shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-            onClick={() => navigate(row.original.username)}
+            onClick={() => (row.original.isActive ? navigate(row.original.username) : setIsErrorModalOpen(true))}
           >
             <span className="flex items-center">
               <BiEditAlt className="mr-2 cursor-pointer" />
@@ -189,7 +191,7 @@ function Admin_StudentAccounts() {
           </table>
         </div>
         <div className="md:hidden">
-          <Admin_AccountManagementMinTable data={data} filterInput={filterInput} selectedGrade={selectedGrade} refresh={refresh} showDisable={showDisable} showEnable={showEnable} />
+          <Admin_AccountManagementMinTable data={data} filterInput={filterInput} selectedGrade={selectedGrade} refresh={refresh} showDisable={showDisable} showEnable={showEnable} showCannotEdit={() => setIsErrorModalOpen(true)} />
         </div>
       </main>
       <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
@@ -197,6 +199,7 @@ function Admin_StudentAccounts() {
       </button>
       <DisableModal show={showDisableModal} onHide={() => setShowDisableModal(false)} onSave={handleDisableStudent} />
       <EnableModal show={showEnableModal} onHide={() => setShowEnableModal(false)} onSave={handleEnableStudent} />
+      <ErrorModal errorInfo="To edit this student, change its status to enabled." onHide={() => setIsErrorModalOpen(false)} show={isErrorModalOpen} />
     </>
   );
 }

@@ -1,8 +1,11 @@
 import { useEffect, useMemo } from "react";
 import { useTable, useFilters } from "react-table";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-function Admin_AccountManagementMinTable({ data, filterInput, selectedGrade, refresh, showDisable, showEnable }) {
+function Admin_AccountManagementMinTable({ data, filterInput, selectedGrade, refresh, showDisable, showEnable, showCannotEdit }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     refresh();
   }, []);
@@ -17,7 +20,7 @@ function Admin_AccountManagementMinTable({ data, filterInput, selectedGrade, ref
         Cell: ({ row }) => (
           <button
             className="flex items-center justify-center px-3 py-1 me-1 font-bold text-white bg-green-500 rounded-lg shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-            onClick={() => navigate(row.original.username)}
+            onClick={() => (row.original.isActive ? navigate(row.original.username) : showCannotEdit(true))}
           >
             EDIT
           </button>
