@@ -32,8 +32,15 @@ function Student_Login() {
       navigate("/student");
     } catch (err) {
       if (err.code === "ERR_NETWORK") setErrorInfo("You are not connected to the internet.");
-      else if (err.response.status === 401) setErrorInfo("Invalid student credentials.");
-      else setErrorInfo("Error");
+      else if (err.response.status === 401) {
+        if (err.response.data.error === "Invalid Student Credentials") {
+          setErrorInfo("Invalid student credentials.");
+        } else if (err.response.data.error === "Account is disabled") {
+          setErrorInfo("This Student account is disabled and therefore can't be logged in.");
+        } else {
+          setErrorInfo("Error");
+        }
+      }
       setIsErrorModalOpen(true);
     }
   };
