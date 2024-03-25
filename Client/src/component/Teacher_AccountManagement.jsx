@@ -248,7 +248,7 @@ function EnableModal({ show, onHide, onSave }) {
   return (
     <ReactModal appElement={document.getElementById("root")} isOpen={show} shouldCloseOnEsc={true} style={modalStyle}>
       <div className="flex flex-col justify-center gap-8 p-6 font-semibold text-white font-sourceSans3">
-        <h2 className="text-4xl text-center">Enable STUDENT</h2>
+        <h2 className="text-4xl text-center">ENABLE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
           Upon clicking enable, the student account cannot be logged in.
