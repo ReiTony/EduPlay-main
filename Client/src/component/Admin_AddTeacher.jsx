@@ -1,9 +1,9 @@
 import { useState } from "react";
-import { IoArrowBackCircle } from "react-icons/io5";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
 import ReactModal from "react-modal";
+import BackButton from "./BackButton";
 
 function Admin_AddTeacher() {
   const navigate = useNavigate();
@@ -40,10 +40,7 @@ function Admin_AddTeacher() {
       <h1 className="backgroundGreen text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
       <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg text-white font-bold backgroundGreen">
-        <button className="flex flex-row items-center gap-2 bg-[#08a454] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
-          <IoArrowBackCircle />
-          BACK
-        </button>
+      <BackButton bg1="#08a454" bg2="green-300" />
         <div className="flex flex-col lg:mx-auto lg:w-[1000px]">
           <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD TEACHER</h1>
           <h1 className="text-xl sm:text-3xl my-5">Fill in the information:</h1>
