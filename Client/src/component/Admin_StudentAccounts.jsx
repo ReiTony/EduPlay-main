@@ -8,6 +8,7 @@ import ReactModal from "react-modal";
 import axios from "axios";
 import Admin_AccountManagementMinTable from "./Admin_AccountManagementMinTable";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Admin_StudentAccounts() {
   const navigate = useNavigate();
@@ -127,8 +128,10 @@ function Admin_StudentAccounts() {
 
       <main className="backgroundRed flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg">
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
-
+          <div className="flex flex-col">
+            <BackButton bg1="#ff5757" bg2="red-300" />
+            <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
+          </div>
           <div className="flex flex-wrap gap-2">
             <button
               className="px-5 py-1 text-lg sm:text-2xl font-bold rounded-xl text-white bg-[#ff5757] hover:bg-red-700 hover:shadow-lg hover:shadow-red-300 shadow-lg shadow-black hover:scale-[.98] transition-transform transform-gpu"

@@ -4,6 +4,7 @@ import axios from "axios";
 import { IoArrowBackCircle } from "react-icons/io5";
 import { useTable } from "react-table";
 import studentDP from "../assets/StudentProfilePicture/StudentDP.jpg";
+import BackButton from "./BackButton";
 
 function Teacher_LearningGroupStudent() {
   const { username } = useParams();
@@ -44,10 +45,7 @@ function Teacher_LearningGroupStudent() {
       <h1 className="backgroundBlue text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">LEARNING GROUP - PROGRESS TRACKING</h1>
 
       <main className="flex flex-col flex-grow gap-4 p-2 pt-4 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundBlue">
-        <button className="flex flex-row items-center gap-2 bg-[#282424] rounded-full shadow-md text-white text-2xl me-auto px-6 py-2" onClick={() => navigate(-1)}>
-          <IoArrowBackCircle />
-          BACK
-        </button>
+        <BackButton bg1="#086cfc" bg2="blue-300" />
         <div className="flex flex-row gap-2 sm:gap-6 bg-[#e0dcdc] w-full rounded-2xl p-3 sm:p-6">
           {userData !== null && (
             <>

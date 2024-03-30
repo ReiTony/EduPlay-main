@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import ReactModal from "react-modal";
+import BackButton from "./BackButton";
 
 function TeacherAssessments() {
   const navigate = useNavigate();
@@ -51,7 +52,8 @@ function TeacherAssessments() {
   return (
     <>
       <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont ">CUSTOM-ASSESSMENTS</h1>
-      <div className="m-2 flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-xl">
+      <div className="m-2 flex flex-col flex-grow p-2 py-4 sm:p-5 font-bold backgroundGreen rounded-xl">
+        <BackButton bg1="#08a454" bg2="green-300" />
         <div className="flex flex-row flex-wrap-reverse justify-end gap-4 text-xl sm:text-2xl">
           <select className="bg-[#282424] text-white rounded-md shadow-md px-4 py-1 me-4 sm:me-0" value={gradeLevelFilter} onChange={(e) => handleGradeLevelFilterChange(e.target.value)}>
             <option value="all">All grades</option>
@@ -59,12 +61,12 @@ function TeacherAssessments() {
             <option value="2">Grade 2</option>
             <option value="3">Grade 3</option>
           </select>
-          <button className="bg-[#282424] rounded-xl m-4 sm:m-2 px-8 py-2 text-white font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => navigate("create")}>
+          <button className="bg-[#282424] rounded-xl mx-4 sm:m-2 px-8 py-2 text-white font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg" onClick={() => navigate("create")}>
             CREATE AN ASSESSMENT
           </button>
         </div>
 
-        <div className="flex flex-col gap-4 m-0 sm:m-4">
+        <div className="flex flex-col gap-4 m-0 my-4 sm:m-4">
           {filteredAssessments.map((i, ind) => (
             <div
               className="flex flex-col sm:flex-row items-center justify-between flex-grow px-2 sm:px-8 py-4 bg-white rounded-2xl bg-opacity-90 shadow-black hover:scale-[.99] shadow-lg transition-transform transform-gpu hover:shadow-green-400"

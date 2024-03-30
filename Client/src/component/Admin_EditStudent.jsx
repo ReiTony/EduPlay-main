@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Admin_EditStudent() {
   const navigate = useNavigate();
@@ -42,10 +43,7 @@ function Admin_EditStudent() {
         <h1 className="backgroundRed text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont">STUDENT ACCOUNT MANAGEMENT</h1>
 
         <main className="backgroundRed text-white flex flex-col flex-grow text-xl sm:text-3xl p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg">
-          <button className="flex flex-row items-center gap-2 bg-[#ff5757] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
-            <IoArrowBackCircle />
-            BACK
-          </button>
+          <BackButton bg1="#ff5757" bg2="red-300" />
           <h1 className="font-bold font-reemkufifont text-4xl">REGISTERED USERS - EDIT STUDENT</h1>
 
           <div className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">

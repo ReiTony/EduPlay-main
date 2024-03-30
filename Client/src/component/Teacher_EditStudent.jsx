@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Teacher_EditStudent() {
   const navigate = useNavigate();
@@ -42,6 +43,7 @@ function Teacher_EditStudent() {
 
         <div className="flex flex-col flex-grow text-xl sm:text-3xl p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundRed">
           <div className="flex flex-col gap-2 lg:mx-auto lg:w-[1000px]">
+            <BackButton bg1="#ff5757" bg2="red-300" />
             <div className="text-4xl font-bold text-white font-sourceSans3">REGISTERED USERS - EDIT STUDENT</div>
 
             <div className="flex flex-row items-center gap-4 mt-6">

@@ -3,6 +3,7 @@ import { useNavigate, useParams } from "react-router-dom";
 import { IoArrowBackCircle } from "react-icons/io5";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Admin_EditTeacher() {
   const navigate = useNavigate();
@@ -69,11 +70,8 @@ function Admin_EditTeacher() {
     <>
       <h1 className="backgroundGreen text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
-      <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg text-white font-bold backgroundGreen">
-        <button className="flex flex-row items-center gap-2 bg-[#08a454] shadow-md rounded-xl font-bold text-white text-2xl me-auto mb-3 px-6 py-2" onClick={() => navigate(-1)}>
-          <IoArrowBackCircle />
-          BACK
-        </button>
+      <main className="flex flex-col flex-grow p-2 py-4 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg text-white font-bold backgroundGreen">
+        <BackButton bg1="#08a454" bg2="green-300" />
         <h1 className="font-bold font-reemkufifont text-4xl">REGISTERED USERS - EDIT TEACHER</h1>
 
         {isEditingPassword ? (
@@ -110,12 +108,28 @@ function Admin_EditTeacher() {
           <form className="flex flex-col gap-2 font-sourceSans3 text-2xl ms-0 sm:ms-8 mt-8">
             <div className="flex flex-row items-center gap-4">
               <label htmlFor="email">Email:</label>
-              <input type="email" className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md text-black" style={{ maxWidth: "400px" }} value={email} onChange={(e) => e.target.value.length <= 30 && setEmail(e.target.value)} placeholder="Email" id="email" />
+              <input
+                type="email"
+                className="px-4 py-1 border-2 w-full border-black rounded-full focus:shadow-md text-black"
+                style={{ maxWidth: "400px" }}
+                value={email}
+                onChange={(e) => e.target.value.length <= 30 && setEmail(e.target.value)}
+                placeholder="Email"
+                id="email"
+              />
             </div>
 
             <div className="flex flex-row items-center gap-4">
               <label htmlFor="name">Name:</label>
-              <input type="text" style={{ maxWidth: "400px" }} className="px-4 py-1 border-2 w-full border-black text-black rounded-full focus:outline-none focus:shadow-md" value={name} onChange={(e) => e.target.value.length <= 20 && setName(e.target.value)} placeholder="Name" id="name" />
+              <input
+                type="text"
+                style={{ maxWidth: "400px" }}
+                className="px-4 py-1 border-2 w-full border-black text-black rounded-full focus:outline-none focus:shadow-md"
+                value={name}
+                onChange={(e) => e.target.value.length <= 20 && setName(e.target.value)}
+                placeholder="Name"
+                id="name"
+              />
             </div>
             <div className="flex flex-row items-center gap-4">
               <div>Password:</div>
