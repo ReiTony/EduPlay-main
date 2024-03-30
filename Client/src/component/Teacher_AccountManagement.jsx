@@ -251,7 +251,7 @@ function EnableModal({ show, onHide, onSave }) {
         <h2 className="text-4xl text-center">ENABLE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking enable, the student account cannot be logged in.
+          Upon clicking enable, the student account can be logged in.
         </div>
         <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
           <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
