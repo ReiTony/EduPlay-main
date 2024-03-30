@@ -3,6 +3,7 @@ import { useNavigate } from "react-router-dom";
 import Cookies from "js-cookie";
 import axios from "axios";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Teacher_Add_Student() {
   const navigate = useNavigate();
@@ -34,6 +35,7 @@ function Teacher_Add_Student() {
 
       <main className="flex flex-col flex-grow p-4 sm:p-8 mx-1 sm:mx-4 my-2 rounded-lg backgroundRed text-white font-bold">
         <div className="flex flex-col lg:mx-auto lg:w-[1000px]">
+          <BackButton bg1="#ff5757" bg2="red-300" />
           <h1 className="text-2xl sm:text-4xl">REGISTERED USERS - ADD STUDENT</h1>
           <h1 className="text-xl sm:text-3xl my-5">Fill in the information:</h1>
           <form className="flex flex-col gap-4 text-xl sm:text-3xl" onSubmit={handleSubmit}>

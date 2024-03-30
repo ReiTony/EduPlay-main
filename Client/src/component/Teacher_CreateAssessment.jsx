@@ -5,6 +5,7 @@ import ReactModal from "react-modal";
 import Accordion from "./Accordion";
 import "../styles/Teacher_EditAssessment.css";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Teacher_CreateAssessment() {
   const navigate = useNavigate();
@@ -29,13 +30,15 @@ function Teacher_CreateAssessment() {
 
   return (
     <>
-      <div className="flex flex-col flex-grow gap-4">
+      <div className="flex flex-col flex-grow gap-2">
         <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont ">CUSTOM-ASSESSMENTS</h1>
 
-        <div className="mx-2 flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-3xl">
+        <div className="mx-2 flex flex-col flex-grow p-2 py-4 sm:p-5 font-bold backgroundGreen rounded-xl">
+          <BackButton bg1="#08a454" bg2="green-300" />
           {stepNumber === 0 && (
             <div className="flex flex-col gap-5 mx-auto" style={{ maxWidth: "960px", width: "100%" }}>
-              <h2 className="m-4 text-xl text-start sm:text-center sm:text-4xl text-white">CREATE A CUSTOM ASSESSMENT</h2>
+              <h2 className="m-2 sm:m-4 text-xl text-start sm:text-center sm:text-4xl text-white">CREATE A CUSTOM ASSESSMENT</h2>
+
               <div className="flex flex-row items-center gap-2 text-2xl">
                 <label className="text-white">Title: </label>
                 <input
@@ -201,8 +204,8 @@ function AddModal({ show, onHide, onSave }) {
   };
 
   const isAddDisabled = () => {
-    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
-  }
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "");
+  };
 
   if (!show) return;
 
@@ -278,8 +281,8 @@ function EditModal({ show, onHide, onSave, question }) {
   };
 
   const isAddDisabled = () => {
-    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
-  }
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "");
+  };
 
   if (!show) return;
 

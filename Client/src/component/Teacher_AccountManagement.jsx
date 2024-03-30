@@ -8,6 +8,7 @@ import ReactModal from "react-modal";
 import axios from "axios";
 import Teacher_AccountManagementMinTable from "./Teacher_AccountManagementMinTable";
 import ErrorModal from "./ErrorModal";
+import BackButton from "./BackButton";
 
 function Teacher_AccountManagement() {
   const navigate = useNavigate();
@@ -127,7 +128,10 @@ function Teacher_AccountManagement() {
 
       <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundRed">
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
-          <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
+          <div className="flex flex-col">
+            <BackButton bg1="#ff5757" bg2="red-300" />
+            <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
+          </div>
 
           <div className="flex flex-wrap gap-2">
             <button
@@ -251,7 +255,7 @@ function EnableModal({ show, onHide, onSave }) {
         <h2 className="text-4xl text-center">ENABLE STUDENT</h2>
         <div className="text-2xl">
           Reminder: <br />
-          Upon clicking enable, the student account cannot be logged in.
+          Upon clicking enable, the student account can be logged in.
         </div>
         <div className="flex flex-col sm:flex-row justify-end gap-2 text-white">
           <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
