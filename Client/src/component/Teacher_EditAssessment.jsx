@@ -4,6 +4,7 @@ import Accordion from "./Accordion";
 import ReactModal from "react-modal";
 import "../styles/Teacher_EditAssessment.css";
 import axios from "axios";
+import BackButton from "./BackButton";
 
 function Teacher_EditAssessment() {
   const navigate = useNavigate();
@@ -66,16 +67,17 @@ function Teacher_EditAssessment() {
       <div className="flex flex-col flex-grow gap-4">
         <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont ">CUSTOM-ASSESSMENTS</h1>
 
-        <div className="mx-2 flex flex-col flex-grow gap-4 p-2 pt-4 sm:p-5 font-bold backgroundGreen rounded-3xl">
+        <div className="mx-2 flex flex-col flex-grow p-2 pt-4 sm:p-5 font-bold backgroundGreen rounded-xl">
+          <BackButton bg1="#08a454" bg2="green-300" />
           <div className="flex flex-row flex-wrap-reverse justify-end gap-4 text-xl sm:text-2xl">
             <button
-              className="bg-[#282424] rounded-xl px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
+              className="bg-[#282424] rounded-xl px-8 py-2 text-white texl-xl sm:text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
               onClick={() => setShowAddModal(true)}
             >
               ADD QUESTION
             </button>
             <button
-              className="bg-[#282424] rounded-xl px-8 py-2 text-white text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
+              className="bg-[#282424] rounded-xl px-8 py-2 text-white text-xl sm:text-2xl font-bold hover:brightness-90 hover:scale-[.99] transition-transform transform-gpu hover:shadow-green-500 shadow-black shadow-lg"
               onClick={() => setShowSaveAssessmentModal(true)}
             >
               SAVE ASSESSMENT
@@ -141,8 +143,8 @@ function AddModal({ show, onHide, onSave }) {
   };
 
   const isAddDisabled = () => {
-    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
-  }
+    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "");
+  };
 
   if (!show) return;
 
@@ -190,7 +192,6 @@ function AddModal({ show, onHide, onSave }) {
             CANCEL
           </button>
           <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95 disabled:brightness-75" onClick={() => onSave({ question: questionInput, choices, correctAnswer })} disabled={isAddDisabled()}>
-          {/* <button className="text-2xl bg-[#08a454] rounded-full shadow-md px-6 py-2 hover:brightness-95" onClick={() => onSave({ question: questionInput, choices, correctAnswer })}> */}
             SAVE
           </button>
         </div>
@@ -218,9 +219,7 @@ function EditModal({ show, onHide, onSave, question }) {
     setChoices(temp);
   };
 
-  const isAddDisabled = () => {
-    return questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "")
-  }
+  const isAddDisabled = () => questionInput === "" || correctAnswer === -1 || !choices.every((c) => c !== "");
 
   if (!show) return;
 

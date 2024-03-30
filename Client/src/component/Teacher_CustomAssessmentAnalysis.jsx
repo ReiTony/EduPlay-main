@@ -3,6 +3,7 @@ import { useParams } from "react-router-dom";
 import { CircularProgressbar, buildStyles } from "react-circular-progressbar";
 import axios from "axios";
 import "react-circular-progressbar/dist/styles.css";
+import BackButton from "./BackButton";
 
 function Teacher_CustomAssessmentAnalysis() {
   const { assessmendId } = useParams();
@@ -17,7 +18,8 @@ function Teacher_CustomAssessmentAnalysis() {
   return (
     <>
       <h1 className="mx-2 p-4 text-xl sm:text-4xl font-bold text-white shadow-md backgroundGreen rounded-xl font-reemkufifont">ITEM ANALYSIS</h1>
-      <div className="m-2 text-white flex flex-col flex-grow gap-4 p-2 sm:p-5 font-bold backgroundGreen rounded-xl">
+      <div className="m-2 text-white flex flex-col flex-grow p-2 py-4 sm:p-5 font-bold backgroundGreen rounded-xl">
+        <BackButton bg1="#08a454" bg2="green-300" />
         <h2 className="text-xl sm:text-3xl">CUSTOM ASSESSMENTS ANALYSIS</h2>
         <div className="flex flex-col flex-grow gap-4 text-xl">
           {data === null ? (

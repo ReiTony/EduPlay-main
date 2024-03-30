@@ -7,6 +7,7 @@ import { BsFillArrowUpCircleFill } from "react-icons/bs";
 import ReactModal from "react-modal";
 import axios from "axios";
 import Admin_TeacherAccountManagementMinTable from "./Admin_TeacherAccountManagementMinTable";
+import BackButton from "./BackButton";
 
 function Admin_TeacherAccounts() {
   const navigate = useNavigate();
@@ -99,15 +100,21 @@ function Admin_TeacherAccounts() {
       <h1 className="backgroundGreen text-white mx-1 sm:mx-4 rounded-2xl gap-3 p-4 text-2xl sm:text-4xl font-reemkufifont font-bold ">TEACHER ACCOUNT MANAGEMENT</h1>
 
       <main className="flex flex-col flex-grow p-2 sm:p-5 mx-1 sm:mx-4 my-2 rounded-lg backgroundGreen">
+        <BackButton bg1="#08a454" bg2="green-300" />
         <div className="flex flex-wrap gap-2 items-center justify-between pb-4 m-2">
           <h1 className="text-2xl sm:text-4xl font-bold text-white">REGISTERED ACCOUNTS</h1>
-
           <div className="flex flex-wrap gap-2">
             <button className="bg-[#08a454] text-lg sm:text-2xl rounded-xl shadow-lg font-bold text-white px-3 sm:px-8 py-2 hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300" onClick={() => navigate("create")}>
               ADD TEACHER
             </button>
             <div className="relative">
-              <input type="text" value={filterInput} onChange={(e) => setFilterInput(e.target.value)} placeholder="Search by name or email..." className="w-56 p-2 rounded-md focus:shadow-green focus:outline-none focus:shadow-lg bg-[#08a454] text-white" />
+              <input
+                type="text"
+                value={filterInput}
+                onChange={(e) => setFilterInput(e.target.value)}
+                placeholder="Search by name or email..."
+                className="w-56 p-2 rounded-md focus:shadow-green focus:outline-none focus:shadow-lg bg-[#08a454] text-white"
+              />
               <span className="absolute transform -translate-y-1/2 top-1/2 right-4">
                 <BsSearch className="mr-2 text-white cursor-pointer" />
               </span>
