@@ -1,8 +1,11 @@
 import { useEffect, useMemo } from "react";
 import { useTable, useFilters } from "react-table";
 import { BsFillArrowUpCircleFill } from "react-icons/bs";
+import { useNavigate } from "react-router-dom";
 
-function Teacher_AccountManagementMinTable({ data, filterInput, selectedGrade, refresh, showDisable, showEnable }) {
+function Teacher_AccountManagementMinTable({ data, filterInput, selectedGrade, refresh, showDisable, showEnable, showCannotEdit }) {
+  const navigate = useNavigate();
+
   useEffect(() => {
     refresh();
   }, []);
@@ -17,7 +20,7 @@ function Teacher_AccountManagementMinTable({ data, filterInput, selectedGrade, r
         Cell: ({ row }) => (
           <button
             className="flex items-center justify-center px-3 py-1 me-1 font-bold text-white bg-green-500 rounded-lg shadow-lg hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-green-300"
-            onClick={() => navigate(row.original.username)}
+            onClick={() => (row.original.isActive ? navigate(row.original.username) : showCannotEdit(true))}
           >
             EDIT
           </button>
@@ -47,10 +50,7 @@ function Teacher_AccountManagementMinTable({ data, filterInput, selectedGrade, r
     []
   );
 
-  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable(
-    { columns, data },
-    useFilters
-  );
+  const { getTableProps, getTableBodyProps, headerGroups, rows, prepareRow, state, setFilter } = useTable({ columns, data }, useFilters);
 
   useEffect(() => {
     if (selectedGrade === "") setFilter("GRADELEVEL", undefined);
@@ -83,11 +83,7 @@ function Teacher_AccountManagementMinTable({ data, filterInput, selectedGrade, r
             prepareRow(row);
 
             return (
-              <tr
-                {...row.getRowProps()}
-                className="font-semibold"
-                style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}
-              >
+              <tr {...row.getRowProps()} className="font-semibold" style={{ background: index % 2 === 0 ? "#b6b6b6" : "white" }}>
                 {row.cells.map((cell) => {
                   return (
                     <td {...cell.getCellProps()} className="py-2 text-lg text-center border-black">
@@ -101,10 +97,7 @@ function Teacher_AccountManagementMinTable({ data, filterInput, selectedGrade, r
         </tbody>
       </table>
 
-      <button
-        className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none"
-        onClick={handleScrollToTop}
-      >
+      <button className="fixed justify-center p-3 text-white bg-blue-800 rounded-full bottom-4 right-4 focus:outline-none" onClick={handleScrollToTop}>
         <BsFillArrowUpCircleFill className="text-3xl " />
       </button>
     </>
