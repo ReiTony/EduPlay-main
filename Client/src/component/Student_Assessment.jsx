@@ -76,8 +76,8 @@ function StudentAssessment() {
     new Audio("/sound/press.mp3").play();
     setIsSubmitting(true);
     await axios.post(`${import.meta.env.VITE_API}student/module-record`, { username, moduleId, title: data.title });
-    const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data });
     await axios.post(`${import.meta.env.VITE_API}student/assessment-score/6550ea342df7c58dccfceea1`, { username, score, moduleNumber }).catch((err) => showError("Something went wrong. Please try again."));
+    const res = await axios.post(`${import.meta.env.VITE_API}student/assessment-record`, { moduleNumber, userId, answers: userAnswers, assessment: data, username });
     setIsSubmitting(false);
     setResult(res.data);
     setIsCompleteModalOpen(true);

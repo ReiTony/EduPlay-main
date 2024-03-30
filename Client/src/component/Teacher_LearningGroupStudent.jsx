@@ -1,14 +1,12 @@
 import { useEffect, useState, useMemo } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
 import axios from "axios";
-import { IoArrowBackCircle } from "react-icons/io5";
 import { useTable } from "react-table";
 import studentDP from "../assets/StudentProfilePicture/StudentDP.jpg";
 import BackButton from "./BackButton";
 
 function Teacher_LearningGroupStudent() {
   const { username } = useParams();
-  const navigate = useNavigate();
   const [data, setData] = useState([]);
   const [userData, setUserData] = useState();
 
@@ -24,7 +22,7 @@ function Teacher_LearningGroupStudent() {
     ];
     data.gameScores.forEach((game, i) => (temp[i].game = "Played"));
     for (let i = 0; i < Math.floor((data.modules.length + 2) / 4); i++) temp[i].learningMaterials = "Viewed";
-    data.assessmentScores.forEach((ass, i) => (temp[i].assessment = `${ass.score}/10`));
+    data.assessmentScores.forEach((ass, i) => (temp[i].assessment = `${ass.score}/10${ass.topic !== "" ? ` (${ass.topic})` : ""}`));
 
     setData(temp);
   };
