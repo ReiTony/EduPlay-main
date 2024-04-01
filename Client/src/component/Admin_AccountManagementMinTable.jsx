@@ -39,7 +39,7 @@ function Admin_AccountManagementMinTable({ data, filterInput, selectedGrade, ref
             </button>
           ) : (
             <button
-              className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+              className="bg-green-500 rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
               onClick={() => showEnable(row.original.username)}
             >
               ENABLE

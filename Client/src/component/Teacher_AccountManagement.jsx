@@ -96,7 +96,7 @@ function Teacher_AccountManagement() {
             </button>
           ) : (
             <button
-              className="bg-[#d00c24] rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
+              className="bg-green-500 rounded-lg shadow-lg me-1 text-white font-bold px-3 py-1 hover:brightness-90 shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300"
               onClick={() => showEnable(row.original.username)}
             >
               ENABLE
@@ -261,7 +261,7 @@ function EnableModal({ show, onHide, onSave }) {
           <button className="text-2xl bg-neutral-800 rounded-full shadow-md px-6 py-2 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300 " onClick={onHide}>
             CANCEL
           </button>
-          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-[#d00c24] hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
+          <button className="px-6 py-2 text-2xl rounded-full shadow-md bg-green-500 hover:brightness-95  shadow-black hover:scale-[.98] transition-transform transform-gpu hover:shadow-red-300" onClick={onSave}>
             ENABLE
           </button>
         </div>
